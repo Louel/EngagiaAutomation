@@ -75,18 +75,64 @@ public class VAOF {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("deviceName","Samsung Galaxy J1 (2016)");
+        capabilities.setCapability("udid", "4200f378ce98c200");
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, "Android");
         capabilities.setCapability("platformVersion", "5.1.1");
+        capabilities.setCapability("systemPort", "4200f378ce98c200");
+        capabilities.setCapability("systemPort", "4200f46eceeec200");
 //        capabilities.setCapability("automationName", "UiAutomator2");
         capabilities.setCapability("appPackage", "com.engagia.android");
-//        capabilities.setCapability("appActivity","com.engagia.android.activities.LoginActivity");
-        capabilities.setCapability("appActivity","com.engagia.android.activities.MainActivity");
+        capabilities.setCapability("appActivity","com.engagia.android.activities.LoginActivity");
+//        capabilities.setCapability("appActivity","com.engagia.android.activities.MainActivity");
         capabilities.setCapability("noSign", true);
         capabilities.setCapability(FULL_RESET, false);
         capabilities.setCapability(NO_RESET, true);
-        driver = new AppiumDriver(new URL("http://192.168.1.33:4723/wd/hub"), capabilities);
 
+
+
+        driver = new AppiumDriver(new URL("http://192.168.1.33:4723/wd/hub"), capabilities);
+//        appiumSetUp1();
+//        appiumSetUp2();
     }
+
+//    public void appiumSetUp1() throws MalformedURLException {
+//        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        capabilities.setCapability("deviceName","Samsung Galaxy J1 (2016)");
+//        capabilities.setCapability("udid", "4200f378ce98c200");
+//        capabilities.setCapability(CapabilityType.PLATFORM_NAME, "Android");
+//        capabilities.setCapability("platformVersion", "5.1.1");
+////        capabilities.setCapability("automationName", "UiAutomator2");
+//        capabilities.setCapability("appPackage", "com.engagia.android");
+//        capabilities.setCapability("appActivity","com.engagia.android.activities.LoginActivity");
+////        capabilities.setCapability("appActivity","com.engagia.android.activities.MainActivity");
+//        capabilities.setCapability("noSign", true);
+//        capabilities.setCapability(FULL_RESET, false);
+//        capabilities.setCapability(NO_RESET, true);
+//
+//
+//
+//        driver = new AppiumDriver(new URL("http://192.168.1.33:4723/wd/hub"), capabilities);
+//
+//    }
+//    public void appiumSetUp2() throws MalformedURLException {
+//        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        capabilities.setCapability("deviceName","Samsung Galaxy J1 (2016)");
+//        capabilities.setCapability("udid", "4200f46eceeec200");
+//        capabilities.setCapability(CapabilityType.PLATFORM_NAME, "Android");
+//        capabilities.setCapability("platformVersion", "5.1.1");
+////        capabilities.setCapability("automationName", "UiAutomator2");
+//        capabilities.setCapability("appPackage", "com.engagia.android");
+//        capabilities.setCapability("appActivity","com.engagia.android.activities.LoginActivity");
+////        capabilities.setCapability("appActivity","com.engagia.android.activities.MainActivity");
+//        capabilities.setCapability("noSign", true);
+//        capabilities.setCapability(FULL_RESET, false);
+//        capabilities.setCapability(NO_RESET, true);
+//
+//
+//
+//        driver = new AppiumDriver(new URL("http://192.168.1.33:4724/wd/hub"), capabilities);
+//    }
+
     @Test
     public void testVAOF(){
         //Log in to visit
@@ -105,6 +151,7 @@ public class VAOF {
             //Time to load
             List<MobileElement> logBtn = (List<MobileElement>) driver.findElementsByClassName("android.widget.RelativeLayout");
             logBtn.get(i).click();
+            System.out.println(i);
             MobileElement cntBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1')]");
             cntBtn.click();
             //click on Ok
@@ -113,7 +160,7 @@ public class VAOF {
             MobileElement cntBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1')]");
             cntBtn1.click();
 
-            SearchVan();
+//            SearchVan();
 //            Case1();
 //            Case2();
 //            Case3();
@@ -168,9 +215,10 @@ public class VAOF {
 //            Case44();
 //            Case48();
 //            Case49();
-        orderBoxPC();
-        orderPC();
-        orderBox();
+//        orderBoxPC();
+//        orderPC();
+//        orderBox();
+
             //Log out to visit
             MobileElement sideBarBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
             sideBarBtn1.click();
@@ -2366,6 +2414,7 @@ public class VAOF {
         List<MobileElement> logBtn = (List<MobileElement>) driver.findElementsByClassName("com.engagia.android.utils.table.DataCell");
         logBtn.get(0).click();
     }
+
 
 
 }
