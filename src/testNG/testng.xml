@@ -1,0 +1,54 @@
+<!--<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >-->
+<!--<suite name="Engagia VAOF">-->
+    <!--<test name="testngTest">-->
+        <!--<classes>-->
+            <!--<class name="engagiaTest.VAOF1" />-->
+        <!--</classes>-->
+    <!--</test>-->
+<!--</suite>-->
+<!--<suite name="softwaretestingmaterial">-->
+<!--<test name="testngTest">-->
+    <!--<classes>-->
+        <!--<class name="engagiaTest.VAOF1" />-->
+    <!--</classes>-->
+<!--</test>-->
+<!--</suite>-->
+
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Engagia VAOF" parallel="tests" thread-count="3">
+
+    <test name="Test-SamsungA">
+        <parameter name="deviceName" value="Samsung Galaxy J1 (2016)" />
+        <parameter name="platformVersion" value="5.1.1" />
+        <classes>
+            <class name="test.vaofTest.vaofTestAuto" />
+        </classes>
+    </test>
+
+    <!--<test name="Test-SamsungB">-->
+        <!--<parameter name="deviceName" value="Samsung Galaxy J1" />-->
+        <!--<parameter name="platformVersion" value="5.1.1" />-->
+        <!--<classes>-->
+            <!--<class name="test.vaofTest.vaofTestAuto" />-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <test name="Test-MyPhone">
+        <parameter name="deviceName" value="MyPhone UNO" />
+        <parameter name="platformVersion" value="6.0.1" />
+        <classes>
+            <class name="test.vaofTest.vaofTestAuto" />
+        </classes>
+    </test>
+
+    <test name="Test-Huawei">
+        <parameter name="deviceName" value="HUAWEI Y6 2018" />
+        <parameter name="platformVersion" value="8.0.0" />
+        <classes>
+            <class name="test.vaofTest.vaofTestAuto" />
+        </classes>
+    </test>
+
+</suite>

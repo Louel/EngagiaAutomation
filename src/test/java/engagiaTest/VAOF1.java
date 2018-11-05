@@ -1,47 +1,46 @@
-import com.gargoylesoftware.htmlunit.javascript.host.Touch;
+package engagiaTest;
+
 import io.appium.java_client.*;
-import io.appium.java_client.android.AndroidKeyCode;
-import io.appium.java_client.android.nativekey.AndroidKey;
-import io.appium.java_client.android.nativekey.KeyEvent;
-import io.appium.java_client.PerformsTouchActions;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.offset.PointOption;
-import org.junit.Before;
-import org.junit.Test;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.*;
 
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static io.appium.java_client.remote.MobileCapabilityType.FULL_RESET;
 import static io.appium.java_client.remote.MobileCapabilityType.NO_RESET;
 
-public class VAOF {
+public class VAOF1 {
 
     AppiumDriver driver;
+    AndroidDriver ADdriver;
+    public WebDriverWait wait;
     String search = "Van Account Order Form";
     String search1 = "VAOF Summary";
     String[] products = {"Clover", "lover" , "ove" , "rc", "len", "anlen", "cheezy"};
     //
     String invalidProduct = "Ham";
+
     String vaofDrctryTbl = "//android.widget.FrameLayout[@index='0']/" +
-                "android.widget.LinearLayout[@index='0']/" +
-                        "android.widget.FrameLayout[@index='0']/" +
-                        "android.widget.LinearLayout[@index='0']/" +
-                        "android.widget.FrameLayout[@index='0']/" +
-                        "android.support.v4.widget.DrawerLayout[@index='0']/" +
-                        "android.widget.LinearLayout[@index='0']/" +
-                        "android.widget.FrameLayout[@index='1']/" +
-                        "android.widget.LinearLayout[@index='0']/" +
-                        "android.widget.FrameLayout[@index='1']/" +
-                        "android.widget.LinearLayout[@index='0']/";
+            "android.widget.LinearLayout[@index='0']/" +
+            "android.widget.FrameLayout[@index='0']/" +
+            "android.widget.LinearLayout[@index='0']/" +
+            "android.widget.FrameLayout[@index='0']/" +
+            "android.support.v4.widget.DrawerLayout[@index='0']/" +
+            "android.widget.LinearLayout[@index='0']/" +
+            "android.widget.FrameLayout[@index='1']/" +
+            "android.widget.LinearLayout[@index='0']/" +
+            "android.widget.FrameLayout[@index='1']/" +
+            "android.widget.LinearLayout[@index='0']/";
 
     String vaofDrctryByPC = "//android.widget.FrameLayout[@index='0']/" +
             "android.widget.LinearLayout[@index='0']/" +
@@ -66,73 +65,61 @@ public class VAOF {
             "android.widget.LinearLayout[@index='0']/" +
             "android.widget.FrameLayout[@index='2']/" +
             "android.widget.LinearLayout[@index='0']/";
-
-
-
-
-    @Before
-    public void setUp() throws MalformedURLException {
+//    public void setup(String deviceName, String platformVersion) throws MalformedURLException
+//    {
+//        System.out.println(deviceName);
+//        switch (deviceName) {
+//            case "mobile":
+//                System.out.println("Application is opening... ");
+//                DesiredCapabilities capabilities = new DesiredCapabilities();
+////                capabilities.setCapability("deviceName","Samsung Galaxy J1 (2016)");
+//                capabilities.setCapability(CapabilityType.PLATFORM_NAME, "Android");
+////                capabilities.setCapability("platformVersion", "5.1.1");
+//                capabilities.setCapability("appPackage", "com.engagia.android");
+////                capabilities.setCapability("appActivity","com.engagia.android.activities.MainActivity");
+//                capabilities.setCapability("appActivity","com.engagia.android.activities.LoginActivity");
+//                capabilities.setCapability("noSign", true);
+//                capabilities.setCapability(FULL_RESET, false);
+//                capabilities.setCapability(NO_RESET, true);
+//                driver = new AppiumDriver(new URL("http://192.168.1.33:4723/wd/hub"), capabilities);
+//                if(deviceName.equals("4200f378ce98c200"))
+//                {
+//                    capabilities.setCapability("udid", "4200f378ce98c200");
+//                    driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4730/wd/hub"), capabilities);
+//                }else if(deviceName.equals("QFJ9X18605G00840"))
+//                {
+//                    capabilities.setCapability("udid", "QFJ9X18605G00840");
+//                    driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4731/wd/hub"), capabilities);
+//                }
+//                System.out.println("mobile will launch");
+//                driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+//                break;
+//            default:
+//                System.out.println("Incorrect Platform...");
+//                break;
+//        }
+//    }
+    @BeforeClass
+    @Parameters({"deviceName","platformVersion"})
+    public void setUp(String deviceName, String platformVersion) throws MalformedURLException {
+        System.out.println("TestNG Before");
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("deviceName","Samsung Galaxy J1 (2016)");
-        capabilities.setCapability("udid", "4200f378ce98c200");
+        capabilities.setCapability("deviceName",deviceName);
+        capabilities.setCapability("platformVersion", platformVersion);
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, "Android");
-        capabilities.setCapability("platformVersion", "5.1.1");
-        capabilities.setCapability("systemPort", "4200f378ce98c200");
-        capabilities.setCapability("systemPort", "4200f46eceeec200");
-//        capabilities.setCapability("automationName", "UiAutomator2");
         capabilities.setCapability("appPackage", "com.engagia.android");
         capabilities.setCapability("appActivity","com.engagia.android.activities.LoginActivity");
-//        capabilities.setCapability("appActivity","com.engagia.android.activities.MainActivity");
         capabilities.setCapability("noSign", true);
         capabilities.setCapability(FULL_RESET, false);
         capabilities.setCapability(NO_RESET, true);
 
-
-
-        driver = new AppiumDriver(new URL("http://192.168.1.33:4723/wd/hub"), capabilities);
-//        appiumSetUp1();
-//        appiumSetUp2();
-    }
-
-//    public void appiumSetUp1() throws MalformedURLException {
-//        DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability("deviceName","Samsung Galaxy J1 (2016)");
-//        capabilities.setCapability("udid", "4200f378ce98c200");
-//        capabilities.setCapability(CapabilityType.PLATFORM_NAME, "Android");
-//        capabilities.setCapability("platformVersion", "5.1.1");
-////        capabilities.setCapability("automationName", "UiAutomator2");
-//        capabilities.setCapability("appPackage", "com.engagia.android");
-//        capabilities.setCapability("appActivity","com.engagia.android.activities.LoginActivity");
-////        capabilities.setCapability("appActivity","com.engagia.android.activities.MainActivity");
-//        capabilities.setCapability("noSign", true);
-//        capabilities.setCapability(FULL_RESET, false);
-//        capabilities.setCapability(NO_RESET, true);
-//
-//
-//
 //        driver = new AppiumDriver(new URL("http://192.168.1.33:4723/wd/hub"), capabilities);
-//
-//    }
-//    public void appiumSetUp2() throws MalformedURLException {
-//        DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability("deviceName","Samsung Galaxy J1 (2016)");
-//        capabilities.setCapability("udid", "4200f46eceeec200");
-//        capabilities.setCapability(CapabilityType.PLATFORM_NAME, "Android");
-//        capabilities.setCapability("platformVersion", "5.1.1");
-////        capabilities.setCapability("automationName", "UiAutomator2");
-//        capabilities.setCapability("appPackage", "com.engagia.android");
-//        capabilities.setCapability("appActivity","com.engagia.android.activities.LoginActivity");
-////        capabilities.setCapability("appActivity","com.engagia.android.activities.MainActivity");
-//        capabilities.setCapability("noSign", true);
-//        capabilities.setCapability(FULL_RESET, false);
-//        capabilities.setCapability(NO_RESET, true);
-//
-//
-//
-//        driver = new AppiumDriver(new URL("http://192.168.1.33:4724/wd/hub"), capabilities);
-//    }
-
+        driver = new AppiumDriver(new URL("http://192.168.122.1:4444/wd/hub"), capabilities);
+//        test.ThreadLocalDriver.setTLDriver(new AndroidDriver (new URL("http://127.0.0.1:4444/wd/hub"),capabilities));
+//        ThreadLocalDriver.setTLDriver(new AndroidDriver (new URL("http://192.168.1.33:4444/wd/hub"), capabilities));
+//        wait = new WebDriverWait(ThreadLocalDriver.getTLDriver(), 10);
+    }
     @Test
     public void testVAOF(){
         //Log in to visit
@@ -151,7 +138,6 @@ public class VAOF {
             //Time to load
             List<MobileElement> logBtn = (List<MobileElement>) driver.findElementsByClassName("android.widget.RelativeLayout");
             logBtn.get(i).click();
-            System.out.println(i);
             MobileElement cntBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1')]");
             cntBtn.click();
             //click on Ok
@@ -215,24 +201,29 @@ public class VAOF {
 //            Case44();
 //            Case48();
 //            Case49();
-//        orderBoxPC();
-//        orderPC();
-//        orderBox();
+//            orderBoxPC();
+//            orderPC();
+//            orderBox();
 
             //Log out to visit
             MobileElement sideBarBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
             sideBarBtn1.click();
-            //Insert Swipe down
+            //Scrolling vvvvvvvv
+//            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//            MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'edit_text_search')]");
+//            boolean isDisplayed1 = element1.isDisplayed();
+//            if (isDisplayed1) {
+//                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+//                TouchAction touchAction = new TouchAction(driver);
+//                touchAction.longPress(new PointOption().withCoordinates(160, 200)).moveTo(new PointOption().withCoordinates(160, 520)).release().perform();
+//            }
+            //Scroll ^^^^
+//            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//            MobileElement logOutBtn = (MobileElement) driver.findElementByXPath("//android.view.View[contains(@resource-id,'action_visit')]");
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'edit_text_search')]");
-            boolean isDisplayed1 = element1.isDisplayed();
-            if (isDisplayed1) {
-                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-                TouchAction touchAction = new TouchAction(driver);
-                touchAction.longPress(new PointOption().withCoordinates(160, 200)).moveTo(new PointOption().withCoordinates(160, 520)).release().perform();
-            }
-            MobileElement logOutBtn = (MobileElement) driver.findElementByXPath("//android.view.View[contains(@resource-id,'action_visit')]");
+            MobileElement logOutBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'image_visit_dropdown') and @index = '3'')]");
             logOutBtn.click();
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             MobileElement logOutBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'btn_visit_logout')]");
             logOutBtn1.click();
         }
@@ -1421,19 +1412,16 @@ public class VAOF {
         System.out.println("Case 44 Pass");
     }
     /**
-    //Check "LO" Column empty????
-    public void Case45(){
-
-    }
-    //Check "Last Trade Inventory" Column EMPTY!???
-    public void Case46(){
-
-    }
-    //Check "LO + LTI" Column
-    public void Case47(){
-
-    }
-    **/ //walang laman sa doovop
+     //Check "LO" Column empty????
+     public void Case45(){
+     }
+     //Check "Last Trade Inventory" Column EMPTY!???
+     public void Case46(){
+     }
+     //Check "LO + LTI" Column
+     public void Case47(){
+     }
+     **/ //walang laman sa doovop
     //Check "Trade Inventory" Column
     public void Case48(){
         for (int b=0; b<2; b++){
@@ -1489,23 +1477,19 @@ public class VAOF {
 
     }
     /**
-    //Check Deals no Steps to Execute on DOVOP
-    public void Case50(){
-
-    }
-    //Check Discount
-    public void Case51(){
-
-    }
-    //Check Product Returnable
-    public void Case52(){
-
-    }
-    //Check Summary Menu "Salesman Discount'
-    public void Case53(){
-
-    }
-    */
+     //Check Deals no Steps to Execute on DOVOP
+     public void Case50(){
+     }
+     //Check Discount
+     public void Case51(){
+     }
+     //Check Product Returnable
+     public void Case52(){
+     }
+     //Check Summary Menu "Salesman Discount'
+     public void Case53(){
+     }
+     */
     public void orderBoxPC() {
         //NEED TIME TO LOAD LOL
         //Pwede rin while kita un arrow loop sya
@@ -1513,218 +1497,218 @@ public class VAOF {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         MobileElement arrow = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'custom_table_next_pagination') and @text = '   ›   ']");
         while(arrow != null){
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        //FIRST PRODUCT!
-        //PER PC
-        //Enter Value on Trade Inventory
-        MobileElement tradePC1 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
-                "/android.widget.HorizontalScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.ScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']");
-        tradePC1.click();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //Enter random numbers
-        randomNum();
-        //Click ok
-        MobileElement clckOk1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
-        clckOk1.click();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //Enter Value on Order Inventory
-        MobileElement orderPC1 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
-                "/android.widget.HorizontalScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.ScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='0']");
-        orderPC1.click();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //Enter random numbers
-        randomNum();
-        //Click ok
-        MobileElement clckOk2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
-        clckOk2.click();
-        //PER BOX
-        //Enter Value on Trade Inventory
-        MobileElement tradeBox1 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
-                "/android.widget.HorizontalScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.ScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='1']" +
-                "/android.widget.LinearLayout[@index='1']");
-        tradeBox1.click();
-        //Enter value here
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //Enter random numbers
-        randomNum();
-        //Click ok
-        MobileElement clckOk3 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
-        clckOk3.click();
-        //Enter Value on Order Inventory
-        MobileElement orderBox1 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
-                "/android.widget.HorizontalScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.ScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='1']");
-        orderBox1.click();
-        //Enter value
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //Enter random numbers
-        randomNum();
-        //Click ok
-        MobileElement clckOk4 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
-        clckOk4.click();
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            //FIRST PRODUCT!
+            //PER PC
+            //Enter Value on Trade Inventory
+            MobileElement tradePC1 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
+                    "/android.widget.HorizontalScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.ScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']");
+            tradePC1.click();
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            //Enter random numbers
+            randomNum();
+            //Click ok
+            MobileElement clckOk1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
+            clckOk1.click();
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            //Enter Value on Order Inventory
+            MobileElement orderPC1 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
+                    "/android.widget.HorizontalScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.ScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='0']");
+            orderPC1.click();
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            //Enter random numbers
+            randomNum();
+            //Click ok
+            MobileElement clckOk2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
+            clckOk2.click();
+            //PER BOX
+            //Enter Value on Trade Inventory
+            MobileElement tradeBox1 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
+                    "/android.widget.HorizontalScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.ScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='1']" +
+                    "/android.widget.LinearLayout[@index='1']");
+            tradeBox1.click();
+            //Enter value here
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            //Enter random numbers
+            randomNum();
+            //Click ok
+            MobileElement clckOk3 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
+            clckOk3.click();
+            //Enter Value on Order Inventory
+            MobileElement orderBox1 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
+                    "/android.widget.HorizontalScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.ScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='1']");
+            orderBox1.click();
+            //Enter value
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            //Enter random numbers
+            randomNum();
+            //Click ok
+            MobileElement clckOk4 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
+            clckOk4.click();
 
-        //SECOND PRODUCT!
-        //PER PC
-        //Enter Value on Trade Inventory
-        MobileElement tradePC2 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
-                "/android.widget.HorizontalScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.ScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='1']" +
-                "/android.widget.LinearLayout[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']");
-        tradePC2.click();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //Enter random numbers
-        randomNum();
-        //Click ok
-        MobileElement clckOk5 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
-        clckOk5.click();
-        //Enter Value on Order Inventory
-        MobileElement orderPC2 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
-                "/android.widget.HorizontalScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.ScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='0']");
-        orderPC2.click();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //Enter random numbers
-        randomNum();
-        //Click ok
-        MobileElement clckOk6 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
-        clckOk6.click();
-        //PER BOX
-        //Enter Value on Trade Inventory
-        MobileElement tradeBox2 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
-                "/android.widget.HorizontalScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.ScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='1']" +
-                "/android.widget.LinearLayout[@index='1']" +
-                "/android.widget.LinearLayout[@index='1']");
-        tradeBox2.click();
-        //Enter value here
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //Enter random numbers
-        randomNum();
-        //Click ok
-        MobileElement clckOk7 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
-        clckOk7.click();
-        //Enter Value on Order Inventory
-        MobileElement orderBox2 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
-                "/android.widget.HorizontalScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.ScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='1']");
-        orderBox2.click();
-        //Enter value here
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //Enter random numbers
-        randomNum();
-        //Click ok
-        MobileElement clckOk8 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
-        clckOk8.click();
+            //SECOND PRODUCT!
+            //PER PC
+            //Enter Value on Trade Inventory
+            MobileElement tradePC2 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
+                    "/android.widget.HorizontalScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.ScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='1']" +
+                    "/android.widget.LinearLayout[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']");
+            tradePC2.click();
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            //Enter random numbers
+            randomNum();
+            //Click ok
+            MobileElement clckOk5 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
+            clckOk5.click();
+            //Enter Value on Order Inventory
+            MobileElement orderPC2 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
+                    "/android.widget.HorizontalScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.ScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='0']");
+            orderPC2.click();
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            //Enter random numbers
+            randomNum();
+            //Click ok
+            MobileElement clckOk6 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
+            clckOk6.click();
+            //PER BOX
+            //Enter Value on Trade Inventory
+            MobileElement tradeBox2 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
+                    "/android.widget.HorizontalScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.ScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='1']" +
+                    "/android.widget.LinearLayout[@index='1']" +
+                    "/android.widget.LinearLayout[@index='1']");
+            tradeBox2.click();
+            //Enter value here
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            //Enter random numbers
+            randomNum();
+            //Click ok
+            MobileElement clckOk7 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
+            clckOk7.click();
+            //Enter Value on Order Inventory
+            MobileElement orderBox2 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
+                    "/android.widget.HorizontalScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.ScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='1']");
+            orderBox2.click();
+            //Enter value here
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            //Enter random numbers
+            randomNum();
+            //Click ok
+            MobileElement clckOk8 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
+            clckOk8.click();
 
 
-        //THIRD PRODUCT!
-        //PER PC
-        //Enter Value on Trade Inventory
-        MobileElement tradePC3 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
-                "/android.widget.HorizontalScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.ScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='2']" +
-                "/android.widget.LinearLayout[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']");
-        tradePC3.click();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //Enter random numbers
-        randomNum();
-        //Click ok
-        MobileElement clckOk9 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
-        clckOk9.click();
-        //Enter Value on Order Inventory
-        MobileElement orderPC3 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
-                "/android.widget.HorizontalScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.ScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='2']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='0']");
-        orderPC3.click();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //Enter random numbers
-        randomNum();
-        //Click ok
-        MobileElement clckOk10 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
-        clckOk10.click();
-        //PER BOX
-        //Enter Value on Trade Inventory
-        MobileElement tradeBox3 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
-                "/android.widget.HorizontalScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.ScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='2']" +
-                "/android.widget.LinearLayout[@index='1']" +
-                "/android.widget.LinearLayout[@index='1']");
-        tradeBox3.click();
-        //Enter value here
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //Enter random numbers
-        randomNum();
-        //Click ok
-        MobileElement clckOk11 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
-        clckOk11.click();
-        //Enter Value on Order Inventory
-        MobileElement orderBox3 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
-                "/android.widget.HorizontalScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.ScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='2']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='1']");
-        orderBox3.click();
-        //Enter value here
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //Enter random numbers
-        randomNum();
-        //Click ok
-        MobileElement clckOk12 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
-        clckOk12.click();
+            //THIRD PRODUCT!
+            //PER PC
+            //Enter Value on Trade Inventory
+            MobileElement tradePC3 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
+                    "/android.widget.HorizontalScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.ScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='2']" +
+                    "/android.widget.LinearLayout[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']");
+            tradePC3.click();
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            //Enter random numbers
+            randomNum();
+            //Click ok
+            MobileElement clckOk9 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
+            clckOk9.click();
+            //Enter Value on Order Inventory
+            MobileElement orderPC3 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
+                    "/android.widget.HorizontalScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.ScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='2']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='0']");
+            orderPC3.click();
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            //Enter random numbers
+            randomNum();
+            //Click ok
+            MobileElement clckOk10 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
+            clckOk10.click();
+            //PER BOX
+            //Enter Value on Trade Inventory
+            MobileElement tradeBox3 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
+                    "/android.widget.HorizontalScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.ScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='2']" +
+                    "/android.widget.LinearLayout[@index='1']" +
+                    "/android.widget.LinearLayout[@index='1']");
+            tradeBox3.click();
+            //Enter value here
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            //Enter random numbers
+            randomNum();
+            //Click ok
+            MobileElement clckOk11 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
+            clckOk11.click();
+            //Enter Value on Order Inventory
+            MobileElement orderBox3 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
+                    "/android.widget.HorizontalScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.ScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='2']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='1']");
+            orderBox3.click();
+            //Enter value here
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            //Enter random numbers
+            randomNum();
+            //Click ok
+            MobileElement clckOk12 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
+            clckOk12.click();
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             try {
                 MobileElement page = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'custom_table_next_pagination') and @text = '   ›   ']");
@@ -1744,7 +1728,7 @@ public class VAOF {
                 break;
             }
 
-    }
+        }
 
 
 //
@@ -1855,133 +1839,133 @@ public class VAOF {
 //        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 //        MobileElement arrow = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'custom_table_next_pagination') and @text = '   ›   ']");
 //        while(arrow != null){
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        //FIRST PRODUCT!
-        //PER PC
-        //Enter Value on Trade Inventory
-        MobileElement tradePC1 = (MobileElement) driver.findElementByXPath(vaofDrctryByPC +
-                "/android.widget.HorizontalScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.ScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']");
-        tradePC1.click();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //Enter random numbers
-        randomNum();
-        //Click ok
-        MobileElement clckOk1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
-        clckOk1.click();
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            //FIRST PRODUCT!
+            //PER PC
+            //Enter Value on Trade Inventory
+            MobileElement tradePC1 = (MobileElement) driver.findElementByXPath(vaofDrctryByPC +
+                    "/android.widget.HorizontalScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.ScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']");
+            tradePC1.click();
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            //Enter random numbers
+            randomNum();
+            //Click ok
+            MobileElement clckOk1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
+            clckOk1.click();
 
-        //Enter Value on Order Inventory
-        MobileElement orderPC1 = (MobileElement) driver.findElementByXPath(vaofDrctryByPC +
-                "/android.widget.HorizontalScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.ScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='0']");
-        orderPC1.click();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //Enter random numbers
-        randomNum();
-        //Click ok
-        MobileElement clckOk2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
-        clckOk2.click();
+            //Enter Value on Order Inventory
+            MobileElement orderPC1 = (MobileElement) driver.findElementByXPath(vaofDrctryByPC +
+                    "/android.widget.HorizontalScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.ScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='0']");
+            orderPC1.click();
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            //Enter random numbers
+            randomNum();
+            //Click ok
+            MobileElement clckOk2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
+            clckOk2.click();
 
-        //!!!!SECOND PRODUCT!!!!
-        //PER PC
-        //Enter Value on Trade Inventory
-        MobileElement tradePC2 = (MobileElement) driver.findElementByXPath(vaofDrctryByPC +
-                "/android.widget.HorizontalScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.ScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='1']" +
-                "/android.widget.LinearLayout[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']");
-        tradePC2.click();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //Enter random numbers
-        randomNum();
-        //Click ok
-        MobileElement clckOk3 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
-        clckOk3.click();
+            //!!!!SECOND PRODUCT!!!!
+            //PER PC
+            //Enter Value on Trade Inventory
+            MobileElement tradePC2 = (MobileElement) driver.findElementByXPath(vaofDrctryByPC +
+                    "/android.widget.HorizontalScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.ScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='1']" +
+                    "/android.widget.LinearLayout[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']");
+            tradePC2.click();
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            //Enter random numbers
+            randomNum();
+            //Click ok
+            MobileElement clckOk3 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
+            clckOk3.click();
 
-        //Enter Value on Order Inventory
-        MobileElement orderPC2 = (MobileElement) driver.findElementByXPath(vaofDrctryByPC +
-                "/android.widget.HorizontalScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.ScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='0']");
-        orderPC2.click();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //Enter random numbers
-        randomNum();
-        //Click ok
-        MobileElement clckOk4 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
-        clckOk4.click();
+            //Enter Value on Order Inventory
+            MobileElement orderPC2 = (MobileElement) driver.findElementByXPath(vaofDrctryByPC +
+                    "/android.widget.HorizontalScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.ScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='0']");
+            orderPC2.click();
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            //Enter random numbers
+            randomNum();
+            //Click ok
+            MobileElement clckOk4 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
+            clckOk4.click();
 
 
-        //!!!!THIRD PRODUCT!!!!
-        //PER PC
-        //Enter Value on Trade Inventory
-        MobileElement tradePC3 = (MobileElement) driver.findElementByXPath(vaofDrctryByPC +
-                "/android.widget.HorizontalScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.ScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='2']" +
-                "/android.widget.LinearLayout[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']");
-        tradePC3.click();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //Enter random numbers
-        randomNum();
-        //Click ok
-        MobileElement clckOk5 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
-        clckOk5.click();
+            //!!!!THIRD PRODUCT!!!!
+            //PER PC
+            //Enter Value on Trade Inventory
+            MobileElement tradePC3 = (MobileElement) driver.findElementByXPath(vaofDrctryByPC +
+                    "/android.widget.HorizontalScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.ScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='2']" +
+                    "/android.widget.LinearLayout[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']");
+            tradePC3.click();
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            //Enter random numbers
+            randomNum();
+            //Click ok
+            MobileElement clckOk5 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
+            clckOk5.click();
 
-        //Enter Value on Order Inventory
-        MobileElement orderPC3 = (MobileElement) driver.findElementByXPath(vaofDrctryByPC +
-                "/android.widget.HorizontalScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.ScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='2']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='0']");
-        orderPC3.click();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //Enter random numbers
-        randomNum();
-        //Click ok
-        MobileElement clckOk6 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
-        clckOk6.click();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        try {
-            MobileElement page = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'custom_table_next_pagination') and @text = '   ›   ']");
+            //Enter Value on Order Inventory
+            MobileElement orderPC3 = (MobileElement) driver.findElementByXPath(vaofDrctryByPC +
+                    "/android.widget.HorizontalScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.ScrollView[@index='1']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='2']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='0']");
+            orderPC3.click();
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            //Enter random numbers
+            randomNum();
+            //Click ok
+            MobileElement clckOk6 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
+            clckOk6.click();
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            try {
+                MobileElement page = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'custom_table_next_pagination') and @text = '   ›   ']");
 //            boolean isDisplayed1 =     Page.isDisplayed();
-            if (page != null) {
-                //NXT PAGE
-                MobileElement nxtPage = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'custom_table_next_pagination') and @text = '   ›   ']");
-                nxtPage.click();
-                System.out.println("Next Page");
-            } else {
-                System.out.println("STAPH");
+                if (page != null) {
+                    //NXT PAGE
+                    MobileElement nxtPage = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'custom_table_next_pagination') and @text = '   ›   ']");
+                    nxtPage.click();
+                    System.out.println("Next Page");
+                } else {
+                    System.out.println("STAPH");
+                    break;
+                }
+            } catch (NoSuchElementException e) {
+                System.out.println("Staph");
                 break;
             }
-        } catch (NoSuchElementException e) {
-            System.out.println("Staph");
-            break;
         }
-    }
         //wait to load
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //Click triple Dots
@@ -2235,7 +2219,7 @@ public class VAOF {
     public void logOutVisit(){
         MobileElement sideBarBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
         sideBarBtn1.click();
-            MobileElement logOutBtn = (MobileElement) driver.findElementByXPath("//android.view.View[contains(@resource-id,'action_visit')]");
+        MobileElement logOutBtn = (MobileElement) driver.findElementByXPath("//android.view.View[contains(@resource-id,'action_visit')]");
         logOutBtn.click();
         //Insert Swipe down
         MobileElement logOutBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'btn_visit_logout')]");
@@ -2414,7 +2398,6 @@ public class VAOF {
         List<MobileElement> logBtn = (List<MobileElement>) driver.findElementsByClassName("com.engagia.android.utils.table.DataCell");
         logBtn.get(0).click();
     }
-
-
-
 }
+
+

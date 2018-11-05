@@ -46,11 +46,11 @@ public class QMAP {
     @Test
     public void testQMAP(){
 
-//        Case1();
+        Case1();
 //        Case2();
 //        ADdriver.toggleWifi();
 //        swipingHorizontal();
-        Case4();
+//        Case4();
 
     }
     //ACCESSING QUICKMAP WHILE LOCATION SERVICES IS OFF (NO WIFI / NO DATA)
@@ -75,7 +75,7 @@ public class QMAP {
                 driver.closeApp();
                 //Open Engagia Again (Step 9)
                 driver.launchApp();
-                System.out.println(a);
+                System.out.println("Step: "+a);
             }
             else if (a <= 8){
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -84,7 +84,7 @@ public class QMAP {
                 driver.closeApp();
                 //Open Engagia Again (Step 9)
                 driver.launchApp();
-                System.out.println(a);
+                System.out.println("Step: "+a);
             }
             else if (a <= 12){
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -93,7 +93,7 @@ public class QMAP {
                 driver.closeApp();
                 //Open Engagia Again (Step 9)
                 driver.launchApp();
-                System.out.println(a);
+                System.out.println("Step: "+a);
             }
         }
 

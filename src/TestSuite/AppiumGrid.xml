@@ -6,15 +6,15 @@
         <parameter name="platform" value="mobile"></parameter>
         <parameter name="runOn" value="4200f378ce98c200"></parameter>
         <packages>
-            <package name="com.automation.testscripts"></package>
+            <package name="com.testAutomation.engagia"></package>
         </packages>
     </test>
     <test name="Real Device 2">
         <parameter name="runAs" value="grid"></parameter>
         <parameter name="platform" value="mobile"></parameter>
-        <parameter name="runOn" value="4200f46eceeec200"></parameter>
+        <parameter name="runOn" value="QFJ9X18605G00840"></parameter>
         <packages>
-            <package name="com.automation.testscripts"></package>
+            <package name="com.testAutomation.engagia"></package>
         </packages>
     </test>
 </suite>
