@@ -26,6 +26,8 @@ public class QMAP {
     AppiumDriver driver;
     AndroidDriver ADdriver;
     String search = "Qui";
+    String [] randomText = {"zczxczxc","12331231","Abbbccde","Abcde!@#","1a2b3c","A1B1C1"};
+    String [] randomUpdateText = {"yyyyqqqq","wwwwww","aaaaaaa","cccccc!@#","11111","222231!!!"};
 
     @Before
     public void setUp() throws MalformedURLException {
@@ -46,11 +48,11 @@ public class QMAP {
     @Test
     public void testQMAP(){
 
-        Case1();
+//        Case1();
 //        Case2();
 //        ADdriver.toggleWifi();
 //        swipingHorizontal();
-//        Case4();
+        Case4();
 
     }
     //ACCESSING QUICKMAP WHILE LOCATION SERVICES IS OFF (NO WIFI / NO DATA)
@@ -143,105 +145,386 @@ public class QMAP {
 //            touchAction.longPress(new PointOption().withCoordinates(250, 600)).moveTo(new PointOption().withCoordinates(250, 300)).release().perform();
 //        }
         //Click Forms
-        //CLick Form
         //Loop
         //Filling up form 1 and saving
-        for (int a = 1; a <= 8; a++) {
+        for (int a = 1; a <= 28; a++) {
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             MobileElement clckFrms1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'qmFormsBtn')]");
             clckFrms1.click();
-            //Select Form 1
-            MobileElement selFrms1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock1']");
-            selFrms1.click();
-            //Fill up Form
-            MobileElement txtField1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index = '1']");
-            txtField1.sendKeys("Abc123!@#");
-            //Hide KeyBoard
-            driver.hideKeyboard();
-            //CheckBox
-            MobileElement cb1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB1' and @index='1']");
-            cb1.click();
-            MobileElement cb2 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB2' and @index='2']");
-            cb2.click();
-            MobileElement cb3 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB3' and @index='3']");
-            cb3.click();
-            //RadioButton
-            MobileElement rb1 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB1' and @index='0']");
-            rb1.click();
-            MobileElement rb2 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB2' and @index='1']");
-            rb2.click();
-            MobileElement rb3 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB3' and @index='2']");
-            rb3.click();
+            //Save and Cancel
             if (a <=3) {
-                //Save and Cancel
+                //Select Form 1
+                MobileElement selFrms1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock1']");
+                selFrms1.click();
+                //Fill up Form
+                MobileElement txtField1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index = '1']");
+                txtField1.sendKeys(randomText[rand(randomText.length-1)]);
+                //Hide KeyBoard
+                driver.hideKeyboard();
+                //CheckBox
+                MobileElement cb1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB1' and @index='1']");
+                cb1.click();
+                MobileElement cb2 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB2' and @index='2']");
+                cb2.click();
+                MobileElement cb3 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB3' and @index='3']");
+                cb3.click();
+                //RadioButton
+                MobileElement rb1 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB1' and @index='0']");
+                rb1.click();
+                MobileElement rb2 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB2' and @index='1']");
+                rb2.click();
+                MobileElement rb3 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB3' and @index='2']");
+                rb3.click();
+                //Cancel
                 MobileElement cancelBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Cancel' and @index='0']");
                 cancelBtn1.click();
+                System.out.println("Cancel " +a);
             }
             else if (a==4){
-                MobileElement saveBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Save' and @index='1']");
-                saveBtn1.click();
+                //Select Form 1
+                MobileElement selFrms1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock1']");
+                selFrms1.click();
+                //Fill up Form
+                MobileElement txtField1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index = '1']");
+                txtField1.sendKeys(randomText[rand(randomText.length-1)]);
+                //Hide KeyBoard
+                driver.hideKeyboard();
+                //CheckBox
+                MobileElement cb1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB1' and @index='1']");
+                cb1.click();
+                MobileElement cb2 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB2' and @index='2']");
+                cb2.click();
+                MobileElement cb3 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB3' and @index='3']");
+                cb3.click();
+                //RadioButton
+                MobileElement rb1 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB1' and @index='0']");
+                rb1.click();
+                MobileElement rb2 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB2' and @index='1']");
+                rb2.click();
+                MobileElement rb3 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB3' and @index='2']");
+                rb3.click();
+                //Save
+                MobileElement clckSave = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Save' and @index='1']");
+                clckSave.click();
+                System.out.println("Save " +a);
             }
             //Form 2
             else if (a<=7){
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-                MobileElement clckFrms2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'qmFormsBtn')]");
-                clckFrms2.click();
                 //Select Form 1
                 MobileElement selFrms2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock2']");
                 selFrms2.click();
                 //Fill up field
                 MobileElement txtField2 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index='1']");
-                txtField2.sendKeys("Def456!@#");
+                txtField2.sendKeys(randomText[rand(randomText.length-1)]);
                 //Hide keyboard
                 driver.hideKeyboard();
                 //Cancel
-                MobileElement cancelBtn2 = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Cancel' and @index='0']");
-                cancelBtn2.click();
+                MobileElement clckCancel = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Cancel' and @index='0']");
+                clckCancel.click();
+                System.out.println("Cancel " +a);
             }
             else if (a==8){
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                //Select Form 2
+                MobileElement selFrms2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock2']");
+                selFrms2.click();
+                //Fill up field
+                MobileElement txtField2 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index='1']");
+                txtField2.sendKeys(randomText[rand(randomText.length-1)]);
+                //Hide keyboard
+                driver.hideKeyboard();
                 //Save
-                MobileElement saveBtn2 = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Save' and @index='1']");
-                saveBtn2.click();
+                MobileElement clckSave = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Save' and @index='1']");
+                clckSave.click();
+                System.out.println("Save " +a);
             }
+            //Forms 3
+            else if(a<=11){
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                //Select Form 3
+                MobileElement selFrms3 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock3']");
+                selFrms3.click();
+                //Click on Check box
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement chckBox1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@index='1' and @text='CB1']");
+                chckBox1.click();
+                //Cancel
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement clckCancel = (MobileElement) driver.findElementByXPath("//android.widget.Button[@index='0' and @text='Cancel']");
+                clckCancel.click();
+                System.out.println("Cancel " +a);
+            }
+            else if(a==12){
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                //Select Form 3
+                MobileElement selFrms3 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock3']");
+                selFrms3.click();
+                //Click on Check box
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement chckBox1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@index='1' and @text='CB1']");
+                chckBox1.click();
+                //Save
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement clckSave = (MobileElement) driver.findElementByXPath("//android.widget.Button[@index='1' and @text='Save']");
+                clckSave.click();
+                System.out.println("Save " +a);
+            }
+            //Forms 4
+            else if(a<=15){
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                //Select Form 4
+                MobileElement selFrms4 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock4']");
+                selFrms4.click();
+                //Click on Radio button
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement radioBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB1' and @index='0']");
+                radioBtn1.click();
+                //Cancel
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement clckCancel = (MobileElement) driver.findElementByXPath("//android.widget.Button[@index='0' and @text='Cancel']");
+                clckCancel.click();
+                System.out.println("Cancel " +a);
+            }
+            else if(a==16){
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                //Select Form 4
+                MobileElement selFrms4 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock4']");
+                selFrms4.click();
+                //Click on Radio button
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement radioBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@index='0' and @text='RB1']");
+                radioBtn1.click();
+                //Save
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement clckSave = (MobileElement) driver.findElementByXPath("//android.widget.Button[@index='1' and @text='Save']");
+                clckSave.click();
+                System.out.println("Save " +a);
+            }
+            //Form 5
+            else if(a<=19){driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                //Select Form 5
+                MobileElement selFrms5 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock5']");
+                selFrms5.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement txtField1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index='1']");
+                txtField1.sendKeys(randomText[rand(randomText.length-1)]);
+                driver.hideKeyboard();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement chckBox1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@index='1' and @text='CB1']");
+                chckBox1.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement chckBox2 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@index='2' and @text='CB2']");
+                chckBox2.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement chckBox3 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@index='3' and @text='CB3']");
+                chckBox3.click();
+                //Cancel
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement clckCancel = (MobileElement) driver.findElementByXPath("//android.widget.Button[@index='0' and @text='Cancel']");
+                clckCancel.click();
+                System.out.println("Cancel " +a);
+
+
+            }
+            else if(a==20){
+                //Select Form 5
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement selFrms5 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock5']");
+                selFrms5.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement txtField1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index='1']");
+                txtField1.sendKeys(randomText[rand(randomText.length-1)]);
+                driver.hideKeyboard();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement chckBox1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@index='1' and @text='CB1']");
+                chckBox1.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement chckBox2 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@index='2' and @text='CB2']");
+                chckBox2.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement chckBox3 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@index='3' and @text='CB3']");
+                chckBox3.click();
+                //Save
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement clckSave = (MobileElement) driver.findElementByXPath("//android.widget.Button[@index='1' and @text='Save']");
+                clckSave.click();
+                System.out.println("Save " +a);
+            }
+            //Forms 6
+            else if (a<=23){
+                //Select Form 6
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement selFrms5 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock6']");
+                selFrms5.click();
+                //Tick all checkbox
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement chckBox1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@index='1' and @text='CB1']");
+                chckBox1.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement chckBox2 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@index='2' and @text='CB2']");
+                chckBox2.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement chckBox3 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@index='3' and @text='CB3']");
+                chckBox3.click();
+                //Click on Radio button
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement radioBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB1' and @index='0']");
+                radioBtn1.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement radioBtn2 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB2' and @index='1']");
+                radioBtn2.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement radioBtn3 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB3' and @index='2']");
+                radioBtn3.click();
+                //Cancel
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement clckCancel = (MobileElement) driver.findElementByXPath("//android.widget.Button[@index='0' and @text='Cancel']");
+                clckCancel.click();
+                System.out.println("Cancel " +a);
+            }
+            else if (a==24){
+                //Select Form 6
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement selFrms5 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock6']");
+                selFrms5.click();
+                //Tick all checkbox
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement chckBox1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@index='1' and @text='CB1']");
+                chckBox1.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement chckBox2 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@index='2' and @text='CB2']");
+                chckBox2.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement chckBox3 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@index='3' and @text='CB3']");
+                chckBox3.click();
+                //Click on Radio button
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement radioBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB1' and @index='0']");
+                radioBtn1.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement radioBtn2 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB2' and @index='1']");
+                radioBtn2.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement radioBtn3 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB3' and @index='2']");
+                radioBtn3.click();
+                //Save
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement clckSave = (MobileElement) driver.findElementByXPath("//android.widget.Button[@index='1' and @text='Save']");
+                clckSave.click();
+                System.out.println("Save " +a);
+            }
+            //Forms 7
+            else if (a<=27){
+                //Insert Swipe
+                //Swipe
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement element2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock6']");
+                boolean isDisplayed2 = element2.isDisplayed();
+                if (isDisplayed2) {
+                    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                    TouchAction touchAction = new TouchAction(driver);
+                    touchAction.longPress(new PointOption().withCoordinates(150, 730)).moveTo(new PointOption().withCoordinates(150, 670)).release().perform();
+                }
+                //Select Form 7
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement selFrms7 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock7']");
+                selFrms7.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement txtField1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index='1']");
+                txtField1.sendKeys(randomText[rand(randomText.length-1)]);
+                driver.hideKeyboard();
+                //Click on Radio button
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement radioBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB1' and @index='0']");
+                radioBtn1.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement radioBtn2 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB2' and @index='1']");
+                radioBtn2.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement radioBtn3 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB3' and @index='2']");
+                radioBtn3.click();
+                //Cancel
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement clckCancel = (MobileElement) driver.findElementByXPath("//android.widget.Button[@index='0' and @text='Cancel']");
+                clckCancel.click();
+                System.out.println("Cancel " +a);
+            }
+            else if (a==28){
+                //Insert Swipe
+                //Swipe
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement element2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock7']");
+                boolean isDisplayed2 = element2.isDisplayed();
+                if (isDisplayed2) {
+                    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                    TouchAction touchAction = new TouchAction(driver);
+                    touchAction.longPress(new PointOption().withCoordinates(150, 730)).moveTo(new PointOption().withCoordinates(150, 670)).release().perform();
+                }
+                //Select Form 7
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement selFrms7 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock7']");
+                selFrms7.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement txtField1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index='1']");
+                txtField1.sendKeys(randomText[rand(randomText.length-1)]);
+                driver.hideKeyboard();
+                //Click on Radio button
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement radioBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB1' and @index='0']");
+                radioBtn1.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement radioBtn2 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB2' and @index='1']");
+                radioBtn2.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement radioBtn3 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB3' and @index='2']");
+                radioBtn3.click();
+                //Save
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement clckSave = (MobileElement) driver.findElementByXPath("//android.widget.Button[@index='1' and @text='Save']");
+                clckSave.click();
+                System.out.println("Save " +a);
+            }
+
         }
         //Update Forms
-        for (int b = 1; b < 4; b++) {
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            MobileElement clckFrms = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'qmFormsBtn')]");
-            clckFrms.click();
-            //Select Form 1
-            MobileElement selFrms1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock1']");
-            selFrms1.click();
-            //Fill up Form
-            MobileElement txtField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index = '1']");
-            txtField.sendKeys("123123Abcde!@#");
-            //Hide KeyBoard
-            driver.hideKeyboard();
-            //CheckBox
-            MobileElement cb1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB1' and @index='1']");
-            cb1.click();
-            MobileElement cb2 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB2' and @index='2']");
-            cb2.click();
-//            MobileElement cb3 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB3' and @index='3']");
-//            cb3.click();
-            //RadioButton
-            MobileElement rb3 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB3' and @index='2']");
-            rb3.click();
-            MobileElement rb1 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB1' and @index='0']");
-            rb1.click();
-            MobileElement rb2 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB2' and @index='1']");
-            rb2.click();
-
-            if (b <=3) {
-                //Save and Cancel
-                MobileElement cancelBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Cancel' and @index='0']");
-                cancelBtn.click();
-            }
-            else if (b==4){
-                MobileElement saveBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Update' and @index='1']");
-                saveBtn.click();
-            }
-        }
+//        for (int b = 1; b < 4; b++) {
+//            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//            MobileElement clckFrms = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'qmFormsBtn')]");
+//            clckFrms.click();
+//            //Select Form 1
+//            MobileElement selFrms1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock1']");
+//            selFrms1.click();
+//            //Fill up Form
+//            MobileElement txtField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index = '1']");
+//            txtField.sendKeys(randomUpdateText[rand(randomUpdateText.length-1)]);
+//            //Hide KeyBoard
+//            driver.hideKeyboard();
+//            //CheckBox
+//            MobileElement cb1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB1' and @index='1']");
+//            cb1.click();
+//            MobileElement cb2 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB2' and @index='2']");
+//            cb2.click();
+////            MobileElement cb3 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB3' and @index='3']");
+////            cb3.click();
+//            //RadioButton
+//            MobileElement rb3 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB3' and @index='2']");
+//            rb3.click();
+//            MobileElement rb1 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB1' and @index='0']");
+//            rb1.click();
+//            MobileElement rb2 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB2' and @index='1']");
+//            rb2.click();
+//
+//            if (b <=3) {
+//                //Save and Cancel
+//                MobileElement cancelBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Cancel' and @index='0']");
+//                cancelBtn.click();
+//            }
+//            else if (b==4){
+//                MobileElement saveBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Update' and @index='1']");
+//                saveBtn.click();
+//            }
+//        }
     }
 
     public void SearchQMAP(){
@@ -255,5 +538,7 @@ public class QMAP {
         MobileElement clckRes = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'text_title')]");
         clckRes.click();
     }
-
+    private static int rand(int bound) {
+        return (int) (Math.random() * bound);
+    }
 }

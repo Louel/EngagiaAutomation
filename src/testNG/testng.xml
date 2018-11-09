@@ -17,38 +17,73 @@
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Engagia VAOF" parallel="tests" thread-count="3">
+<suite name="Engagia VAOF" parallel="tests" thread-count="2">
 
-    <test name="Test-SamsungA">
-        <parameter name="deviceName" value="Samsung Galaxy J1 (2016)" />
-        <parameter name="platformVersion" value="5.1.1" />
-        <classes>
-            <class name="test.vaofTest.vaofTestAuto" />
-        </classes>
-    </test>
+    <!-- Yung class name papalitan lang kung anong class name nung script na ittest dun sa certain device -->
 
-    <!--<test name="Test-SamsungB">-->
-        <!--<parameter name="deviceName" value="Samsung Galaxy J1" />-->
+    <!-- START OF VAOF -->
+    <!--<test name="Test-SamsungA">-->
+        <!--<parameter name="deviceName" value="Samsung Galaxy J1 (2016)" />-->
         <!--<parameter name="platformVersion" value="5.1.1" />-->
         <!--<classes>-->
             <!--<class name="test.vaofTest.vaofTestAuto" />-->
         <!--</classes>-->
     <!--</test>-->
 
+    <!--<test name="Test-MyPhone">-->
+        <!--<parameter name="deviceName" value="MyPhone UNO" />-->
+        <!--<parameter name="platformVersion" value="6.0.1" />-->
+        <!--<classes>-->
+            <!--<class name="test.vaofTest.vaofTestAuto" />-->
+        <!--</classes>-->
+    <!--</test>-->
+    <!-- END OF VAOF -->
+
+    <!-- START OF QMAP -->
+
+    <test name="Test-SamsungA">
+        <parameter name="deviceName" value="Samsung Galaxy J1 (2016)" />
+        <parameter name="platformVersion" value="5.1.1" />
+        <classes>
+            <class name="test.qmapTest.qmapTestAuto" />
+        </classes>
+    </test>
+
     <test name="Test-MyPhone">
         <parameter name="deviceName" value="MyPhone UNO" />
         <parameter name="platformVersion" value="6.0.1" />
         <classes>
-            <class name="test.vaofTest.vaofTestAuto" />
+            <class name="test.qmapTest.qmapTestAuto" />
         </classes>
     </test>
 
-    <test name="Test-Huawei">
-        <parameter name="deviceName" value="HUAWEI Y6 2018" />
-        <parameter name="platformVersion" value="8.0.0" />
-        <classes>
-            <class name="test.vaofTest.vaofTestAuto" />
-        </classes>
-    </test>
+    <!-- END OF QMAP -->
+
+    <!--<test name="Test-Huawei">-->
+        <!--<parameter name="deviceName" value="HUAWEI Y6 2018" />-->
+        <!--<parameter name="platformVersion" value="8.0.0" />-->
+        <!--<classes>-->
+            <!--<class name="test.vaofTest.vaofTestAuto" />-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <!--<test name="Test-ASUSNAMBAWAN">-->
+        <!--<parameter name="deviceName" value="ASUS_X00DDA" />-->
+        <!--<parameter name="platformVersion" value="7.1.1" />-->
+        <!--<classes>-->
+            <!--<class name="test.vaofTest.vaofTestAuto" />-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <!--<test name="Test-SamsungB">-->
+    <!--<parameter name="deviceName" value="Samsung Galaxy J1" />-->
+    <!--<parameter name="platformVersion" value="5.1.1" />-->
+    <!--<classes>-->
+    <!--<class name="test.vaofTest.vaofTestAuto" />-->
+    <!--</classes>-->
+    <!--</test>-->
+
+    <!--todo debug Huawei -->
+    <!--Version 7.1.1 to 8 not working on Vaof ordering -->
 
 </suite>

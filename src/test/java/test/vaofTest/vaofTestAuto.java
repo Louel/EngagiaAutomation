@@ -30,9 +30,19 @@ public class vaofTestAuto extends BaseTest {
 
     String search = "Van Account Order Form";
     String search1 = "VAOF Summary";
-    String[] products = {"Clover", "lover" , "ove" , "rc", "len", "anlen", "cheezy"};
+    String[] products = {"cOKe", "oke" , "ke" , "rc", "len", "anlen", "cheezy" , "Nova" , "ova"};
+    String[] productNames = {"Anlene", "lene" , "lack" , "Ahoy" , "lover", "soda", "banana" , "Tos" , "Mentos"};
+    String[] productShortNames = {"Coke" , "oke" , "beEr" , "RC"};
+    String[] productCode = {"51232143" , "51232208" , "535353" , "545454" , "565656" , "686868" , "829382"};
+    String[] productBarCode = {"10182017015" , "100000216" , "10182017010" , "10182017031" , "1018201704" , "131213" , "242424"};
+    String[] productDescrip = {"Soda", "Cracker" , "Biscuit" , "Milk" , "Candy" , "Chocolate"};
+    String[] productBrand = {"MEGA SARDINES", "Clover Chips" , "Exo Candy" , "Mentos" , "Coca-Cola" , "Moutain Dew"};
+    String[] productKeyword = {"Coke", "Sprite" , "Beer" , "Crispy Fishbol Flavor" , "Soft Drink" , "Piattos"};
+    String[] ranNum = {"11112", "11113" , "22221" , "22224" , "33331" , "44442"};
+    String[] customerName = {"Tony Stark", "Mario" , "Luigi" , "Peter Parker"};
+    String[] customerCont = {"123456789", "112233445" , "159357258" , "134679875"};
     //
-    String invalidProduct = "Ham";
+
 
     String vaofDrctryTbl = "//android.widget.FrameLayout[@index='0']/" +
             "android.widget.LinearLayout[@index='0']/" +
@@ -78,7 +88,7 @@ public class vaofTestAuto extends BaseTest {
     @Test
     public void testVAOF(){
         System.out.println("driver " +driver);
-        for (int x = 0; x < 8; x++) {
+        for (int x = 0; x < 1; x++) {
             driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
             //CLick on drawer
             MobileElement sideBarBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
@@ -125,38 +135,36 @@ public class vaofTestAuto extends BaseTest {
 //            Case20();
 //            Case21();
 //            Case22();
-////        //add search script vvvvvvv
-            //lagyan ng value un pag ffilter like kung ano un issearch
 //            Case23();
 //            Case24();
 //            Case25();
 //            Case26();
 //            Case27();
 //            Case28();
-//            Case29();
-            //Summary / Three dots functions
+//            Case29(); //<---- need swipe on myphone uno
+//            //Summary  Three dots functions
+//            //Test this vv
 //            Case30();
-////            //lagyan ng transactions
+//            //lagyan ng transactions
 //            Case31();
 //            Case32();
-//            //ERROR FORCE STOP NOT YET FIXED
-////            Case33();
+//            Case33();
 //            Case34(); //Adjust should
 //            //Qualified DEALS
 //            Case35();
-//////        Case36(); //manual test this
+////////        Case36(); //manual test this
 //            Case37();
 //            Case38();
 //            Case39();
-////            Case40(); //WALANG LAMAN SA DOVOP
+//////            Case40(); //WALANG LAMAN SA DOVOP
 //            Case41();
 //        //need swipe
 //            Case42();
 //            Case43();
-//            Case44();
+            Case44();
 //            Case48();
 //            Case49();
-            orderBoxPC();
+//            orderBoxPC();
 //            orderPC();
 //            orderBox();
 
@@ -174,6 +182,7 @@ public class vaofTestAuto extends BaseTest {
                 touchAction.longPress(new PointOption().withCoordinates(160, 200)).moveTo(new PointOption().withCoordinates(160, 520)).release().perform();
             }
             //Scroll ^^^^^
+            System.out.println("Branch " +x+ " done!");
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             MobileElement logOutBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'image_visit_dropdown') and @index = '3']");
             logOutBtn.click();
@@ -209,7 +218,7 @@ public class vaofTestAuto extends BaseTest {
         btnFil.click();
         //Search a product "Nova"
         MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id, 'search_auto_complete_text_view')]");
-        searchName.sendKeys(products[0]);
+        searchName.sendKeys(productNames[rand(productNames.length-1)]);
         //Click on search btn
         MobileElement clckSearch = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id, 'search_button')]");
         clckSearch.click();
@@ -246,7 +255,7 @@ public class vaofTestAuto extends BaseTest {
 //        MobileElement invalidSearchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id, 'search_auto_complete_text_view')]");
 //        invalidSearchName.sendKeys(invalidProduct);
         MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id, 'search_auto_complete_text_view')]");
-        searchName.sendKeys(products[rand(products.length-1)]);
+        searchName.sendKeys(productNames[rand(productNames.length-1)]);
         //Click on search btn
         MobileElement clckSearch = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id, 'search_button')]");
         clckSearch.click();
@@ -730,6 +739,12 @@ public class vaofTestAuto extends BaseTest {
         //Click filter
         MobileElement btnFil = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id, 'button1')]");
         btnFil.click();
+        //Search a product by NAME
+        MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id, 'search_auto_complete_text_view')]");
+        searchName.sendKeys(productNames[rand(productNames.length-1)]);
+        //Click on search btn
+        MobileElement clckSearch = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id, 'search_button')]");
+        clckSearch.click();
         System.out.println("Case 23 Pass");
     }
     //Check "Search by Short Name"
@@ -757,6 +772,11 @@ public class vaofTestAuto extends BaseTest {
         //Click filter
         MobileElement btnFil = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id, 'button1')]");
         btnFil.click();
+        MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id, 'search_auto_complete_text_view')]");
+        searchName.sendKeys(productShortNames[rand(productShortNames.length-1)]);
+        //Click on search btn
+        MobileElement clckSearch = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id, 'search_button')]");
+        clckSearch.click();
         System.out.println("Case 24 Pass");
     }
     //Check "Search by Code"
@@ -784,6 +804,11 @@ public class vaofTestAuto extends BaseTest {
         //Click filter
         MobileElement btnFil = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id, 'button1')]");
         btnFil.click();
+        MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id, 'search_auto_complete_text_view')]");
+        searchName.sendKeys(productCode[rand(productCode.length-1)]);
+        //Click on search btn
+        MobileElement clckSearch = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id, 'search_button')]");
+        clckSearch.click();
         System.out.println("Case 25 Pass");
     }
     //Check "Search by Bar code"
@@ -811,6 +836,12 @@ public class vaofTestAuto extends BaseTest {
         //Click filter
         MobileElement btnFil = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id, 'button1')]");
         btnFil.click();
+        //Search Barcode
+        MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id, 'search_auto_complete_text_view')]");
+        searchName.sendKeys(productBarCode[rand(productBarCode.length-1)]);
+        //Click on search btn
+        MobileElement clckSearch = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id, 'search_button')]");
+        clckSearch.click();
         System.out.println("Case 26 Pass");
     }
     //Check "Search by Description"
@@ -838,6 +869,12 @@ public class vaofTestAuto extends BaseTest {
         //Click filter
         MobileElement btnFil = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id, 'button1')]");
         btnFil.click();
+        //Search Description
+        MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id, 'search_auto_complete_text_view')]");
+        searchName.sendKeys(productDescrip[rand(productDescrip.length-1)]);
+        //Click on search btn
+        MobileElement clckSearch = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id, 'search_button')]");
+        clckSearch.click();
         System.out.println("Case 27 Pass");
     }
     //Check "Search by Brand"
@@ -865,6 +902,13 @@ public class vaofTestAuto extends BaseTest {
         //Click filter
         MobileElement btnFil = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id, 'button1')]");
         btnFil.click();
+        //Search Brand
+        MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id, 'search_auto_complete_text_view')]");
+        searchName.sendKeys(productBrand[rand(productBrand.length-1)]);
+        //Click on search btn
+        MobileElement clckSearch = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id, 'search_button')]");
+        clckSearch.click();
+        System.out.println("Case 28 Pass");
     }
     //Check "Search by Keyword"
     public void Case29(){
@@ -885,15 +929,31 @@ public class vaofTestAuto extends BaseTest {
         //Click on none
         MobileElement clckNone = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'txt_filter_information_none')]");
         clckNone.click();
+        //Swipe
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id, 'button1')]");
+        boolean isDisplayed1 = element1.isDisplayed();
+        if (isDisplayed1) {
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            TouchAction touchAction = new TouchAction(driver);
+            touchAction.longPress(new PointOption().withCoordinates(250, 580)).moveTo(new PointOption().withCoordinates(250, 520)).release().perform();
+        }
         //Search by Keyword
         MobileElement SrchBy = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text ='Keyword' and @index = '6']");
         SrchBy.click();
         //Click filter
         MobileElement btnFil = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id, 'button1')]");
         btnFil.click();
+        //Search Keyword
+        MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id, 'search_auto_complete_text_view')]");
+        searchName.sendKeys(productKeyword[rand(productKeyword.length-1)]);
+        //Click on search btn
+        MobileElement clckSearch = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id, 'search_button')]");
+        clckSearch.click();
         System.out.println("Case 29 Pass");
     }
     //Check "Summary Menu"
+    //Error on Samsung
     public void Case30(){
         //wait to load
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -925,15 +985,7 @@ public class vaofTestAuto extends BaseTest {
     public void Case32(){
         //wait to load
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //Click triple Dots
-        MobileElement clckDots = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'action_function_controls') and @index = '0']");
-        clckDots.click();
-        //Click ClearAll
-        MobileElement clckClearAll1 = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id, 'btn_clear')]");
-        clckClearAll1.click();
-        //Click CLEAR ALL
-        MobileElement clckClearAll2 = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id, 'button1')]");
-        clckClearAll2.click();
+        clear();
 //        //CANCEL BTN
 //        MobileElement clckCancel = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id, 'button2')]");
 //        clckCancel.click();
@@ -965,6 +1017,7 @@ public class vaofTestAuto extends BaseTest {
         MobileElement clckTrnsctn = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id, 'btn_trnsctn_list')]");
         clckTrnsctn.click();
         //Click TransactionList
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         MobileElement SelectTrnsctn = (MobileElement) driver.findElementByXPath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.LinearLayout[@index='0']");
         SelectTrnsctn.click();
         //wait to load
@@ -1015,7 +1068,7 @@ public class vaofTestAuto extends BaseTest {
         finalEdit.click();
         //cntact detail
         MobileElement cntctField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_contact_detail')]");
-        cntctField.sendKeys("56123");
+        cntctField.sendKeys(customerCont[rand(customerCont.length-1)]);
         driver.hideKeyboard();
         //reason field
         MobileElement rsnField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_edit_reason')]");
@@ -1058,16 +1111,16 @@ public class vaofTestAuto extends BaseTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //Enter P.O Number
         MobileElement POnuFIELD = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_po_number')]");
-        POnuFIELD.sendKeys("101010");
+        POnuFIELD.sendKeys(ranNum[rand(ranNum.length-1)]);
         //Enter Sales Invoice Number
         MobileElement INField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_si_number')]");
-        INField.sendKeys("12345");
+        INField.sendKeys(ranNum[rand(ranNum.length-1)]);
         //Enter Customer Name
         MobileElement custField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_customer_name')]");
-        custField.sendKeys("Louel!!!");
+        custField.sendKeys(customerName[rand(customerName.length-1)]);
         //Enter Customer Name
         MobileElement cntctField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_contact_detail')]");
-        cntctField.sendKeys("09169080120!!!");
+        cntctField.sendKeys(customerCont[rand(customerCont.length-1)]);
         //Hide keyboard
         driver.hideKeyboard();
         //Click save
@@ -1101,16 +1154,16 @@ public class vaofTestAuto extends BaseTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //Enter P.O Number
         MobileElement POnuFIELD = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_po_number')]");
-        POnuFIELD.sendKeys("1010101");
+        POnuFIELD.sendKeys(ranNum[rand(ranNum.length-1)]);
         //Enter Sales Invoice Number
         MobileElement INField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_si_number')]");
-        INField.sendKeys("123456");
+        INField.sendKeys(ranNum[rand(ranNum.length-1)]);
         //Enter Customer Name
         MobileElement custField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_customer_name')]");
-        custField.sendKeys("Louel!!!!");
+        custField.sendKeys(customerName[rand(customerName.length-1)]);
         //Enter Customer Name
         MobileElement cntctField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_contact_detail')]");
-        cntctField.sendKeys("09169080120!!!!!");
+        cntctField.sendKeys(customerCont[rand(customerCont.length-1)]);
         //Hide keyboard
         driver.hideKeyboard();
         //Click save
@@ -1250,7 +1303,8 @@ public class vaofTestAuto extends BaseTest {
 //        //need an ok button
 //        MobileElement clckOk1 = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id, 'button1') and @index = '0']");
 //        clckOk1.click();
-        orderTransac();
+        //orderTransac(); //todo samsung error
+        orderBoxPC();
         //not enough... inventory..
 //        invalidOrderTransac();
         //need
@@ -1263,27 +1317,55 @@ public class vaofTestAuto extends BaseTest {
     }
     //Check "Inventory" Column
     public void Case41(){
-        //NEED TIME TO LOAD LOL
+        //NEED TIME TO LOAD
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        //swipe right to left
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        //Enter Value on Trade Inventory
-        MobileElement tradeField = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
+        MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id, 'filter_by_button')]");
+        boolean isDisplayed1 = element1.isDisplayed();
+        if (isDisplayed1) {
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                TouchAction touchAction = new TouchAction(driver);
+                touchAction.longPress(new PointOption().withCoordinates(460, 390)).moveTo(new PointOption().withCoordinates(220, 390)).release().perform();
+        }
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        //Enter Value on Inventory Col
+        MobileElement inventoryField = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
                 "/android.widget.HorizontalScrollView[@index='1']" +
                 "/android.widget.LinearLayout[@index='0']" +
                 "/android.widget.ScrollView[@index='1']" +
                 "/android.widget.LinearLayout[@index='0']" +
                 "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='2']" +
-                "/android.widget.TextView[@index='0']");
-        tradeField.click();
-        MobileElement tradeField1 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
+                "/android.widget.LinearLayout[@index='2']" );
+        inventoryField.click();
+        MobileElement inventoryField1 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
                 "/android.widget.HorizontalScrollView[@index='1']" +
                 "/android.widget.LinearLayout[@index='0']" +
                 "/android.widget.ScrollView[@index='1']" +
                 "/android.widget.LinearLayout[@index='0']" +
                 "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='2']" +
-                "/android.widget.TextView[@index='0']");
-        tradeField1.click();
+                "/android.widget.LinearLayout[@index='2']" );
+        inventoryField1.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        //Enter Value on Inventory Col
+        MobileElement inventoryField2 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
+                "/android.widget.HorizontalScrollView[@index='1']" +
+                "/android.widget.LinearLayout[@index='0']" +
+                "/android.widget.ScrollView[@index='1']" +
+                "/android.widget.LinearLayout[@index='0']" +
+                "/android.widget.LinearLayout[@index='1']" +
+                "/android.widget.LinearLayout[@index='2']" );
+        inventoryField2.click();
+        MobileElement inventoryField3 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
+                "/android.widget.HorizontalScrollView[@index='1']" +
+                "/android.widget.LinearLayout[@index='0']" +
+                "/android.widget.ScrollView[@index='1']" +
+                "/android.widget.LinearLayout[@index='0']" +
+                "/android.widget.LinearLayout[@index='1']" +
+                "/android.widget.LinearLayout[@index='2']" );
+        inventoryField3.click();
+        //Insert clear
+        clear();
         System.out.println("Case 41 Pass");
 
     }
@@ -1292,8 +1374,16 @@ public class vaofTestAuto extends BaseTest {
         //NEED TIME TO LOAD LOL
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         //swipe right to left
-        TouchAction touchAction = new TouchAction(driver);
-        touchAction.longPress(new PointOption().withCoordinates(460, 390)).moveTo(new PointOption().withCoordinates(30, 390)).release().perform();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id, 'filter_by_button')]");
+        boolean isDisplayed1 = element1.isDisplayed();
+        if (isDisplayed1) {
+            for(int j = 0; j<2 ; j++) {
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                TouchAction touchAction = new TouchAction(driver);
+                touchAction.longPress(new PointOption().withCoordinates(460, 390)).moveTo(new PointOption().withCoordinates(170, 390)).release().perform();
+            }
+        }
         //Clck Stock Availability
         MobileElement stckField = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
                 "/android.widget.HorizontalScrollView[@index='1']" +
@@ -1309,8 +1399,15 @@ public class vaofTestAuto extends BaseTest {
     public void Case43(){
         //NEED TIME TO LOAD LOL
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        TouchAction touchAction = new TouchAction(driver);
-        touchAction.longPress(new PointOption().withCoordinates(460, 390)).moveTo(new PointOption().withCoordinates(200, 390)).release().perform();
+        MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id, 'filter_by_button')]");
+        boolean isDisplayed1 = element1.isDisplayed();
+        if (isDisplayed1) {
+            for(int j = 0; j<3 ; j++) {
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                TouchAction touchAction = new TouchAction(driver);
+                touchAction.longPress(new PointOption().withCoordinates(460, 390)).moveTo(new PointOption().withCoordinates(190, 390)).release().perform();
+            }
+        }
         //Clck Stock Weight
         MobileElement stckWField1 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
                 "/android.widget.HorizontalScrollView[@index='1']" +
@@ -1341,13 +1438,17 @@ public class vaofTestAuto extends BaseTest {
     }
     //Check "Return From Trade" Column need swipe
     public void Case44(){
-        //NEED TIME TO LOAD LOL
+        //NEED TIME TO LOAD
+        //swipe right to left
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        //Enter Value on Trade Inventory
-        for (int b=0; b<2; b++){
+        MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id, 'filter_by_button')]");
+        boolean isDisplayed1 = element1.isDisplayed();
+        if (isDisplayed1) {
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             TouchAction touchAction = new TouchAction(driver);
-            touchAction.longPress(new PointOption().withCoordinates(240, 390)).moveTo(new PointOption().withCoordinates(460, 390)).release().perform();
+            touchAction.longPress(new PointOption().withCoordinates(460, 390)).moveTo(new PointOption().withCoordinates(220, 390)).release().perform();
         }
+        //Enter Value on Trade Inventory
 //        TouchAction touchAction = new TouchAction(driver);
 //        touchAction.longPress(new PointOption().withCoordinates(240, 390)).moveTo(new PointOption().withCoordinates(460, 390)).release().perform();
         MobileElement rfTradeField = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
@@ -1395,16 +1496,16 @@ public class vaofTestAuto extends BaseTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //Enter P.O Number
         MobileElement POnuFIELD = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_po_number')]");
-        POnuFIELD.sendKeys("101010");
+        POnuFIELD.sendKeys(ranNum[rand(ranNum.length-1)]);
         //Enter Sales Invoice Number
         MobileElement INField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_si_number')]");
-        INField.sendKeys("12345");
+        INField.sendKeys(ranNum[rand(ranNum.length-1)]);
         //Enter Customer Name
         MobileElement custField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_customer_name')]");
-        custField.sendKeys("Louel!!!");
+        custField.sendKeys(customerName[rand(customerName.length-1)]);
         //Enter Customer Name
         MobileElement cntctField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_contact_detail')]");
-        cntctField.sendKeys("09169080120!!!");
+        cntctField.sendKeys(customerCont[rand(customerCont.length-1)]);
         //Hide keyboard
         driver.hideKeyboard();
         //Click save
@@ -1467,6 +1568,7 @@ public class vaofTestAuto extends BaseTest {
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             //Enter random numbers
             randomNum();
+            System.out.println("trade pc 1 done");
             //Click ok
             MobileElement clckOk1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
             clckOk1.click();
@@ -1484,6 +1586,7 @@ public class vaofTestAuto extends BaseTest {
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             //Enter random numbers
             randomNum();
+            System.out.println("order pc 1 done");
             //Click ok
             MobileElement clckOk2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
             clckOk2.click();
@@ -1502,6 +1605,7 @@ public class vaofTestAuto extends BaseTest {
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             //Enter random numbers
             randomNum();
+            System.out.println("trade box 1 done");
             //Click ok
             MobileElement clckOk3 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
             clckOk3.click();
@@ -1519,6 +1623,7 @@ public class vaofTestAuto extends BaseTest {
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             //Enter random numbers
             randomNum();
+            System.out.println("order box 1 done");
             //Click ok
             MobileElement clckOk4 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
             clckOk4.click();
@@ -1538,6 +1643,7 @@ public class vaofTestAuto extends BaseTest {
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             //Enter random numbers
             randomNum();
+            System.out.println("trade pc 2 done");
             //Click ok
             MobileElement clckOk5 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
             clckOk5.click();
@@ -1554,6 +1660,7 @@ public class vaofTestAuto extends BaseTest {
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             //Enter random numbers
             randomNum();
+            System.out.println("order pc 2 done");
             //Click ok
             MobileElement clckOk6 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
             clckOk6.click();
@@ -1572,6 +1679,7 @@ public class vaofTestAuto extends BaseTest {
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             //Enter random numbers
             randomNum();
+            System.out.println("trade box 2 done");
             //Click ok
             MobileElement clckOk7 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
             clckOk7.click();
@@ -1589,6 +1697,7 @@ public class vaofTestAuto extends BaseTest {
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             //Enter random numbers
             randomNum();
+            System.out.println("order box 2 done");
             //Click ok
             MobileElement clckOk8 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
             clckOk8.click();
@@ -1678,7 +1787,7 @@ public class vaofTestAuto extends BaseTest {
                 }
             }
             catch (NoSuchElementException e){
-                System.out.println("Staph");
+                System.out.println("Save");
                 break;
             }
 
@@ -1746,16 +1855,16 @@ public class vaofTestAuto extends BaseTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //Enter P.O Number
         MobileElement POnuFIELD = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_po_number')]");
-        POnuFIELD.sendKeys("101010");
+        POnuFIELD.sendKeys(ranNum[rand(ranNum.length-1)]);
         //Enter Sales Invoice Number
         MobileElement INField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_si_number')]");
-        INField.sendKeys("12345");
+        INField.sendKeys(ranNum[rand(ranNum.length-1)]);
         //Enter Customer Name
         MobileElement custField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_customer_name')]");
-        custField.sendKeys("Louel!!! PC AND BOX");
+        custField.sendKeys(customerName[rand(customerName.length-1)]);
         //Enter Customer Name
         MobileElement cntctField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_contact_detail')]");
-        cntctField.sendKeys("09169080120!!!");
+        cntctField.sendKeys(customerCont[rand(customerCont.length-1)]);
         //Hide keyboard
         driver.hideKeyboard();
         //Click save
@@ -1869,38 +1978,38 @@ public class vaofTestAuto extends BaseTest {
             //!!!!THIRD PRODUCT!!!!
             //PER PC
             //Enter Value on Trade Inventory
-            MobileElement tradePC3 = (MobileElement) driver.findElementByXPath(vaofDrctryByPC +
-                    "/android.widget.HorizontalScrollView[@index='1']" +
-                    "/android.widget.LinearLayout[@index='0']" +
-                    "/android.widget.ScrollView[@index='1']" +
-                    "/android.widget.LinearLayout[@index='0']" +
-                    "/android.widget.LinearLayout[@index='2']" +
-                    "/android.widget.LinearLayout[@index='1']" +
-                    "/android.widget.LinearLayout[@index='0']");
-            tradePC3.click();
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            //Enter random numbers
-            randomNum();
-            //Click ok
-            MobileElement clckOk5 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
-            clckOk5.click();
-
-            //Enter Value on Order Inventory
-            MobileElement orderPC3 = (MobileElement) driver.findElementByXPath(vaofDrctryByPC +
-                    "/android.widget.HorizontalScrollView[@index='1']" +
-                    "/android.widget.LinearLayout[@index='0']" +
-                    "/android.widget.ScrollView[@index='1']" +
-                    "/android.widget.LinearLayout[@index='0']" +
-                    "/android.widget.LinearLayout[@index='2']" +
-                    "/android.widget.LinearLayout[@index='0']" +
-                    "/android.widget.LinearLayout[@index='0']");
-            orderPC3.click();
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            //Enter random numbers
-            randomNum();
-            //Click ok
-            MobileElement clckOk6 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
-            clckOk6.click();
+//            MobileElement tradePC3 = (MobileElement) driver.findElementByXPath(vaofDrctryByPC +
+//                    "/android.widget.HorizontalScrollView[@index='1']" +
+//                    "/android.widget.LinearLayout[@index='0']" +
+//                    "/android.widget.ScrollView[@index='1']" +
+//                    "/android.widget.LinearLayout[@index='0']" +
+//                    "/android.widget.LinearLayout[@index='2']" +
+//                    "/android.widget.LinearLayout[@index='1']" +
+//                    "/android.widget.LinearLayout[@index='0']");
+//            tradePC3.click();
+//            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//            //Enter random numbers
+//            randomNum();
+//            //Click ok
+//            MobileElement clckOk5 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
+//            clckOk5.click();
+//
+//            //Enter Value on Order Inventory
+//            MobileElement orderPC3 = (MobileElement) driver.findElementByXPath(vaofDrctryByPC +
+//                    "/android.widget.HorizontalScrollView[@index='1']" +
+//                    "/android.widget.LinearLayout[@index='0']" +
+//                    "/android.widget.ScrollView[@index='1']" +
+//                    "/android.widget.LinearLayout[@index='0']" +
+//                    "/android.widget.LinearLayout[@index='2']" +
+//                    "/android.widget.LinearLayout[@index='0']" +
+//                    "/android.widget.LinearLayout[@index='0']");
+//            orderPC3.click();
+//            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//            //Enter random numbers
+//            randomNum();
+//            //Click ok
+//            MobileElement clckOk6 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
+//            clckOk6.click();
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             try {
                 MobileElement page = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'custom_table_next_pagination') and @text = '   ›   ']");
@@ -1915,7 +2024,7 @@ public class vaofTestAuto extends BaseTest {
                     break;
                 }
             } catch (NoSuchElementException e) {
-                System.out.println("Staph");
+                System.out.println("Save");
                 break;
             }
         }
@@ -1930,16 +2039,16 @@ public class vaofTestAuto extends BaseTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //Enter P.O Number
         MobileElement POnuFIELD = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_po_number')]");
-        POnuFIELD.sendKeys("101010");
+        POnuFIELD.sendKeys(ranNum[rand(ranNum.length-1)]);
         //Enter Sales Invoice Number
         MobileElement INField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_si_number')]");
-        INField.sendKeys("12345");
+        INField.sendKeys(ranNum[rand(ranNum.length-1)]);
         //Enter Customer Name
         MobileElement custField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_customer_name')]");
-        custField.sendKeys("Louel!!! PC");
+        custField.sendKeys(customerName[rand(customerName.length-1)]);
         //Enter Customer Name
         MobileElement cntctField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_contact_detail')]");
-        cntctField.sendKeys("09169080120!!!");
+        cntctField.sendKeys(customerCont[rand(customerCont.length-1)]);
         //Hide keyboard
         driver.hideKeyboard();
         //Click save
@@ -2058,38 +2167,38 @@ public class vaofTestAuto extends BaseTest {
             //!!!!THIRD PRODUCT!!!!
             //PER PC
             //Enter Value on Trade Inventory
-            MobileElement tradeBox3 = (MobileElement) driver.findElementByXPath(vaofDrctryByPC +
-                    "/android.widget.HorizontalScrollView[@index='1']" +
-                    "/android.widget.LinearLayout[@index='0']" +
-                    "/android.widget.ScrollView[@index='1']" +
-                    "/android.widget.LinearLayout[@index='0']" +
-                    "/android.widget.LinearLayout[@index='2']" +
-                    "/android.widget.LinearLayout[@index='1']" +
-                    "/android.widget.LinearLayout[@index='0']");
-            tradeBox3.click();
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            //Enter random numbers
-            randomNum();
-            //Click ok
-            MobileElement clckOk5 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
-            clckOk5.click();
-
-            //Enter Value on Order Inventory
-            MobileElement orderBox3 = (MobileElement) driver.findElementByXPath(vaofDrctryByPC +
-                    "/android.widget.HorizontalScrollView[@index='1']" +
-                    "/android.widget.LinearLayout[@index='0']" +
-                    "/android.widget.ScrollView[@index='1']" +
-                    "/android.widget.LinearLayout[@index='0']" +
-                    "/android.widget.LinearLayout[@index='2']" +
-                    "/android.widget.LinearLayout[@index='0']" +
-                    "/android.widget.LinearLayout[@index='0']");
-            orderBox3.click();
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            //Enter random numbers
-            randomNum();
-            //Click ok
-            MobileElement clckOk6 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
-            clckOk6.click();
+//            MobileElement tradeBox3 = (MobileElement) driver.findElementByXPath(vaofDrctryByPC +
+//                    "/android.widget.HorizontalScrollView[@index='1']" +
+//                    "/android.widget.LinearLayout[@index='0']" +
+//                    "/android.widget.ScrollView[@index='1']" +
+//                    "/android.widget.LinearLayout[@index='0']" +
+//                    "/android.widget.LinearLayout[@index='2']" +
+//                    "/android.widget.LinearLayout[@index='1']" +
+//                    "/android.widget.LinearLayout[@index='0']");
+//            tradeBox3.click();
+//            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//            //Enter random numbers
+//            randomNum();
+//            //Click ok
+//            MobileElement clckOk5 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
+//            clckOk5.click();
+//
+//            //Enter Value on Order Inventory
+//            MobileElement orderBox3 = (MobileElement) driver.findElementByXPath(vaofDrctryByPC +
+//                    "/android.widget.HorizontalScrollView[@index='1']" +
+//                    "/android.widget.LinearLayout[@index='0']" +
+//                    "/android.widget.ScrollView[@index='1']" +
+//                    "/android.widget.LinearLayout[@index='0']" +
+//                    "/android.widget.LinearLayout[@index='2']" +
+//                    "/android.widget.LinearLayout[@index='0']" +
+//                    "/android.widget.LinearLayout[@index='0']");
+//            orderBox3.click();
+//            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//            //Enter random numbers
+//            randomNum();
+//            //Click ok
+//            MobileElement clckOk6 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
+//            clckOk6.click();
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             try {
                 MobileElement page = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'custom_table_next_pagination') and @text = '   ›   ']");
@@ -2104,7 +2213,7 @@ public class vaofTestAuto extends BaseTest {
                     break;
                 }
             } catch (NoSuchElementException e) {
-                System.out.println("Staph");
+                System.out.println("Save");
                 break;
             }
         }
@@ -2119,16 +2228,16 @@ public class vaofTestAuto extends BaseTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //Enter P.O Number
         MobileElement POnuFIELD = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_po_number')]");
-        POnuFIELD.sendKeys("101010");
+        POnuFIELD.sendKeys(ranNum[rand(ranNum.length-1)]);
         //Enter Sales Invoice Number
         MobileElement INField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_si_number')]");
-        INField.sendKeys("12345");
+        INField.sendKeys(ranNum[rand(ranNum.length-1)]);
         //Enter Customer Name
         MobileElement custField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_customer_name')]");
-        custField.sendKeys("Louel!!! BOX");
+        custField.sendKeys(customerName[rand(customerName.length-1)]);
         //Enter Customer Name
         MobileElement cntctField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'input_contact_detail')]");
-        cntctField.sendKeys("09169080120!!!");
+        cntctField.sendKeys(customerCont[rand(customerCont.length-1)]);
         //Hide keyboard
         driver.hideKeyboard();
         //Click save
@@ -2301,6 +2410,19 @@ public class vaofTestAuto extends BaseTest {
                 "android.widget.LinearLayout[@index='0']/" +
                 "android.widget.TextView[@index='1']");
         clckUnit1.click();
+    }
+    public void clear(){
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //Click triple Dots
+        MobileElement clckDots = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'action_function_controls') and @index = '0']");
+        clckDots.click();
+        //Click ClearAll
+        MobileElement clckClearAll1 = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id, 'btn_clear')]");
+        clckClearAll1.click();
+        //Click CLEAR ALL
+        MobileElement clckClearAll2 = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id, 'button1')]");
+        clckClearAll2.click();
+        System.out.println("Clear done");
     }
     public void randomNum(){
         switch(rand(10)){

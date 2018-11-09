@@ -87,7 +87,7 @@ public class BaseTest {
 //        ThreadLocalDriver.setTLDriver((AndroidDriver) (driver = new AndroidDriver<MobileElement>(url , capabilities)));
 //        wait = new WebDriverWait(ThreadLocalDriver.getTLDriver(), 20);
 //        ThreadLocalDriver.setTLDriver((AndroidDriver) (driver = new AndroidDriver(url , capabilities)));
-//        driver = new AppiumDriver(url  , capabilities);
+//        driver = new AppiumDriver(url  , capabili    <!-- Yung class name papalitan lang kung anong class name nung script na ittest dun sa certain device -->ties);
 //        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 //        driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
 
