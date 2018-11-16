@@ -73,7 +73,14 @@ public class QMAP {
 //        Case19();
 //        Case20();
 //        Case21();
-        Case22();
+//        Case22();
+//        Case23();
+//        Case24();
+//        Case25();
+//        Case26();
+//        Case27();
+//        Case28();
+        Case29();
     }
     //Cases functions
     //ACCESSING QUICKMAP WHILE LOCATION SERVICES IS OFF (NO WIFI / NO DATA)
@@ -661,14 +668,17 @@ public class QMAP {
         clckAcc.click();
         //Save
         save();
-//        MobileElement snackBar = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'snackbar_text') and @text = 'Cleared']");
-//        boolean isDisplayed1 =  snackBar.isDisplayed();
-//        if(isDisplayed1){
-//            System.out.println("Case 16 Pass");
-//        }
-//        else if(!isDisplayed1){
-//            System.out.println("Failed");
-//        }
+        MobileElement message = (MobileElement) driver.findElementByXPath("//android.widget.ScrollView[contains(@resource-id,'scrollView') and @index='0']");
+        boolean isDisplayed1 =  message.isDisplayed();
+        if(isDisplayed1){
+            MobileElement messageClick = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1') and @text='OK']");
+            messageClick.click();
+            clear();
+            System.out.println("Case 24 Pass");
+        }
+        else if(!isDisplayed1){
+            System.out.println("Failed");
+        }
     }
     //Save without Picture
     public void Case25(){
@@ -696,14 +706,15 @@ public class QMAP {
         answeringNotLockForms();
         //Save
         save();
-//        MobileElement snackBar = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'snackbar_text') and @text = 'Cleared']");
-//        boolean isDisplayed1 =  snackBar.isDisplayed();
-//        if(isDisplayed1){
-//            System.out.println("Case 16 Pass");
-//        }
-//        else if(!isDisplayed1){
-//            System.out.println("Failed");
-//        }
+        MobileElement snackBar = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'snackbar_text') and @text = 'Image is required. Please take a picture']");
+        boolean isDisplayed1 =  snackBar.isDisplayed();
+        if(isDisplayed1){
+            clear();
+            System.out.println("Case 25 Pass");
+        }
+        else if(!isDisplayed1){
+            System.out.println("Failed");
+        }
     }
     //Save without Fields and Image
     public void Case26(){
@@ -713,12 +724,13 @@ public class QMAP {
         //Answering forms
         answerLockForms();
         answeringNotLockForms();
-        //Clear
-        clear();
-        MobileElement snackBar = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'snackbar_text') and @text = 'Cleared']");
+        //Save
+        save();
+        MobileElement snackBar = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'snackbar_text') and @text = 'Please complete all the fields']");
         boolean isDisplayed1 =  snackBar.isDisplayed();
         if(isDisplayed1){
-            System.out.println("Case 16 Pass");
+            clear();
+            System.out.println("Case 26 Pass");
         }
         else if(!isDisplayed1){
             System.out.println("Failed");
@@ -762,9 +774,53 @@ public class QMAP {
 //        }
     }
     //Summary Menu
-    public void Case28(){}
+    public void Case28(){
+        SearchQMAP();
+        //Loop atleast 4 times
+        //Click on 3 dots
+        for(int a = 1; a<=4; a++){
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement summMenu = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'quick_mapped_location_menu') and @index='0']");
+            summMenu.click();
+        }
+    }
     //Mapped Location
-    public void Case29(){}
+    public void Case29(){
+        SearchQMAP();
+        //Click on 3 dots
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement summMenu = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'quick_mapped_location_menu') and @index='0']");
+        summMenu.click();
+        //Mapped Location is displayed
+        for(int a = 1; a<=4; a++) {
+            if(a<=2) {
+                //Click on Magnifying Glass
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement clickMagniGlass = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id, 'search_button') and @index='0']");
+                clickMagniGlass.click();
+                //Keyboard appeared and Branch Name will appear in search bar
+                //Click on "X"
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement clickX = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id, 'search_close_btn') and @index='1']");
+                clickX.click();
+            }
+            else if(a==3){
+                //Click on Magnifying Glass
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement clickMagniGlass = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id, 'search_button') and @index='0']");
+                clickMagniGlass.click();
+                //Search branch
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchBranch = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id, 'search_src_text') and @index='0']");
+                searchBranch.sendKeys("Branch");
+                //hide keyboard
+                driver.hideKeyboard();
+
+            }
+        }
+
+
+    }
 
     //TODO DEBUG BAKIT YUN TAKE PICTURE DI PINIPINDOT
 //TODO LIPAT SA qmapTestAuto lahat ng code
@@ -1869,10 +1925,11 @@ public class QMAP {
     }
     public void pictureOnly(){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement takeImgBtn = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'qmTakePictureBtn') and @text='TAKE PICTURE' and @index='1']");
+//        MobileElement takeImgBtn = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'qmTakePictureBtn') and @text='TAKE PICTURE' and @index='1']");
+        MobileElement takeImgBtn = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'qmTakePictureBtn')]");
         takeImgBtn.click();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement takeImg = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id, 'shutter') and @index='1']");
+        MobileElement takeImg = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'shutter') and @index='1']");
         takeImg.click();
         System.out.println("Picture Captured...");
     }
@@ -1883,6 +1940,7 @@ public class QMAP {
         boolean isDisplayed1 = forms.isDisplayed();
         while(isDisplayed1){
             try{
+                //Try palitan ng Text and index lang
                 MobileElement form1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'text1') and @text='Form_Lock1']");
                 form1.click();
                 System.out.println("Found it..");
