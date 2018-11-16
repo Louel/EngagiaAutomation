@@ -44,43 +44,44 @@ public class QMAP {
         capabilities.setCapability("noSign", true);
         capabilities.setCapability(FULL_RESET, false);
         capabilities.setCapability(NO_RESET, true);
-        driver = new AppiumDriver(new URL("http://192.168.1.33:4723/wd/hub"), capabilities);
+//        driver = new AppiumDriver(new URL("http://192.168.1.33:4723/wd/hub"), capabilities);
+        driver = new AppiumDriver(new URL("http://192.168.1.33:4724/wd/hub"), capabilities);
 
     }
 
     @Test
     public void testQMAP(){
 
-//        Case1();
+        Case1();
 //        Case2();
 //        ADdriver.toggleWifi();
 //        swipingHorizontal();
-//        Case4();
-//        Case5();
-//        Case6();
-//        Case7();
-//        Case8();
-//        Case9();
-//        Case10();
-//        Case11();
-//        Case12();
-//        Case13();
-//        Case14();
-//        Case15();
-//        Case16();
-//        Case17();
-//        Case18();
-//        Case19();
-//        Case20();
-//        Case21();
-//        Case22();
-//        Case23();
-//        Case24();
-//        Case25();
-//        Case26();
-//        Case27();
+        Case4();
+        Case5();
+        Case6();
+        Case7();
+        Case8();
+        Case9();
+        Case10();
+        Case11();
+        Case12();
+        Case13();
+        Case14();
+        Case15();
+        Case16();
+        Case17();
+        Case18();
+        Case19();
+        Case20();
+        Case21();
+        Case22();
+        Case23();
+        Case24();
+        Case25();
+        Case26();
+        Case27();
 //        Case28();
-        Case29();
+//        Case29();
     }
     //Cases functions
     //ACCESSING QUICKMAP WHILE LOCATION SERVICES IS OFF (NO WIFI / NO DATA)
@@ -764,14 +765,17 @@ public class QMAP {
         answeringNotLockForms();
         //Save
         save();
-//        MobileElement snackBar = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'snackbar_text') and @text = 'Cleared']");
-//        boolean isDisplayed1 =  snackBar.isDisplayed();
-//        if(isDisplayed1){
-//            System.out.println("Case 16 Pass");
-//        }
-//        else if(!isDisplayed1){
-//            System.out.println("Failed");
-//        }
+        MobileElement message = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'message') and @index = '0']");
+        boolean messageIsDisplayed = message.isDisplayed();
+        if(messageIsDisplayed){
+            MobileElement clickOk = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id, 'button1') and @text = 'OK']");
+            clickOk.click();
+            System.out.println("Case 27 Pass");
+        }
+        else if(!messageIsDisplayed) {
+            System.out.println("Failed");
+        }
+
     }
     //Summary Menu
     public void Case28(){
@@ -1926,7 +1930,7 @@ public class QMAP {
     public void pictureOnly(){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 //        MobileElement takeImgBtn = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'qmTakePictureBtn') and @text='TAKE PICTURE' and @index='1']");
-        MobileElement takeImgBtn = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'qmTakePictureBtn')]");
+        MobileElement takeImgBtn = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'qmTakePictureBtn') and @index='1']");
         takeImgBtn.click();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement takeImg = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'shutter') and @index='1']");
