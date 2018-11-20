@@ -3,8 +3,13 @@ package test.qmapTest;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.offset.PointOption;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import test.BaseTest;
 
@@ -17,18 +22,44 @@ public class qmapTestAuto extends BaseTest {
     String [] randomUpdateText = {"update!","updateyyyyqqqq","updatewwwwww","aaaaaaaupdate","cccupdateccc!@#","update11111","update222231!!!"};
     String [] location = {"Marikina", "Pasig", "Pasay", "Quezon City", "Mandaluyong", "Ortigas"};
     String [] branch = {"branchAaaaaa123!", "branchBbbbb123", "branchCccccccc!@#", "branchDddddd!@#$", "branchEeeee", "branchFffffffffff"};
-
     @Test
     public void testQMAP(){
+
 //        Case1();
-        Case4();
+        SearchQMAP();
+//        Case4();
+//        Case5();
+//        Case6();
+//        Case7();
+        Case8();
+        Case9();
+        Case10();
+        Case11();
+        Case12();
+        Case13();
+        Case14();
+        Case15();
+        Case16();
+        Case17();
+        Case18();
+        Case19();
+        Case20();
+        Case21();
+        Case22();
+        Case23();
+        Case24();
+        Case25();
+        Case26();
+        Case27();
+        Case28();
+        Case29();
 
     }
     //todo lagay ibang case
     //todo this only if location is off
     public void Case1(){
         //LOOP 4 TIMES (STEP 10)
-        for(int a = 1; a <= 12; a++) {
+        for(int a = 1; a <= 13; a++) {
             SearchQMAP();
             driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
             if (a <= 4){
@@ -60,11 +91,16 @@ public class qmapTestAuto extends BaseTest {
             }
             else if (a <= 12){
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                //Click Enable/Okay
                 MobileElement clckOkay = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id, 'button1')]");
                 clckOkay.click();
                 driver.closeApp();
                 //Open Engagia Again (Step 9)
                 driver.launchApp();
+                System.out.println("Step: "+a);
+            }
+            else if (a == 13){
+                turnOnLocation();
                 System.out.println("Step: "+a);
             }
         }
@@ -85,253 +121,256 @@ public class qmapTestAuto extends BaseTest {
 
     }
     //FORMS
-    public void Case4(){
-        SearchQMAP();
-        //SWIPE
-        MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'qmFormsBtn')]");
-        boolean isDisplayed = element1.isDisplayed();
-        while(!isDisplayed){
-            TouchAction touchAction = new TouchAction(driver);
-            touchAction.longPress(new PointOption().withCoordinates(50, 480)).moveTo(new PointOption().withCoordinates(350, 150)).release().perform();
-        }
-
-        //Filling up form 1 and saving
-        for (int a = 1; a <= 8; a++) {
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            MobileElement clckFrms1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'qmFormsBtn')]");
-            clckFrms1.click();
-            //Save and Cancel
-            if (a <=3) {
-                //Select Form 1
-                MobileElement selFrms1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock1']");
-                selFrms1.click();
-                //Fill up Form
-                MobileElement txtField1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index = '1']");
-                txtField1.sendKeys("Abc123!@#");
-                //Hide KeyBoard
-                driver.hideKeyboard();
-                //CheckBox
-                MobileElement cb1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB1' and @index='1']");
-                cb1.click();
-                MobileElement cb2 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB2' and @index='2']");
-                cb2.click();
-                MobileElement cb3 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB3' and @index='3']");
-                cb3.click();
-                //RadioButton
-                MobileElement rb1 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB1' and @index='0']");
-                rb1.click();
-                MobileElement rb2 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB2' and @index='1']");
-                rb2.click();
-                MobileElement rb3 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB3' and @index='2']");
-                rb3.click();
-                MobileElement cancelBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Cancel' and @index='0']");
-                cancelBtn1.click();
-                System.out.println("cancel " +a);
-            }
-            else if (a==4){
-                //Select Form 1
-                MobileElement selFrms1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock1']");
-                selFrms1.click();
-                //Fill up Form
-                MobileElement txtField1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index = '1']");
-                txtField1.sendKeys("Abc123!@#");
-                //Hide KeyBoard
-                driver.hideKeyboard();
-                //CheckBox
-                MobileElement cb1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB1' and @index='1']");
-                cb1.click();
-                MobileElement cb2 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB2' and @index='2']");
-                cb2.click();
-                MobileElement cb3 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB3' and @index='3']");
-                cb3.click();
-                //RadioButton
-                MobileElement rb1 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB1' and @index='0']");
-                rb1.click();
-                MobileElement rb2 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB2' and @index='1']");
-                rb2.click();
-                MobileElement rb3 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB3' and @index='2']");
-                rb3.click();
-                MobileElement saveBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Save' and @index='1']");
-                saveBtn1.click();
-                System.out.println("save " +a);
-            }
-            //Form 2
-            else if (a<=7){
-                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-                //Select Form 1
-                MobileElement selFrms2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock2']");
-                selFrms2.click();
-                //Fill up field
-                MobileElement txtField2 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index='1']");
-                txtField2.sendKeys("Def456!@#");
-                //Hide keyboard
-                driver.hideKeyboard();
-                //Cancel
-                MobileElement cancelBtn2 = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Cancel' and @index='0']");
-                cancelBtn2.click();
-                System.out.println("cancel " +a);
-            }
-            else if (a==8){
-                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-                //Select Form 1
-                MobileElement selFrms2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock2']");
-                selFrms2.click();
-                //Fill up field
-                MobileElement txtField2 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index='1']");
-                txtField2.sendKeys("Def456!@#");
-                //Hide keyboard
-                driver.hideKeyboard();
-                //Save
-                MobileElement saveBtn2 = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Save' and @index='1']");
-                saveBtn2.click();
-                System.out.println("save " +a);
-            }
-
-        }
-        //Update Forms
-        for (int b = 1; b < 4; b++) {
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            MobileElement clckFrms = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'qmFormsBtn')]");
-            clckFrms.click();
-            //Select Form 1
-            MobileElement selFrms1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock1']");
-            selFrms1.click();
-            //Fill up Form
-            MobileElement txtField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index = '1']");
-            txtField.sendKeys("123123Abcde!@#");
-            //Hide KeyBoard
-            driver.hideKeyboard();
-            //CheckBox
-            MobileElement cb1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB1' and @index='1']");
-            cb1.click();
-            MobileElement cb2 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB2' and @index='2']");
-            cb2.click();
-//            MobileElement cb3 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB3' and @index='3']");
-//            cb3.click();
-            //RadioButton
-            MobileElement rb3 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB3' and @index='2']");
-            rb3.click();
-            MobileElement rb1 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB1' and @index='0']");
-            rb1.click();
-            MobileElement rb2 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB2' and @index='1']");
-            rb2.click();
-
-            if (b <=3) {
-                //Save and Cancel
-                MobileElement cancelBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Cancel' and @index='0']");
-                cancelBtn.click();
-            }
-            else if (b==4){
-                MobileElement saveBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Update' and @index='1']");
-                saveBtn.click();
-            }
-        }
-    }
 //    public void Case4(){
-//        SearchQMAP();
+////        SearchQMAP();
 //        //SWIPE
-////        for (int a = 1; a < 18; a++) {
-////            MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'qmFormsBtn')]");
-////            boolean isDisplayed = element1.isDisplayed();
-////            MobileElement element2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'text1') and @text = 'Form_Lock1']");
-////            boolean isDisplayed1 = element2.isDisplayed();
-////            if (isDisplayed) {
-////                TouchAction touchAction = new TouchAction(driver);
-////                touchAction.longPress(new PointOption().withCoordinates(50, 480)).moveTo(new PointOption().withCoordinates(350, 150)).release().perform();
-////            }
-////            else if (isDisplayed1){
-////                element2.click();
-////            }
-////        }
-////        MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'qmFormsBtn')]");
-////        boolean isDisplayed = element1.isDisplayed();
-////        while(!isDisplayed){
-////            TouchAction touchAction = new TouchAction(driver);
-////            touchAction.longPress(new PointOption().withCoordinates(50, 480)).moveTo(new PointOption().withCoordinates(350, 150)).release().perform();
-////        }
-////        MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id, 'qmPictureIv') and @index = '1']");
-////        boolean isDisplayed = element1.isDisplayed();
-////        if (!isDisplayed) {
-////            TouchAction touchAction = new TouchAction(driver);
-////            touchAction.longPress(new PointOption().withCoordinates(250, 600)).moveTo(new PointOption().withCoordinates(250, 300)).release().perform();
-////        }
+//        MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'qmFormsBtn')]");
+//        boolean isDisplayed = element1.isDisplayed();
+//        while(!isDisplayed){
+//            TouchAction touchAction = new TouchAction(driver);
+//            touchAction.longPress(new PointOption().withCoordinates(50, 480)).moveTo(new PointOption().withCoordinates(350, 150)).release().perform();
+//        }
 //
-//        //Click and answer form here
-//        answerNotLockForms();
-////        answeringForms();
-//        System.out.println("Done Answering Not Lock Forms");
-//        //Swipe down to view forms attached
-//        swipeDown();
-//        //Click on all answered Form from the list
-//        for (int d = 1; d<=6; d++) {
-//            //View then cancel
-//            if(d<=2) {
-//                cancelingForms();
+//        //Filling up form 1 and saving
+//        for (int a = 1; a <= 8; a++) {
+//            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//            MobileElement clckFrms1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'qmFormsBtn')]");
+//            clckFrms1.click();
+//            //Save and Cancel
+//            if (a <=3) {
+//                //Select Form 1
+//                MobileElement selFrms1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock1']");
+//                selFrms1.click();
+//                //Fill up Form
+//                MobileElement txtField1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index = '1']");
+//                txtField1.sendKeys("Abc123!@#");
+//                //Hide KeyBoard
+//                driver.hideKeyboard();
+//                //CheckBox
+//                MobileElement cb1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB1' and @index='1']");
+//                cb1.click();
+//                MobileElement cb2 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB2' and @index='2']");
+//                cb2.click();
+//                MobileElement cb3 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB3' and @index='3']");
+//                cb3.click();
+//                //RadioButton
+//                MobileElement rb1 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB1' and @index='0']");
+//                rb1.click();
+//                MobileElement rb2 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB2' and @index='1']");
+//                rb2.click();
+//                MobileElement rb3 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB3' and @index='2']");
+//                rb3.click();
+//                MobileElement cancelBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Cancel' and @index='0']");
+//                cancelBtn1.click();
+//                System.out.println("cancel " +a);
 //            }
-//            //View then Update answers
-//            else if(d==3){
-//                updatingForms();
+//            else if (a==4){
+//                //Select Form 1
+//                MobileElement selFrms1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock1']");
+//                selFrms1.click();
+//                //Fill up Form
+//                MobileElement txtField1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index = '1']");
+//                txtField1.sendKeys("Abc123!@#");
+//                //Hide KeyBoard
+//                driver.hideKeyboard();
+//                //CheckBox
+//                MobileElement cb1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB1' and @index='1']");
+//                cb1.click();
+//                MobileElement cb2 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB2' and @index='2']");
+//                cb2.click();
+//                MobileElement cb3 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB3' and @index='3']");
+//                cb3.click();
+//                //RadioButton
+//                MobileElement rb1 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB1' and @index='0']");
+//                rb1.click();
+//                MobileElement rb2 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB2' and @index='1']");
+//                rb2.click();
+//                MobileElement rb3 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB3' and @index='2']");
+//                rb3.click();
+//                MobileElement saveBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Save' and @index='1']");
+//                saveBtn1.click();
+//                System.out.println("save " +a);
 //            }
-//            //Delete form
-//            else if (d==4){
-//                deletingForms();
+//            //Form 2
+//            else if (a<=7){
+//                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//                //Select Form 1
+//                MobileElement selFrms2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock2']");
+//                selFrms2.click();
+//                //Fill up field
+//                MobileElement txtField2 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index='1']");
+//                txtField2.sendKeys("Def456!@#");
+//                //Hide keyboard
+//                driver.hideKeyboard();
+//                //Cancel
+//                MobileElement cancelBtn2 = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Cancel' and @index='0']");
+//                cancelBtn2.click();
+//                System.out.println("cancel " +a);
 //            }
-//            //answering forms again..
-//            else if(d==5){
-//                answerLockForms();
+//            else if (a==8){
+//                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//                //Select Form 1
+//                MobileElement selFrms2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock2']");
+//                selFrms2.click();
+//                //Fill up field
+//                MobileElement txtField2 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index='1']");
+//                txtField2.sendKeys("Def456!@#");
+//                //Hide keyboard
+//                driver.hideKeyboard();
+//                //Save
+//                MobileElement saveBtn2 = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Save' and @index='1']");
+//                saveBtn2.click();
+//                System.out.println("save " +a);
 //            }
-//            else if(d==6){
-//                answeringNotLockForms();
+//
+//        }
+//        //Update Forms
+//        for (int b = 1; b < 4; b++) {
+//            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//            MobileElement clckFrms = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'qmFormsBtn')]");
+//            clckFrms.click();
+//            //Select Form 1
+//            MobileElement selFrms1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock1']");
+//            selFrms1.click();
+//            //Fill up Form
+//            MobileElement txtField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index = '1']");
+//            txtField.sendKeys("123123Abcde!@#");
+//            //Hide KeyBoard
+//            driver.hideKeyboard();
+//            //CheckBox
+//            MobileElement cb1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB1' and @index='1']");
+//            cb1.click();
+//            MobileElement cb2 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB2' and @index='2']");
+//            cb2.click();
+////            MobileElement cb3 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB3' and @index='3']");
+////            cb3.click();
+//            //RadioButton
+//            MobileElement rb3 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB3' and @index='2']");
+//            rb3.click();
+//            MobileElement rb1 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB1' and @index='0']");
+//            rb1.click();
+//            MobileElement rb2 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB2' and @index='1']");
+//            rb2.click();
+//
+//            if (b <=3) {
+//                //Save and Cancel
+//                MobileElement cancelBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Cancel' and @index='0']");
+//                cancelBtn.click();
+//            }
+//            else if (b==4){
+//                MobileElement saveBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Update' and @index='1']");
+//                saveBtn.click();
 //            }
 //        }
-////        }
-//        //Update Forms
-////        for (int b = 1; b < 4; b++) {
-////            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-////            MobileElement clckFrms = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'qmFormsBtn')]");
-////            clckFrms.click();
-////            //Select Form 1
-////            MobileElement selFrms1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock1']");
-////            selFrms1.click();
-////            //Fill up Form
-////            MobileElement txtField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index = '1']");
-////            txtField.sendKeys(randomUpdateText[rand(randomUpdateText.length-1)]);
-////            //Hide KeyBoard
-////            driver.hideKeyboard();
-////            //CheckBox
-////            MobileElement cb1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB1' and @index='1']");
-////            cb1.click();
-////            MobileElement cb2 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB2' and @index='2']");
-////            cb2.click();
-//////            MobileElement cb3 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB3' and @index='3']");
-//////            cb3.click();
-////            //RadioButton
-////            MobileElement rb3 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB3' and @index='2']");
-////            rb3.click();
-////            MobileElement rb1 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB1' and @index='0']");
-////            rb1.click();
-////            MobileElement rb2 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB2' and @index='1']");
-////            rb2.click();
-////
-////            if (b <=3) {
-////                //Save and Cancel
-////                MobileElement cancelBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Cancel' and @index='0']");
-////                cancelBtn.click();
-////            }
-////            else if (b==4){
-////                MobileElement saveBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Update' and @index='1']");
-////                saveBtn.click();
-////            }
-////        }
 //    }
 
-    //Magkaiba un ppindutin sa camera pag na open pag dating sa ibang device
+    //Forms
+    public void Case4(){
+//        SearchQMAP();
+        //SWIPE
+//        for (int a = 1; a < 18; a++) {
+//            MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'qmFormsBtn')]");
+//            boolean isDisplayed = element1.isDisplayed();
+//            MobileElement element2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'text1') and @text = 'Form_Lock1']");
+//            boolean isDisplayed1 = element2.isDisplayed();
+//            if (isDisplayed) {
+//                TouchAction touchAction = new TouchAction(driver);
+//                touchAction.longPress(new PointOption().withCoordinates(50, 480)).moveTo(new PointOption().withCoordinates(350, 150)).release().perform();
+//            }
+//            else if (isDisplayed1){
+//                element2.click();
+//            }
+//        }
+//        MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'qmFormsBtn')]");
+//        boolean isDisplayed = element1.isDisplayed();
+//        while(!isDisplayed){
+//            TouchAction touchAction = new TouchAction(driver);
+//            touchAction.longPress(new PointOption().withCoordinates(50, 480)).moveTo(new PointOption().withCoordinates(350, 150)).release().perform();
+//        }
+//        MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id, 'qmPictureIv') and @index = '1']");
+//        boolean isDisplayed = element1.isDisplayed();
+//        if (!isDisplayed) {
+//            TouchAction touchAction = new TouchAction(driver);
+//            touchAction.longPress(new PointOption().withCoordinates(250, 600)).moveTo(new PointOption().withCoordinates(250, 300)).release().perform();
+//        }
+
+        //Click and answer form here
+        answerNotLockForms();
+        System.out.println("Done Answering Not Lock Forms");
+        //Swipe down to view forms attached
+        swipeDown();
+//        answerLockForms();
+        //Click on all answered Form from the list
+        for (int d = 1; d<=6; d++) {
+            //View then cancel
+            if(d<=2) {
+                cancelingForms();
+            }
+            //View then Update answers
+            else if(d==3){
+                updatingForms();
+            }
+            //Delete form
+            else if (d==4){
+                deletingForms();
+            }
+            //answering forms again..
+            else if(d==5){
+                answerLockForms();
+            }
+            else if(d==6){
+                answeringNotLockForms();
+            }
+        }
+
+
+//        }
+        //Update Forms
+//        for (int b = 1; b < 4; b++) {
+//            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//            MobileElement clckFrms = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'qmFormsBtn')]");
+//            clckFrms.click();
+//            //Select Form 1
+//            MobileElement selFrms1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock1']");
+//            selFrms1.click();
+//            //Fill up Form
+//            MobileElement txtField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index = '1']");
+//            txtField.sendKeys(randomUpdateText[rand(randomUpdateText.length-1)]);
+//            //Hide KeyBoard
+//            driver.hideKeyboard();
+//            //CheckBox
+//            MobileElement cb1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB1' and @index='1']");
+//            cb1.click();
+//            MobileElement cb2 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB2' and @index='2']");
+//            cb2.click();
+////            MobileElement cb3 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='CB3' and @index='3']");
+////            cb3.click();
+//            //RadioButton
+//            MobileElement rb3 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB3' and @index='2']");
+//            rb3.click();
+//            MobileElement rb1 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB1' and @index='0']");
+//            rb1.click();
+//            MobileElement rb2 = (MobileElement) driver.findElementByXPath("//android.widget.RadioButton[@text='RB2' and @index='1']");
+//            rb2.click();
+//
+//            if (b <=3) {
+//                //Save and Cancel
+//                MobileElement cancelBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Cancel' and @index='0']");
+//                cancelBtn.click();
+//            }
+//            else if (b==4){
+//                MobileElement saveBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[@text='Update' and @index='1']");
+//                saveBtn.click();
+//            }
+//        }
+    }
+    //Image
     public void Case5(){
-        SearchQMAP();
+//        SearchQMAP();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement forms = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'qmFormsBtn') and @text='FORMS']");
         boolean isDisplayed1 = forms.isDisplayed();
-//        for (int o = 1; o <=8; o++){
+
         while (isDisplayed1){
             try{
                 MobileElement clickImg = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id, 'qmPictureIv') and @index='1']");
@@ -349,14 +388,43 @@ public class qmapTestAuto extends BaseTest {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement takeImg = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id, 'shutter') and @index='1']");
         takeImg.click();
+        clear();
 
     }
     //CLEAR
     //Checkbox Only
     public void Case6(){
-        SearchQMAP();
-        //Ticking all check box
-        checkBoxTick();
+//        SearchQMAP();
+        //Need Swipe to locate check boxes
+//        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+//        MobileElement cb1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[contains(@resource-id, 'qmCbox1') and @index='0']");
+//        boolean isDisplayed2 = cb1.isDisplayed();
+//        if (isDisplayed2) {
+//            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+//            TouchAction touchAction = new TouchAction(driver);
+//            touchAction.longPress(new PointOption().withCoordinates(150, 670)).moveTo(new PointOption().withCoordinates(150, 730)).release().perform();
+//        }
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement forms = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'qmFormsBtn') and @text='FORMS']");
+        boolean isDisplayedForm = forms.isDisplayed();
+        while(isDisplayedForm){
+            try{
+                //Ticking all check box
+                checkBoxTick();
+                System.out.println("Found it..");
+                break;
+            }
+            catch(NoSuchElementException e){
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                TouchAction touchAction = new TouchAction(driver);
+//                touchAction.longPress(new PointOption().withCoordinates(270, 760)).moveTo(new PointOption().withCoordinates(270, 230)).release().perform();
+//                touchAction.press(new PointOption().withCoordinates(400, 670)).moveTo(new PointOption().withCoordinates(400, 730)).release().perform();
+                touchAction.press(new PointOption().withCoordinates(400, 230)).moveTo(new PointOption().withCoordinates(400, 730)).release().perform();
+                continue;
+            }
+
+        }
+
         //Clear
         clear();
         MobileElement snackBar = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'snackbar_text') and @text = 'Cleared']");
@@ -371,7 +439,7 @@ public class qmapTestAuto extends BaseTest {
     //Fields Only
     public void Case7(){
         //Alisin to pag irrun na lahat ng cases v
-        SearchQMAP();
+//        SearchQMAP();
         fieldOnly();
         clear();
         MobileElement snackBar = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'snackbar_text') and @text = 'Cleared']");
@@ -385,7 +453,7 @@ public class qmapTestAuto extends BaseTest {
     }
     //Forms only
     public void Case8(){
-        SearchQMAP();
+//        SearchQMAP();
         answerLockForms();
         answeringNotLockForms();
         clear();
@@ -401,7 +469,7 @@ public class qmapTestAuto extends BaseTest {
     //Case 9 to 12 can't script camera can't click on both device
     //Image only
     public void Case9(){
-        SearchQMAP();
+//        SearchQMAP();
         pictureOnly();
         clear();
         MobileElement snackBar = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'snackbar_text') and @text = 'Cleared']");
@@ -432,7 +500,7 @@ public class qmapTestAuto extends BaseTest {
     }
     //Image and Forms
     public void Case11(){
-        SearchQMAP();
+//        SearchQMAP();
         //Take picture
         pictureOnly();
         answerLockForms();
@@ -449,7 +517,7 @@ public class qmapTestAuto extends BaseTest {
     }
     //Image and Fields
     public void Case12(){
-        SearchQMAP();
+//        SearchQMAP();
         pictureOnly();
         fieldOnly();
         clear();
@@ -465,7 +533,7 @@ public class qmapTestAuto extends BaseTest {
     //Fields and Forms only
     public void Case13(){
         //Alisin to pag irrun na lahat ng cases v
-        SearchQMAP();
+//        SearchQMAP();
         fieldOnly();
         answerLockForms();
         answeringNotLockForms();
@@ -481,7 +549,7 @@ public class qmapTestAuto extends BaseTest {
     }
     //Fields and Checkbox
     public void Case14(){
-        SearchQMAP();
+//        SearchQMAP();
         //Ticking all check box
         checkBoxTick();
         //Click on Account Classification
@@ -513,7 +581,7 @@ public class qmapTestAuto extends BaseTest {
     }
     //Forms and Checkbox
     public void Case15(){
-        SearchQMAP();
+//        SearchQMAP();
         //Ticking all check box
         checkBoxTick();
         //Answering forms
@@ -531,7 +599,7 @@ public class qmapTestAuto extends BaseTest {
     }
     //Fields , Forms and Checkbox
     public void Case16(){
-        SearchQMAP();
+//        SearchQMAP();
         //Ticking all check box
         checkBoxTick();
         //Click on Account Classification
@@ -566,7 +634,7 @@ public class qmapTestAuto extends BaseTest {
     }
     //Image , Forms and Checkbox
     public void Case17(){
-        SearchQMAP();
+//        SearchQMAP();
         //Take picture
         pictureOnly();
         //Ticking all check box
@@ -588,7 +656,7 @@ public class qmapTestAuto extends BaseTest {
     //Image , Forms and Fields
     public void Case18(){
         //Alisin to pag irrun na lahat ng cases v
-        SearchQMAP();
+//        SearchQMAP();
         //Take picture
         pictureOnly();
         fieldOnly();
@@ -606,7 +674,7 @@ public class qmapTestAuto extends BaseTest {
     }
     //Image , Forms , Fields and Checkbox
     public void Case19(){
-        SearchQMAP();
+//        SearchQMAP();
         //Take Picture
         pictureOnly();
         //Ticking all check box
@@ -643,7 +711,7 @@ public class qmapTestAuto extends BaseTest {
     }
     //Clear only
     public void Case20(){
-        SearchQMAP();
+//        SearchQMAP();
         clear();
         MobileElement snackBar = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'snackbar_text') and @text = 'Cleared']");
         boolean isDisplayed1 =  snackBar.isDisplayed();
@@ -656,7 +724,7 @@ public class qmapTestAuto extends BaseTest {
     }
     //Summary Menu (No Data)
     public void Case21(){
-        SearchQMAP();
+//        SearchQMAP();
         MobileElement summaryMenu = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'quick_mapped_location_menu') and @index = '0']");
         summaryMenu.click();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -675,7 +743,7 @@ public class qmapTestAuto extends BaseTest {
     }
     //Save without Checkbox
     public void Case22(){
-        SearchQMAP();
+//        SearchQMAP();
         //Take Picture
         pictureOnly();
         fieldOnly();
@@ -708,7 +776,7 @@ public class qmapTestAuto extends BaseTest {
     //Save without Fields
     //test this vvvv
     public void Case23(){
-        SearchQMAP();
+//        SearchQMAP();
         //Take Picture
         pictureOnly();
         //Ticking all check box
@@ -729,7 +797,7 @@ public class qmapTestAuto extends BaseTest {
     }
     //Save without forms
     public void Case24(){
-        SearchQMAP();
+//        SearchQMAP();
         //Take Picture
         pictureOnly();
         //Ticking all check box
@@ -766,7 +834,7 @@ public class qmapTestAuto extends BaseTest {
     }
     //Save without Picture
     public void Case25(){
-        SearchQMAP();
+//        SearchQMAP();
         //Ticking all check box
         checkBoxTick();
         //Click on Account Classification
@@ -802,7 +870,7 @@ public class qmapTestAuto extends BaseTest {
     }
     //Save without Fields and Image
     public void Case26(){
-        SearchQMAP();
+//        SearchQMAP();
         //Ticking all check box
         checkBoxTick();
         //Answering forms
@@ -822,7 +890,7 @@ public class qmapTestAuto extends BaseTest {
     }
     //Save
     public void Case27(){
-        SearchQMAP();
+//        SearchQMAP();
         //Take Picture
         pictureOnly();
         //Ticking all check box
@@ -862,7 +930,7 @@ public class qmapTestAuto extends BaseTest {
     }
     //Summary Menu
     public void Case28(){
-        SearchQMAP();
+//        SearchQMAP();
         //Loop atleast 4 times
         //Click on 3 dots
         for(int a = 1; a<=4; a++){
@@ -873,7 +941,7 @@ public class qmapTestAuto extends BaseTest {
     }
     //Mapped Location
     public void Case29(){
-        SearchQMAP();
+//        SearchQMAP();
         //Click on 3 dots
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement summMenu = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'quick_mapped_location_menu') and @index='0']");
@@ -930,11 +998,14 @@ public class qmapTestAuto extends BaseTest {
         for (int a = 1; a <= 28; a++) {
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             MobileElement clckFrms1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'qmFormsBtn')]");
+            wait.until(ExpectedConditions.visibilityOf(clckFrms1));
             clckFrms1.click();
             //Cancel and Save
             if (a <=3) {
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 //Select Form 1
                 MobileElement selFrms1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock1']");
+                wait.until(ExpectedConditions.visibilityOf(selFrms1));
                 selFrms1.click();
                 //Fill up Form
                 MobileElement txtField1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index = '1']");
@@ -961,8 +1032,10 @@ public class qmapTestAuto extends BaseTest {
                 System.out.println("Cancel " +a);
             }
             else if (a==4){
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 //Select Form 1
                 MobileElement selFrms1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock1']");
+                wait.until(ExpectedConditions.visibilityOf(selFrms1));
                 selFrms1.click();
                 //Fill up Form
                 MobileElement txtField1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index = '1']");
@@ -993,6 +1066,7 @@ public class qmapTestAuto extends BaseTest {
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 //Select Form 1
                 MobileElement selFrms2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock2']");
+                wait.until(ExpectedConditions.visibilityOf(selFrms2));
                 selFrms2.click();
                 //Fill up field
                 MobileElement txtField2 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index='1']");
@@ -1008,6 +1082,7 @@ public class qmapTestAuto extends BaseTest {
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 //Select Form 2
                 MobileElement selFrms2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock2']");
+                wait.until(ExpectedConditions.visibilityOf(selFrms2));
                 selFrms2.click();
                 //Fill up field
                 MobileElement txtField2 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index='1']");
@@ -1024,6 +1099,7 @@ public class qmapTestAuto extends BaseTest {
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 //Select Form 3
                 MobileElement selFrms3 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock3']");
+                wait.until(ExpectedConditions.visibilityOf(selFrms3));
                 selFrms3.click();
                 //Click on Check box
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -1039,6 +1115,7 @@ public class qmapTestAuto extends BaseTest {
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 //Select Form 3
                 MobileElement selFrms3 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock3']");
+                wait.until(ExpectedConditions.visibilityOf(selFrms3));
                 selFrms3.click();
                 //Click on Check box
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -1055,6 +1132,7 @@ public class qmapTestAuto extends BaseTest {
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 //Select Form 4
                 MobileElement selFrms4 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock4']");
+                wait.until(ExpectedConditions.visibilityOf(selFrms4));
                 selFrms4.click();
                 //Click on Radio button
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -1070,6 +1148,7 @@ public class qmapTestAuto extends BaseTest {
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 //Select Form 4
                 MobileElement selFrms4 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock4']");
+                wait.until(ExpectedConditions.visibilityOf(selFrms4));
                 selFrms4.click();
                 //Click on Radio button
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -1085,6 +1164,7 @@ public class qmapTestAuto extends BaseTest {
             else if(a<=19){driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 //Select Form 5
                 MobileElement selFrms5 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock5']");
+                wait.until(ExpectedConditions.visibilityOf(selFrms5));
                 selFrms5.click();
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 MobileElement txtField1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index='1']");
@@ -1111,6 +1191,7 @@ public class qmapTestAuto extends BaseTest {
                 //Select Form 5
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 MobileElement selFrms5 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock5']");
+                wait.until(ExpectedConditions.visibilityOf(selFrms5));
                 selFrms5.click();
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 MobileElement txtField1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index='1']");
@@ -1135,8 +1216,9 @@ public class qmapTestAuto extends BaseTest {
             else if (a<=23){
                 //Select Form 6
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-                MobileElement selFrms5 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock6']");
-                selFrms5.click();
+                MobileElement selFrms6 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock6']");
+                wait.until(ExpectedConditions.visibilityOf(selFrms6));
+                selFrms6.click();
                 //Tick all checkbox
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 MobileElement chckBox1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@index='1' and @text='CB1']");
@@ -1166,8 +1248,9 @@ public class qmapTestAuto extends BaseTest {
             else if (a==24){
                 //Select Form 6
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-                MobileElement selFrms5 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock6']");
-                selFrms5.click();
+                MobileElement selFrms6 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock6']");
+                wait.until(ExpectedConditions.visibilityOf(selFrms6));
+                selFrms6.click();
                 //Tick all checkbox
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 MobileElement chckBox1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@index='1' and @text='CB1']");
@@ -1209,6 +1292,7 @@ public class qmapTestAuto extends BaseTest {
                 //Select Form 7
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 MobileElement selFrms7 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock7']");
+                wait.until(ExpectedConditions.visibilityOf(selFrms7));
                 selFrms7.click();
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 MobileElement txtField1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index='1']");
@@ -1234,7 +1318,7 @@ public class qmapTestAuto extends BaseTest {
                 //Insert Swipe
                 //Swipe
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-                MobileElement element2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock7']");
+                MobileElement element2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock6']");
                 boolean isDisplayed2 = element2.isDisplayed();
                 if (isDisplayed2) {
                     driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -1244,6 +1328,7 @@ public class qmapTestAuto extends BaseTest {
                 //Select Form 7
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 MobileElement selFrms7 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock7']");
+                wait.until(ExpectedConditions.visibilityOf(selFrms7));
                 selFrms7.click();
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 MobileElement txtField1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index='1']");
@@ -1330,8 +1415,6 @@ public class qmapTestAuto extends BaseTest {
         MobileElement chckBox2 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@index='2' and @text='CB2']");
         chckBox2.click();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        MobileElement chckBox3 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@index='3' and @text='CB3']");
-        chckBox3.click();
         System.out.println("Form 5 done answering ");
         //this Search  F O R M  L O C K  6
         formLock6();
@@ -1538,7 +1621,7 @@ public class qmapTestAuto extends BaseTest {
                 //Insert Swipe
                 //Swipe
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-                MobileElement element2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock7']");
+                MobileElement element2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @text='Form_Not_Lock6']");
                 boolean isDisplayed2 = element2.isDisplayed();
                 if (isDisplayed2) {
                     driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -1594,8 +1677,10 @@ public class qmapTestAuto extends BaseTest {
     public void deleteForms(){
         //Click delete
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement clickView = (MobileElement) driver.findElementByXPath("//android.widget.TextView[@index='0' and @text='Delete']");
-        clickView.click();
+        MobileElement clickDelete = (MobileElement) driver.findElementByXPath("//android.widget.LinearLayout[@index='1']");
+        wait.until(ExpectedConditions.visibilityOf(clickDelete));
+//        MobileElement clickDelete = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'title') and @index='0' and @text='Delete']");
+        clickDelete.click();
         //Click ok
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         MobileElement clickOk = (MobileElement) driver.findElementByXPath("//android.widget.Button[@index='1' and @text='Ok']");
@@ -1910,6 +1995,7 @@ public class qmapTestAuto extends BaseTest {
         System.out.println("Viewing Form_Not_Lock7...");
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement snackbar = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'text1') and @text='Form_Not_Lock7']");
+
         while (snackbar != null) {
             try {
                 MobileElement Form_Not_Lock = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'text1') and @text='Form_Not_Lock7']");
@@ -2014,6 +2100,7 @@ public class qmapTestAuto extends BaseTest {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 //        MobileElement takeImgBtn = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'qmTakePictureBtn') and @text='TAKE PICTURE' and @index='1']");
         MobileElement takeImgBtn = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'qmTakePictureBtn') and @index='1']");
+        wait.until(ExpectedConditions.visibilityOf(takeImgBtn));
         takeImgBtn.click();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement takeImg = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'shutter') and @index='1']");
@@ -2028,7 +2115,9 @@ public class qmapTestAuto extends BaseTest {
         while(isDisplayed1){
             try{
                 //Try palitan ng Text and index lang
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                 MobileElement form1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'text1') and @text='Form_Lock1']");
+                wait.until(ExpectedConditions.visibilityOf(form1));
                 form1.click();
                 System.out.println("Found it..");
                 break;
@@ -2049,7 +2138,9 @@ public class qmapTestAuto extends BaseTest {
         boolean isDisplayed1 = forms.isDisplayed();
         while(isDisplayed1){
             try{
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                 MobileElement form1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'text1') and @text='Form_Lock2']");
+                wait.until(ExpectedConditions.visibilityOf(form1));
                 form1.click();
                 System.out.println("Found it..");
                 break;
@@ -2070,7 +2161,9 @@ public class qmapTestAuto extends BaseTest {
         boolean isDisplayed1 = forms.isDisplayed();
         while(isDisplayed1){
             try{
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                 MobileElement form1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'text1') and @text='Form_Lock3']");
+                wait.until(ExpectedConditions.visibilityOf(form1));
                 form1.click();
                 System.out.println("Found it..");
                 break;
@@ -2091,7 +2184,9 @@ public class qmapTestAuto extends BaseTest {
         boolean isDisplayed1 = forms.isDisplayed();
         while(isDisplayed1){
             try{
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                 MobileElement form1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'text1') and @text='Form_Lock4']");
+                wait.until(ExpectedConditions.visibilityOf(form1));
                 form1.click();
                 System.out.println("Found it..");
                 break;
@@ -2112,7 +2207,9 @@ public class qmapTestAuto extends BaseTest {
         boolean isDisplayed1 = forms.isDisplayed();
         while(isDisplayed1){
             try{
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                 MobileElement form1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'text1') and @text='Form_Lock5']");
+                wait.until(ExpectedConditions.visibilityOf(form1));
                 form1.click();
                 System.out.println("Found it..");
                 break;
@@ -2133,7 +2230,9 @@ public class qmapTestAuto extends BaseTest {
         boolean isDisplayed1 = forms.isDisplayed();
         while(isDisplayed1){
             try{
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                 MobileElement form1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'text1') and @text='Form_Lock6']");
+                wait.until(ExpectedConditions.visibilityOf(form1));
                 form1.click();
                 System.out.println("Found it..");
                 break;
@@ -2154,7 +2253,9 @@ public class qmapTestAuto extends BaseTest {
         boolean isDisplayed1 = forms.isDisplayed();
         while(isDisplayed1){
             try{
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                 MobileElement form1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'text1') and @text='Form_Lock7']");
+                wait.until(ExpectedConditions.visibilityOf(form1));
                 form1.click();
                 System.out.println("Found it..");
                 break;
@@ -2175,7 +2276,9 @@ public class qmapTestAuto extends BaseTest {
         boolean isDisplayed1 = forms.isDisplayed();
         while(isDisplayed1){
             try{
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                 MobileElement form1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'text1') and @text='~!@#FORM#@!~']");
+                wait.until(ExpectedConditions.visibilityOf(form1));
                 form1.click();
                 System.out.println("Found it..");
                 break;
@@ -2208,7 +2311,7 @@ public class qmapTestAuto extends BaseTest {
         return (int) (Math.random() * bound);
     }
 
-    public void turnOn(){
+    public void turnOnLocation(){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement clckOkay = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id, 'button1')]");
         clckOkay.click();
