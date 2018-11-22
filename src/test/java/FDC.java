@@ -1,17 +1,21 @@
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeMethod;
+import test.ThreadLocalDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -25,10 +29,13 @@ import static io.appium.java_client.remote.MobileCapabilityType.NO_RESET;
 import static io.appium.java_client.touch.offset.ElementOption.element;
 
 public class FDC {
-    String search = "Field Data Cap";
     AppiumDriver driver;
+    WebDriver webDriver;
+
+    String search = "Field Data Cap";
+
     String [] randomText = {"zczxczxc","12331231","Abbbccde","Abcde!@#","1a2b3c","A1B1C1"};
-//    public TouchAction touchAction = new TouchAction(driver);
+
 
     @Before
     public void setUp() throws MalformedURLException {
@@ -42,19 +49,22 @@ public class FDC {
         capabilities.setCapability(FULL_RESET, false);
         capabilities.setCapability(NO_RESET, true);
         driver = new AppiumDriver(new URL("http://192.168.1.33:4723/wd/hub"), capabilities);
+
+
+
     }
     @Test
     public void testFDC(){
 
 //        Case1();
-//        Case3();
-//        Case5();
-//        Case7();
-//        Case11();
-//        Case13();
-//        Case15();
-//        Case17();
-//        Case19();
+        Case3();
+        Case5();
+        Case7();
+        Case11();
+        Case13();
+        Case15();
+        Case17();
+        Case19();
         Case21();
 
     }
@@ -103,7 +113,7 @@ public class FDC {
         //Selecting pictures
         for(int c = 0; c<=3; c++) {
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            //branch list
+            //Pictures
             List<MobileElement> clckPic = (List<MobileElement>) driver.findElementsByClassName("android.widget.ImageView");
             clckPic.get(c).click();
             //press back
@@ -140,7 +150,7 @@ public class FDC {
         //Selecting pictures
         for(int c = 0; c<=3; c++) {
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            //branch list
+            //picture list
             List<MobileElement> clckPic = (List<MobileElement>) driver.findElementsByClassName("android.widget.ImageView");
             clckPic.get(c).click();
             //press back
@@ -207,17 +217,7 @@ public class FDC {
     //ACCOUNT / BRANCH  WHILE LOCATION SERVICES IS ON
     public void Case8(){
 //        SearcFDC();
-        for(int z = 0; z<=3; z++) {
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement clckAccBranch = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'etAccountbranch') and @index='0']");
-            clckAccBranch.click();
-            //Insert Search Branch
-            MobileElement searchBranch = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@text='Search' and @index='0']");
-            searchBranch.sendKeys("MINI");
-            driver.hideKeyboard();
-            List<MobileElement> selectAccBranch = (List<MobileElement>) driver.findElementsByClassName("android.widget.TextView");
-            selectAccBranch.get(z).click();
-        }
+        accountBranch();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement clckAccBranch1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'etAccountbranch') and @index='0']");
         clckAccBranch1.click();
@@ -346,7 +346,7 @@ public class FDC {
     }
     //MARKET ACTIVITY  WHILE LOCATION SERVICES IS ON
     public void Case16(){
-        SearcFDC();
+//        SearcFDC();
         //Swipe
         swipeDown();
         for(int z = 1; z<=4; z++) {
@@ -464,7 +464,7 @@ public class FDC {
     }
     //CLEAR WHILE LOCATION SERVICES IS ON
     public void Case20(){
-        SearcFDC();
+//        SearcFDC();
         clearAll();
         //Cancel
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -478,12 +478,12 @@ public class FDC {
     }
     //SAVE  WHILE LOCATION SERVICES IS OFF
     public void Case21(){
-        SearcFDC();
+//        SearcFDC();
         saveRequired();
+        saveAll();
+        System.out.println("Case 21 done");
         //Todo save all field
     }
-
-
 
 
     //FUNCTIONS
@@ -537,6 +537,10 @@ public class FDC {
                 }
             }
             else if(z==4){
+                swipeHoldDown();
+//                MobileElement snackBarComp = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'snackbar_text') and @text = 'Competitors are Required']");
+//                WebDriverWait wait = new WebDriverWait(webDriver, 20);
+//                wait.until(ExpectedConditions.invisibilityOfAllElements(snackBarComp));
                 competitors();
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                 MobileElement clckOk = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1') and @text='Ok']");
@@ -550,6 +554,80 @@ public class FDC {
                     System.out.println("Failed: Snack bar text does not displayed");
                 }
             }
+        }
+    }
+    public void saveAll(){
+        for(int z = 1; z<=7; z++) {
+            if(z==1){
+                //Fill up textnote
+                textNote();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement clckTxtNoteOk = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1') and @text='OK']");
+                clckTxtNoteOk.click();
+                saveBtn();
+                //Condition where if snackbar is displayed or not
+                MobileElement snackBar = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'snackbar_text') and @text = 'Market Activity is Required']");
+                boolean isDisplayed1 = snackBar.isDisplayed();
+                if (isDisplayed1) {
+                    System.out.println("Snack bar text displayed: Market Activity is Required");
+                } else if (!isDisplayed1) {
+                    System.out.println("Failed: Snack bar text does not displayed");
+                }
+            }
+            else if(z==2){
+                //Fill up account branch
+                accountBranch();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement clckAccBranch1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'etAccountbranch') and @index='0']");
+                clckAccBranch1.click();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement clckCancel = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button2') and @text='Cancel']");
+                clckCancel.click();
+            }
+            else if(z==3){
+                prodGroup();
+            }
+            else if(z==4){
+                kpi();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement clckOk = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1') and @index='1']");
+                clckOk.click();
+                System.out.println("Done KPI");
+            }
+            else if(z==5){
+                pictureOnly();
+            }
+            else if(z==6){
+                marketActivities();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement clckOk = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1') and @text='Ok']");
+                clckOk.click();
+                saveBtn();
+                //Condition where if snackbar is displayed or not
+                MobileElement snackBar = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'snackbar_text') and @text = 'Competitors are Required']");
+                boolean isDisplayed1 = snackBar.isDisplayed();
+                if (isDisplayed1) {
+                    System.out.println("Snack bar text displayed: Competitors are Required");
+                } else if (!isDisplayed1) {
+                    System.out.println("Failed: Snack bar text does not displayed");
+                }
+            }
+            else if(z==7){
+                swipeHoldDown();
+                competitors();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement clckOk = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1') and @text='Ok']");
+                clckOk.click();
+                saveBtn();
+                MobileElement snackBar = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'snackbar_text') and @text = 'Save Successful']");
+                boolean isDisplayed1 = snackBar.isDisplayed();
+                if (isDisplayed1) {
+                    System.out.println("Snack bar text displayed: Save Successful");
+                } else if (!isDisplayed1) {
+                    System.out.println("Failed: Snack bar text does not displayed");
+                }
+            }
+
         }
     }
     public void pictureOnly(){
@@ -587,7 +665,7 @@ public class FDC {
     }
     public void swipeDown(){
         //Loop swipe 10 times to view all forms attached
-        for (int c = 0; c<3; c++) {
+        for (int c = 0; c<5; c++) {
             Dimension dim = driver.manage().window().getSize();
             int width = dim.getWidth();
             //Para nasa gilid un pag scroll walang tatamaan textfield
@@ -596,6 +674,20 @@ public class FDC {
 //            touchAction.longPress(new PointOption().withCoordinates(270, 760)).moveTo(new PointOption().withCoordinates(270, 230)).release().perform();
             //try this
             touchAction.press(new PointOption().withCoordinates(x, 660)).moveTo(new PointOption().withCoordinates(x, 450)).release().perform();
+            System.out.println("Swiping down("+c+")...");
+        }
+    }
+    public void swipeHoldDown(){
+        //Loop swipe 10 times to view all forms attached
+        for (int c = 0; c<5; c++) {
+            Dimension dim = driver.manage().window().getSize();
+            int width = dim.getWidth();
+            //Para nasa gilid un pag scroll walang tatamaan textfield
+            int x = (int) (width * 0.99);
+            TouchAction touchAction = new TouchAction(driver);
+//            touchAction.longPress(new PointOption().withCoordinates(270, 760)).moveTo(new PointOption().withCoordinates(270, 230)).release().perform();
+            //try this
+            touchAction.longPress(new PointOption().withCoordinates(x, 660)).moveTo(new PointOption().withCoordinates(x, 450)).release().perform();
             System.out.println("Swiping down("+c+")...");
         }
     }
@@ -701,7 +793,7 @@ public class FDC {
 
         MobileElement ProdGrp = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @index='0']");
         TouchAction touchAction = new TouchAction(driver);
-        touchAction.longPress(LongPressOptions.longPressOptions().withElement(element(ProdGrp)).withDuration(Duration.ofMillis(700))).release().perform();
+        touchAction.longPress(LongPressOptions.longPressOptions().withElement(element(ProdGrp)).withDuration(Duration.ofMillis(1000))).release().perform();
 
     }
     public void prodGroup(){
@@ -746,7 +838,7 @@ public class FDC {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement clckMrktAct = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'etMarketActivity') and @index='0']");
         clckMrktAct.click();
-        //Atleast 3 un kpi na isetup sa EMS
+        //Atleast 3 un market activities na isetup sa EMS
         //List of Market Activities
         List<MobileElement> selectMrktAct = (List<MobileElement>) driver.findElementsByClassName("android.widget.CheckedTextView");
         selectMrktAct.get(0).click();
@@ -768,12 +860,12 @@ public class FDC {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement clckcompetitors = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'etCompetitors') and @index='0']");
         clckcompetitors.click();
-        //Atleast 3 un kpi na isetup sa EMS
+        //Atleast 3 un competitors na isetup sa EMS
         //List of clckcompetitors
-        List<MobileElement> selectMrktAct = (List<MobileElement>) driver.findElementsByClassName("android.widget.CheckedTextView");
-        selectMrktAct.get(0).click();
-        selectMrktAct.get(1).click();
-        selectMrktAct.get(2).click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        List<MobileElement> selectCompetitors = (List<MobileElement>) driver.findElementsByClassName("android.widget.CheckedTextView");
+        selectCompetitors.get(1).click();
+        selectCompetitors.get(2).click();
     }
     public void newCompetitors(){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -796,8 +888,8 @@ public class FDC {
         MobileElement clckClear = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'title') and @text='Clear']");
         clckClear.click();
     }
-
     private static int rand(int bound) {
         return (int) (Math.random() * bound);
     }
+
 }
