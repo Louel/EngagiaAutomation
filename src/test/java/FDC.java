@@ -57,15 +57,17 @@ public class FDC {
     public void testFDC(){
 
 //        Case1();
-        Case3();
-        Case5();
-        Case7();
-        Case11();
-        Case13();
-        Case15();
-        Case17();
-        Case19();
-        Case21();
+//        Case3();
+//        Case5();
+//        Case7();
+//        Case11();
+//        Case13();
+//        Case15();
+//        Case17();
+//        Case19();
+//        Case21();
+        //Log in to visit function/code here
+        fdcLogInToVisit();
 
     }
     //Case functions
@@ -484,6 +486,12 @@ public class FDC {
         System.out.println("Case 21 done");
         //Todo save all field
     }
+    //For Visit
+    public void Case21B(){
+        saveRequired();
+        savePerVisit();
+        System.out.println("Case 21 done");
+    }
 
 
     //FUNCTIONS
@@ -598,6 +606,7 @@ public class FDC {
                 pictureOnly();
             }
             else if(z==6){
+                swipeHoldDown();
                 marketActivities();
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                 MobileElement clckOk = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1') and @text='Ok']");
@@ -613,6 +622,71 @@ public class FDC {
                 }
             }
             else if(z==7){
+                swipeHoldDown();
+                competitors();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement clckOk = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1') and @text='Ok']");
+                clckOk.click();
+                saveBtn();
+                MobileElement snackBar = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'snackbar_text') and @text = 'Save Successful']");
+                boolean isDisplayed1 = snackBar.isDisplayed();
+                if (isDisplayed1) {
+                    System.out.println("Snack bar text displayed: Save Successful");
+                } else if (!isDisplayed1) {
+                    System.out.println("Failed: Snack bar text does not displayed");
+                }
+            }
+
+        }
+    }
+    public void savePerVisit(){
+        for(int z = 1; z<=7; z++) {
+            if(z==1){
+                //Fill up textnote
+                textNote();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement clckTxtNoteOk = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1') and @text='OK']");
+                clckTxtNoteOk.click();
+                saveBtn();
+                //Condition where if snackbar is displayed or not
+                MobileElement snackBar = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'snackbar_text') and @text = 'Market Activity is Required']");
+                boolean isDisplayed1 = snackBar.isDisplayed();
+                if (isDisplayed1) {
+                    System.out.println("Snack bar text displayed: Market Activity is Required");
+                } else if (!isDisplayed1) {
+                    System.out.println("Failed: Snack bar text does not displayed");
+                }
+            }
+            else if(z==2){
+                prodGroup();
+            }
+            else if(z==3){
+                kpi();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement clckOk = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1') and @index='1']");
+                clckOk.click();
+                System.out.println("Done KPI");
+            }
+            else if(z==4){
+                pictureOnly();
+            }
+            else if(z==5){
+                swipeHoldDown();
+                marketActivities();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement clckOk = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1') and @text='Ok']");
+                clckOk.click();
+                saveBtn();
+                //Condition where if snackbar is displayed or not
+                MobileElement snackBar = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'snackbar_text') and @text = 'Competitors are Required']");
+                boolean isDisplayed1 = snackBar.isDisplayed();
+                if (isDisplayed1) {
+                    System.out.println("Snack bar text displayed: Competitors are Required");
+                } else if (!isDisplayed1) {
+                    System.out.println("Failed: Snack bar text does not displayed");
+                }
+            }
+            else if(z==6){
                 swipeHoldDown();
                 competitors();
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -665,7 +739,7 @@ public class FDC {
     }
     public void swipeDown(){
         //Loop swipe 10 times to view all forms attached
-        for (int c = 0; c<5; c++) {
+        for (int c = 0; c<3; c++) {
             Dimension dim = driver.manage().window().getSize();
             int width = dim.getWidth();
             //Para nasa gilid un pag scroll walang tatamaan textfield
@@ -887,6 +961,63 @@ public class FDC {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement clckClear = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'title') and @text='Clear']");
         clckClear.click();
+    }
+    public void fdcLogInToVisit(){
+        for (int x = 3; x <=8; x++) {
+            driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+            //CLick on drawer
+            MobileElement sideBarBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
+            sideBarBtn.click();
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            //click arrow down
+            MobileElement loginVisitBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'image_visit_dropdown') and @index = '3']");
+            loginVisitBtn.click();
+            //branch list
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            //Time to load
+            List<MobileElement> logBtn = (List<MobileElement>) driver.findElementsByClassName("android.widget.RelativeLayout");
+            logBtn.get(x).click();
+            System.out.println(x);
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            MobileElement cntBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1')]");
+            cntBtn.click();
+            //click on Ok
+            //should have wait here atleast 20 secs
+            driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
+            MobileElement cntBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1')]");
+            cntBtn1.click();
+//            SearcFDC();
+            Case3();
+            Case5();
+            Case11();
+            Case13();
+            Case15();
+            Case17();
+            Case19();
+            Case21B();
+            //LogOut
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement sideBarBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
+            sideBarBtn1.click();
+            //Scroll down vvvv
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'edit_text_search')]");
+            boolean isDisplayed1 = element1.isDisplayed();
+            if (isDisplayed1) {
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                TouchAction touchAction = new TouchAction(driver);
+                touchAction.longPress(new PointOption().withCoordinates(160, 200)).moveTo(new PointOption().withCoordinates(160, 520)).release().perform();
+            }
+            //Scroll ^^^^^
+            System.out.println("Branch " +x+ " done!");
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement logOutBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'image_visit_dropdown') and @index = '3']");
+            logOutBtn.click();
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement logOutBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'btn_visit_logout')]");
+            logOutBtn1.click();
+
+        }
     }
     private static int rand(int bound) {
         return (int) (Math.random() * bound);
