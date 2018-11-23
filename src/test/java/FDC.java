@@ -29,12 +29,10 @@ import static io.appium.java_client.remote.MobileCapabilityType.NO_RESET;
 import static io.appium.java_client.touch.offset.ElementOption.element;
 
 public class FDC {
+
     AppiumDriver driver;
-    WebDriver webDriver;
-
     String search = "Field Data Cap";
-
-    String [] randomText = {"zczxczxc","12331231","Abbbccde","Abcde!@#","1a2b3c","A1B1C1"};
+    String [] randomText = {"zczxczxc","12331231","Abbbccde","Abcde!@#","1a2b3c","A1B1C1", "random" , "somerandomtxt", "randomtxtsome" , "randomsometxt"};
 
 
     @Before
@@ -57,15 +55,15 @@ public class FDC {
     public void testFDC(){
 
 //        Case1();
-//        Case3();
-//        Case5();
-//        Case7();
-//        Case11();
-//        Case13();
-//        Case15();
-//        Case17();
-//        Case19();
-//        Case21();
+        Case3();
+        Case5();
+        Case7();
+        Case11();
+        Case13();
+        Case15();
+        Case17();
+        Case19();
+        Case21();
         //Log in to visit function/code here
         fdcLogInToVisit();
 
@@ -712,6 +710,7 @@ public class FDC {
         takeImg.click();
         System.out.println("Picture Captured...");
         //Condition where if snackbar is displayed Case 3 pass
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement snackBar = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'snackbar_text') and @text = 'Image Captured']");
         boolean isDisplayed1 =  snackBar.isDisplayed();
         if(isDisplayed1){
@@ -778,6 +777,25 @@ public class FDC {
             touchAction.press(new PointOption().withCoordinates(x, 300)).moveTo(new PointOption().withCoordinates(x, 500)).release().perform();
             System.out.println("Swiping up("+c+")...");
         }
+    }
+    public void swipeUpToLogin(){
+
+
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'edit_text_search')]");
+        boolean isDisplayed1 = element1.isDisplayed();
+        if (isDisplayed1) {
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            Dimension dim = driver.manage().window().getSize();
+            int width = dim.getWidth();
+            //Para nasa gilid un pag scroll walang tatamaan textfield
+            int x = (int) (width * 0.05);
+            TouchAction touchAction = new TouchAction(driver);
+            //try this
+            touchAction.press(new PointOption().withCoordinates(x, 200)).moveTo(new PointOption().withCoordinates(x, 500)).release().perform();
+//            touchAction.longPress(new PointOption().withCoordinates(160, 200)).moveTo(new PointOption().withCoordinates(160, 520)).release().perform();
+        }
+
     }
     public void textNoteCancel(){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -968,6 +986,7 @@ public class FDC {
             //CLick on drawer
             MobileElement sideBarBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
             sideBarBtn.click();
+            swipeUpToLogin();
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             //click arrow down
             MobileElement loginVisitBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'image_visit_dropdown') and @index = '3']");
