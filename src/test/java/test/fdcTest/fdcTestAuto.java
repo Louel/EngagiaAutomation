@@ -1,60 +1,28 @@
+package test.fdcTest;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.offset.PointOption;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.touch.TouchActions;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.BeforeMethod;
-import test.ThreadLocalDriver;
+import org.testng.annotations.Test;
+import test.BaseTest;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-
-import static io.appium.java_client.remote.MobileCapabilityType.FULL_RESET;
-import static io.appium.java_client.remote.MobileCapabilityType.NO_RESET;
 import static io.appium.java_client.touch.offset.ElementOption.element;
 
-public class FDC {
+public class fdcTestAuto extends BaseTest {
 
-    AppiumDriver driver;
+
     String search = "Field Data Cap";
     String [] randomText = {"zczxczxc","12331231","Abbbccde","Abcde!@#","1a2b3c","A1B1C1", "random" , "somerandomtxt", "randomtxtsome" , "randomsometxt"};
 
-
-    @Before
-    public void setUp() throws MalformedURLException {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("deviceName","Samsung Galaxy J1 (2016)");
-        capabilities.setCapability(CapabilityType.PLATFORM_NAME, "Android");
-        capabilities.setCapability("platformVersion", "5.1.1");
-        capabilities.setCapability("appPackage", "com.engagia.android");
-        capabilities.setCapability("appActivity","com.engagia.android.activities.LoginActivity");
-        capabilities.setCapability("noSign", true);
-        capabilities.setCapability(FULL_RESET, false);
-        capabilities.setCapability(NO_RESET, true);
-        driver = new AppiumDriver(new URL("http://192.168.1.33:4730/wd/hub"), capabilities);
-
-
-
-    }
     @Test
     public void testFDC(){
-
-//        Case1();
         Case3();
         Case5();
         Case7();
@@ -66,10 +34,9 @@ public class FDC {
         Case21();
         //Log in to visit function/code here
         fdcLogInToVisit();
-
     }
-    //Case functions
-    //ACCESSING FIELD DATA CAPTURE WHILE LOCATION SERVICES IS OFF
+
+
     public void Case1(){
         SearcFDC();
         //Loop
@@ -276,7 +243,7 @@ public class FDC {
     public void Case13(){
 //        SearcFDC();
         for(int z = 1; z<=3; z++) {
-                kpi();
+            kpi();
             if(z<=2) {
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                 MobileElement clckCncl = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button2') and @index='0']");
@@ -490,7 +457,6 @@ public class FDC {
         savePerVisit();
         System.out.println("Case 21 done");
     }
-
 
     //FUNCTIONS
     public void saveBtn(){
@@ -1041,5 +1007,4 @@ public class FDC {
     private static int rand(int bound) {
         return (int) (Math.random() * bound);
     }
-
 }
