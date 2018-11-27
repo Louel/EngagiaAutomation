@@ -46,7 +46,7 @@ public class FDC {
         capabilities.setCapability("noSign", true);
         capabilities.setCapability(FULL_RESET, false);
         capabilities.setCapability(NO_RESET, true);
-        driver = new AppiumDriver(new URL("http://192.168.1.33:4730/wd/hub"), capabilities);
+        driver = new AppiumDriver(new URL("http://192.168.1.33:4723/wd/hub"), capabilities);
 
 
 

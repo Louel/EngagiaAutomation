@@ -947,7 +947,7 @@ public class fdcTestAuto extends BaseTest {
         clckClear.click();
     }
     public void fdcLogInToVisit(){
-        for (int x = 3; x <=8; x++) {
+        for (int x = 3; x <=7; x++) {
             driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
             //CLick on drawer
             MobileElement sideBarBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
