@@ -2449,17 +2449,6 @@ public class vaofTestAuto extends BaseTest {
     private static int rand(int bound) {
         return (int) (Math.random() * bound);
     }
-//    public void randomString(){
-//        switch(){
-//            case 1: String = "Abcd";
-//            break;
-//            case 2: String = "Efgh";
-//        }
-//    }
-
-
-
-
 
     MobileElement getTableCell(String id){
         //Enter Value on Order per PC
