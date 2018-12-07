@@ -1241,49 +1241,44 @@ public class vaofTestAuto extends BaseTest {
         MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id, 'filter_by_button')]");
         boolean isDisplayed1 = element1.isDisplayed();
         if (isDisplayed1) {
-            TouchAction touchAction = new TouchAction(driver);
-            touchAction.tap(new PointOption().withCoordinates(200, 250)).perform();
+//            TouchAction touchAction = new TouchAction(driver);
+//            touchAction.tap(new PointOption().withCoordinates(200, 250)).perform();
+            MobileElement unit = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.TextView[@index='1']");
+            unit.click();
         }
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         MobileElement element2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'txt_uom_filtered') and @text='Uom filtered by smallest']");
         boolean isDisplayed2 = element2.isDisplayed();
         if (isDisplayed2) {
-            TouchAction touchAction = new TouchAction(driver);
-            touchAction.tap(new PointOption().withCoordinates(200, 300)).perform();
+//            TouchAction touchAction = new TouchAction(driver);
+//            touchAction.tap(new PointOption().withCoordinates(200, 300)).perform();
+            MobileElement unit = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.TextView[@index='1']");
+            unit.click();
         }
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         MobileElement element3 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'txt_uom_filtered') and @text='Uom filtered by biggest']");
         boolean isDisplayed3 = element3.isDisplayed();
         if (isDisplayed3) {
-            TouchAction touchAction = new TouchAction(driver);
-            touchAction.tap(new PointOption().withCoordinates(200, 300)).perform();
+//            TouchAction touchAction = new TouchAction(driver);
+//            touchAction.tap(new PointOption().withCoordinates(200, 300)).perform();
+            MobileElement unit = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.LinearLayout[@index='0']" +
+                    "/android.widget.TextView[@index='1']");
+            unit.click();
         }
-//        MobileElement clckUnit1 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
-//                "android.widget.LinearLayout[@index='0']/" +
-//                "android.widget.LinearLayout[@index='0']/" +
-//                "android.widget.LinearLayout[@index='0']/" +
-//                "android.widget.LinearLayout[@index='0']/" +
-//                "android.widget.TextView[@index='1']");
-//        clckUnit1.click();
-        //SHIT STILL DONT WORK
-//        //2nd click
-//        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//        MobileElement clckUnit2 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
-//                "android.widget.LinearLayout[@index='0']/" +
-//                "android.widget.LinearLayout[@index='0']/" +
-//                "android.widget.LinearLayout[@index='0']/" +
-//                "android.widget.LinearLayout[@index='0']/" +
-//                "android.widget.TextView[@index='1']");
-////        clckUnit2.click();
-////        //3rd click
-//        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//        MobileElement clckUnit3 = (MobileElement) driver.findElementByXPath(vaofDrctryTbl2 +
-//                "android.widget.LinearLayout[@index='0']/" +
-//                "android.widget.LinearLayout[@index='0']/" +
-//                "android.widget.LinearLayout[@index='0']/" +
-//                "android.widget.LinearLayout[@index='0']/" +
-//                "android.widget.TextView[@text='  UNIT  ' and @index='1']");
-//        clckUnit3.click();
         System.out.println("Case 38 Pass");
 
     }
