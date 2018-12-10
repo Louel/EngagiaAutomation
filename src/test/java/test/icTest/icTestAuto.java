@@ -1,28 +1,20 @@
-package test;
+package test.icTest;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.offset.PointOption;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import java.net.MalformedURLException;
-import java.net.URL;
+import org.testng.annotations.Test;
+import test.BaseTest;
 import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import static io.appium.java_client.remote.MobileCapabilityType.FULL_RESET;
-import static io.appium.java_client.remote.MobileCapabilityType.NO_RESET;
+
 import static io.appium.java_client.touch.offset.ElementOption.element;
 
-public class IC {
-
-    AppiumDriver driver;
+public class icTestAuto extends BaseTest {
     String search = "Inventory Cou";
     String [] randomText = {"zczxczxc","12331231","Abbbccde","Abcde!@#","1a2b3c","A1B1C1", "random" , "somerandomtxt", "randomtxtsome" , "randomsometxt"};
     String prodName = "soDa";
@@ -55,21 +47,6 @@ public class IC {
             "/android.widget.ScrollView[@index='0']" +
             "/android.widget.LinearLayout[@index='0']";
 
-
-    @Before
-    public void setUp() throws MalformedURLException {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("deviceName","Samsung Galaxy J1 (2016)");
-        capabilities.setCapability(CapabilityType.PLATFORM_NAME, "Android");
-        capabilities.setCapability("platformVersion", "5.1.1");
-        capabilities.setCapability("appPackage", "com.engagia.android");
-        capabilities.setCapability("appActivity","com.engagia.android.activities.LoginActivity");
-        capabilities.setCapability("noSign", true);
-        capabilities.setCapability(FULL_RESET, false);
-        capabilities.setCapability(NO_RESET, true);
-        //Papalitan un Ip depende sa pc
-        driver = new AppiumDriver(new URL("http://192.168.1.33:4723/wd/hub"), capabilities);
-    }
 
     @Test
     public void testIC(){
@@ -806,8 +783,8 @@ public class IC {
     //Check filter "Information Filter" w/ ADD STOCK TRANSACTION
     public void Case34(){
         addWithStock();
-        clear();
-//        finalMthd();
+//        clear();
+        finalMthd();
         infoFilter();
     }
     //Check information filter "All Products"
@@ -1196,7 +1173,7 @@ public class IC {
         clckRes.click();
     }
     public void icLogInToVisit(){
-        for (int x = 8; x <=8; x++) {
+        for (int x = 6; x <=6; x++) {
             driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
             //CLick on drawer
             MobileElement sideBarBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
@@ -1890,6 +1867,7 @@ public class IC {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement closeBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1') and @text='Close']");
         closeBtn.click();
+        SearcIC();
     }
     //Finalize and Copy to Field Execution
     public void finalizeCopy(){
@@ -2564,14 +2542,6 @@ public class IC {
                 transferIn();
                 swipeRight();
                 transferOut();
-                //isDisplayed Script for Case29 updated IC SCRIPT
-//                swipeRight();
-//                MobileElement noStockTxt = (MobileElement) driver.findElementByXPath("//android.widget.TextView[@text = 'With Stock']");
-//                boolean isDisplayed1 = noStockTxt.isDisplayed();
-//                if (isDisplayed1) {
-//                    System.out.println("With Stock Displayed");
-//                }
-//                swipeRight();
                 for (int x = 1; x <= 2; x++) {
                     swipeRight();
                 }
@@ -2699,7 +2669,7 @@ public class IC {
             int width = dim.getWidth();
             //Para nasa gilid un pag scroll walang tatamaan textfield
             int x1 = (int) (width * 0.99);
-            int x2 = (int) (width * 0.75);
+            int x2 = (int) (width * 0.71);
             TouchAction touchAction = new TouchAction(driver);
             //try this
             touchAction.longPress(new PointOption().withCoordinates(x1, 300)).moveTo(new PointOption().withCoordinates(x2, 300)).release().perform();
@@ -2755,5 +2725,4 @@ public class IC {
     private static int rand(int bound) {
         return (int) (Math.random() * bound);
     }
-
 }

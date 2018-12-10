@@ -61,11 +61,31 @@
 
     <!-- START OF QMAP -->
 
+    <!--<test name="Test-SamsungA">-->
+        <!--<parameter name="deviceName" value="Samsung Galaxy J1 (2016)" />-->
+        <!--<parameter name="platformVersion" value="5.1.1" />-->
+        <!--<classes>-->
+            <!--<class name="test.fdcTest.fdcTestAuto" />-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <!--<test name="Test-MyPhone">-->
+        <!--<parameter name="deviceName" value="MyPhone UNO" />-->
+        <!--<parameter name="platformVersion" value="6.0.1" />-->
+        <!--<classes>-->
+            <!--<class name="test.fdcTest.fdcTestAuto" />-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <!-- END OF QMAP -->
+
+    <!-- START OF IC -->
+
     <test name="Test-SamsungA">
         <parameter name="deviceName" value="Samsung Galaxy J1 (2016)" />
         <parameter name="platformVersion" value="5.1.1" />
         <classes>
-            <class name="test.fdcTest.fdcTestAuto" />
+            <class name="test.icTest.icTestAuto" />
         </classes>
     </test>
 
@@ -73,11 +93,11 @@
         <parameter name="deviceName" value="MyPhone UNO" />
         <parameter name="platformVersion" value="6.0.1" />
         <classes>
-            <class name="test.fdcTest.fdcTestAuto" />
+            <class name="test.icTest.icTestAuto" />
         </classes>
     </test>
 
-    <!-- END OF QMAP -->
+    <!-- END OF IC -->
 
     <!--<test name="Test-Huawei">-->
         <!--<parameter name="deviceName" value="HUAWEI Y6 2018" />-->
