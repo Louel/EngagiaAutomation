@@ -50,7 +50,7 @@ public class icTestAuto extends BaseTest {
 
     @Test
     public void testIC(){
-        icLogInToVisit();
+            icLogInToVisit();
     }
     //Case Functions
     //Check Search by "Name"
@@ -1173,7 +1173,7 @@ public class icTestAuto extends BaseTest {
         clckRes.click();
     }
     public void icLogInToVisit(){
-        for (int x = 6; x <=6; x++) {
+        for (int x = 4; x <=6; x++) {
             driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
             //CLick on drawer
             MobileElement sideBarBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
