@@ -4,14 +4,14 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.HidesKeyboard;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -23,6 +23,7 @@ import java.util.concurrent.TimeUnit;
 
 import static io.appium.java_client.remote.MobileCapabilityType.FULL_RESET;
 import static io.appium.java_client.remote.MobileCapabilityType.NO_RESET;
+import static io.appium.java_client.touch.offset.ElementOption.element;
 
 public class NotesAndTasks {
 
@@ -467,11 +468,21 @@ public class NotesAndTasks {
         }
         //Delete note or task by swiping
         //Loop for viewing the created task or note
-        List<MobileElement> boxNoteTask = (List<MobileElement>) driver.findElementsByXPath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout");
+//        List<MobileElement> boxNoteTask = (List<MobileElement>) driver.findElementsByXPath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout");
 //        boxNoteTask.get(1).getCoordinates();
-
+//        List<MobileElement> boxNoteTask = (List<MobileElement>) driver.findElementsByXPath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout");
         //swipe to right
-//        MobileElement box = (MobileElement) driver.findElementsByXPath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout[@index='1']");
+        MobileElement boxNoteTask = (MobileElement) driver.findElementsByXPath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout[@index='1']");
+//        Point p = (Point) boxNoteTask.getCoordinates();
+//        int X1 = p.getX();
+//        int Y1 = p.getY();
+        int Z1 = boxNoteTask.getCenter().getX();
+        int Z2 = boxNoteTask.getCenter().getY();
+        int X1 = ((Point) boxNoteTask.getCoordinates()).getX();
+        int Y1 = ((Point) boxNoteTask.getCoordinates()).getY();
+        MobileElement boxNoteTask1 = (MobileElement) driver.findElementsByXPath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout[@index='0']");
+        int X2 = ((Point) boxNoteTask1.getCoordinates()).getX();
+        int Y2 = ((Point) boxNoteTask1.getCoordinates()).getY();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1')]");
         boolean isDisplayed1 = element1.isDisplayed();
@@ -480,10 +491,19 @@ public class NotesAndTasks {
             Dimension dim = driver.manage().window().getSize();
             int width = dim.getWidth();
             //Para nasa gilid un pag scroll walang tatamaan textfield
-            int x1 = (int) (width * 0.99);
-            TouchAction touchAction = new TouchAction(driver);
-//     TODO       touchAction.press(boxNoteTask.get(1)).moveTo(new PointOption().withCoordinates(x1, 200)).release().perform();
-            touchAction.longPress((PointOption) driver.findElementsByXPath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout[@index='1']")).moveTo(new PointOption().withCoordinates(x1,200)).release().perform();
+            int x = (int) (width * 0.99);
+//            TouchAction dragNDrop = new TouchAction(driver)
+//                    .longPress(element(boxNoteTask))
+////                    .moveTo(new PointOption().withCoordinates(x , 0))
+//                    .moveTo(element(boxNoteTask1))
+//                    .release();
+//            dragNDrop.perform();
+            AndroidTouchAction touchAction = new AndroidTouchAction(driver);
+            touchAction.longPress(new PointOption().withCoordinates(Z1, Z2)).moveTo(new PointOption().withCoordinates(X2, Y2)).release().perform();
+//            touchAction.press(boxNoteTask.get(1)).moveTo().
+//            touchAction.press((PointOption) boxNoteTask).moveTo(new PointOption().withCoordinates(x, 300)).release().perform();
+//            touchAction.longPress(element(boxNoteTask)).moveTo(new PointOption().withCoordinates(x, 0)).release().press();
+//            touchAction.longPress((PointOption) driver.findElementsByXPath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout[@index='1']")).moveTo(new PointOption().withCoordinates(x1,200)).release().perform();
 //            touchAction.longPress(driver.findElementsByXPath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout[@index='1']")).moveTo(new PointOption().withCoordinates(x1,200)).release().perform();
 //            touchAction.longPress(boxNoteTask).waitAction(WaitOptions.waitOptions(Duration.ofMillis(3000))).moveTo(new PointOption().withCoordinates(x2, 300)).release().perform();
             //try this
