@@ -81,11 +81,31 @@
 
     <!-- START OF IC -->
 
+    <!--<test name="Test-SamsungA">-->
+        <!--<parameter name="deviceName" value="Samsung Galaxy J1 (2016)" />-->
+        <!--<parameter name="platformVersion" value="5.1.1" />-->
+        <!--<classes>-->
+            <!--<class name="test.icTest.icTestAuto" />-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <!--<test name="Test-MyPhone">-->
+        <!--<parameter name="deviceName" value="MyPhone UNO" />-->
+        <!--<parameter name="platformVersion" value="6.0.1" />-->
+        <!--<classes>-->
+            <!--<class name="test.icTest.icTestAuto" />-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <!-- END OF IC -->
+
+    <!-- START OF NOTES AND TASKS -->
+
     <test name="Test-SamsungA">
         <parameter name="deviceName" value="Samsung Galaxy J1 (2016)" />
         <parameter name="platformVersion" value="5.1.1" />
         <classes>
-            <class name="test.icTest.icTestAuto" />
+            <class name="test.notetaskTest.notetaskTestAuto" />
         </classes>
     </test>
 
@@ -93,11 +113,11 @@
         <parameter name="deviceName" value="MyPhone UNO" />
         <parameter name="platformVersion" value="6.0.1" />
         <classes>
-            <class name="test.icTest.icTestAuto" />
+            <class name="test.notetaskTest.notetaskTestAuto" />
         </classes>
     </test>
 
-    <!-- END OF IC -->
+    <!-- END OF NOTES AND TASKS -->
 
     <!--<test name="Test-Huawei">-->
         <!--<parameter name="deviceName" value="HUAWEI Y6 2018" />-->

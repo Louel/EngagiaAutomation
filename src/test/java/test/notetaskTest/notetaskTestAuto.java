@@ -1,31 +1,20 @@
-package test;
+package test.notetaskTest;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.HidesKeyboard;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidTouchAction;
-import io.appium.java_client.touch.LongPressOptions;
-import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
-import org.junit.Before;
-import org.junit.Test;
-import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.touch.TouchActions;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
+import org.testng.annotations.Test;
+import test.BaseTest;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static io.appium.java_client.remote.MobileCapabilityType.FULL_RESET;
-import static io.appium.java_client.remote.MobileCapabilityType.NO_RESET;
-import static io.appium.java_client.touch.offset.ElementOption.element;
-
-public class NotesAndTasks {
+public class notetaskTestAuto extends BaseTest {
 
     AppiumDriver driver;
     String search = "Not";
@@ -45,46 +34,30 @@ public class NotesAndTasks {
             "/android.widget.LinearLayout[@index='0']" +
             "/android.support.v7.widget.RecyclerView[@index='0']";
 
-
-
-    @Before
-    public void setUp() throws MalformedURLException {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("deviceName","Samsung Galaxy J1 (2016)");
-        capabilities.setCapability(CapabilityType.PLATFORM_NAME, "Android");
-        capabilities.setCapability("platformVersion", "5.1.1");
-        capabilities.setCapability("appPackage", "com.engagia.android");
-        capabilities.setCapability("appActivity","com.engagia.android.activities.LoginActivity");
-        capabilities.setCapability("noSign", true);
-        capabilities.setCapability(FULL_RESET, false);
-        capabilities.setCapability(NO_RESET, true);
-        //Papalitan un Ip depende sa pc
-        driver = new AppiumDriver(new URL("http://192.168.1.33:4723/wd/hub"), capabilities);
-    }
     @Test
     public void testNotesAndTask(){
         SearcNoteTask();
 //        Case1();
-//        Case2();
-//        Case3();
-//        Case4();
-//        Case5();
-//        Case6();
-////        Case7();
-//        Case8();
-//        Case9();
-//        Case10();
-//        Case11();
-//        Case12();
-//        Case13();
-//        Case14();
-//        Case15();
-//        Case16();
-//        Case17();
-//        Case18();
-//        Case19();
+        Case2();
+        Case3();
+        Case4();
+        Case5();
+        Case6();
+//        Case7();
+        Case8();
+        Case9();
+        Case10();
+        Case11();
+        Case12();
+        Case13();
+        Case14();
+        Case15();
+        Case16();
+        Case17();
+        Case18();
+        Case19();
 //        selectCreatedTasks();
-        noteAndTaskLogInToVisit();
+        icLogInToVisit();
     }
     //Cases
     //Check Accessing Notes & Tasks
@@ -452,65 +425,6 @@ public class NotesAndTasks {
 //            }
 //        }
 
-    }
-    //todo Check Notes and Tasks "View" dapat ilagay to bago mag filter kasi may delete module dito
-    //todo drag to delete notes
-    public void Case7(){
-        //Loop for viewing the created task or note
-        for (int z=0; z<=1; z++){
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            List<MobileElement> logBtn = (List<MobileElement>) driver.findElementsByXPath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout");
-            logBtn.get(z).click();
-            System.out.println(z);
-            //Back
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement back = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@index='0']");
-            back.click();
-        }
-        //Delete note or task by swiping
-        //Loop for viewing the created task or note
-//        List<MobileElement> boxNoteTask = (List<MobileElement>) driver.findElementsByXPath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout");
-//        boxNoteTask.get(1).getCoordinates();
-//        List<MobileElement> boxNoteTask = (List<MobileElement>) driver.findElementsByXPath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout");
-        //swipe to right
-        MobileElement boxNoteTask = (MobileElement) driver.findElementsByXPath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout[@index='1']");
-//        Point p = (Point) boxNoteTask.getCoordinates();
-//        int X1 = p.getX();
-//        int Y1 = p.getY();
-        int Z1 = boxNoteTask.getCenter().getX();
-        int Z2 = boxNoteTask.getCenter().getY();
-        int X1 = ((Point) boxNoteTask.getCoordinates()).getX();
-        int Y1 = ((Point) boxNoteTask.getCoordinates()).getY();
-        MobileElement boxNoteTask1 = (MobileElement) driver.findElementsByXPath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout[@index='0']");
-        int X2 = ((Point) boxNoteTask1.getCoordinates()).getX();
-        int Y2 = ((Point) boxNoteTask1.getCoordinates()).getY();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1')]");
-        boolean isDisplayed1 = element1.isDisplayed();
-        if (isDisplayed1) {
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            Dimension dim = driver.manage().window().getSize();
-            int width = dim.getWidth();
-            //Para nasa gilid un pag scroll walang tatamaan textfield
-            int x = (int) (width * 0.99);
-//            TouchAction dragNDrop = new TouchAction(driver)
-//                    .longPress(element(boxNoteTask))
-////                    .moveTo(new PointOption().withCoordinates(x , 0))
-//                    .moveTo(element(boxNoteTask1))
-//                    .release();
-//            dragNDrop.perform();
-            AndroidTouchAction touchAction = new AndroidTouchAction(driver);
-            touchAction.longPress(new PointOption().withCoordinates(Z1, Z2)).moveTo(new PointOption().withCoordinates(X2, Y2)).release().perform();
-//            touchAction.press(boxNoteTask.get(1)).moveTo().
-//            touchAction.press((PointOption) boxNoteTask).moveTo(new PointOption().withCoordinates(x, 300)).release().perform();
-//            touchAction.longPress(element(boxNoteTask)).moveTo(new PointOption().withCoordinates(x, 0)).release().press();
-//            touchAction.longPress((PointOption) driver.findElementsByXPath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout[@index='1']")).moveTo(new PointOption().withCoordinates(x1,200)).release().perform();
-//            touchAction.longPress(driver.findElementsByXPath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout[@index='1']")).moveTo(new PointOption().withCoordinates(x1,200)).release().perform();
-//            touchAction.longPress(boxNoteTask).waitAction(WaitOptions.waitOptions(Duration.ofMillis(3000))).moveTo(new PointOption().withCoordinates(x2, 300)).release().perform();
-            //try this
-//            touchAction.longPress(new PointOption().withCoordinates(x1, 300)).moveTo(new PointOption().withCoordinates(x2, 300)).release().perform();
-        }
-        System.out.println("Case 7 Done");
     }
     //Check + icon left bottom corner
     public void Case8(){
@@ -1039,10 +953,6 @@ public class NotesAndTasks {
         //Back or save
         back.click();
         System.out.println(" >>Log in to visit Case 6 Done");
-    }
-    //todo Check Notes and Tasks "View"
-    public void inCase7(){
-
     }
     //Check + icon left bottom corner
     public void inCase8(){
@@ -1604,22 +1514,12 @@ public class NotesAndTasks {
             touchAction.longPress(new PointOption().withCoordinates(x, 500)).moveTo(new PointOption().withCoordinates(x, 100)).release().perform();
         }
     }
-    public void noteAndTaskLogInToVisit(){
+    public void icLogInToVisit(){
         for (int x = 2; x <=8; x++) {
             driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
             //CLick on drawer
             MobileElement sideBarBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
             sideBarBtn.click();
-            //Swipe need here
-            //Swipe?
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'edit_text_search')]");
-            boolean isDisplayed1 = element1.isDisplayed();
-            if (isDisplayed1) {
-                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-                TouchAction touchAction = new TouchAction(driver);
-                touchAction.longPress(new PointOption().withCoordinates(160, 200)).moveTo(new PointOption().withCoordinates(160, 520)).release().perform();
-            }
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             //click arrow down
             MobileElement loginVisitBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'image_visit_dropdown') and @index = '3']");
@@ -1664,9 +1564,9 @@ public class NotesAndTasks {
             sideBarBtn1.click();
             //Scroll down vvvv
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement element2 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'edit_text_search')]");
-            boolean isDisplayed2 = element1.isDisplayed();
-            if (isDisplayed2) {
+            MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'edit_text_search')]");
+            boolean isDisplayed1 = element1.isDisplayed();
+            if (isDisplayed1) {
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                 TouchAction touchAction = new TouchAction(driver);
                 touchAction.longPress(new PointOption().withCoordinates(160, 200)).moveTo(new PointOption().withCoordinates(160, 520)).release().perform();
