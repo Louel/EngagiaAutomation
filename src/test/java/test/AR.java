@@ -34,21 +34,22 @@ public class AR {
         capabilities.setCapability(FULL_RESET, false);
         capabilities.setCapability(NO_RESET, true);
         //Papalitan un Ip depende sa pc
-        driver = new AppiumDriver(new URL("http://192.168.1.33:4723/wd/hub"), capabilities);
+//        driver = new AppiumDriver(new URL("http://192.168.1.33:4723/wd/hub"), capabilities);
+        driver = new AppiumDriver(new URL("http://192.168.1.9:4723/wd/hub"), capabilities);
     }
 
     @Test
     public void testAR(){
-//        SearchAR();
-        Case1();
-        Case2();
-        Case3();
-        Case4();
-        Case5();
-        Case6();
-        Case7();
-        Case8();
-        Case9();
+        SearchAR();
+//        Case1();
+//        Case2();
+//        Case3();
+//        Case4();
+//        Case5();
+//        Case6();
+//        Case7();
+//        Case8();
+//        Case9();
         Case10();
         Case11();
         Case12();
@@ -343,6 +344,7 @@ public class AR {
     public void Case18(){
         swipeRight();
         swipeRight();
+        System.out.println("Case 18 Done");
     }
     //Check Table View "Amount Due"
     public void Case19(){
@@ -365,18 +367,19 @@ public class AR {
         if (isDisplayed2) {
             System.out.println("Amount Due 3 is same with the uploaded data");
         }
-        swipeLeft();
         System.out.println("Case 19 Done");
     }
     //Check Table View "Payment Made" after dapat to ng transaction
     public void Case20(){
         swipeRight();
+        System.out.println("Case 20 Done");
         //Index 9
     }
     //Check Table View "Deduction" after rin ng transaction
     public void Case21(){
         swipeRight();
-
+        swipeRight();
+        System.out.println("Case 21 Done");
         //Index 10
     }
     //Check Table View "Running Balance"
@@ -400,7 +403,6 @@ public class AR {
         if (isDisplayed2) {
             System.out.println("Amount Due 3 is same with the uploaded data");
         }
-        swipeLeft();
         System.out.println("Case 22 Done");
     }
     //Check Table View "Discount"
@@ -428,7 +430,6 @@ public class AR {
         if (isDisplayed2) {
             System.out.println("OR Number 1 is same with the uploaded data");
         }
-        swipeLeft();
         System.out.println("Case 24 Done");
     }
     //Check Table View "OR Date"
