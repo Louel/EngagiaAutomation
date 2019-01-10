@@ -35,21 +35,21 @@ public class AR {
         capabilities.setCapability(NO_RESET, true);
         //Papalitan un Ip depende sa pc
 //        driver = new AppiumDriver(new URL("http://192.168.1.33:4723/wd/hub"), capabilities);
-        driver = new AppiumDriver(new URL("http://192.168.1.9:4723/wd/hub"), capabilities);
+        driver = new AppiumDriver(new URL("http://192.168.0.167:4723/wd/hub"), capabilities);
     }
 
     @Test
     public void testAR(){
         SearchAR();
-//        Case1();
-//        Case2();
-//        Case3();
-//        Case4();
-//        Case5();
-//        Case6();
-//        Case7();
-//        Case8();
-//        Case9();
+        Case1();
+        Case2();
+        Case3();
+        Case4();
+        Case5();
+        Case6();
+        Case7();
+        Case8();
+        Case9();
         Case10();
         Case11();
         Case12();
@@ -72,7 +72,8 @@ public class AR {
         Case29();
         Case30();
         Case31();
-//        Case32();
+        Case32();
+//        testCase();
 
     }
 
@@ -743,6 +744,24 @@ public class AR {
         okBtn.click();
         System.out.println("Case 32 Done");
 
+    }
+    //TEST
+    public void testCase(){
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cBox1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='1' and @index='0']");
+        cBox1.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cBox2 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@text='3' and @index='0']");
+        cBox2.click();
+//        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+//        MobileElement threeDots = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'action_function_controls')]");
+//        threeDots.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement snackBar = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'snackbar_text') and @text='Please select same account and branch']");
+        boolean isDisplayed1 = snackBar.isDisplayed();
+        if (!isDisplayed1) {
+            System.out.println("Snackbar appear");
+        }
     }
 
     //Functions
