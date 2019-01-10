@@ -27,7 +27,7 @@ public class qmapTestAuto extends BaseTest {
 
 //        Case1();
         SearchQMAP();
-//        Case4();
+        Case4();
 //        Case5();
 //        Case6();
 //        Case7();
@@ -299,7 +299,7 @@ public class qmapTestAuto extends BaseTest {
         System.out.println("Done Answering Not Lock Forms");
         //Swipe down to view forms attached
         swipeDown();
-//        answerLockForms();
+        answerLockForms();
         //Click on all answered Form from the list
         for (int d = 1; d<=6; d++) {
             //View then cancel
@@ -996,6 +996,13 @@ public class qmapTestAuto extends BaseTest {
         //Loop
         //Filling up form 1 and saving
         for (int a = 1; a <= 28; a++) {
+//            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//            MobileElement clckFrms1 = (MobileElement) driver.findElementByXPath("//android.widget.LinearLayout[@index='0']" +
+//                    "/android.widget.TextView[contains(@resource-id, 'qmFormsBtn') and @text='FORMS']");
+//            boolean isDisplayed = clckFrms1.isDisplayed();
+//            if (isDisplayed) {
+//                clckFrms1.click();
+//            }
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             MobileElement clckFrms1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'qmFormsBtn')]");
             wait.until(ExpectedConditions.visibilityOf(clckFrms1));
