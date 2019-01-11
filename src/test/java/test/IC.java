@@ -68,7 +68,7 @@ public class IC {
         capabilities.setCapability(FULL_RESET, false);
         capabilities.setCapability(NO_RESET, true);
         //Papalitan un Ip depende sa pc
-        driver = new AppiumDriver(new URL("http://192.168.1.33:4723/wd/hub"), capabilities);
+        driver = new AppiumDriver(new URL("http://192.168.0.167:4723/wd/hub"), capabilities);
     }
 
     @Test
@@ -2585,7 +2585,8 @@ public class IC {
                 //Nxt page
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 try {
-                    MobileElement page = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'custom_table_next_pagination') and @text = '   ›   ']");
+//                    MobileElement page = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'custom_table_next_pagination') and @text = '   ›   ']");
+                    MobileElement page = (MobileElement) driver.findElementById("com.engagia.android:id/custom_table_next_pagination"); //trying this
                     if (page != null) {
                         //NXT PAGE
                         MobileElement nxtPage = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'custom_table_next_pagination') and @text = '   ›   ']");
