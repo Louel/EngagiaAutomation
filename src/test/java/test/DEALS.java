@@ -11,6 +11,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Time;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -23,6 +24,42 @@ public class DEALS {
     String search = "Dea";
     String branch = "ALFAMART MARIKINA 5";
     String [] deal = {"Deal 1","Deal 2","Deal 3","Deal 4","Deal 5"};
+    String dealDrctry = "//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
+            "/android.widget.LinearLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout" +
+            "/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout" +
+            "/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout" +
+            "/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout";
+    String deal1 = "//hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
+            "/android.widget.LinearLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout" +
+            "/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout" +
+            "/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout" +
+            "/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[1]" +
+            "/android.widget.LinearLayout/android.widget.TextView";
+    String deal2 = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
+            "/android.widget.LinearLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout" +
+            "/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout" +
+            "/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout" +
+            "/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]" +
+            "/android.widget.LinearLayout/android.widget.TextView";
+    String deal3 ="/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
+            "/android.widget.LinearLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout" +
+            "/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout" +
+            "/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout" +
+            "/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[3]" +
+            "/android.widget.LinearLayout/android.widget.TextView";
+    String deal4 ="/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
+            "/android.widget.LinearLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout" +
+            "/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout" +
+            "/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout" +
+            "/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[4]" +
+            "/android.widget.LinearLayout/android.widget.TextView";
+    String deal5 ="hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
+            "/android.widget.LinearLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout" +
+            "/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout" +
+            "/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout" +
+            "/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[5]" +
+            "/android.widget.LinearLayout/android.widget.TextView";
+
 
     @Before
     public void setUp() throws MalformedURLException {
@@ -36,7 +73,7 @@ public class DEALS {
         capabilities.setCapability(FULL_RESET, false);
         capabilities.setCapability(NO_RESET, true);
         //Papalitan un Ip depende sa pc
-        driver = new AppiumDriver(new URL("http://192.168.1.33:4723/wd/hub"), capabilities);
+        driver = new AppiumDriver(new URL("http://192.168.0.167:4723/wd/hub"), capabilities);
     }
 
     @Test
@@ -62,15 +99,48 @@ public class DEALS {
     public void Case41(){
         SearchDeals();
         //Click
-        for (int z=1; z<=2; z++) {
-            for (int x = 0; x <= 4; x++) {
+        for (int z=1; z<=1; z++) {
+            for (int x = 1; x <= 5; x++) {
                 driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
-                List<MobileElement> resultDeal = (List<MobileElement>) driver.findElementsByXPath("//android.widget.ScrollView[@index='1']" +
-                        "/android.widget.LinearLayout[@index='0']" +
-                        "/android.widget.LinearLayout");
-                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-                resultDeal.get(x).click();
-                int w = x + 1;
+//                List<MobileElement> resultDeal = (List<MobileElement>) driver.findElementsByXPath(dealDrctry);
+//                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//                resultDeal.get(x).click();
+//                int w = x + 1;
+                if(x==1){
+                    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                    MobileElement clckDeal1 = (MobileElement) driver.findElementByXPath(deal1);
+                    clckDeal1.click();
+                    String formText = clckDeal1.getText();
+                    System.out.println(formText);
+                }
+                else if (x==2){
+                    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                    MobileElement clckDeal2 = (MobileElement) driver.findElementByXPath(deal2);
+                    clckDeal2.click();
+                    String formText = clckDeal2.getText();
+                    System.out.println(formText);
+                }
+                else if (x==3){
+                    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                    MobileElement clckDeal3 = (MobileElement) driver.findElementByXPath(deal3);
+                    clckDeal3.click();
+                    String formText = clckDeal3.getText();
+                    System.out.println(formText);
+                }
+                else if (x==4){
+                    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                    MobileElement clckDeal4 = (MobileElement) driver.findElementByXPath(deal4);
+                    clckDeal4.click();
+                    String formText = clckDeal4.getText();
+                    System.out.println(formText);
+                }
+                else if (x==5){
+                    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                    MobileElement clckDeal5 = (MobileElement) driver.findElementByXPath(deal5);
+                    clckDeal5.click();
+                    String formText = clckDeal5.getText();
+                    System.out.println(formText);
+                }
                 if (z==1) {
                     //Click jump to vaof
                     driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
@@ -85,7 +155,7 @@ public class DEALS {
 //                    jumpBaof.click();
 //                    System.out.println("Go to Baof");
 //                }
-                System.out.println("Deals " + w + " done");
+                System.out.println("Deals " + x + " done");
                 //Enter minimum quantity
                 driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
                 MobileElement minimumQuan = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'txt_multiplier') and @text='Minimum quantity of deals to apply']");
@@ -142,8 +212,8 @@ public class DEALS {
             cntBtn1.click();
 
 
-//            SearchDeals();
-//            Case40();
+            SearchDeals();
+            Case40();
             Case41();
             //LOGOUT
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
