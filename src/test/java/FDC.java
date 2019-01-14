@@ -47,9 +47,7 @@ public class FDC {
         capabilities.setCapability(FULL_RESET, false);
         capabilities.setCapability(NO_RESET, true);
 //        driver = new AppiumDriver(new URL("http://192.168.1.33:4723/wd/hub"), capabilities);
-        driver = new AppiumDriver(new URL("http://192.168.1.27:4723/wd/hub"), capabilities);
-
-
+        driver = new AppiumDriver(new URL("http://192.168.0.167:4723/wd/hub"), capabilities);
 
     }
     @Test
@@ -241,7 +239,8 @@ public class FDC {
         for(int z = 1; z <=3; z++) {
             prodGroup();
         }
-        MobileElement clckProdGrp = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'etProdGroup') and @index='0']");
+//        MobileElement clckProdGrp = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'etProdGroup') and @index='0']");
+        MobileElement clckProdGrp = (MobileElement) driver.findElementById("com.engagia.android:id/etProdGroup");
         clckProdGrp.click();
 
         for(int x = 1; x <=3; x++) {
@@ -892,7 +891,8 @@ public class FDC {
     public void prodGroup(){
         //Click Product Group
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement clckProdGrp = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'etProdGroup') and @index='0']");
+//        MobileElement clckProdGrp = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'etProdGroup') and @index='0']");
+        MobileElement clckProdGrp = (MobileElement) driver.findElementById("com.engagia.android:id/etProdGroup");
         clckProdGrp.click();
         //List of product groups
         List<MobileElement> selectProdGroup = (List<MobileElement>) driver.findElementsByClassName("android.widget.CheckedTextView");

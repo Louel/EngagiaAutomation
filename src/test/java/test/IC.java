@@ -267,8 +267,8 @@ public class IC {
     //Check product filter "Product Group"
     public void Case11(){
         for(int z=1; z<=7; z++) {
+            prodGroup();
             if(z==1) {
-                prodGroup();
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                 MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
                 searchName.sendKeys(pgName);
@@ -279,32 +279,26 @@ public class IC {
                 clear();
             }
             else if(z==2){
-                prodGroup();
                 byShortName();
                 clear();
             }
             else if(z==3){
-                prodGroup();
                 byItemCode();
                 clear();
             }
             else if(z==4){
-                prodGroup();
                 byDescription();
                 clear();
             }
             else if(z==5){
-                prodGroup();
                 byBrand();
                 clear();
             }
             else if(z==6){
-                prodGroup();
                 byKeyword();
                 clear();
             }
             else if(z==7){
-                prodGroup();
                 byPrincipal();
                 clear();
             }
@@ -314,8 +308,8 @@ public class IC {
     //Check product filter "Must Carry Per Account Classification"
     public void Case12(){
         for(int z=1; z<=7; z++) {
+            mustCarry();
             if(z==1) {
-                mustCarry();
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                 MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
                 searchName.sendKeys(mustCarryProd);
@@ -326,32 +320,26 @@ public class IC {
                 clear();
             }
             else if(z==2){
-                mustCarry();
                 byShortName();
                 clear();
             }
             else if(z==3){
-                mustCarry();
                 byItemCode();
                 clear();
             }
             else if(z==4){
-                mustCarry();
                 byDescription();
                 clear();
             }
             else if(z==5){
-                mustCarry();
                 byBrand();
                 clear();
             }
             else if(z==6){
-                mustCarry();
                 byKeyword();
                 clear();
             }
             else if(z==7){
-                mustCarry();
                 byPrincipal();
                 clear();
             }
@@ -361,8 +349,8 @@ public class IC {
     //Check product filter "Brand"
     public void Case13(){
         for(int z=1; z<=7; z++) {
+            brand();
             if(z==1) {
-                brand();
                 //Insert search here
                 //Click Magnifying Glass Icon
                 MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
@@ -371,7 +359,6 @@ public class IC {
                 clear();
             }
             else if(z==2){
-                brand();
                 //Click Search bar and search certain product by Name
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                 MobileElement searchShortName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
@@ -382,7 +369,6 @@ public class IC {
                 clear();
             }
             else if(z==3){
-                brand();
                 checkByItemCode();
                 //Click Search bar and search certain product by Item Code
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -394,7 +380,6 @@ public class IC {
                 clear();
             }
             else if(z==4){
-                brand();
                 checkByDescription();
                 //Click Search bar and search certain product by Description
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -406,7 +391,6 @@ public class IC {
                 clear();
             }
             else if(z==5){
-                brand();
                 checkByBrand();
                 //Click Search bar and search certain product by Brand
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -418,7 +402,6 @@ public class IC {
                 clear();
             }
             else if(z==6){
-                brand();
                 checkByKeyword();
                 //Click Search bar and search certain product by Keywords
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -430,7 +413,6 @@ public class IC {
                 clear();
             }
             else if(z==7){
-                brand();
                 checkByPrincipal();
                 //Click Search bar and search certain product by Principal
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -447,45 +429,33 @@ public class IC {
     //Check product filter "Document Sequence"
     public void Case14(){
         for(int z=1; z<=7; z++) {
+            docuSequence();
             if(z==1) {
-                docuSequence();
                 //Insert search here
                 //Click Magnifying Glass Icon
                 MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
                 searchBtn.click();
                 System.out.println("Document Sequence done");
-                clear();
             }
             else if(z==2){
-                docuSequence();
                 byShortName();
-                clear();
             }
             else if(z==3){
-                docuSequence();
                 byItemCode();
-                clear();
             }
             else if(z==4){
-                docuSequence();
                 byDescription();
-                clear();
             }
             else if(z==5){
-                docuSequence();
                 byBrand();
-                clear();
             }
             else if(z==6){
-                docuSequence();
                 byKeyword();
-                clear();
             }
             else if(z==7){
-                docuSequence();
                 byPrincipal();
-                clear();
             }
+            clear();
         }
         System.out.println("Case 14 Done");
     }
@@ -813,8 +783,8 @@ public class IC {
     //Check information filter "All Products"
     public void Case35(){
         for(int z=1; z<=7; z++) {
+            infoFilterAllProd();
             if(z==1) {
-                infoFilterAllProd();
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                 MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
                 searchName.sendKeys(prodName);
@@ -822,45 +792,33 @@ public class IC {
                 MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
                 searchBtn.click();
                 System.out.println("All product done");
-                clear();
             }
             else if(z==2){
-                infoFilterAllProd();
                 byShortName();
-                clear();
             }
             else if(z==3){
-                infoFilterAllProd();
                 byItemCode();
-                clear();
             }
             else if(z==4){
-                infoFilterAllProd();
                 byDescription();
-                clear();
             }
             else if(z==5){
-                infoFilterAllProd();
                 byBrand();
-                clear();
             }
             else if(z==6){
-                infoFilterAllProd();
                 byKeyword();
-                clear();
             }
             else if(z==7){
-                infoFilterAllProd();
                 byPrincipal();
-                clear();
             }
+            clear();
         }
     }
     //Check information filter "Stock Availability: No Stock"
     public void Case36(){
         for(int z=1; z<=7; z++) {
+            infoFilterNoStock();
             if(z==1) {
-                infoFilterNoStock();
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                 MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
                 searchName.sendKeys(prodName);
@@ -868,38 +826,26 @@ public class IC {
                 MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
                 searchBtn.click();
                 System.out.println("All product done");
-                clear();
             }
             else if(z==2){
-                infoFilterNoStock();
                 byShortName();
-                clear();
             }
             else if(z==3){
-                infoFilterNoStock();
                 byItemCode();
-                clear();
             }
             else if(z==4){
-                infoFilterNoStock();
                 byDescription();
-                clear();
             }
             else if(z==5){
-                infoFilterNoStock();
                 byBrand();
-                clear();
             }
             else if(z==6){
-                infoFilterNoStock();
                 byKeyword();
-                clear();
             }
             else if(z==7){
-                infoFilterNoStock();
                 byPrincipal();
-                clear();
             }
+            clear();
         }
     }
     //Check information filter "Stock Availability: With Stock"
@@ -1230,7 +1176,7 @@ public class IC {
 //            Case7();
 //            Case8();
 //            //FILTER
-//            Case9();
+            Case9();
 //            Case10();
 ////            Case11();//May bug dito
 //            Case12();
@@ -1258,7 +1204,7 @@ public class IC {
 //            Case33();//May bug dito
             //FILTER ULIT? need gumawa ng  transaction na may low med high no stock and w/ stock
 
-            Case34();
+//            Case34();
 //            Case35();
 //            Case36();
 //            Case37();
