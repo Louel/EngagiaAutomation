@@ -21,7 +21,7 @@ import static io.appium.java_client.remote.MobileCapabilityType.NO_RESET;
 public class STR {
 
     AppiumDriver driver;
-    String search = "Stock Transfer";
+    String search = "Stock Transfer Request";
     String prodName = "soDa";
     String pgName = "tAste";
     String [] prodShortName = {"Clover", "LUCKY STRIKE RED" };
@@ -610,6 +610,7 @@ public class STR {
             randomNum();
             MobileElement calcuClckOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
             calcuClckOk.click();
+            System.out.println("Product 1 PC done");
             //Enter on box
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             MobileElement clckProdBOX1 = (MobileElement) driver.findElementByXPath(prodReq1 + "/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.LinearLayout[2]/android.widget.TextView");
@@ -618,6 +619,7 @@ public class STR {
             randomNum();
             randomNum();
             calcuClckOk.click();
+            System.out.println("Product 1 Box done");
             // PRODUCT 2
             //Clicking on product 1 request/return quantity
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -627,6 +629,7 @@ public class STR {
             randomNum();
             randomNum();
             calcuClckOk.click();
+            System.out.println("Product 2 PC done");
             //Enter on box
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             MobileElement clckProdBOX2 = (MobileElement) driver.findElementByXPath(prodReq1 + "/android.widget.LinearLayout[2]/android.widget.LinearLayout[2]/android.widget.LinearLayout[2]/android.widget.TextView");
@@ -635,6 +638,7 @@ public class STR {
             randomNum();
             randomNum();
             calcuClckOk.click();
+            System.out.println("Product 2 Box done");
             // PRODUCT 3
             //Clicking on product 1 request/return quantity
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -644,6 +648,7 @@ public class STR {
             randomNum();
             randomNum();
             calcuClckOk.click();
+            System.out.println("Product 3 PC done");
             //Enter on box
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             MobileElement clckProdBOX3 = (MobileElement) driver.findElementByXPath(prodReq1 + "/android.widget.LinearLayout[3]/android.widget.LinearLayout[2]/android.widget.LinearLayout[2]/android.widget.TextView");
@@ -652,7 +657,7 @@ public class STR {
             randomNum();
             randomNum();
             calcuClckOk.click();
-            swipeUp();
+            System.out.println("Product 3 Box done");
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             try {
                 MobileElement page = (MobileElement) driver.findElementById("com.engagia.android:id/custom_table_next_pagination");
@@ -672,7 +677,7 @@ public class STR {
             }
         }
         strFinalize();
-
+        syncAll();
     }
 
     //FUNCTIONS
@@ -681,7 +686,7 @@ public class STR {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement HamburgerBtn = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
         HamburgerBtn.click();
-        //search van
+        //search str
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/edit_text_search");
         searchField.sendKeys(search);
@@ -952,7 +957,28 @@ public class STR {
         allProd.click();
     }
 
-
+    public void syncAll(){
+        MobileElement openDrawer = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
+        openDrawer.click();
+        //Scroll down vvvv
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'edit_text_search')]");
+        boolean isDisplayed1 = element1.isDisplayed();
+        if (isDisplayed1) {
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            TouchAction touchAction = new TouchAction(driver);
+            touchAction.longPress(new PointOption().withCoordinates(160, 200)).moveTo(new PointOption().withCoordinates(160, 520)).release().perform();
+        }
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement dropDownMenu = (MobileElement) driver.findElementById("com.engagia.android:id/image_main_menu_dropdown");
+        dropDownMenu.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement syncBtn = (MobileElement) driver.findElementById("com.engagia.android:id/action_sync");
+        syncBtn.click();
+        driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+        MobileElement closeBtn = (MobileElement) driver.findElementById("android:id/button1");
+        closeBtn.click();
+    }
     public void strFinalize(){
         strSummaryMenu();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -1002,7 +1028,7 @@ public class STR {
             //Para nasa gilid un pag scroll walang tatamaan textfield
             int x = (int) (width * 0.99);
             int y1 = (int) (height * 0.99);
-            int y2 = (int) (height * 0.25);
+            int y2 = (int) (height * 0.37);
 
             TouchAction touchAction = new TouchAction(driver);
             //try this
