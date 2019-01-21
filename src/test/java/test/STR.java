@@ -85,7 +85,11 @@ public class STR {
 
     @Test
     public void testIC(){
-        SearchSTR();
+        //for STR AND STS TESTING
+        for(int z = 0; z<3; z++) {
+            SearchSTR();
+            sendRequest();
+        }
 //        Case1();
         //FILTER FUNCTIONS V SEARCH BY
 //        Case2();
@@ -106,7 +110,9 @@ public class STR {
 //        Case19();
 //        Case20();
 //        Case21();
-        SendRequest();
+//        sendRequestRandom();
+//        SearchSTR();
+
 
     }
 
@@ -586,7 +592,101 @@ public class STR {
         System.out.println("Case 21 Done");
     }
     //              S E N D I N G  R E Q U E S T
-    public void SendRequest(){
+    public void sendRequest(){
+        System.out.println("Sending Request.... ");
+        swipeRight();
+        swipeRight();
+        //Select warehouse
+        strSummaryMenu();
+        MobileElement fromMenu = (MobileElement) driver.findElementById("com.engagia.android:id/menu_from_warehouse");
+        fromMenu.click();
+        MobileElement selWarehouse = (MobileElement) driver.findElementByXPath(warehouseFrom);
+        selWarehouse.click();
+        driver.navigate().back();
+        //insert loop here
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement arrow = (MobileElement) driver.findElementById("com.engagia.android:id/custom_table_next_pagination");
+        while(arrow != null) {
+            //Clicking on product 1 request/return quantity
+            driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+            MobileElement clckProdPC1 = (MobileElement) driver.findElementByXPath(prodReq1 + "/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.LinearLayout[1]/android.widget.TextView");
+            clckProdPC1.click();
+            //ENTER VALUE
+            MobileElement clckNO9 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_9");
+            clckNO9.click();
+            clckNO9.click();
+            MobileElement calcuClckOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
+            calcuClckOk.click();
+            System.out.println("Product 1 PC done");
+            //Enter on box
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement clckProdBOX1 = (MobileElement) driver.findElementByXPath(prodReq1 + "/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.LinearLayout[2]/android.widget.TextView");
+            clckProdBOX1.click();
+            //ENTER VALUE
+            clckNO9.click();
+            clckNO9.click();
+            calcuClckOk.click();
+            System.out.println("Product 1 Box done");
+            // PRODUCT 2
+            //Clicking on product 1 request/return quantity
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement clckProdPC2 = (MobileElement) driver.findElementByXPath(prodReq1 + "/android.widget.LinearLayout[2]/android.widget.LinearLayout[2]/android.widget.LinearLayout[1]/android.widget.TextView");
+            clckProdPC2.click();
+            //ENTER VALUE
+            clckNO9.click();
+            clckNO9.click();
+            calcuClckOk.click();
+            System.out.println("Product 2 PC done");
+            //Enter on box
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement clckProdBOX2 = (MobileElement) driver.findElementByXPath(prodReq1 + "/android.widget.LinearLayout[2]/android.widget.LinearLayout[2]/android.widget.LinearLayout[2]/android.widget.TextView");
+            clckProdBOX2.click();
+            //ENTER VALUE
+            clckNO9.click();
+            clckNO9.click();
+            calcuClckOk.click();
+            System.out.println("Product 2 Box done");
+            // PRODUCT 3
+            //Clicking on product 1 request/return quantity
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement clckProdPC3 = (MobileElement) driver.findElementByXPath(prodReq1 + "/android.widget.LinearLayout[3]/android.widget.LinearLayout[2]/android.widget.LinearLayout[1]/android.widget.TextView");
+            clckProdPC3.click();
+            //ENTER VALUE
+            clckNO9.click();
+            clckNO9.click();
+            calcuClckOk.click();
+            System.out.println("Product 3 PC done");
+            //Enter on box
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement clckProdBOX3 = (MobileElement) driver.findElementByXPath(prodReq1 + "/android.widget.LinearLayout[3]/android.widget.LinearLayout[2]/android.widget.LinearLayout[2]/android.widget.TextView");
+            clckProdBOX3.click();
+            //ENTER VALUE
+            clckNO9.click();
+            clckNO9.click();
+            calcuClckOk.click();
+            System.out.println("Product 3 Box done");
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            try {
+                MobileElement page = (MobileElement) driver.findElementById("com.engagia.android:id/custom_table_next_pagination");
+                if (page != null) {
+                    //NXT PAGE
+                    MobileElement nxtPage = (MobileElement) driver.findElementById("com.engagia.android:id/custom_table_next_pagination");
+                    nxtPage.click();
+                    System.out.println("Next Page");
+                } else {
+                    System.out.println("Stop");
+                    break;
+                }
+            }
+            catch (NoSuchElementException e){
+                System.out.println("Save");
+                break;
+            }
+        }
+        strFinalize();
+        syncAll();
+    }
+    public void sendRequestRandom(){
         System.out.println("Sending Request.... ");
         swipeRight();
         swipeRight();
@@ -975,9 +1075,10 @@ public class STR {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement syncBtn = (MobileElement) driver.findElementById("com.engagia.android:id/action_sync");
         syncBtn.click();
-        driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(240, TimeUnit.SECONDS);
         MobileElement closeBtn = (MobileElement) driver.findElementById("android:id/button1");
         closeBtn.click();
+        System.out.println("Sync done");
     }
     public void strFinalize(){
         strSummaryMenu();
@@ -997,6 +1098,7 @@ public class STR {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement sendReq = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'title') and @text='Send Request']");
         sendReq.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement clckOK = (MobileElement) driver.findElementById("android:id/button2");
         clckOK.click();
     }
