@@ -4,6 +4,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.offset.PointOption;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Dimension;
@@ -114,6 +115,11 @@ public class STR {
 //        SearchSTR();
 
 
+    }
+
+    @After
+    public void tearDown() {
+        driver.quit();
     }
 
     //CASES
@@ -1075,6 +1081,18 @@ public class STR {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement syncBtn = (MobileElement) driver.findElementById("com.engagia.android:id/action_sync");
         syncBtn.click();
+        //INSERT TRY CATCH MESSAGE OF SLOW INTERNET SPEED
+        try {
+            MobileElement messageSlowNet = (MobileElement) driver.findElementById("android:id/message");
+            if (messageSlowNet != null) {
+                MobileElement contBtn = (MobileElement) driver.findElementById("android:id/button1");
+                contBtn.click();
+                System.out.println("Internet speed is slow ...");
+            }
+        }
+        catch (NoSuchElementException e){
+            System.out.println("Internet is fast ...");
+        }
         driver.manage().timeouts().implicitlyWait(240, TimeUnit.SECONDS);
         MobileElement closeBtn = (MobileElement) driver.findElementById("android:id/button1");
         closeBtn.click();
