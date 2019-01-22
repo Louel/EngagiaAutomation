@@ -65,6 +65,9 @@ public class STS {
     String qtyReqRetDrctry = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout" +
             "/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.HorizontalScrollView" +
             "/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout";
+    String statsDtlsDrctry = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
+            "/android.support.v4.widget.DrawerLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.view.View/android.widget.FrameLayout" +
+            "/android.widget.LinearLayout/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout";
 
     @Before
     public void setUp() throws MalformedURLException {
@@ -86,27 +89,27 @@ public class STS {
     @Test
     public void testIC(){
         SearchSTS();
-//        Case2();
-//        Case3();
+        Case2();
+        Case3();
 ////        Case4(); //May force close dito d ma replicate pag ginawa sa manual
-//        Case5();
-//        Case6();
-//        Case7();
-//        Case8();
-//        Case9();
+        Case5();
+        Case6();
+        Case7();
+        Case8();
+        Case9();
         //SearchBy Modules 10 - 18
-//        Case10();
-//        Case11();
-//        Case12();
-//        Case13();
-//        Case14();
-//        Case15();
-//        Case16();
-//        Case17();
-//        Case18();
-//        Case19();
-//        Case20();
-//        Case21();
+        Case10();
+        Case11();
+        Case12();
+        Case13();
+        Case14();
+        Case15();
+        Case16();
+        Case17();
+        Case18();
+        Case19();
+        Case20();
+        Case21();
         Case22();
         Case23();
 //        transaction();
@@ -556,7 +559,7 @@ public class STS {
             driver.navigate().back();
         }
     }
-    //todo test this Check Request Window: Approve/Disapprove/Cancel
+    //Check Request Window: Approve/Disapprove/Cancel
     public void Case23(){
         System.out.println("Testing Case 23");
         viewRequest1();
@@ -595,30 +598,10 @@ public class STS {
         cancelBtn.click();
         disapproveBtn.click();
         yesBtn.click();
-//        driver.navigate().back();
-//        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-//        MobileElement pendingProd = (MobileElement) driver.findElementByXPath(pendingProduct+"/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.TextView");
-//        TouchAction touchAction = new TouchAction(driver);
-//        touchAction.longPress(LongPressOptions.longPressOptions().withElement(element(pendingProd)).withDuration(Duration.ofMillis(1200))).release().perform();
-//        MobileElement delRequest = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.ListView/android.widget.LinearLayout[2]");
-//        delRequest.click();
-        /** CANCEL (From other warehouse to your warehouse)  */
-        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
-        arrowDown.click();
-        MobileElement srchByReqBy = (MobileElement) driver.findElementByXPath(searchByDrctry+"/android.widget.CheckedTextView[4]");
-        srchByReqBy.click();
-        MobileElement goBtn = (MobileElement) driver.findElementById("android:id/button1");
-        goBtn.click();
-        MobileElement srchBar = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
-        srchBar.sendKeys("qaAuto2@engagia.com");
-        MobileElement srchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
-        srchBtn.click();
-        viewRequest1();
-        MobileElement cancelReq = (MobileElement) driver.findElementById("com.engagia.android:id/view_request_cancel_menu");
-        cancelReq.click();
-        cancelBtn.click();
-        cancelReq.click();
-        yesBtn.click();
+
+        driver.navigate().back();
+        deleteRequest();
+        cancelReqFromOwn();
         MobileElement element1 = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
         boolean isDisplayed1 = element1.isDisplayed();
         if (isDisplayed1) {
@@ -626,8 +609,11 @@ public class STS {
             driver.navigate().back();
         }
     }
-    //todo Check Table View "Status Details"
+    //Check Table View "Status Details"
     public void Case24(){
+        statusDtlsView1();
+    }
+    public void Case26(){
 
     }
 
@@ -762,6 +748,53 @@ public class STS {
         searchBtn.click();
     }
 
+    public void cancelReqFromOwn(){
+        /** CANCEL (From other warehouse to your warehouse)  */
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement srchByReqBy = (MobileElement) driver.findElementByXPath(searchByDrctry+"/android.widget.CheckedTextView[4]");
+        srchByReqBy.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement goBtn = (MobileElement) driver.findElementById("android:id/button1");
+        goBtn.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement srchBar = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+        srchBar.sendKeys("qaAuto2@engagia.com");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement srchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+        srchBtn.click();
+        viewRequest1();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancelReq = (MobileElement) driver.findElementById("com.engagia.android:id/view_request_cancel_menu");
+        cancelReq.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancelBtn = (MobileElement) driver.findElementById("android:id/button2");
+        cancelBtn.click();
+        cancelReq.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement yesBtn = (MobileElement) driver.findElementById("android:id/button1");
+        yesBtn.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement okBtn = (MobileElement) driver.findElementById("android:id/button1");
+        okBtn.click();
+    }
+    public void deleteRequest(){
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement pendingProd = (MobileElement) driver.findElementByXPath(pendingProduct+"/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.TextView");
+        TouchAction touchAction = new TouchAction(driver);
+        touchAction.longPress(LongPressOptions.longPressOptions().withElement(element(pendingProd)).withDuration(Duration.ofMillis(1200))).release().perform();
+        MobileElement delRequest = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.ListView/android.widget.LinearLayout[2]");
+        delRequest.click();
+    }
+    public void statusDtlsView1(){
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement statsDetails = (MobileElement) driver.findElementByXPath(statsDtlsDrctry+"/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView");
+        TouchAction touchAction = new TouchAction(driver);
+        touchAction.longPress(LongPressOptions.longPressOptions().withElement(element(statsDetails)).withDuration(Duration.ofMillis(1200))).release().perform();
+        driver.navigate().back();
+    }
 
     public void viewRequest1(){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
