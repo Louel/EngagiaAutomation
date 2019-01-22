@@ -87,8 +87,9 @@ public class STR {
     @Test
     public void testIC(){
         //for STR AND STS TESTING
-        for(int z = 0; z<3; z++) {
-            SearchSTR();
+        SearchSTR();
+        for(int z = 0; z<6; z++) {
+
             sendRequest();
         }
 //        Case1();
@@ -117,10 +118,10 @@ public class STR {
 
     }
 
-    @After
-    public void tearDown() {
-        driver.quit();
-    }
+//    @After
+//    public void tearDown() {
+//        driver.quit();
+//    }
 
     //CASES
     //Check Accessing Stock Transfer Request
@@ -690,7 +691,7 @@ public class STR {
             }
         }
         strFinalize();
-        syncAll();
+        swipeFastLeft();
     }
     public void sendRequestRandom(){
         System.out.println("Sending Request.... ");
@@ -1185,6 +1186,22 @@ public class STR {
             TouchAction touchAction = new TouchAction(driver);
             //try this
             touchAction.longPress(new PointOption().withCoordinates(x1, 300)).moveTo(new PointOption().withCoordinates(x2, 300)).release().perform();
+        }
+    }
+    public void swipeFastLeft(){
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
+        boolean isDisplayed1 = element1.isDisplayed();
+        if (isDisplayed1) {
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            Dimension dim = driver.manage().window().getSize();
+            int width = dim.getWidth();
+            //Para nasa gilid un pag scroll walang tatamaan textfield
+            int x1 = (int) (width * 0.99);
+            int x2 = (int) (width * 0.75);
+            TouchAction touchAction = new TouchAction(driver);
+            //try this
+            touchAction.press(new PointOption().withCoordinates(x2, 300)).moveTo(new PointOption().withCoordinates(x1, 300)).release().perform();
         }
     }
     public void strSummaryMenu(){
