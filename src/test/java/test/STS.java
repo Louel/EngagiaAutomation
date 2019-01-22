@@ -87,7 +87,7 @@ public class STS {
     }
 
     @Test
-    public void testIC(){
+    public void testSTS(){
         SearchSTS();
         Case2();
         Case3();

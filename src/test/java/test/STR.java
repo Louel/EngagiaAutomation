@@ -85,7 +85,7 @@ public class STR {
     }
 
     @Test
-    public void testIC(){
+    public void testSTR(){
         //for STR AND STS TESTING
         SearchSTR();
         for(int z = 0; z<6; z++) {
