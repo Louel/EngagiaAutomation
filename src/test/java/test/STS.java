@@ -5,15 +5,18 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.offset.PointOption;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static io.appium.java_client.remote.MobileCapabilityType.FULL_RESET;
@@ -91,27 +94,27 @@ public class STS {
         SearchSTS();
         Case2();
         Case3();
-////        Case4(); //May force close dito d ma replicate pag ginawa sa manual
+        Case4(); //May force close dito d ma replicate pag ginawa sa manual
         Case5();
         Case6();
         Case7();
         Case8();
         Case9();
         //SearchBy Modules 10 - 18
-        Case10();
-        Case11();
-        Case12();
-        Case13();
-        Case14();
-        Case15();
-        Case16();
-        Case17();
-        Case18();
-        Case19();
-        Case20();
-        Case21();
-        Case22();
-        Case23();
+//        Case10();
+//        Case11();
+//        Case12();
+//        Case13();
+//        Case14();
+//        Case15();
+//        Case16();
+//        Case17();
+//        Case18();
+//        Case19();
+//        Case20();
+//        Case21();
+//        Case22();
+//        Case23();
 //        transaction();
 
 
@@ -166,11 +169,11 @@ public class STS {
         srchBtn.click();
         srchBar.sendKeys("Cancelled");
         srchBtn.click();
-        MobileElement dissmissed = (MobileElement) driver.findElementById("android:id/button2");
-        dissmissed.click();
+//        MobileElement dissmissed = (MobileElement) driver.findElementById("android:id/button2");
+//        dissmissed.click();
         srchBar.sendKeys("Approved");
         srchBtn.click();
-//        MobileElement dissmissed = (MobileElement) driver.findElementById("android:id/button2");
+        MobileElement dissmissed = (MobileElement) driver.findElementById("android:id/button2");
         dissmissed.click();
         System.out.println("Case 3 Done");
     }
@@ -911,4 +914,5 @@ public class STS {
     private static int rand(int bound) {
         return (int) (Math.random() * bound);
     }
+
 }

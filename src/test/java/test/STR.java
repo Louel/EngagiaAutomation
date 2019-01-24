@@ -89,7 +89,6 @@ public class STR {
         //for STR AND STS TESTING
         SearchSTR();
         for(int z = 0; z<6; z++) {
-
             sendRequest();
         }
 //        Case1();
