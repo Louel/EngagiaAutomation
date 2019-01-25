@@ -644,6 +644,7 @@ public class IC {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement invenLoc = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'menu_source_warehouse')]");
         invenLoc.click();
+        driver.navigate().back();
         System.out.println("Case 18 Done");
     }
     //Check Summary "Add Inventory Location"
@@ -1142,7 +1143,7 @@ public class IC {
         clckRes.click();
     }
     public void icLogInToVisit(){
-        for (int x = 8; x <=8; x++) {
+        for (int x = 2; x <=2; x++) {
             driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
             //CLick on drawer
             MobileElement sideBarBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
@@ -1176,7 +1177,7 @@ public class IC {
 //            Case7();
 //            Case8();
 //            //FILTER
-            Case9();
+//            Case9();
 //            Case10();
 ////            Case11();//May bug dito
 //            Case12();
@@ -1203,19 +1204,18 @@ public class IC {
 //            Case32();
 //            Case33();//May bug dito
             //FILTER ULIT? need gumawa ng  transaction na may low med high no stock and w/ stock
-
-//            Case34();
-//            Case35();
-//            Case36();
-//            Case37();
-//            Case38();
-//            Case39();
-//            Case40();
-//            Case41();
-//            Case42();
-//            Case43();
-//            Case44();
-//            Case50();
+            Case34();
+            Case35();
+            Case36();
+            Case37();
+            Case38();
+            Case39();
+            Case40();
+            Case41();
+            Case42();
+            Case43();
+            Case44();
+            Case50();
             //LogOut
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             MobileElement sideBarBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");

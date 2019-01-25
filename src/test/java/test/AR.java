@@ -40,8 +40,8 @@ public class AR {
 
     @Test
     public void testAR(){
-        SearchAR();
-        Case1();
+//        SearchAR();
+//        Case1();
         Case2();
         Case3();
         Case4();

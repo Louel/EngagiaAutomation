@@ -575,6 +575,7 @@ public class SA {
         driver.navigate().back();
         normalCountLogin();
         compare();
+        driver.navigate().back();
     }
     //Check Table View "Actual Combined Inventory"
     public void Case28(){
