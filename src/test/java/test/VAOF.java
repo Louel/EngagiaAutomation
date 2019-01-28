@@ -194,7 +194,6 @@ public class VAOF {
         }
     }
 
-
     //Check Product Filter by "All Product": Both logged in and not logged in
     public void Case1(){
         System.out.println("Testing Case 1");
