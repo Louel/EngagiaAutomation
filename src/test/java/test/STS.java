@@ -76,10 +76,12 @@ public class STS {
     public void setUp() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
 //        capabilities.setCapability("deviceName","Samsung Galaxy J1 (2016)");
-        capabilities.setCapability("deviceName","Lenovo A7010a48");
+//        capabilities.setCapability("deviceName","Lenovo A7010a48");
+        capabilities.setCapability("deviceName","Moto C Plus");
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, "Android");
 //        capabilities.setCapability("platformVersion", "5.1.1");
-        capabilities.setCapability("platformVersion", "5.1");
+//        capabilities.setCapability("platformVersion", "5.1");
+        capabilities.setCapability("platformVersion", "7.0");
         capabilities.setCapability("appPackage", "com.engagia.android");
         capabilities.setCapability("appActivity","com.engagia.android.activities.LoginActivity");
         capabilities.setCapability("noSign", true);
@@ -94,7 +96,7 @@ public class STS {
         SearchSTS();
         Case2();
         Case3();
-        Case4(); //May force close dito d ma replicate pag ginawa sa manual
+//        Case4(); //May force close dito d ma replicate pag ginawa sa manual
         Case5();
         Case6();
         Case7();

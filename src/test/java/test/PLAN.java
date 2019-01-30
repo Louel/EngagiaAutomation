@@ -30,7 +30,12 @@ public class PLAN {
     String tabDrctry = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
             "/android.support.v4.widget.DrawerLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout" +
             "/android.widget.HorizontalScrollView/android.widget.LinearLayout";
-    String timeFrameDrctry = "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.ListView";
+    String timeFrameDrctry = "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout" +
+            "/android.widget.FrameLayout/android.widget.ListView";
+    String schedThreedots = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
+            "/android.widget.LinearLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
+            "/android.widget.LinearLayout/android.support.v4.view.ViewPager/android.widget.LinearLayout/android.support.v7.widget.RecyclerView/android.widget.FrameLayout" +
+            "/android.widget.TableRow/android.widget.LinearLayout[2]/android.widget.ImageView";
 
     @Before
     public void setUp() throws MalformedURLException {
@@ -110,13 +115,20 @@ public class PLAN {
         MobileElement searchBtn = (MobileElement) driver.findElementByAccessibilityId("Search");
         searchBtn.click();
         MobileElement searchField = (MobileElement) driver.findElementById("android:id/search_src_text");
-        searchField.sendKeys("alfamart");
+        searchField.sendKeys("MARIKINA 9");
         driver.hideKeyboard();
-
+        MobileElement threeDots = (MobileElement) driver.findElementByXPath(schedThreedots);
+        threeDots.click();
+        MobileElement showInfo = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.ListView/android.widget.LinearLayout[1]" +
+                "/android.widget.RelativeLayout/android.widget.TextView");
+        showInfo.click();
+        swipeDown();
+        swipeUp();
+        driver.navigate().back();
     }
     private void subordinatePlan(){
         //Schedule tab
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
         MobileElement selectSchedule = (MobileElement) driver.findElementByXPath(tabDrctry+"/android.support.v7.app.ActionBar.Tab[3]");
         selectSchedule.click();
         //Timeframe
@@ -161,7 +173,6 @@ public class PLAN {
             touchAction.longPress(new PointOption().withCoordinates(x, y1)).moveTo(new PointOption().withCoordinates(x, y2)).release().perform();
 //        }
     }
-
     public void swipeUp(){
         Dimension dim = driver.manage().window().getSize();
         int width = dim.getWidth();

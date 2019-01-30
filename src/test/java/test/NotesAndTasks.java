@@ -50,6 +50,8 @@ public class NotesAndTasks {
             "/android.view.View/android.widget.RelativeLayout/android.widget.LinearLayout/android.support.v7.widget.RecyclerView";
     String selectNotesTasks = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout" +
             "/android.widget.FrameLayout/android.support.v7.widget.LinearLayoutCompat/android.widget.FrameLayout/android.widget.ListView";
+    String branchListDrctry = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout" +
+            "/android.support.v7.widget.LinearLayoutCompat/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.support.v7.widget.RecyclerView";
 
 
 
@@ -58,7 +60,8 @@ public class NotesAndTasks {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("deviceName","Samsung Galaxy J1 (2016)");
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, "Android");
-        capabilities.setCapability("platformVersion", "5.1.1");
+//        capabilities.setCapability("platformVersion", "5.1.1");
+        capabilities.setCapability("platformVersion", "6.0.1");
         capabilities.setCapability("appPackage", "com.engagia.android");
         capabilities.setCapability("appActivity","com.engagia.android.activities.LoginActivity");
         capabilities.setCapability("noSign", true);
@@ -73,12 +76,12 @@ public class NotesAndTasks {
 //        SearcNoteTask();
 //        deleteNotes();
 //        Case1();
-        Case2();
-        Case3();
-        Case4();
-        Case5();
-        Case6();
-        Case7();
+//        Case2();
+//        Case3();
+//        Case4();
+//        Case5();
+//        Case6();
+////        Case7();
 //        Case8();
 //        Case9();
 //        Case10();
@@ -92,7 +95,7 @@ public class NotesAndTasks {
 //        Case18();
 //        Case19();
 ////        selectCreatedTasks();
-////        noteAndTaskLogInToVisit();
+        noteAndTaskLogInToVisit();
     }
     //Cases
     //Check Accessing Notes & Tasks
@@ -196,7 +199,7 @@ public class NotesAndTasks {
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                 MobileElement clckDate = (MobileElement) driver.findElementByXPath("//android.widget.Spinner[contains(@resource-id,'dialog_add_reminder_select_date') and @index='1']");
                 clckDate.click();
-                //Click today
+                //Click pick date
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                 MobileElement clckToday = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @text='Pick a date']");
                 clckToday.click();
@@ -504,7 +507,7 @@ public class NotesAndTasks {
         MobileElement back = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@index='0']");
         back.click();
         System.out.println("Note saved");
-        System.out.println(" >>Case 8 Done");
+        System.out.println("Case 8 Done");
     }
     //Check "Switch View"
     public void Case9(){
@@ -531,6 +534,7 @@ public class NotesAndTasks {
                 listRadioBtn.click();
             }
         }
+        System.out.println("Case 9 Done");
     }
     //Check Filter by "All notes and tasks"
     public void Case10(){
@@ -547,6 +551,7 @@ public class NotesAndTasks {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement allNotesAndTasks = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='All notes and tasks']");
         allNotesAndTasks.click();
+        System.out.println("Case 10 Done");
     }
     //Check Filter by "All notes"
     public void Case11(){
@@ -563,6 +568,7 @@ public class NotesAndTasks {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement allNotesAndTasks = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='All notes']");
         allNotesAndTasks.click();
+        System.out.println("Case 11 Done");
     }
     //Check Filter by "All tasks"
     public void Case12(){
@@ -579,6 +585,7 @@ public class NotesAndTasks {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement allNotesAndTasks = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='All tasks']");
         allNotesAndTasks.click();
+        System.out.println("Case 12 Done");
     }
     //Check Filter by "Accomplished task"
     public void Case13(){
@@ -595,9 +602,11 @@ public class NotesAndTasks {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement allNotesAndTasks = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='Accomplished tasks']");
         allNotesAndTasks.click();
+        System.out.println("Case 13 Done");
     }
     //Check Filter by "Notes Overdue"
     public void Case14(){
+        System.out.println("Testing Case 14");
         //Click Option button
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement optionBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'fragment_notes_and_tasks_main_v2_option') and @index='1']");
@@ -610,9 +619,11 @@ public class NotesAndTasks {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement allNotesAndTasks = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='Notes overdue']");
         allNotesAndTasks.click();
+        System.out.println("Case 14 Done");
     }
     //Check Filter by "Task Overdue"
     public void Case15(){
+        System.out.println("Testing Case 15");
         //Click Option button
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement optionBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'fragment_notes_and_tasks_main_v2_option') and @index='1']");
@@ -625,9 +636,11 @@ public class NotesAndTasks {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement allNotesAndTasks = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='Task overdue']");
         allNotesAndTasks.click();
+        System.out.println("Case 15 Done");
     }
     //Check Filter by "Deleted notes"
     public void Case16(){
+        System.out.println("Testing Case 16");
         //Click Option button
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement optionBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'fragment_notes_and_tasks_main_v2_option') and @index='1']");
@@ -641,9 +654,11 @@ public class NotesAndTasks {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement allNotesAndTasks = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='Deleted notes']");
         allNotesAndTasks.click();
+        System.out.println("Case 16 Done");
     }
     //Check Filter by "Deleted Task"
     public void Case17(){
+        System.out.println("Testing Case 17");
         //Click Option button
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement optionBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'fragment_notes_and_tasks_main_v2_option') and @index='1']");
@@ -657,9 +672,11 @@ public class NotesAndTasks {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement allNotesAndTasks = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='Deleted notes']");
         allNotesAndTasks.click();
+        System.out.println("Case 17 Done");
     }
     //Check Filter by "Reminder Date"
     public void Case18(){
+        System.out.println("Testing Case 18");
         //Click Option button
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement optionBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'fragment_notes_and_tasks_main_v2_option') and @index='1']");
@@ -673,9 +690,11 @@ public class NotesAndTasks {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement allNotesAndTasks = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='Deleted tasks']");
         allNotesAndTasks.click();
+        System.out.println("Case 18 Done");
     }
     //Check "EMS: Accessing Notes and Tasks"
     public void Case19(){
+        System.out.println("Testing Case 19");
         //Click Option button
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement optionBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'fragment_notes_and_tasks_main_v2_option') and @index='1']");
@@ -697,11 +716,13 @@ public class NotesAndTasks {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement clckOk = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1') and @text='OK']");
         clckOk.click();
+        System.out.println("Case 19 Done");
     }
 
     //inCase = use this for log in to visit
     //Check Accessing Notes & Tasks
     public void inCase1(){
+        System.out.println(" >>Testing incase 1");
         SearcNoteTask();
         //Loop
         //Navigate Home and Relaunching Engagia step (Step 6 and 7)
@@ -714,6 +735,7 @@ public class NotesAndTasks {
     }
     //Check Notes and Task "Create" button
     public void inCase2(){
+        System.out.println(" >>Testing incase 2");
         SearcNoteTask();
         for(int z = 1; z<=2; z++) {
             //Click Create
@@ -727,12 +749,11 @@ public class NotesAndTasks {
         }
         cancelNotes();
         cancelTasks();
-
-
         System.out.println(" >>Log in to visit Case 2 Done");
     }
     //Check Notes and Tasks "Alarm"
     public void inCase3(){
+        System.out.println(" >>Testing incase 3");
         for(int z = 1; z<=14; z++) {
             //Notes
             if(z<=2) {
@@ -921,6 +942,7 @@ public class NotesAndTasks {
     }
     //Check Notes and Tasks "Pin"
     public void inCase4(){
+        System.out.println(" >>Testing incase 4");
         for(int z=1; z<=2; z++) {
             if(z==1) {
                 //Select Notes
@@ -950,6 +972,7 @@ public class NotesAndTasks {
     }
     //Check Create Note Window
     public void inCase5(){
+        System.out.println(" >>Testing incase 5");
         //Selecting Notes
         selectNotes();
         inputNoteTitle();
@@ -970,6 +993,7 @@ public class NotesAndTasks {
     }
     //Check Create Task Window
     public void inCase6(){
+        System.out.println(" >>Testing incase 6");
         selectTasks();
         inputTaskTitle();
         inputTask();
@@ -1026,12 +1050,13 @@ public class NotesAndTasks {
         back.click();
         System.out.println(" >>Log in to visit Case 6 Done");
     }
-    //todo Check Notes and Tasks "View"
+    //Check Notes and Tasks "View"
     public void inCase7(){
 
     }
     //Check + icon left bottom corner
     public void inCase8(){
+        System.out.println(" >>Testing incase 8");
         selectNotes();
         inputNoteTitle();
         inputNote();
@@ -1045,6 +1070,7 @@ public class NotesAndTasks {
     }
     //Check "Switch View"
     public void inCase9(){
+        System.out.println(" >>Testing incase 9");
         for(int z=1; z<=2; z++) {
             //Click Option button
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -1067,9 +1093,11 @@ public class NotesAndTasks {
                 listRadioBtn.click();
             }
         }
+        System.out.println(" >>Log in to visit Case 9 Done");
     }
     //Check Filter by "All notes and tasks"
     public void inCase10(){
+        System.out.println(" >>Testing incase 10");
         //Click Option button
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement optionBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'fragment_notes_and_tasks_main_v2_option') and @index='1']");
@@ -1082,9 +1110,11 @@ public class NotesAndTasks {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement allNotesAndTasks = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='All notes and tasks']");
         allNotesAndTasks.click();
+        System.out.println(" >>Log in to visit Case 10 Done");
     }
     //Check Filter by "All notes"
     public void inCase11(){
+        System.out.println(" >>Testing incase 11");
         //Click Option button
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement optionBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'fragment_notes_and_tasks_main_v2_option') and @index='1']");
@@ -1097,9 +1127,11 @@ public class NotesAndTasks {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement allNotesAndTasks = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='All notes']");
         allNotesAndTasks.click();
+        System.out.println(" >>Log in to visit Case 11 Done");
     }
     //Check Filter by "All tasks"
     public void inCase12(){
+        System.out.println(" >>Testing incase 12");
         //Click Option button
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement optionBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'fragment_notes_and_tasks_main_v2_option') and @index='1']");
@@ -1112,9 +1144,11 @@ public class NotesAndTasks {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement allNotesAndTasks = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='All tasks']");
         allNotesAndTasks.click();
+        System.out.println(" >>Log in to visit Case 12 Done");
     }
     //Check Filter by "Accomplished task"
     public void inCase13(){
+        System.out.println(" >>Testing incase 13");
         //Click Option button
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement optionBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'fragment_notes_and_tasks_main_v2_option') and @index='1']");
@@ -1127,9 +1161,11 @@ public class NotesAndTasks {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement allNotesAndTasks = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='Accomplished tasks']");
         allNotesAndTasks.click();
+        System.out.println(" >>Log in to visit Case 13 Done");
     }
     //Check Filter by "Notes Overdue"
     public void inCase14(){
+        System.out.println(" >>Testing incase 14");
         //Click Option button
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement optionBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'fragment_notes_and_tasks_main_v2_option') and @index='1']");
@@ -1142,9 +1178,11 @@ public class NotesAndTasks {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement allNotesAndTasks = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='Notes overdue']");
         allNotesAndTasks.click();
+        System.out.println(" >>Log in to visit Case 14 Done");
     }
     //Check Filter by "Task Overdue"
     public void inCase15(){
+        System.out.println(" >>Testing incase 15");
         //Click Option button
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement optionBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'fragment_notes_and_tasks_main_v2_option') and @index='1']");
@@ -1157,9 +1195,11 @@ public class NotesAndTasks {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement allNotesAndTasks = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='Task overdue']");
         allNotesAndTasks.click();
+        System.out.println(" >>Log in to visit Case 15 Done");
     }
     //Check Filter by "Deleted notes"
     public void inCase16(){
+        System.out.println(" >>Testing incase 16");
         //Click Option button
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement optionBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'fragment_notes_and_tasks_main_v2_option') and @index='1']");
@@ -1173,9 +1213,11 @@ public class NotesAndTasks {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement allNotesAndTasks = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='Deleted notes']");
         allNotesAndTasks.click();
+        System.out.println(" >>Log in to visit Case 16 Done");
     }
     //Check Filter by "Deleted Task"
     public void inCase17(){
+        System.out.println(" >>Testing incase 17");
         //Click Option button
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement optionBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'fragment_notes_and_tasks_main_v2_option') and @index='1']");
@@ -1189,9 +1231,11 @@ public class NotesAndTasks {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement allNotesAndTasks = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='Deleted notes']");
         allNotesAndTasks.click();
+        System.out.println(" >>Log in to visit Case 17 Done");
     }
     //Check Filter by "Reminder Date"
     public void inCase18(){
+        System.out.println(" >>Testing incase 18");
         //Click Option button
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement optionBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'fragment_notes_and_tasks_main_v2_option') and @index='1']");
@@ -1205,9 +1249,11 @@ public class NotesAndTasks {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement allNotesAndTasks = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='Deleted tasks']");
         allNotesAndTasks.click();
+        System.out.println(" >>Log in to visit Case 18 Done");
     }
     //Check "EMS: Accessing Notes and Tasks"
     public void inCase19(){
+        System.out.println(" >>Testing incase 19");
         //Click Option button
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement optionBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'fragment_notes_and_tasks_main_v2_option') and @index='1']");
@@ -1229,6 +1275,7 @@ public class NotesAndTasks {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement clckOk = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1') and @text='OK']");
         clckOk.click();
+        System.out.println(" >>Log in to visit Case 19 Done");
     }
 
     //Functions
@@ -1350,7 +1397,7 @@ public class NotesAndTasks {
         clckPickTime.click();
         //Select Hour
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement clckPickHr = (MobileElement) driver.findElement(By.xpath("//*[@content-desc='12']"));
+        MobileElement clckPickHr = (MobileElement) driver.findElement(By.xpath("//*[@content-desc='11']"));
         clckPickHr.click();
         //Select Minute
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -1592,11 +1639,11 @@ public class NotesAndTasks {
         }
     }
     public void noteAndTaskLogInToVisit(){
-        for (int x = 2; x <=8; x++) {
-            driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-            //CLick on drawer
-            MobileElement sideBarBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
-            sideBarBtn.click();
+        for (int x = 3; x <=8; x++) {
+            //Click on Drawer
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement drawerOpen = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
+            drawerOpen.click();
             //Swipe need here
             //Swipe?
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -1607,24 +1654,28 @@ public class NotesAndTasks {
                 TouchAction touchAction = new TouchAction(driver);
                 touchAction.longPress(new PointOption().withCoordinates(160, 200)).moveTo(new PointOption().withCoordinates(160, 520)).release().perform();
             }
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            //click arrow down
-            MobileElement loginVisitBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'image_visit_dropdown') and @index = '3']");
-            loginVisitBtn.click();
+            //Click on Arrow down btn
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement clckArrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/image_visit_dropdown");
+            clckArrowDown.click();
             //branch list
             driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
             //Time to load
-            List<MobileElement> logBtn = (List<MobileElement>) driver.findElementsByClassName("android.widget.RelativeLayout");
-            logBtn.get(x).click();
-            System.out.println(x);
+            //Click on branch depends on index or int of the loop
             driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-            MobileElement cntBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1')]");
-            cntBtn.click();
+            MobileElement clckOnBranch = (MobileElement) driver.findElementByXPath(branchListDrctry + "/android.widget.RelativeLayout[" + x + "]");
+            clckOnBranch.click();
+            System.out.println(x);
+            //ALisin lang tong comment pag d naka sched un ivvisit un branch
+//            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+//            MobileElement cntBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1')]");
+//            cntBtn.click();
             //click on Ok
             //should have wait here atleast 20 secs
-            driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
-            MobileElement cntBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1')]");
-            cntBtn1.click();
+            //click on Ok
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement okBtn = (MobileElement) driver.findElementById("android:id/button1");
+            okBtn.click();
             //Search
 //            SearcNoteTask();
             //Insert inCase here
@@ -1650,22 +1701,31 @@ public class NotesAndTasks {
             MobileElement sideBarBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
             sideBarBtn1.click();
             //Scroll down vvvv
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement element2 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'edit_text_search')]");
-            boolean isDisplayed2 = element1.isDisplayed();
-            if (isDisplayed2) {
-                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-                TouchAction touchAction = new TouchAction(driver);
-                touchAction.longPress(new PointOption().withCoordinates(160, 200)).moveTo(new PointOption().withCoordinates(160, 520)).release().perform();
-            }
+            swipeUp();
             //Scroll ^^^^^
             System.out.println("Branch " +x+ " done!");
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement logOutBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'image_visit_dropdown') and @index = '3']");
-            logOutBtn.click();
+            clckArrowDown.click();
+            //Log out
+            MobileElement logoutBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_visit_logout");
+            logoutBtn.click();
+        }
+    }
+
+    private void swipeUp(){
+        Dimension dim = driver.manage().window().getSize();
+        int width = dim.getWidth();
+        int height = dim.getHeight();
+        int x = (int) (width * 0.10);
+        int y1 = (int) (height * 0.35);
+        int y2 = (int) (height * 0.75);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'edit_text_search')]");
+        boolean isDisplayed2 = element1.isDisplayed();
+        if (isDisplayed2) {
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement logOutBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'btn_visit_logout')]");
-            logOutBtn1.click();
+            TouchAction touchAction = new TouchAction(driver);
+            touchAction.longPress(new PointOption().withCoordinates(x, y1)).moveTo(new PointOption().withCoordinates(x, y2)).release().perform();
         }
     }
     private void createNotes(){

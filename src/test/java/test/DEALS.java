@@ -6,6 +6,7 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.offset.PointOption;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -59,14 +60,20 @@ public class DEALS {
             "/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout" +
             "/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[5]" +
             "/android.widget.LinearLayout/android.widget.TextView";
+    String branchListDrctry = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout" +
+            "/android.support.v7.widget.LinearLayoutCompat/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.support.v7.widget.RecyclerView";
 
 
     @Before
     public void setUp() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("deviceName","Samsung Galaxy J1 (2016)");
+//        capabilities.setCapability("deviceName","Samsung Galaxy J1 (2016)");
+//        capabilities.setCapability("deviceName","MyPhone UNO");
+        capabilities.setCapability("deviceName","Moto C Plus");
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, "Android");
-        capabilities.setCapability("platformVersion", "5.1.1");
+//        capabilities.setCapability("platformVersion", "5.1.1");
+//        capabilities.setCapability("platformVersion", "6.0.1");
+        capabilities.setCapability("platformVersion", "7.0");
         capabilities.setCapability("appPackage", "com.engagia.android");
         capabilities.setCapability("appActivity","com.engagia.android.activities.LoginActivity");
         capabilities.setCapability("noSign", true);
@@ -75,12 +82,10 @@ public class DEALS {
         //Papalitan un Ip depende sa pc
         driver = new AppiumDriver(new URL("http://192.168.0.167:4723/wd/hub"), capabilities);
     }
-
     @Test
     public void testDeals(){
          dealsLogInToVisit();
     }
-
     //Cases
     public void Case40(){
         driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
@@ -169,9 +174,6 @@ public class DEALS {
             }
         }
     }
-
-
-
     //Functions
     public void SearchDeals(){
         //click Hamburger Menu
@@ -185,57 +187,58 @@ public class DEALS {
         clckRes.click();
     }
     public void dealsLogInToVisit(){
-        for (int x = 0; x <=4; x++) {
-            driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-            //CLick on drawer
-            MobileElement sideBarBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
-            sideBarBtn.click();
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            //click arrow down
-            MobileElement loginVisitBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'image_visit_dropdown') and @index = '3']");
-            loginVisitBtn.click();
+        for (int x = 1; x <=5; x++) {
+            //Click on Drawer
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement drawerOpen = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
+            drawerOpen.click();
+            //Click on Arrow down btn
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement clckArrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/image_visit_dropdown");
+            clckArrowDown.click();
             //branch list
             //search branch here
             searchBranch();
+            //Click on branch depends on index or int of the loop
             driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-            //Time to load
-            List<MobileElement> logBtn = (List<MobileElement>) driver.findElementsByClassName("android.widget.RelativeLayout");
-            logBtn.get(x).click();
+            MobileElement clckOnBranch = (MobileElement) driver.findElementByXPath(branchListDrctry + "/android.widget.RelativeLayout[" + x + "]");
+            clckOnBranch.click();
             System.out.println(x);
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-            MobileElement cntBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1')]");
-            cntBtn.click();
+//            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+//            MobileElement cntBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1')]");
+//            cntBtn.click();
             //click on Ok
-            //should have wait here atleast 20 secs
-            driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
-            MobileElement cntBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1')]");
-            cntBtn1.click();
-
-
-            SearchDeals();
-            Case40();
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement okBtn = (MobileElement) driver.findElementById("android:id/button1");
+            okBtn.click();
+            /**
+             *
+             * I N S E R T Functions and Cases H E R E
+             *
+             */
+//            SearchDeals();
+//            Case40();
             Case41();
-            //LOGOUT
+            //Click on Drawer to logout to visit
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement sideBarBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
-            sideBarBtn1.click();
+            MobileElement drawerOpen2 = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
+            drawerOpen2.click();
             //Scroll down vvvv
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'edit_text_search')]");
-            boolean isDisplayed1 = element1.isDisplayed();
-            if (isDisplayed1) {
-                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-                TouchAction touchAction = new TouchAction(driver);
-                touchAction.longPress(new PointOption().withCoordinates(160, 200)).moveTo(new PointOption().withCoordinates(160, 520)).release().perform();
-            }
+//            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+//            MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'edit_text_search')]");
+//            boolean isDisplayed1 = element1.isDisplayed();
+//            if (isDisplayed1) {
+//                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+//                TouchAction touchAction = new TouchAction(driver);
+//                touchAction.longPress(new PointOption().withCoordinates(160, 200)).moveTo(new PointOption().withCoordinates(160, 520)).release().perform();
+//            }
             //Scroll ^^^^^
-            System.out.println("Branch " +x+ " done!");
+            swipeUp();
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement logOutBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'image_visit_dropdown') and @index = '3']");
-            logOutBtn.click();
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement logOutBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'btn_visit_logout')]");
-            logOutBtn1.click();
+            clckArrowDown.click();
+            //Log out
+            MobileElement logoutBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_visit_logout");
+            logoutBtn.click();
         }
     }
     public void searchBranch(){
@@ -245,7 +248,22 @@ public class DEALS {
         driver.hideKeyboard();
     }
 
-
+    private void swipeUp(){
+        Dimension dim = driver.manage().window().getSize();
+        int width = dim.getWidth();
+        int height = dim.getHeight();
+        int x = (int) (width * 0.10);
+        int y1 = (int) (height * 0.35);
+        int y2 = (int) (height * 0.75);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'edit_text_search')]");
+        boolean isDisplayed2 = element1.isDisplayed();
+        if (isDisplayed2) {
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            TouchAction touchAction = new TouchAction(driver);
+            touchAction.longPress(new PointOption().withCoordinates(x, y1)).moveTo(new PointOption().withCoordinates(x, y2)).release().perform();
+        }
+    }
     private static int rand(int bound) {
         return (int) (Math.random() * bound);
     }
