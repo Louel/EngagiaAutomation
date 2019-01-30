@@ -69,10 +69,12 @@ public class STR {
             "/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout" +
             "/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.HorizontalScrollView" +
             "/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout";
-
     String warehouseFrom = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
             "/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v7.widget.LinearLayoutCompat" +
             "/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ListView/android.view.View[2]/android.widget.TextView";
+    String wareHouseFrom1 = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
+            "/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v7.widget.LinearLayoutCompat" +
+            "/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ListView/android.view.ViewGroup[2]/android.widget.TextView";
     String inventory1 = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout" +
             "/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
             "/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.HorizontalScrollView" +
@@ -82,8 +84,10 @@ public class STR {
     public void setUp() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("deviceName","Samsung Galaxy J1 (2016)");
+//        capabilities.setCapability("deviceName","Moto C Plus");
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, "Android");
-        capabilities.setCapability("platformVersion", "5.1.1");
+//        capabilities.setCapability("platformVersion", "5.1.1");
+        capabilities.setCapability("platformVersion", "7.0");
         capabilities.setCapability("appPackage", "com.engagia.android");
         capabilities.setCapability("appActivity","com.engagia.android.activities.LoginActivity");
         capabilities.setCapability("noSign", true);
@@ -103,24 +107,25 @@ public class STR {
 //        Case1();
         //FILTER FUNCTIONS V SEARCH BY
         SearchSTR();
-        Case2();
-        Case3();
-        Case4();
-        Case6();
-        Case7();
-        Case8();
-        Case9();
-//        //FILTER BY
-        Case10();
-        Case11();
-        Case12();
-        Case13();
-        Case14();
-        Case15();
-        Case16();
-        Case19();
-        Case20();
-        Case21();
+//        Case2();
+//        Case3();
+//        Case4();
+//        Case6();
+//        Case7();
+//        Case8();
+//        Case9();
+////        //FILTER BY
+//        Case10();
+//        Case11();
+//        Case12();
+//        Case13();
+//        Case14();
+//        Case15();
+//        Case16();
+//        Case19();
+//        Case20();
+//        Case21();
+        sendRequest();
 //        sendRequestRandom();
 //        SearchSTR();
 
@@ -551,7 +556,7 @@ public class STR {
         swipeRight();
         swipeRight();
         //Clicking on product 1 request/return quantity palitan lang un value ng nasa loob ng [ ] para mag iba ng row
-        MobileElement clckProdReqPC1 = (MobileElement) driver.findElementByXPath(prodReq1+"/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.LinearLayout[1]/android.widget.TextView");
+        MobileElement clckProdReqPC1 = (MobileElement) driver.findElementByXPath(prodReq1+"/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView");
         clckProdReqPC1.click();
         //CLICK OK
         MobileElement clckOK = (MobileElement) driver.findElementById("android:id/button1");
@@ -560,7 +565,7 @@ public class STR {
         strSummaryMenu();
         MobileElement fromMenu = (MobileElement) driver.findElementById("com.engagia.android:id/menu_from_warehouse");
         fromMenu.click();
-        MobileElement selWarehouse = (MobileElement) driver.findElementByXPath(warehouseFrom);
+        MobileElement selWarehouse = (MobileElement) driver.findElementByXPath(wareHouseFrom1);
         selWarehouse.click();
         //MYPHONE
 //        MobileElement el1 = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v7.widget.LinearLayoutCompat/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ListView/android.view.ViewGroup[2]/android.widget.TextView");
@@ -590,15 +595,15 @@ public class STR {
     //Check Table view "Inventory"
     public void Case21(){
         System.out.println("Testing Case 21");
-        swipeRight();
-        swipeRight();
+//        swipeRight();
+//        swipeRight();
         MobileElement el1 = (MobileElement) driver.findElementByXPath(inventory1);
         el1.click();
         el1.click();
         System.out.println("Case 21 Done");
         swipeLeft();
         driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
-        MobileElement clckProdReqPC1 = (MobileElement) driver.findElementByXPath(prodReq1+"/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.LinearLayout[1]/android.widget.TextView");
+         MobileElement clckProdReqPC1 = (MobileElement) driver.findElementByXPath(prodReq1+"/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.LinearLayout[1]/android.widget.TextView");
         clckProdReqPC1.click();
         driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
         MobileElement calcuBtn1 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_1");
@@ -616,7 +621,7 @@ public class STR {
         strSummaryMenu();
         MobileElement fromMenu = (MobileElement) driver.findElementById("com.engagia.android:id/menu_from_warehouse");
         fromMenu.click();
-        MobileElement selWarehouse = (MobileElement) driver.findElementByXPath(warehouseFrom);
+        MobileElement selWarehouse = (MobileElement) driver.findElementByXPath(wareHouseFrom1);
         selWarehouse.click();
         driver.navigate().back();
         //insert loop here
@@ -625,7 +630,7 @@ public class STR {
         while(arrow != null) {
             //Clicking on product 1 request/return quantity
             driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
-            MobileElement clckProdPC1 = (MobileElement) driver.findElementByXPath(prodReq1 + "/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.LinearLayout[1]/android.widget.TextView");
+            MobileElement clckProdPC1 = (MobileElement) driver.findElementByXPath(prodReq1 + "/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView");
             clckProdPC1.click();
             //ENTER VALUE
             MobileElement clckNO9 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_9");
@@ -636,7 +641,7 @@ public class STR {
             System.out.println("Product 1 PC done");
             //Enter on box
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement clckProdBOX1 = (MobileElement) driver.findElementByXPath(prodReq1 + "/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.LinearLayout[2]/android.widget.TextView");
+            MobileElement clckProdBOX1 = (MobileElement) driver.findElementByXPath(prodReq1 + "/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView");
             clckProdBOX1.click();
             //ENTER VALUE
             clckNO9.click();
@@ -646,7 +651,7 @@ public class STR {
             // PRODUCT 2
             //Clicking on product 1 request/return quantity
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement clckProdPC2 = (MobileElement) driver.findElementByXPath(prodReq1 + "/android.widget.LinearLayout[2]/android.widget.LinearLayout[2]/android.widget.LinearLayout[1]/android.widget.TextView");
+            MobileElement clckProdPC2 = (MobileElement) driver.findElementByXPath(prodReq1 + "/android.widget.LinearLayout[2]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView");
             clckProdPC2.click();
             //ENTER VALUE
             clckNO9.click();
@@ -655,7 +660,7 @@ public class STR {
             System.out.println("Product 2 PC done");
             //Enter on box
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement clckProdBOX2 = (MobileElement) driver.findElementByXPath(prodReq1 + "/android.widget.LinearLayout[2]/android.widget.LinearLayout[2]/android.widget.LinearLayout[2]/android.widget.TextView");
+            MobileElement clckProdBOX2 = (MobileElement) driver.findElementByXPath(prodReq1 + "/android.widget.LinearLayout[2]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView");
             clckProdBOX2.click();
             //ENTER VALUE
             clckNO9.click();
@@ -665,7 +670,7 @@ public class STR {
             // PRODUCT 3
             //Clicking on product 1 request/return quantity
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement clckProdPC3 = (MobileElement) driver.findElementByXPath(prodReq1 + "/android.widget.LinearLayout[3]/android.widget.LinearLayout[2]/android.widget.LinearLayout[1]/android.widget.TextView");
+            MobileElement clckProdPC3 = (MobileElement) driver.findElementByXPath(prodReq1 + "/android.widget.LinearLayout[3]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView");
             clckProdPC3.click();
             //ENTER VALUE
             clckNO9.click();
@@ -674,7 +679,7 @@ public class STR {
             System.out.println("Product 3 PC done");
             //Enter on box
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement clckProdBOX3 = (MobileElement) driver.findElementByXPath(prodReq1 + "/android.widget.LinearLayout[3]/android.widget.LinearLayout[2]/android.widget.LinearLayout[2]/android.widget.TextView");
+            MobileElement clckProdBOX3 = (MobileElement) driver.findElementByXPath(prodReq1 + "/android.widget.LinearLayout[3]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView");
             clckProdBOX3.click();
             //ENTER VALUE
             clckNO9.click();
@@ -710,7 +715,7 @@ public class STR {
         strSummaryMenu();
         MobileElement fromMenu = (MobileElement) driver.findElementById("com.engagia.android:id/menu_from_warehouse");
         fromMenu.click();
-        MobileElement selWarehouse = (MobileElement) driver.findElementByXPath(warehouseFrom);
+        MobileElement selWarehouse = (MobileElement) driver.findElementByXPath(wareHouseFrom1);
         selWarehouse.click();
         driver.navigate().back();
         //insert loop here

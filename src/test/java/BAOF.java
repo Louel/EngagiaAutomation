@@ -56,11 +56,11 @@ public class BAOF {
     @Before
     public void setUp() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("deviceName","Samsung Galaxy J1 (2016)");
-//        capabilities.setCapability("deviceName","HUAWEI");
+//        capabilities.setCapability("deviceName","Samsung Galaxy J1 (2016)");
+        capabilities.setCapability("deviceName","HUAWEI");
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, "Android");
-        capabilities.setCapability("platformVersion", "5.1.1");
-//        capabilities.setCapability("platformVersion", "8.0.0");
+//        capabilities.setCapability("platformVersion", "5.1.1");
+        capabilities.setCapability("platformVersion", "8.0.0");
         capabilities.setCapability("appPackage", "com.engagia.android");
         capabilities.setCapability("appActivity","com.engagia.android.activities.LoginActivity");
         capabilities.setCapability("noSign", true);
@@ -98,15 +98,15 @@ public class BAOF {
      */
     public void bookingOrder(){
         //This click order on PC of product 1
-//        MobileElement element1 = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
-//        boolean isDisplayed1 = element1.isDisplayed();
-//        if (isDisplayed1) {
+        MobileElement element1 = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+        boolean isDisplayed1 = element1.isDisplayed();
+        if (isDisplayed1) {
 //            wait.until(ExpectedConditions.visibilityOf())
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             MobileElement bookingProd1 = (MobileElement) driver.findElementByXPath(bookingOrderDrctry + "/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]" +
                     "/android.widget.LinearLayout[1]/android.widget.TextView");
             bookingProd1.click();
-//        }
+        }
         //Enter value of 10
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement calBtn1 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_1");
@@ -307,17 +307,17 @@ public class BAOF {
     }
     private void demoFunction(){
         System.out.println("Running Demo...");
-        filterByMustCarry();
-        searchByName();
+//        filterByMustCarry();
+//        searchByName();
         bookingOrder();
-        filterByDocuSeq();
-        searchByCode();
+//        filterByDocuSeq();
+//        searchByCode();
         bookingTradeInventory();
         orderFinalize();
         System.out.println("Demo finish running...");
     }
     public void loginToVisit(){
-        for(int x=3; x<=3; x++){
+        for(int x=1; x<=1; x++){
             //Click on Drawer
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             MobileElement drawerOpen = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
@@ -331,9 +331,9 @@ public class BAOF {
             MobileElement clckOnBranch = (MobileElement) driver.findElementByXPath(branchListDrctry + "/android.widget.RelativeLayout[" + x + "]");
             clckOnBranch.click();
             //IF BRANCH IS NOT SCHEDULED A PROMPT WILL APPEAR
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement contBtn = (MobileElement) driver.findElementById("android:id/button1");
-            contBtn.click();
+//            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+//            MobileElement contBtn = (MobileElement) driver.findElementById("android:id/button1");
+//            contBtn.click();
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             MobileElement okBtn = (MobileElement) driver.findElementById("android:id/button1");
             okBtn.click();

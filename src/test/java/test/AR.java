@@ -91,6 +91,7 @@ public class AR {
     }
     //Check Search by " Account Name"
     public void Case2(){
+        System.out.println("Testing Case 2");
         SearchAR();
         searchByAccName();
         noFoundOk();
@@ -98,36 +99,42 @@ public class AR {
     }
     //Check Search by "Account Code"
     public void Case3(){
+        System.out.println("Testing Case 3");
         searchByAccCode();
         noFoundOk();
         System.out.println("Case 3 Done");
     }
     //Check Search by "Branch Name"
     public void Case4(){
+        System.out.println("Testing Case 4");
         searchByBranchName();
         noFoundOk();
         System.out.println("Case 4 Done");
     }
     //Check Search by "Branch Code"
     public void Case5(){
+        System.out.println("Testing Case 5");
         searchByBranchCode();
         noFoundOk();
         System.out.println("Case 5 Done");
     }
     //Check Search by "Invoice Number"
     public void Case6(){
+        System.out.println("Testing Case 6");
         searchByInvoiceNum();
         noFoundOk();
         System.out.println("Case 6 Done");
     }
     //Check Search by "Invoice Date"
     public void Case7(){
+        System.out.println("Testing Case 7");
         searchByInvoiceDate();
         noFoundDateOk();
         System.out.println("Case 7 Done");
     }
     //Check Summary button "Total Amount to Pay"
     public void Case8(){
+        System.out.println("Testing Case 8");
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement summaryBtn = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'action_function_controls')]");
         summaryBtn.click();
@@ -136,6 +143,7 @@ public class AR {
     }
     //Check Summary button "Apply Payment"
     public void Case9(){
+        System.out.println("Testing Case 9");
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement summaryBtn = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'action_function_controls')]");
         summaryBtn.click();
@@ -163,6 +171,7 @@ public class AR {
     }
     //Check Table View "#"
     public void Case10(){
+        System.out.println("Testing Case 10");
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement checkBox1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@index='0' and @text='1']");
         checkBox1.click();
@@ -184,6 +193,7 @@ public class AR {
     }
     //Check Table View "Account Name" naka depende to kung ano inupload ng user sa ems
     public void Case11(){
+        System.out.println("Testing Case 11");
         //Account name 1
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement accName1 = (MobileElement) driver.findElementByXPath("//android.widget.LinearLayout[@index='0']" +
@@ -206,6 +216,7 @@ public class AR {
     }
     //Check Table View "Account Code"
     public void Case12(){
+        System.out.println("Testing Case 12");
         //Account Code 1
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement accCode1 = (MobileElement) driver.findElementByXPath("//android.widget.LinearLayout[@index='0']" +
@@ -228,6 +239,7 @@ public class AR {
     }
     //Check Table View "Branch Name"
     public void Case13(){
+        System.out.println("Testing Case 13");
         swipeRight();
         //Branch name 1
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -251,6 +263,7 @@ public class AR {
     }
     //Check Table View "Branch Code"
     public void Case14(){
+        System.out.println("Testing Case 14");
         swipeRight();
         //Branch name 1
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -274,6 +287,7 @@ public class AR {
     }
     //Check Table View "Invoice Number"
     public void Case15(){
+        System.out.println("Testing Case 15");
         swipeRight();
         //Branch name 1
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -297,6 +311,7 @@ public class AR {
     }
     //Check Table View "Invoice Date"
     public void Case16(){
+        System.out.println("Testing Case 16");
         swipeRight();
         //Branch name 1
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -320,6 +335,7 @@ public class AR {
     }
     //Check Table View "Invoice Due Date"
     public void Case17(){
+        System.out.println("Testing Case 17");
         swipeRight();
         //Branch name 1
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -343,12 +359,14 @@ public class AR {
     }
     //Check Table View "Days Outstanding"
     public void Case18(){
+        System.out.println("Testing Case 18");
         swipeRight();
         swipeRight();
         System.out.println("Case 18 Done");
     }
     //Check Table View "Amount Due"
     public void Case19(){
+        System.out.println("Testing Case 19");
         swipeRight();
         //Branch name 1
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -372,12 +390,14 @@ public class AR {
     }
     //Check Table View "Payment Made" after dapat to ng transaction
     public void Case20(){
+        System.out.println("Testing Case 20");
         swipeRight();
         System.out.println("Case 20 Done");
         //Index 9
     }
     //Check Table View "Deduction" after rin ng transaction
     public void Case21(){
+        System.out.println("Testing Case 21");
         swipeRight();
         swipeRight();
         System.out.println("Case 21 Done");
@@ -385,6 +405,7 @@ public class AR {
     }
     //Check Table View "Running Balance"
     public void Case22(){
+        System.out.println("Testing Case 22");
         swipeRight();
         //Branch name 1
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -412,6 +433,7 @@ public class AR {
     }
     //Check Table View "OR Number"
     public void Case24(){
+        System.out.println("Testing Case 24");
         swipeRight();
         //Branch name 1
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -435,6 +457,7 @@ public class AR {
     }
     //Check Table View "OR Date"
     public void Case25(){
+        System.out.println("Testing Case 25");
         swipeRight();
         //Branch name 1
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -463,6 +486,7 @@ public class AR {
     }
     //Check Apply Payment "Payment Type"
     public void Case27(){
+        System.out.println("Testing Case 27");
         //Check box
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement checkBox1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@index='0' and @text='1']");
@@ -492,6 +516,7 @@ public class AR {
     }
     //Check Apply Payment "Total Deduction"
     public void Case28(){
+        System.out.println("Testing Case 28");
         //Check box
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement checkBox1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@index='0' and @text='1']");
@@ -580,6 +605,7 @@ public class AR {
     }
     //Check Apply Payment "Total Check Amount"
     public void Case29(){
+        System.out.println("Testing Case 29");
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement payType = (MobileElement) driver.findElementByXPath("//android.widget.Spinner[contains(@resource-id,'spinner_payment_type')]");
         payType.click();
@@ -634,6 +660,7 @@ public class AR {
     }
     //Check Apply Payment "Cash Amount"
     public void Case30(){
+        System.out.println("Testing Case 30");
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement payType = (MobileElement) driver.findElementByXPath("//android.widget.Spinner[contains(@resource-id,'spinner_payment_type')]");
         payType.click();
@@ -694,6 +721,7 @@ public class AR {
     }
     //Check Apply Payment "Total Over Under"
     public void Case31(){
+        System.out.println("Testing Case 31");
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement totalOverUnder = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'text_over_under') and @text='100.00']");
         boolean isDisplayed = totalOverUnder.isDisplayed();
@@ -708,6 +736,7 @@ public class AR {
     }
     //Check Apply Payment "NEXT" nandito un transaction dapat last to
     public void Case32(){
+        System.out.println("Testing Case 32");
         //Check box
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement checkBox1 = (MobileElement) driver.findElementByXPath("//android.widget.CheckBox[@index='0' and @text='1']");
