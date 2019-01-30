@@ -8,6 +8,7 @@ import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
+import net.sourceforge.htmlunit.corejs.javascript.tools.debugger.Dim;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.*;
@@ -44,6 +45,11 @@ public class NotesAndTasks {
             "/android.widget.RelativeLayout[@index='0']" +
             "/android.widget.LinearLayout[@index='0']" +
             "/android.support.v7.widget.RecyclerView[@index='0']";
+    String drctryNote = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout" +
+            "/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
+            "/android.view.View/android.widget.RelativeLayout/android.widget.LinearLayout/android.support.v7.widget.RecyclerView";
+    String selectNotesTasks = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout" +
+            "/android.widget.FrameLayout/android.support.v7.widget.LinearLayoutCompat/android.widget.FrameLayout/android.widget.ListView";
 
 
 
@@ -59,18 +65,20 @@ public class NotesAndTasks {
         capabilities.setCapability(FULL_RESET, false);
         capabilities.setCapability(NO_RESET, true);
         //Papalitan un Ip depende sa pc
-        driver = new AppiumDriver(new URL("http://192.168.1.33:4723/wd/hub"), capabilities);
+        driver = new AppiumDriver(new URL("http://192.168.0.167:4723/wd/hub"), capabilities);
     }
     @Test
     public void testNotesAndTask(){
-        SearcNoteTask();
+
+//        SearcNoteTask();
+//        deleteNotes();
 //        Case1();
-//        Case2();
-//        Case3();
-//        Case4();
-//        Case5();
-//        Case6();
-////        Case7();
+        Case2();
+        Case3();
+        Case4();
+        Case5();
+        Case6();
+        Case7();
 //        Case8();
 //        Case9();
 //        Case10();
@@ -83,8 +91,8 @@ public class NotesAndTasks {
 //        Case17();
 //        Case18();
 //        Case19();
-//        selectCreatedTasks();
-        noteAndTaskLogInToVisit();
+////        selectCreatedTasks();
+////        noteAndTaskLogInToVisit();
     }
     //Cases
     //Check Accessing Notes & Tasks
@@ -101,6 +109,7 @@ public class NotesAndTasks {
     }
     //Check Notes and Task "Create" button
     public void Case2(){
+        System.out.println("Testing Case 2");
         SearcNoteTask();
         for(int z = 1; z<=4; z++) {
             //Click Create
@@ -118,6 +127,7 @@ public class NotesAndTasks {
     }
     //Check Notes and Tasks "Alarm"
     public void Case3(){
+        System.out.println("Testing Case 3");
         for(int z = 1; z<=14; z++) {
             //Notes
             if(z<=2) {
@@ -306,6 +316,7 @@ public class NotesAndTasks {
     }
     //Check Notes and Tasks "Pin"
     public void Case4(){
+        System.out.println("Testing Case 4");
         for(int z=1; z<=2; z++) {
             if(z==1) {
                 //Select Notes
@@ -333,8 +344,9 @@ public class NotesAndTasks {
             }
         }
     }
-    //Check Create Note Window
+    /**Check Create Note Window*/
     public void Case5(){
+        System.out.println("Testing Case 5");
         //Selecting Notes
         selectNotes();
         inputNoteTitle();
@@ -353,8 +365,9 @@ public class NotesAndTasks {
         System.out.println("Note Created");
         System.out.println("Case 5 Done");
     }
-    //Check Create Task Window
+    /**Check Create Task Window*/
     public void Case6(){
+        System.out.println("Testing Case 6");
         //Selecting Notes
         selectTasks();
         inputTaskTitle();
@@ -456,64 +469,32 @@ public class NotesAndTasks {
     //todo Check Notes and Tasks "View" dapat ilagay to bago mag filter kasi may delete module dito
     //todo drag to delete notes
     public void Case7(){
+        System.out.println("Testing Case 7");
         //Loop for viewing the created task or note
-        for (int z=0; z<=1; z++){
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            List<MobileElement> logBtn = (List<MobileElement>) driver.findElementsByXPath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout");
-            logBtn.get(z).click();
-            System.out.println(z);
-            //Back
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement back = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@index='0']");
-            back.click();
-        }
-        //Delete note or task by swiping
-        //Loop for viewing the created task or note
-//        List<MobileElement> boxNoteTask = (List<MobileElement>) driver.findElementsByXPath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout");
-//        boxNoteTask.get(1).getCoordinates();
-//        List<MobileElement> boxNoteTask = (List<MobileElement>) driver.findElementsByXPath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout");
-        //swipe to right
-        MobileElement boxNoteTask = (MobileElement) driver.findElementsByXPath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout[@index='1']");
-//        Point p = (Point) boxNoteTask.getCoordinates();
-//        int X1 = p.getX();
-//        int Y1 = p.getY();
-        int Z1 = boxNoteTask.getCenter().getX();
-        int Z2 = boxNoteTask.getCenter().getY();
-        int X1 = ((Point) boxNoteTask.getCoordinates()).getX();
-        int Y1 = ((Point) boxNoteTask.getCoordinates()).getY();
-        MobileElement boxNoteTask1 = (MobileElement) driver.findElementsByXPath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout[@index='0']");
-        int X2 = ((Point) boxNoteTask1.getCoordinates()).getX();
-        int Y2 = ((Point) boxNoteTask1.getCoordinates()).getY();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1')]");
-        boolean isDisplayed1 = element1.isDisplayed();
-        if (isDisplayed1) {
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            Dimension dim = driver.manage().window().getSize();
-            int width = dim.getWidth();
-            //Para nasa gilid un pag scroll walang tatamaan textfield
-            int x = (int) (width * 0.99);
-//            TouchAction dragNDrop = new TouchAction(driver)
-//                    .longPress(element(boxNoteTask))
-////                    .moveTo(new PointOption().withCoordinates(x , 0))
-//                    .moveTo(element(boxNoteTask1))
-//                    .release();
-//            dragNDrop.perform();
-            AndroidTouchAction touchAction = new AndroidTouchAction(driver);
-            touchAction.longPress(new PointOption().withCoordinates(Z1, Z2)).moveTo(new PointOption().withCoordinates(X2, Y2)).release().perform();
-//            touchAction.press(boxNoteTask.get(1)).moveTo().
-//            touchAction.press((PointOption) boxNoteTask).moveTo(new PointOption().withCoordinates(x, 300)).release().perform();
-//            touchAction.longPress(element(boxNoteTask)).moveTo(new PointOption().withCoordinates(x, 0)).release().press();
-//            touchAction.longPress((PointOption) driver.findElementsByXPath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout[@index='1']")).moveTo(new PointOption().withCoordinates(x1,200)).release().perform();
-//            touchAction.longPress(driver.findElementsByXPath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout[@index='1']")).moveTo(new PointOption().withCoordinates(x1,200)).release().perform();
-//            touchAction.longPress(boxNoteTask).waitAction(WaitOptions.waitOptions(Duration.ofMillis(3000))).moveTo(new PointOption().withCoordinates(x2, 300)).release().perform();
-            //try this
-//            touchAction.longPress(new PointOption().withCoordinates(x1, 300)).moveTo(new PointOption().withCoordinates(x2, 300)).release().perform();
+        for (int z=0; z<=1; z++) {
+            for (int x=1; x<=4; x++){
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+//            List<MobileElement> logBtn = (List<MobileElement>) driver.findElementsByXPath("//android.support.v7.widget.RecyclerView[@index='0']/android.widget.FrameLayout");
+                List<MobileElement> logBtn = (List<MobileElement>) driver.findElementsByXPath(drctryNote + "/android.widget.FrameLayout");
+                logBtn.get(x).click();
+                System.out.println(x);
+                //Back
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement back = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@index='0']");
+                back.click();
+            }
+            createNotes();
+            createTasks();
+            //Delete note or task by swiping
+            deleteNotes();
+            deleteNotes();
+            //tap note or tasks created to edit info
         }
         System.out.println("Case 7 Done");
     }
     //Check + icon left bottom corner
     public void Case8(){
+        System.out.println("Testing Case 8");
         selectNotes();
         inputNoteTitle();
         inputNote();
@@ -527,6 +508,7 @@ public class NotesAndTasks {
     }
     //Check "Switch View"
     public void Case9(){
+        System.out.println("Testing Case 9");
         for(int z=1; z<=2; z++) {
             //Click Option button
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -552,6 +534,7 @@ public class NotesAndTasks {
     }
     //Check Filter by "All notes and tasks"
     public void Case10(){
+        System.out.println("Testing Case 10");
         //Click Option button
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement optionBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'fragment_notes_and_tasks_main_v2_option') and @index='1']");
@@ -567,6 +550,7 @@ public class NotesAndTasks {
     }
     //Check Filter by "All notes"
     public void Case11(){
+        System.out.println("Testing Case 11");
         //Click Option button
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement optionBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'fragment_notes_and_tasks_main_v2_option') and @index='1']");
@@ -582,6 +566,7 @@ public class NotesAndTasks {
     }
     //Check Filter by "All tasks"
     public void Case12(){
+        System.out.println("Testing Case 12");
         //Click Option button
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement optionBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'fragment_notes_and_tasks_main_v2_option') and @index='1']");
@@ -597,6 +582,7 @@ public class NotesAndTasks {
     }
     //Check Filter by "Accomplished task"
     public void Case13(){
+        System.out.println("Testing Case 13");
         //Click Option button
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement optionBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'fragment_notes_and_tasks_main_v2_option') and @index='1']");
@@ -1250,7 +1236,8 @@ public class NotesAndTasks {
         //click Hamburger Menu
         MobileElement HamburgerBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
         HamburgerBtn.click();
-        //search van
+        System.out.println("Seaching Note and tasks");
+        //search Note and Tasks
         MobileElement searchField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'edit_text_search')]");
         searchField.sendKeys(search);
         //click search result
@@ -1290,22 +1277,22 @@ public class NotesAndTasks {
     public void selectNotes(){
         //Click Create
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement createNoteTask = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'fragment_notes_and_tasks_main_v2_create_notes_and_tasks') and @text='Create notes or task']");
+        MobileElement createNoteTask = (MobileElement) driver.findElementById("com.engagia.android:id/fragment_notes_and_tasks_main_v2_create_notes_and_tasks");
         createNoteTask.click();
         //Click Notes
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement notes = (MobileElement) driver.findElementByXPath("//android.widget.TextView[@index='0' and @text='Notes']");
+        MobileElement notes = (MobileElement) driver.findElementByXPath(selectNotesTasks+"/android.widget.TextView[1]");
         notes.click();
         System.out.println("Selecting notes");
     }
     public void selectTasks(){
         //Click Create
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement createNoteTask = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'fragment_notes_and_tasks_main_v2_create_notes_and_tasks') and @text='Create notes or task']");
+        MobileElement createNoteTask = (MobileElement) driver.findElementById("com.engagia.android:id/fragment_notes_and_tasks_main_v2_create_notes_and_tasks");
         createNoteTask.click();
         //Click Tasks
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement tasks = (MobileElement) driver.findElementByXPath("//android.widget.TextView[@index='1' and @text='Tasks']");
+        MobileElement tasks = (MobileElement) driver.findElementByXPath(selectNotesTasks+"/android.widget.TextView[2]");
         tasks.click();
         System.out.println("Selecting tasks");
     }
@@ -1681,8 +1668,46 @@ public class NotesAndTasks {
             logOutBtn1.click();
         }
     }
+    private void createNotes(){
+        selectNotes();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement noteTitle = (MobileElement) driver.findElementById("com.engagia.android:id/activity_add_notes_note_title");
+        noteTitle.sendKeys("TitleNote");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement noteText = (MobileElement) driver.findElementById("com.engagia.android:id/activity_add_notes_note_content");
+        noteText.sendKeys("NootNoot");
+        MobileElement back = (MobileElement) driver.findElementByAccessibilityId("Navigate up");
+        back.click();
+    }
+    private void createTasks(){
+        selectTasks();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement taskTitle = (MobileElement) driver.findElementById("com.engagia.android:id/activity_add_tasks_tasks_title");
+        taskTitle.sendKeys("TitleTasks");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement taskText = (MobileElement) driver.findElementById("com.engagia.android:id/activity_add_tasks_tasks_content");
+        taskText.sendKeys("TazTaz");
+        MobileElement back = (MobileElement) driver.findElementByAccessibilityId("Navigate up");
+        back.click();
+    }
     private static int rand(int bound) {
         return (int) (Math.random() * bound);
+    }
+
+
+    private void deleteNotes(){
+        //getting width
+        Dimension dim = driver.manage().window().getSize();
+        int width = dim.getWidth();
+        int height = dim.getHeight();
+        int x = (int) (width * 0.99);
+        int y = (int) (height * 0.00);
+
+        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        MobileElement noteTask = (MobileElement) driver.findElementByXPath(drctryNote+"/android.widget.FrameLayout[1]");
+        TouchAction touchAction = new TouchAction(driver);
+        touchAction.longPress(LongPressOptions.longPressOptions().withElement(element(noteTask)).withDuration(Duration.ofSeconds(2))).moveTo(new PointOption().withCoordinates(x,y)).release().perform();
+
     }
 
 }

@@ -19,6 +19,15 @@ import java.util.concurrent.TimeUnit;
 import static io.appium.java_client.remote.MobileCapabilityType.FULL_RESET;
 import static io.appium.java_client.remote.MobileCapabilityType.NO_RESET;
 
+
+
+
+/**
+ * IMPORTANT NOTE BEFORE RUNNING THIS AUTOMATION
+ * MAKE SURE WAREHOUSE HAS INVENTORY
+ *
+ *
+ */
 public class STR {
 
     AppiumDriver driver;
@@ -87,30 +96,31 @@ public class STR {
     @Test
     public void testSTR(){
         //for STR AND STS TESTING
-        SearchSTR();
-        for(int z = 0; z<6; z++) {
-            sendRequest();
-        }
+//        SearchSTR();
+//        for(int z = 0; z<6; z++) {
+//            sendRequest();
+//        }
 //        Case1();
         //FILTER FUNCTIONS V SEARCH BY
-//        Case2();
-//        Case3();
-//        Case4();
-//        Case6();
-//        Case7();
-//        Case8();
-//        Case9();
-        //FILTER BY
-//        Case10();
-//        Case11();
-//        Case12();
-//        Case13();
-//        Case14();
-//        Case15();
-//        Case16();
-//        Case19();
-//        Case20();
-//        Case21();
+        SearchSTR();
+        Case2();
+        Case3();
+        Case4();
+        Case6();
+        Case7();
+        Case8();
+        Case9();
+//        //FILTER BY
+        Case10();
+        Case11();
+        Case12();
+        Case13();
+        Case14();
+        Case15();
+        Case16();
+        Case19();
+        Case20();
+        Case21();
 //        sendRequestRandom();
 //        SearchSTR();
 
@@ -1165,7 +1175,7 @@ public class STR {
             int width = dim.getWidth();
             //Para nasa gilid un pag scroll walang tatamaan textfield
             int x1 = (int) (width * 0.99);
-            int x2 = (int) (width * 0.75);
+            int x2 = (int) (width * 0.65);
             TouchAction touchAction = new TouchAction(driver);
             //try this
             touchAction.longPress(new PointOption().withCoordinates(x1, 300)).moveTo(new PointOption().withCoordinates(x2, 300)).release().perform();
