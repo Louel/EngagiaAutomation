@@ -67,13 +67,13 @@ public class DEALS {
     @Before
     public void setUp() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability("deviceName","Samsung Galaxy J1 (2016)");
+        capabilities.setCapability("deviceName","Samsung Galaxy J1 (2016)");
 //        capabilities.setCapability("deviceName","MyPhone UNO");
-        capabilities.setCapability("deviceName","Moto C Plus");
+//        capabilities.setCapability("deviceName","Moto C Plus");
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, "Android");
-//        capabilities.setCapability("platformVersion", "5.1.1");
+        capabilities.setCapability("platformVersion", "5.1.1");
 //        capabilities.setCapability("platformVersion", "6.0.1");
-        capabilities.setCapability("platformVersion", "7.0");
+//        capabilities.setCapability("platformVersion", "7.0");
         capabilities.setCapability("appPackage", "com.engagia.android");
         capabilities.setCapability("appActivity","com.engagia.android.activities.LoginActivity");
         capabilities.setCapability("noSign", true);
@@ -107,10 +107,6 @@ public class DEALS {
         for (int z=1; z<=1; z++) {
             for (int x = 1; x <= 5; x++) {
                 driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
-//                List<MobileElement> resultDeal = (List<MobileElement>) driver.findElementsByXPath(dealDrctry);
-//                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//                resultDeal.get(x).click();
-//                int w = x + 1;
                 if(x==1){
                     driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                     MobileElement clckDeal1 = (MobileElement) driver.findElementByXPath(deal1);
@@ -153,6 +149,9 @@ public class DEALS {
                     jumpVaof.click();
                     System.out.println("Go to Vaof");
                 }
+/**
+ * Para mag jump to baof
+ */
 //                else if (z==2){
 //                    //Click jump to baof
 //                    driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
@@ -187,7 +186,7 @@ public class DEALS {
         clckRes.click();
     }
     public void dealsLogInToVisit(){
-        for (int x = 1; x <=5; x++) {
+        for (int x = 1; x <=1; x++) {
             //Click on Drawer
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             MobileElement drawerOpen = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
@@ -216,23 +215,13 @@ public class DEALS {
              * I N S E R T Functions and Cases H E R E
              *
              */
-//            SearchDeals();
-//            Case40();
+            SearchDeals();
+            Case40();
             Case41();
             //Click on Drawer to logout to visit
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             MobileElement drawerOpen2 = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
             drawerOpen2.click();
-            //Scroll down vvvv
-//            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-//            MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'edit_text_search')]");
-//            boolean isDisplayed1 = element1.isDisplayed();
-//            if (isDisplayed1) {
-//                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-//                TouchAction touchAction = new TouchAction(driver);
-//                touchAction.longPress(new PointOption().withCoordinates(160, 200)).moveTo(new PointOption().withCoordinates(160, 520)).release().perform();
-//            }
-            //Scroll ^^^^^
             swipeUp();
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             clckArrowDown.click();

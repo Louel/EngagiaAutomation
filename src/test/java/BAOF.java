@@ -83,7 +83,7 @@ public class BAOF {
         MobileElement HamburgerBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
         HamburgerBtn.click();
         System.out.println("Seaching BAOF");
-        //search Note and Tasks
+        //search BAOF
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/edit_text_search");
         searchField.sendKeys(search);

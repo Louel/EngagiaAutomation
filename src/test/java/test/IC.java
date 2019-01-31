@@ -28,6 +28,7 @@ public class IC {
     String prodName = "soDa";
     String pgName = "tAste";
     String mustCarryProd = "cOc";
+    String branch = "ALFAMART MARIKINA 1";
     String [] prodShortName = {"Clover", "LUCKY STRIKE RED" };
     String [] prodItemCode = {"51232144","88823412"};
     String [] prodBarcode = {"51232172", "10182017028", "51232224"};
@@ -46,14 +47,14 @@ public class IC {
             "android.widget.LinearLayout[@index='0']/" +
             "android.widget.FrameLayout[@index='1']/" +
             "android.widget.LinearLayout[@index='0']/";
-    String filterDrctry = "//android.widget.FrameLayout[@index='0']" +
-            "/android.widget.FrameLayout[@index='0']" +
-            "/android.widget.FrameLayout[@index='0']" +
-            "/android.widget.LinearLayout[@index='0']" +
-            "/android.widget.FrameLayout[@index='0']" +
-            "/android.widget.FrameLayout[@index='0']" +
-            "/android.widget.ScrollView[@index='0']" +
-            "/android.widget.LinearLayout[@index='0']";
+    String branchListDrctry = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout" +
+            "/android.support.v7.widget.LinearLayoutCompat/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.support.v7.widget.RecyclerView";
+    String searchByDrctry = "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
+            "/android.widget.FrameLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.ListView";
+    String filterByDrctry = "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
+            "/android.widget.FrameLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.ListView[2]";
+    String productFilterByDrctry = "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout" +
+            "/android.widget.FrameLayout/android.widget.ListView";
 
 
     @Before
@@ -77,14 +78,15 @@ public class IC {
     }
     //Case Functions
     //Check Search by "Name"
-    public void Case1(){
+    public void Case2(){
+        System.out.println("Testing Case 1");
         //Click Search bar and search certain product by Name
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
+        MobileElement searchName = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
         searchName.sendKeys(prodName);
 //        driver.hideKeyboard();
         //Click Magnifying Glass Icon
-        MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
+        MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
         searchBtn.click();
         System.out.println("Case 1 Done");
 //        //Condition where if prod is displayed or not
@@ -97,50 +99,58 @@ public class IC {
 //        }
     }
     //Check Search by "Short Name"
-    public void Case2(){
+    public void Case3(){
+        System.out.println("Testing Case 2");
         byShortName();
         clear();
         System.out.println("Case 2 Done");
     }
     //Check Search by "Item Code"
-    public void Case3(){
+    public void Case4(){
+        System.out.println("Testing Case 3");
         byItemCode();
         clear();
         System.out.println("Case 3 Done");
     }
     //Check Search by "Barcode"
     //Lumalabas un camera for bar code
-    public void Case4(){
+    public void Case5(){
+        System.out.println("Testing Case 4");
         byBarcode();
         clear();
         System.out.println("Case 4 Done");
     }
     //Check Search by "Description"
-    public void Case5(){
+    public void Case6(){
+        System.out.println("Testing Case 5");
         byDescription();
         clear();
         System.out.println("Case 5 Done");
     }
     //Check Search by "Brand"
-    public void Case6(){
+    public void Case7(){
+        System.out.println("Testing Case 6");
         byBrand();
         clear();
         System.out.println("Case 6 Done");
     }
     //Check Search by "Keywords"
-    public void Case7(){
+    public void Case8(){
+        System.out.println("Testing Case 7");
         byKeyword();
         clear();
         System.out.println("Case 7 Done");
     }
     //Check Search by "Principal"
-    public void Case8(){
+    public void Case9(){
+        System.out.println("Testing Case 8");
         byPrincipal();
         clear();
         System.out.println("Case 8 Done");
     }
     //Check filter "No Filter"
-    public void Case9(){
+    public void Case10(){
+        System.out.println("Testing Case 9");
         for(int z=1; z<=7; z++) {
             if(z==1) {
                 noFilter();
@@ -218,7 +228,8 @@ public class IC {
         System.out.println("Case 9 Done");
     }
     //Check product filter "All Product"
-    public void Case10(){
+    public void Case11(){
+        System.out.println("Testing Case 10");
         for(int z=1; z<=7; z++) {
             if(z==1) {
                 allProd();
@@ -265,7 +276,8 @@ public class IC {
         System.out.println("Case 10 Done");
     }
     //Check product filter "Product Group"
-    public void Case11(){
+    public void Case12(){
+        System.out.println("Testing Case 11");
         for(int z=1; z<=7; z++) {
             prodGroup();
             if(z==1) {
@@ -306,7 +318,8 @@ public class IC {
         System.out.println("Case 11 Done");
     }
     //Check product filter "Must Carry Per Account Classification"
-    public void Case12(){
+    public void Case13(){
+        System.out.println("Testing Case 12");
         for(int z=1; z<=7; z++) {
             mustCarry();
             if(z==1) {
@@ -347,7 +360,8 @@ public class IC {
         System.out.println("Case 12 Done");
     }
     //Check product filter "Brand"
-    public void Case13(){
+    public void Case14(){
+        System.out.println("Testing Case 13");
         for(int z=1; z<=7; z++) {
             brand();
             if(z==1) {
@@ -427,7 +441,8 @@ public class IC {
         System.out.println("Case 13 Done");
     }
     //Check product filter "Document Sequence"
-    public void Case14(){
+    public void Case15(){
+        System.out.println("Testing Case 14");
         for(int z=1; z<=7; z++) {
             docuSequence();
             if(z==1) {
@@ -460,7 +475,8 @@ public class IC {
         System.out.println("Case 14 Done");
     }
     //Check product filter "Active Products"
-    public void Case15(){
+    public void Case16(){
+        System.out.println("Testing Case 15");
         for(int z=1; z<=7; z++) {
             if(z==1) {
                 activeProd();
@@ -505,7 +521,8 @@ public class IC {
         System.out.println("Case 15 Done");
     }
     //Check product filter "Carried Products"
-    public void Case16(){
+    public void Case17(){
+        System.out.println("Testing Case 16");
         for(int z=1; z<=7; z++) {
             if(z==1) {
                 carriedProd();
@@ -549,8 +566,9 @@ public class IC {
         }
         System.out.println("Case 16 Done");
     }
-    //Check product filter "Not Carried Products"
-    public void Case17(){
+    //Check product filter "Not Carried Products" MAY BUG DITO DI NAKIKITA UN NOT CARRIED PRODUCT
+    public void Case18(){
+        System.out.println("Testing Case 17");
         for(int z=1; z<=7; z++) {
             if(z==1) {
                 notCarriedProd();
@@ -636,62 +654,71 @@ public class IC {
         }
         System.out.println("Case 17 Done");
     }
+    //Check "Summary Menu"
+    public void Case19(){
+        System.out.println("Testing Case 19");
+        fdcSummaryMenu();
+        driver.navigate().back();
+        System.out.println("Case 19 Done");
+    }
     //Check Summary "Inventory Location"
-    public void Case18(){
+    public void Case20(){
+        System.out.println("Testing Case 20");
+        fdcSummaryMenu();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement threeDots = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'fdc_menu')]");
-        threeDots.click();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement invenLoc = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'menu_source_warehouse')]");
+        MobileElement invenLoc = (MobileElement) driver.findElementById("com.engagia.android:id/menu_source_warehouse");
         invenLoc.click();
         driver.navigate().back();
-        System.out.println("Case 18 Done");
+        System.out.println("Case 20 Done");
     }
     //Check Summary "Add Inventory Location"
-    public void Case19(){
+    public void Case21(){
+        System.out.println("Testing Case 21");
+        fdcSummaryMenu();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement threeDots = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'fdc_menu')]");
-        threeDots.click();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement invenLoc = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'menu_source_warehouse')]");
+        MobileElement invenLoc = (MobileElement) driver.findElementById("com.engagia.android:id/menu_source_warehouse");
         invenLoc.click();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement addNewLoc = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1') and @text='ADD NEW LOCATION']");
+        MobileElement addNewLoc = (MobileElement) driver.findElementById("android:id/button1");
         addNewLoc.click();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement addNewInvenLoc = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@text='Enter new inventory location here']");
         addNewInvenLoc.sendKeys("Abcdefgh");
+        driver.hideKeyboard();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement saveBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[@index='1' and @text='Save']");
         saveBtn.click();
-        System.out.println("Case 19 Done");
+        driver.navigate().back();
+        System.out.println("Case 21 Done");
     }
-    //Check Summary "Preview"
-    public void Case20(){
+    //Check Summary "Preview" Dapat sa pag tapos ng Finalize to. 3rd
+    public void Case22(){
+        System.out.println("Testing Case 22");
         preview();
-        System.out.println("Case 20 Done");
+        System.out.println("Case 22 Done");
     }
-    //Check Summary "Clear"
-    public void Case21(){
+    //Check Summary "Clear" Bago mag finalize dapat ilagay to 1st
+    public void Case23(){
+        System.out.println("Testing Case 23");
         beginningInven();
         transferIn();
         clear();
-        System.out.println("Case 21 Done");
+        System.out.println("Case 23 Done");
     }
-    //Check Summary "Finalize"
-    public void Case22(){
+    //Check Summary "Finalize" Dapat sa last part to kasi may order 2nd
+    public void Cas24(){
+        System.out.println("Testing Case 24");
         beginningInven();
         finalMthd();
-        System.out.println("Case 22 Done");
+        System.out.println("Case 24 Done");
     }
-    //Check Summary "Finalize and Copy to Field Execution"
-    public void Case23(){
+    //Check Summary "Finalize and Copy to Field Execution" sa last part din dapat to kasi may ordering din
+    public void Case25(){
+        System.out.println("Testing Case 23");
         beginningInven();
         for(int z=1; z<=2; z++){
             if(z==1){
-                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-                MobileElement threeDots = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'fdc_menu')]");
-                threeDots.click();
+                fdcSummaryMenu();
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                 MobileElement fnlBtn = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'txt_finalize_and_copy_to_field_execution') and @text='Finalize and Copy to Field Execution']");
                 fnlBtn.click();
@@ -707,342 +734,15 @@ public class IC {
         System.out.println("Case 23 Done");
     }
     //Check Summary "Inventory Count Summary"
-    public void Case24(){
+    public void Case26(){
+        System.out.println("Testing Case 24");
 //        SearcIC();
         inventoryCountSummary();
         System.out.println("Case 24 Done");
     }
-    //Check table "Beginning Inventory" column
-    public void Case25(){
-        beginningInven();
-        System.out.println("Case 25 Done");
-    }
-    //Check table "Transfer In" column
-    public void Case26(){
-        swipeRight();
-        transferIn();
-        System.out.println("Case 26 Done");
-    }
-    //Check table "Transfer Out" column
+    //Check table "Product Name"
     public void Case27(){
-        swipeRight();
-        transferOut();
-        System.out.println("Case 27 Done");
-    }
-    //Check table "Stock Availability" column
-    public void Case28(){
-        swipeRight();
-        for(int z=1; z<=3; z++){
-            stockAvailability();
-        }
-        System.out.println("Case 28 Done");
-    }
-    //Check table "Stock Weight" column
-    public void Case29(){
-        swipeRight();
-        for(int z=1; z<=3; z++){
-            stockWeight();
-        }
-        clear();
-        System.out.println("Case 29 Done");
-    }
-    //Check table expiry date "Action" column
-    public void Case30(){
-        swipeLeft();
-        beginningInven();
-        for(int z=1; z<=5; z++) {
-            swipeRight();
-        }
-        addExpiryProd();
-        System.out.println("Case 30 Done");
-    }
-    //Check table expiry date "View" column
-    public void Case31(){
-        swipeRight();
-//        viewExpiryProd(); //May bug pa to
-        System.out.println("Case 31 Done");
-    }
-    //Check table manufactured date "Action" column
-    public void Case32(){
-        swipeRight();
-        addManufactDate();
-        System.out.println("Case 32 Done");
-    }
-    //Check table manufactured date "View" column
-    public void Case33(){
-//        viewManufactDate();
-        clear();
-        System.out.println("Case 33 Done");
-    }
-    //Check filter "Information Filter" w/ ADD STOCK TRANSACTION
-    public void Case34(){
-        addWithStock();
-        clear();
-//        finalMthd();
-        infoFilter();
-    }
-    //Check information filter "All Products"
-    public void Case35(){
-        for(int z=1; z<=7; z++) {
-            infoFilterAllProd();
-            if(z==1) {
-                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-                MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
-                searchName.sendKeys(prodName);
-                //Click Magnifying Glass Icon
-                MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
-                searchBtn.click();
-                System.out.println("All product done");
-            }
-            else if(z==2){
-                byShortName();
-            }
-            else if(z==3){
-                byItemCode();
-            }
-            else if(z==4){
-                byDescription();
-            }
-            else if(z==5){
-                byBrand();
-            }
-            else if(z==6){
-                byKeyword();
-            }
-            else if(z==7){
-                byPrincipal();
-            }
-            clear();
-        }
-    }
-    //Check information filter "Stock Availability: No Stock"
-    public void Case36(){
-        for(int z=1; z<=7; z++) {
-            infoFilterNoStock();
-            if(z==1) {
-                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-                MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
-                searchName.sendKeys(prodName);
-                //Click Magnifying Glass Icon
-                MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
-                searchBtn.click();
-                System.out.println("All product done");
-            }
-            else if(z==2){
-                byShortName();
-            }
-            else if(z==3){
-                byItemCode();
-            }
-            else if(z==4){
-                byDescription();
-            }
-            else if(z==5){
-                byBrand();
-            }
-            else if(z==6){
-                byKeyword();
-            }
-            else if(z==7){
-                byPrincipal();
-            }
-            clear();
-        }
-    }
-    //Check information filter "Stock Availability: With Stock"
-    public void Case37(){
-        for(int z=1; z<=7; z++) {
-            if(z==1) {
-                infoFilterWithStock();
-                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-                MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
-                searchName.sendKeys(prodName);
-                //Click Magnifying Glass Icon
-                MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
-                searchBtn.click();
-                System.out.println("All product done");
-                clear();
-            }
-            else if(z==2){
-                infoFilterWithStock();
-                byShortName();
-                clear();
-            }
-            else if(z==3){
-                infoFilterWithStock();
-                byItemCode();
-                clear();
-            }
-            else if(z==4){
-                infoFilterWithStock();
-                byDescription();
-                clear();
-            }
-            else if(z==5){
-                infoFilterWithStock();
-                byBrand();
-                clear();
-            }
-            else if(z==6){
-                infoFilterWithStock();
-                byKeyword();
-                clear();
-            }
-            else if(z==7){
-                infoFilterWithStock();
-                byPrincipal();
-                clear();
-            }
-        }
-    }
-    //Check information filter "Stock Weight: Low"
-    public void Case38(){
-        for(int z=1; z<=7; z++) {
-            if(z==1) {
-                infoFilterStockWeightLow();
-                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-                MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
-                searchName.sendKeys(prodName);
-                //Click Magnifying Glass Icon
-                MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
-                searchBtn.click();
-                System.out.println("All product done");
-                clear();
-            }
-            else if(z==2){
-                infoFilterStockWeightLow();
-                byShortName();
-                clear();
-            }
-            else if(z==3){
-                infoFilterStockWeightLow();
-                byItemCode();
-                clear();
-            }
-            else if(z==4){
-                infoFilterStockWeightLow();
-                byDescription();
-                clear();
-            }
-            else if(z==5){
-                infoFilterStockWeightLow();
-                byBrand();
-                clear();
-            }
-            else if(z==6){
-                infoFilterStockWeightLow();
-                byKeyword();
-                clear();
-            }
-            else if(z==7){
-                infoFilterStockWeightLow();
-                byPrincipal();
-                clear();
-            }
-        }
-    }
-    //Check information filter "Stock Weight: Medium"
-    public void Case39(){
-        for(int z=1; z<=7; z++) {
-            if(z==1) {
-                infoFilterStockWeightMed();
-                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-                MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
-                searchName.sendKeys(prodName);
-                //Click Magnifying Glass Icon
-                MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
-                searchBtn.click();
-                System.out.println("All product done");
-                clear();
-            }
-            else if(z==2){
-                infoFilterStockWeightMed();
-                byShortName();
-                clear();
-            }
-            else if(z==3){
-                infoFilterStockWeightMed();
-                byItemCode();
-                clear();
-            }
-            else if(z==4){
-                infoFilterStockWeightMed();
-                byDescription();
-                clear();
-            }
-            else if(z==5){
-                infoFilterStockWeightMed();
-                byBrand();
-                clear();
-            }
-            else if(z==6){
-                infoFilterStockWeightMed();
-                byKeyword();
-                clear();
-            }
-            else if(z==7){
-                infoFilterStockWeightMed();
-                byPrincipal();
-                clear();
-            }
-        }
-    }
-    //Check information filter "Stock Weight: High"
-    public void Case40(){
-        for(int z=1; z<=7; z++) {
-            if(z==1) {
-                infoFilterStockWeightHi();
-                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-                MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
-                searchName.sendKeys(prodName);
-                //Click Magnifying Glass Icon
-                MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
-                searchBtn.click();
-                System.out.println("All product done");
-                clear();
-            }
-            else if(z==2){
-                infoFilterStockWeightHi();
-                byShortName();
-                clear();
-            }
-            else if(z==3){
-                infoFilterStockWeightHi();
-                byItemCode();
-                clear();
-            }
-            else if(z==4){
-                infoFilterStockWeightHi();
-                byDescription();
-                clear();
-            }
-            else if(z==5){
-                infoFilterStockWeightHi();
-                byBrand();
-                clear();
-            }
-            else if(z==6){
-                infoFilterStockWeightHi();
-                byKeyword();
-                clear();
-            }
-            else if(z==7){
-                infoFilterStockWeightHi();
-                byPrincipal();
-                clear();
-            }
-        }
-    }
-    //Check "Summary Menu"
-    public void Case41(){
-        fdcSummaryMenu();
-    }
-    //Check "Table View" (For viewing checking only.. ?)
-    public void Case42(){
-
-    }
-    //Check table "Product Name" column
-    public void Case43(){
+        System.out.println("Testing Case 43");
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         MobileElement prod1 = (MobileElement) driver.findElementByXPath(invenDrctryTbl +
                 "/android.widget.LinearLayout[@index='0']" +
@@ -1051,47 +751,11 @@ public class IC {
                 "/android.widget.LinearLayout[@index='0']" +
                 "/android.widget.LinearLayout[@index='0']");
         prod1.click();
-        driver.navigate().back();
-    }
-    //Check "Product Summary"
-    public void Case44(){
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        MobileElement prod1 = (MobileElement) driver.findElementByXPath(invenDrctryTbl +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.ScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='0']");
-        prod1.click();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        MobileElement arrowRight = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'ic_pager_next')]");
-        arrowRight.click();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        MobileElement arrowLeft = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'ic_pager_previous')]");
-        arrowLeft.click();
-        driver.navigate().back();
-    }
-    //Check EMS : Inventory Count Report & Search Button
-    public void Case45(){
-
-    }
-    //Check Previous data inputted by "Date" Magkaiba ng calendar un device?
-    public void Case46(){
-        MobileElement dateInventTrans = (MobileElement) driver.findElementByXPath(invenDrctryTbl +
-                "/android.widget.HorizontalScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='0']");
-        dateInventTrans.click();
-        MobileElement dateLeft = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id, 'prev')]");
-        dateLeft.click();
-        MobileElement dayNumber = (MobileElement) driver.findElementByXPath("//android.view.View[@text='1' and @index='0']");
-        dayNumber.click();
         driver.navigate().back();
     }
     //Check table "Unit" column
-    public void Case50(){
+    public void Case28(){
+        System.out.println("Testing Case 50");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id, 'filter_by_button')]");
         boolean isDisplayed1 = element1.isDisplayed();
@@ -1130,182 +794,559 @@ public class IC {
             unit.click();
         }
     }
+    //Check table "Beginning Inventory" column
+    public void Case29(){
+        System.out.println("Testing Case 25");
+        beginningInven();
+        System.out.println("Case 25 Done");
+    }
+    //Check table "Transfer In" column
+    public void Case30(){
+        System.out.println("Testing Case 26");
+        swipeRight();
+        transferIn();
+        System.out.println("Case 26 Done");
+    }
+    //Check table "Transfer Out" column
+    public void Case31(){
+        System.out.println("Testing Case 27");
+        swipeRight();
+        transferOut();
+        System.out.println("Case 27 Done");
+    }
+    //Check table "Stock Availability" column
+    public void Case32(){
+        System.out.println("Testing Case 28");
+        swipeRight();
+        for(int z=1; z<=3; z++){
+            stockAvailability();
+        }
+        System.out.println("Case 28 Done");
+    }
+    //Check table "Stock Weight" column
+    public void Case33(){
+        System.out.println("Testing Case 29");
+        swipeRight();
+        for(int z=1; z<=3; z++){
+            stockWeight();
+        }
+        clear();
+        System.out.println("Case 29 Done");
+    }
+    //Check table expiry date "Action" column
+    public void Case34(){
+        System.out.println("Testing Case 30");
+        swipeLeft();
+        beginningInven();
+        for(int z=1; z<=5; z++) {
+            swipeRight();
+        }
+        addExpiryProd();
+        System.out.println("Case 30 Done");
+    }
+    //Check table expiry date "View" column
+    public void Case35(){
+        System.out.println("Testing Case 31");
+        swipeRight();
+        viewExpiryProd(); //May bug pa to
+        System.out.println("Case 31 Done");
+    }
+    //Check table manufactured date "Action" column
+    public void Case36(){
+        System.out.println("Testing Case 32");
+        swipeRight();
+        addManufactDate();
+        System.out.println("Case 32 Done");
+    }
+    //Check table manufactured date "View" column
+    public void Case37(){
+        System.out.println("Testing Case 33");
+        viewManufactDate();
+        clear();
+        System.out.println("Case 33 Done");
+    }
+    //Check filter "Information Filter" w/ ADD STOCK TRANSACTION
+    public void Case38(){
+        System.out.println("Testing Case 34");
+        addWithStock();
+        clear();
+        finalMthd();
+        infoFilter();
+        System.out.println("Case 34 Done");
+    }
+    //Check information filter "All Products"
+    public void Case39(){
+        System.out.println("Testing Case 35");
+        SearcIC();
+        for(int z=1; z<=7; z++) {
+            infoFilterAllProd();
+            if(z==1) {
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
+                searchName.sendKeys(prodName);
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
+                searchBtn.click();
+                System.out.println("All product done");
+            }
+            else if(z==2){
+                byShortName();
+            }
+            else if(z==3){
+                byItemCode();
+            }
+            else if(z==4){
+                byDescription();
+            }
+            else if(z==5){
+                byBrand();
+            }
+            else if(z==6){
+                byKeyword();
+            }
+            else if(z==7){
+                byPrincipal();
+            }
+            clear();
+        }
+        System.out.println("Case 35 Done");
+    }
+    //Check information filter "Stock Availability: No Stock"
+    public void Case40(){
+        System.out.println("Testing Case 36");
+        for(int z=1; z<=7; z++) {
+            infoFilterNoStock();
+            if(z==1) {
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
+                searchName.sendKeys(prodName);
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
+                searchBtn.click();
+                System.out.println("All product done");
+            }
+            else if(z==2){
+                byShortName();
+            }
+            else if(z==3){
+                byItemCode();
+            }
+            else if(z==4){
+                byDescription();
+            }
+            else if(z==5){
+                byBrand();
+            }
+            else if(z==6){
+                byKeyword();
+            }
+            else if(z==7){
+                byPrincipal();
+            }
+            clear();
+        }
+        System.out.println("Case 36 Done");
+    }
+    //Check information filter "Stock Availability: With Stock"
+    public void Case41(){
+        System.out.println("Testing Case 37");
+        for(int z=1; z<=7; z++) {
+            if(z==1) {
+                infoFilterWithStock();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
+                searchName.sendKeys(prodName);
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
+                searchBtn.click();
+                System.out.println("All product done");
+                clear();
+            }
+            else if(z==2){
+                infoFilterWithStock();
+                byShortName();
+                clear();
+            }
+            else if(z==3){
+                infoFilterWithStock();
+                byItemCode();
+                clear();
+            }
+            else if(z==4){
+                infoFilterWithStock();
+                byDescription();
+                clear();
+            }
+            else if(z==5){
+                infoFilterWithStock();
+                byBrand();
+                clear();
+            }
+            else if(z==6){
+                infoFilterWithStock();
+                byKeyword();
+                clear();
+            }
+            else if(z==7){
+                infoFilterWithStock();
+                byPrincipal();
+                clear();
+            }
+        }
+        System.out.println("Case 37 Done");
+    }
+    //Check information filter "Stock Weight: Low"
+    public void Case42(){
+        System.out.println("Testing Case 38");
+        for(int z=1; z<=7; z++) {
+            if(z==1) {
+                infoFilterStockWeightLow();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
+                searchName.sendKeys(prodName);
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
+                searchBtn.click();
+                System.out.println("All product done");
+                clear();
+            }
+            else if(z==2){
+                infoFilterStockWeightLow();
+                byShortName();
+                clear();
+            }
+            else if(z==3){
+                infoFilterStockWeightLow();
+                byItemCode();
+                clear();
+            }
+            else if(z==4){
+                infoFilterStockWeightLow();
+                byDescription();
+                clear();
+            }
+            else if(z==5){
+                infoFilterStockWeightLow();
+                byBrand();
+                clear();
+            }
+            else if(z==6){
+                infoFilterStockWeightLow();
+                byKeyword();
+                clear();
+            }
+            else if(z==7){
+                infoFilterStockWeightLow();
+                byPrincipal();
+                clear();
+            }
+        }
+        System.out.println("Case 38 Done");
+    }
+    //Check information filter "Stock Weight: Medium"
+    public void Case43(){
+        System.out.println("Testing Case 39");
+        for(int z=1; z<=7; z++) {
+            if(z==1) {
+                infoFilterStockWeightMed();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
+                searchName.sendKeys(prodName);
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
+                searchBtn.click();
+                System.out.println("All product done");
+                clear();
+            }
+            else if(z==2){
+                infoFilterStockWeightMed();
+                byShortName();
+                clear();
+            }
+            else if(z==3){
+                infoFilterStockWeightMed();
+                byItemCode();
+                clear();
+            }
+            else if(z==4){
+                infoFilterStockWeightMed();
+                byDescription();
+                clear();
+            }
+            else if(z==5){
+                infoFilterStockWeightMed();
+                byBrand();
+                clear();
+            }
+            else if(z==6){
+                infoFilterStockWeightMed();
+                byKeyword();
+                clear();
+            }
+            else if(z==7){
+                infoFilterStockWeightMed();
+                byPrincipal();
+                clear();
+            }
+        }
+        System.out.println("Case 39 Done");
+    }
+    //Check information filter "Stock Weight: High"
+    public void Case44(){
+        System.out.println("Testing Case 40");
+        for(int z=1; z<=7; z++) {
+            if(z==1) {
+                infoFilterStockWeightHi();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
+                searchName.sendKeys(prodName);
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
+                searchBtn.click();
+                System.out.println("All product done");
+                clear();
+            }
+            else if(z==2){
+                infoFilterStockWeightHi();
+                byShortName();
+                clear();
+            }
+            else if(z==3){
+                infoFilterStockWeightHi();
+                byItemCode();
+                clear();
+            }
+            else if(z==4){
+                infoFilterStockWeightHi();
+                byDescription();
+                clear();
+            }
+            else if(z==5){
+                infoFilterStockWeightHi();
+                byBrand();
+                clear();
+            }
+            else if(z==6){
+                infoFilterStockWeightHi();
+                byKeyword();
+                clear();
+            }
+            else if(z==7){
+                infoFilterStockWeightHi();
+                byPrincipal();
+                clear();
+            }
+        }
+        System.out.println("Case 40 Done");
+    }
+    //Check Previous data inputted by "Date" Magkaiba ng calendar un device?
+    public void Case45(){
+        System.out.println("Testing Case 46");
+        MobileElement dateInventTrans = (MobileElement) driver.findElementByXPath(invenDrctryTbl +
+                "/android.widget.HorizontalScrollView[@index='1']" +
+                "/android.widget.LinearLayout[@index='0']" +
+                "/android.widget.LinearLayout[@index='0']" +
+                "/android.widget.LinearLayout[@index='0']" +
+                "/android.widget.LinearLayout[@index='0']");
+        dateInventTrans.click();
+        MobileElement dateLeft = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id, 'prev')]");
+        dateLeft.click();
+        MobileElement dayNumber = (MobileElement) driver.findElementByXPath("//android.view.View[@text='1' and @index='0']");
+        dayNumber.click();
+        driver.navigate().back();
+    }
+    //Check "Table View" (For viewing checking only.. ?)
+    public void Case46(){
+
+    }
+
+
+    //Check "Product Summary"
+    public void Case47(){
+        System.out.println("Testing Case 44");
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        MobileElement prod1 = (MobileElement) driver.findElementByXPath(invenDrctryTbl +
+                "/android.widget.LinearLayout[@index='0']" +
+                "/android.widget.ScrollView[@index='1']" +
+                "/android.widget.LinearLayout[@index='0']" +
+                "/android.widget.LinearLayout[@index='0']" +
+                "/android.widget.LinearLayout[@index='0']");
+        prod1.click();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        MobileElement arrowRight = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'ic_pager_next')]");
+        arrowRight.click();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        MobileElement arrowLeft = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'ic_pager_previous')]");
+        arrowLeft.click();
+        driver.navigate().back();
+    }
+
+
     //Functions
     public void SearcIC(){
         //click Hamburger Menu
-        MobileElement HamburgerBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement HamburgerBtn = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
         HamburgerBtn.click();
-        //search van
-        MobileElement searchField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'edit_text_search')]");
+        //search Inventory Count
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/edit_text_search");
         searchField.sendKeys(search);
         //click search result
-        MobileElement clckRes = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'text_title')]");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement clckRes = (MobileElement) driver.findElementByAccessibilityId("Inventory Count");
         clckRes.click();
     }
     public void icLogInToVisit(){
-        for (int x = 2; x <=2; x++) {
-            driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-            //CLick on drawer
-            MobileElement sideBarBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
-            sideBarBtn.click();
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            //click arrow down
-            MobileElement loginVisitBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'image_visit_dropdown') and @index = '3']");
-            loginVisitBtn.click();
-            //branch list
+        for (int x = 4; x <=4; x++) {
+            //Click on Drawer
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement drawerOpen = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
+            drawerOpen.click();
+            //Click on Arrow down btn
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement clckArrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/image_visit_dropdown");
+            clckArrowDown.click();
+            searchBranch();
+            //Click on branch depends on index or int of the loop
             driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-            //Time to load
-            List<MobileElement> logBtn = (List<MobileElement>) driver.findElementsByClassName("android.widget.RelativeLayout");
-            logBtn.get(x).click();
+            MobileElement clckOnBranch = (MobileElement) driver.findElementByXPath(branchListDrctry + "/android.widget.RelativeLayout[" + x + "]");
+            clckOnBranch.click();
             System.out.println(x);
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-            MobileElement cntBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1')]");
-            cntBtn.click();
             //click on Ok
-            //should have wait here atleast 20 secs
-            driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
-            MobileElement cntBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1')]");
-            cntBtn1.click();
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement okBtn = (MobileElement) driver.findElementById("android:id/button1");
+            okBtn.click();
             //Search
             SearcIC();
             //Cases functions
-//            Case1();
+
 //            Case2();
 //            Case3();
-//            Case5();
+//            Case4();
 //            Case6();
 //            Case7();
 //            Case8();
-//            //FILTER
 //            Case9();
+////            //FILTER
 //            Case10();
-////            Case11();//May bug dito
-//            Case12();
+//            Case11();
+//            Case12();//May bug dito
 //            Case13();
 //            Case14();
 //            Case15();
 //            Case16();
-////            Case17(); //MAY BUG  YATA? POTA
-//            Case18();
-//            Case19();//Can't automate
+//            Case17();
+//            Case18();//MAY BUG  YATA? POTA
+//            Case19();
 //            Case20();
 //            Case21();
-//            Case22(); //Ilagay dapat to sa last
-//            Case23(); //Ilagay rin dapat to sa last
-//            Case24(); //Ilagay rin to dapat sa last
-            //Transaction functions
+//            Case22(); Pagtapos dapat to ng finalize para makikita mga summary. 3rd
+//            Case23(); Bago mag finalize dapat to 1st
+//            Case24(); Dapat sa last part to kasi may order 2nd
 //            Case25();
+
 //            Case26();
 //            Case27();
-//            Case28();
-//            Case29();
-//            Case30();
-//            Case31(); //May bug dito
-//            Case32();
-//            Case33();//May bug dito
-            //FILTER ULIT? need gumawa ng  transaction na may low med high no stock and w/ stock
+            //Transaction functions
+            Case28();
+            Case29();
+            Case30();
+            Case31();
+            Case32();
+            Case33();
             Case34();
             Case35();
             Case36();
             Case37();
-            Case38();
-            Case39();
-            Case40();
-            Case41();
-            Case42();
-            Case43();
-            Case44();
-            Case50();
-            //LogOut
+//            //FILTER ULIT? need gumawa ng  transaction na may low med high no stock and w/ stock
+//            Case38();
+//            Case39();
+//            Case40();;// need ng walang stock product
+//            Case41();
+//            Case42();
+//            Case43();
+//            Case44();
+            //Click on Drawer to logout to visit
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement sideBarBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
-            sideBarBtn1.click();
-            //Scroll down vvvv
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'edit_text_search')]");
-            boolean isDisplayed1 = element1.isDisplayed();
-            if (isDisplayed1) {
-                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-                TouchAction touchAction = new TouchAction(driver);
-                touchAction.longPress(new PointOption().withCoordinates(160, 200)).moveTo(new PointOption().withCoordinates(160, 520)).release().perform();
-            }
-            //Scroll ^^^^^
+            MobileElement drawerOpen2 = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
+            drawerOpen2.click();
+            swipeUp();
             System.out.println("Branch " +x+ " done!");
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement logOutBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'image_visit_dropdown') and @index = '3']");
-            logOutBtn.click();
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement logOutBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'btn_visit_logout')]");
-            logOutBtn1.click();
+            clckArrowDown.click();
+            //Log out
+            MobileElement logoutBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_visit_logout");
+            logoutBtn.click();
         }
     }
     public void checkByShortName(){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement arrowBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
+        MobileElement arrowBtn = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
         arrowBtn.click();
-        MobileElement clckShortName = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='Short Name']");
+        MobileElement clckShortName = (MobileElement) driver.findElementByXPath(searchByDrctry+"/android.widget.CheckedTextView[2]");
         clckShortName.click();
-        MobileElement goBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1') and @text='Go']");
+        MobileElement goBtn = (MobileElement) driver.findElementById("android:id/button1");
         goBtn.click();
         System.out.println("Searching by Short Name");
     }
     public void checkByItemCode(){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement arrowBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
+        MobileElement arrowBtn = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
         arrowBtn.click();
-        MobileElement clckItemCode = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='Item Code']");
+        MobileElement clckItemCode = (MobileElement) driver.findElementByXPath(searchByDrctry+"/android.widget.CheckedTextView[3]");
         clckItemCode.click();
-        MobileElement goBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1') and @text='Go']");
+        MobileElement goBtn = (MobileElement) driver.findElementById("android:id/button1");
         goBtn.click();
         System.out.println("Searching by Item Code");
     }
     public void checkByBarcode(){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement arrowBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
+        MobileElement arrowBtn = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
         arrowBtn.click();
-        MobileElement clckBarcode = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='Barcode']");
+        MobileElement clckBarcode = (MobileElement) driver.findElementByXPath(searchByDrctry+"/android.widget.CheckedTextView[4]");
         clckBarcode.click();
-        MobileElement goBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1') and @text='Go']");
+        MobileElement goBtn = (MobileElement) driver.findElementById("android:id/button1");
         goBtn.click();
         System.out.println("Searching by Barcode");
     }
     public void checkByDescription(){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement arrowBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
+        MobileElement arrowBtn = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
         arrowBtn.click();
-        MobileElement clckDescription = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='Description']");
+        MobileElement clckDescription = (MobileElement) driver.findElementByXPath(searchByDrctry+"/android.widget.CheckedTextView[5]");
         clckDescription.click();
-        MobileElement goBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1') and @text='Go']");
+        MobileElement goBtn = (MobileElement) driver.findElementById("android:id/button1");
         goBtn.click();
         System.out.println("Searching by Description");
     }
     public void checkByBrand(){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement arrowBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
+        MobileElement arrowBtn = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
         arrowBtn.click();
-        MobileElement clckBrand = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='Brand']");
+        MobileElement clckBrand = (MobileElement) driver.findElementByXPath(searchByDrctry+"/android.widget.CheckedTextView[6]");
         clckBrand.click();
-        MobileElement goBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1') and @text='Go']");
+        MobileElement goBtn = (MobileElement) driver.findElementById("android:id/button1");
         goBtn.click();
         System.out.println("Searching by Brand");
     }
     public void checkByKeyword(){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement arrowBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
+        MobileElement arrowBtn = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
         arrowBtn.click();
-        MobileElement clckKeyword = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='Keyword']");
+        MobileElement clckKeyword = (MobileElement) driver.findElementByXPath(searchByDrctry+"/android.widget.CheckedTextView[7]");
         clckKeyword.click();
-        MobileElement goBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1') and @text='Go']");
+        MobileElement goBtn = (MobileElement) driver.findElementById("android:id/button1");
         goBtn.click();
         System.out.println("Searching by Keyword");
     }
     public void checkByPrincipal(){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement arrowBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
+        MobileElement arrowBtn = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
         arrowBtn.click();
-        MobileElement clckPrincipal = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[@index='7' and @text='Principal']");
+        MobileElement clckPrincipal = (MobileElement) driver.findElementByXPath(searchByDrctry+"/android.widget.CheckedTextView[8]");
         clckPrincipal.click();
-        MobileElement goBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1') and @text='Go']");
+        MobileElement goBtn = (MobileElement) driver.findElementById("android:id/button1");
         goBtn.click();
         System.out.println("Searching by Principal");
     }
@@ -1314,70 +1355,70 @@ public class IC {
         checkByShortName();
         //Click Search bar and search certain product by Name
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement searchShortName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
+        MobileElement searchShortName = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
         searchShortName.sendKeys(prodShortName[rand(prodShortName.length-1)]);
         //Click Magnifying Glass Icon
-        MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
+        MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
         searchBtn.click();
     }
     public void byItemCode(){
         checkByItemCode();
         //Click Search bar and search certain product by Item Code
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement searchItemCode = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
+        MobileElement searchItemCode = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
         searchItemCode.sendKeys(prodItemCode[rand(prodItemCode.length-1)]);
         //Click Magnifying Glass Icon
-        MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
+        MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
         searchBtn.click();
     }
     public void byBarcode(){
         checkByBarcode();
         //Click Search bar and search certain product by Barcode
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement searchBarcode = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
+        MobileElement searchBarcode = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
         searchBarcode.sendKeys(prodBarcode[rand(prodBarcode.length-1)]);
         //Click Magnifying Glass Icon
-        MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
+        MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
         searchBtn.click();
     }
     public void byDescription(){
         checkByDescription();
         //Click Search bar and search certain product by Description
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement searchDescription = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
+        MobileElement searchDescription = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
         searchDescription.sendKeys(prodDescription[rand(prodDescription.length-1)]);
         //Click Magnifying Glass Icon
-        MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
+        MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
         searchBtn.click();
     }
     public void byBrand(){
         checkByBrand();
         //Click Search bar and search certain product by Brand
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement searchBrand = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
+        MobileElement searchBrand = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
         searchBrand.sendKeys(prodBrand[rand(prodBrand.length-1)]);
         //Click Magnifying Glass Icon
-        MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
+        MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
         searchBtn.click();
     }
     public void byKeyword(){
         checkByKeyword();
         //Click Search bar and search certain product by Keywords
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement searchKeyword = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
+        MobileElement searchKeyword = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
         searchKeyword.sendKeys(prodKeyword[rand(prodKeyword.length-1)]);
         //Click Magnifying Glass Icon
-        MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
+        MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
         searchBtn.click();
     }
     public void byPrincipal(){
         checkByPrincipal();
         //Click Search bar and search certain product by Principal
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement searchPrincipal = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
+        MobileElement searchPrincipal = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
         searchPrincipal.sendKeys(prodPrincipal[rand(prodPrincipal.length-1)]);
         //Click Magnifying Glass Icon
-        MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
+        MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
         searchBtn.click();
     }
     public void shortNameNoFilter(){
@@ -1522,12 +1563,12 @@ public class IC {
     }
     public void noFilter(){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement arrowBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
+        MobileElement arrowBtn = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
         arrowBtn.click();
         //Swipe down
         swipeDown();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement noFilBtn = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='No Filter']");
+        MobileElement noFilBtn = (MobileElement) driver.findElementByXPath(filterByDrctry+"/android.widget.CheckedTextView[1]");
         noFilBtn.click();
     }
     public void swipeDown(){
@@ -1546,177 +1587,80 @@ public class IC {
         }
 
     }
-    public void allProd(){
+    public void productFilter(){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement arrowBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
+        MobileElement arrowBtn = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
         arrowBtn.click();
         //Swipe down
         swipeDown();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement title = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'filter_by_label') and @text = 'Filter By']");
+        MobileElement title = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_label");
         boolean isDisplayed1 = title.isDisplayed();
         if (isDisplayed1) {
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement prodFilBtn = (MobileElement) driver.findElementByXPath(filterDrctry+
-                    "/android.widget.ListView[@index='3']" +
-                    "/android.widget.CheckedTextView[@index='1']");
+            MobileElement prodFilBtn = (MobileElement) driver.findElementByXPath(filterByDrctry+"/android.widget.CheckedTextView[2]");
             prodFilBtn.click();
         }
+    }
+    public void allProd(){
+        productFilter();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement allProd = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @text='All Products']");
+        MobileElement allProd = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[1]");
         allProd.click();
     }
     public void prodGroup(){
+        productFilter();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement arrowBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
-        arrowBtn.click();
-        //Swipe down
-        swipeDown();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement title = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'filter_by_label') and @text = 'Filter By']");
-        boolean isDisplayed1 = title.isDisplayed();
-        if (isDisplayed1) {
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement prodFilBtn = (MobileElement) driver.findElementByXPath(filterDrctry+
-                    "/android.widget.ListView[@index='3']" +
-                    "/android.widget.CheckedTextView[@index='1']");
-            prodFilBtn.click();
-        }
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement prodGrpFil = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @text='Product Group']");
+        MobileElement prodGrpFil = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[2]");
         prodGrpFil.click();
         MobileElement prodGrp = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @index='0']");
         prodGrp.click();
     }
     public void mustCarry(){
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement arrowBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
-        arrowBtn.click();
-        //Swipe down
-        swipeDown();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement title = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'filter_by_label') and @text = 'Filter By']");
-        boolean isDisplayed1 = title.isDisplayed();
-        if (isDisplayed1) {
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement prodFilBtn = (MobileElement) driver.findElementByXPath(filterDrctry+
-                    "/android.widget.ListView[@index='3']" +
-                    "/android.widget.CheckedTextView[@index='1']");
-            prodFilBtn.click();
-        }
+        productFilter();
 //        MobileElement prodFilBtn = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[@index='1' and @text='Product Filter']");
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement mustCarryFilBtn = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @text='Must Carry Per Account Classification']");
+        MobileElement mustCarryFilBtn = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[3]");
         mustCarryFilBtn.click();
         MobileElement mustCarry = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @index='0']");
         mustCarry.click();
     }
     public void brand(){
+        productFilter();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement arrowBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
-        arrowBtn.click();
-        //Swipe down
-        swipeDown();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement title = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'filter_by_label') and @text = 'Filter By']");
-        boolean isDisplayed1 = title.isDisplayed();
-        if (isDisplayed1) {
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement prodFilBtn = (MobileElement) driver.findElementByXPath(filterDrctry+
-                    "/android.widget.ListView[@index='3']" +
-                    "/android.widget.CheckedTextView[@index='1']");
-            prodFilBtn.click();
-        }
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement brandFilBtn = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @text='Brand']");
+        MobileElement brandFilBtn = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[4]");
         brandFilBtn.click();
         MobileElement brand = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @index='0']");
         brand.click();
     }
     public void docuSequence(){
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement arrowBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
-        arrowBtn.click();
-        //Swipe down
-        swipeDown();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement title = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'filter_by_label') and @text = 'Filter By']");
-        boolean isDisplayed1 = title.isDisplayed();
-        if (isDisplayed1) {
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement prodFilBtn = (MobileElement) driver.findElementByXPath(filterDrctry+
-                    "/android.widget.ListView[@index='3']" +
-                    "/android.widget.CheckedTextView[@index='1']");
-            prodFilBtn.click();
-        }
+        productFilter();
         //Filter by btn
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement docSeqFilBtn = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @text='Document Sequence']");
+        MobileElement docSeqFilBtn = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[5]");
         docSeqFilBtn.click();
         MobileElement docSeq = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @index='0']");
         docSeq.click();
     }
     public void activeProd(){
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement arrowBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
-        arrowBtn.click();
-        //Swipe down
-        swipeDown();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement title = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'filter_by_label') and @text = 'Filter By']");
-        boolean isDisplayed1 = title.isDisplayed();
-        if (isDisplayed1) {
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement prodFilBtn = (MobileElement) driver.findElementByXPath(filterDrctry+
-                    "/android.widget.ListView[@index='3']" +
-                    "/android.widget.CheckedTextView[@index='1']");
-            prodFilBtn.click();
-        }
+        productFilter();
         //Filter by btn
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement activeProdFilBtn = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @text='Active Products']");
+        MobileElement activeProdFilBtn = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[6]");
         activeProdFilBtn.click();
     }
     public void carriedProd(){
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement arrowBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
-        arrowBtn.click();
-        //Swipe down
-        swipeDown();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement title = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'filter_by_label') and @text = 'Filter By']");
-        boolean isDisplayed1 = title.isDisplayed();
-        if (isDisplayed1) {
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement prodFilBtn = (MobileElement) driver.findElementByXPath(filterDrctry+
-                    "/android.widget.ListView[@index='3']" +
-                    "/android.widget.CheckedTextView[@index='1']");
-            prodFilBtn.click();
-        }
+        productFilter();
         //Filter by btn
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement carriedProdFilBtn = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @text='Carried Products']");
+        MobileElement carriedProdFilBtn = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[7]");
         carriedProdFilBtn.click();
     }
     public void notCarriedProd(){
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement arrowBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
-        arrowBtn.click();
-        //Swipe down
-        swipeDown();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement title = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'filter_by_label') and @text = 'Filter By']");
-        boolean isDisplayed1 = title.isDisplayed();
-        if (isDisplayed1) {
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement prodFilBtn = (MobileElement) driver.findElementByXPath(filterDrctry+
-                    "/android.widget.ListView[@index='3']" +
-                    "/android.widget.CheckedTextView[@index='1']");
-            prodFilBtn.click();
-        }
+        productFilter();
         //Filter by btn
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement notCarriedProdFilBtn = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @text='Not Carried Products']");
+        MobileElement notCarriedProdFilBtn = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[8]");
         notCarriedProdFilBtn.click();
     }
     public void infoFilter(){
@@ -1812,16 +1756,16 @@ public class IC {
     public void clear(){
         fdcSummaryMenu();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement clrBtn = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'txt_clear_all_btn') and @text='CLEAR']");
+        MobileElement clrBtn = (MobileElement) driver.findElementById("com.engagia.android:id/txt_clear_all_btn");
         clrBtn.click();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement contBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1') and @text='Continue']");
+        MobileElement contBtn = (MobileElement) driver.findElementById("android:id/button1");
         contBtn.click();
     }
     public void finalMthd(){
         fdcSummaryMenu();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement fnlBtn = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'txt_finalize_btn') and @text='FINALIZE']");
+        MobileElement fnlBtn = (MobileElement) driver.findElementById("com.engagia.android:id/txt_finalize_btn");
         fnlBtn.click();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement contBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1') and @text='Continue']");
@@ -1893,10 +1837,10 @@ public class IC {
     public void preview(){
         fdcSummaryMenu();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement previewBtn = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'txt_preview_btn') and @text='PREVIEW']");
+        MobileElement previewBtn = (MobileElement) driver.findElementById("com.engagia.android:id/txt_preview_btn");
         previewBtn.click();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement closeBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1') and @text='Close']");
+        MobileElement closeBtn = (MobileElement) driver.findElementById("android:id/button1");
         closeBtn.click();
         driver.navigate().back();
     }
@@ -1920,7 +1864,7 @@ public class IC {
     }
     public void fdcSummaryMenu(){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement threeDots = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'fdc_menu')]");
+        MobileElement threeDots = (MobileElement) driver.findElementByAccessibilityId("Fdc_menu");
         threeDots.click();
     }
     public void beginningInven(){
@@ -2195,7 +2139,7 @@ public class IC {
     public void addExpiryProd(){
         //PER PC
         //Click Add Expiry
-        MobileElement transferOutPC1 = (MobileElement) driver.findElementByXPath(invenDrctryTbl +
+        MobileElement addExpProdPC1 = (MobileElement) driver.findElementByXPath(invenDrctryTbl +
                 "/android.widget.HorizontalScrollView[@index='1']" +
                 "/android.widget.LinearLayout[@index='0']" +
                 "/android.widget.ScrollView[@index='1']" +
@@ -2203,7 +2147,7 @@ public class IC {
                 "/android.widget.LinearLayout[@index='0']" +
                 "/android.widget.LinearLayout[@index='5']" +
                 "/android.widget.LinearLayout[@index='0']");
-        transferOutPC1.click();
+        addExpProdPC1.click();
         System.out.println("Click Add Expiry on PC");
         MobileElement monthDownBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.NumberPicker[@index='0']"+
                 "/android.widget.Button[@index = '2']");
@@ -2215,19 +2159,19 @@ public class IC {
                 "/android.widget.Button[@index = '2']");
         yearDownBtn1.click();
         //Click on TextField
-        MobileElement addField1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index = '0']");
+        MobileElement addField1 = (MobileElement) driver.findElementById("com.engagia.android:id/text_inventory");
         addField1.click();
         //Enter one
-        MobileElement clckNO1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_1') and @index = '0']");
+        MobileElement clckNO1 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_1");
         clckNO1.click();
         //Click ok
-        MobileElement clckOk1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
+        MobileElement clckOk1 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
         clckOk1.click();
         MobileElement goBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.Button[@index = '1' and @text='Go']");
         goBtn1.click();
         //PER BOX
         //Click Add Expiry
-        MobileElement transferOutBox1 = (MobileElement) driver.findElementByXPath(invenDrctryTbl +
+        MobileElement addExpProdBox1 = (MobileElement) driver.findElementByXPath(invenDrctryTbl +
                 "/android.widget.HorizontalScrollView[@index='1']" +
                 "/android.widget.LinearLayout[@index='0']" +
                 "/android.widget.ScrollView[@index='1']" +
@@ -2235,7 +2179,7 @@ public class IC {
                 "/android.widget.LinearLayout[@index='0']" +
                 "/android.widget.LinearLayout[@index='5']" +
                 "/android.widget.LinearLayout[@index='1']");
-        transferOutBox1.click();
+        addExpProdBox1.click();
         System.out.println("Click Add Expiry on Box");
         MobileElement monthDownBtn2 = (MobileElement) driver.findElementByXPath("//android.widget.NumberPicker[@index='0']"+
                 "/android.widget.Button[@index = '2']");
@@ -2259,7 +2203,7 @@ public class IC {
         goBtn2.click();
         //PER PC
         //Click Add Expiry
-        MobileElement transferOutPC2 = (MobileElement) driver.findElementByXPath(invenDrctryTbl +
+        MobileElement addExpProdPC2 = (MobileElement) driver.findElementByXPath(invenDrctryTbl +
                 "/android.widget.HorizontalScrollView[@index='1']" +
                 "/android.widget.LinearLayout[@index='0']" +
                 "/android.widget.ScrollView[@index='1']" +
@@ -2267,7 +2211,7 @@ public class IC {
                 "/android.widget.LinearLayout[@index='1']" +
                 "/android.widget.LinearLayout[@index='5']" +
                 "/android.widget.LinearLayout[@index='0']");
-        transferOutPC2.click();
+        addExpProdPC2.click();
         System.out.println("Click Add Expiry on PC");
         MobileElement monthDownBtn3 = (MobileElement) driver.findElementByXPath("//android.widget.NumberPicker[@index='0']"+
                 "/android.widget.Button[@index = '2']");
@@ -2291,7 +2235,7 @@ public class IC {
         goBtn3.click();
         //PER BOX
         //Click Add Expiry
-        MobileElement transferOutBox2 = (MobileElement) driver.findElementByXPath(invenDrctryTbl +
+        MobileElement addExpProdBox2 = (MobileElement) driver.findElementByXPath(invenDrctryTbl +
                 "/android.widget.HorizontalScrollView[@index='1']" +
                 "/android.widget.LinearLayout[@index='0']" +
                 "/android.widget.ScrollView[@index='1']" +
@@ -2299,7 +2243,7 @@ public class IC {
                 "/android.widget.LinearLayout[@index='1']" +
                 "/android.widget.LinearLayout[@index='5']" +
                 "/android.widget.LinearLayout[@index='1']");
-        transferOutBox2.click();
+        addExpProdBox2.click();
         System.out.println("Click Add Expiry on Box");
         MobileElement monthDownBtn4 = (MobileElement) driver.findElementByXPath("//android.widget.NumberPicker[@index='0']"+
                 "/android.widget.Button[@index = '2']");
@@ -2323,28 +2267,36 @@ public class IC {
         goBtn4.click();
     }
     public void viewExpiryProd(){
-        MobileElement stockWeight1 = (MobileElement) driver.findElementByXPath(invenDrctryTbl +
+        MobileElement viewExpPro1 = (MobileElement) driver.findElementByXPath(invenDrctryTbl +
                 "/android.widget.HorizontalScrollView[@index='1']" +
                 "/android.widget.LinearLayout[@index='0']" +
                 "/android.widget.ScrollView[@index='1']" +
                 "/android.widget.LinearLayout[@index='0']" +
                 "/android.widget.LinearLayout[@index='0']" +
                 "/android.widget.LinearLayout[@index='6']");
-        stockWeight1.click();
-        MobileElement removeBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.LinearLayout[@index = '0']"+
-                "/android.widget.ImageButton[@index='2']");
-        removeBtn1.click();
-        MobileElement stockWeight2 = (MobileElement) driver.findElementByXPath(invenDrctryTbl +
+        viewExpPro1.click();
+//        MobileElement removeBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.LinearLayout[@index = '0']"+
+//                "/android.widget.ImageButton[@index='2']");
+        MobileElement removeBtn1B = (MobileElement) driver.findElementByXPath("//android.widget.LinearLayout[2]/android.widget.ImageButton");
+        removeBtn1B.click();
+        MobileElement removeBtn1A = (MobileElement) driver.findElementByXPath("//android.widget.LinearLayout[1]/android.widget.ImageButton");
+        removeBtn1A.click();
+        MobileElement viewExpPro2 = (MobileElement) driver.findElementByXPath(invenDrctryTbl +
                 "/android.widget.HorizontalScrollView[@index='1']" +
                 "/android.widget.LinearLayout[@index='0']" +
                 "/android.widget.ScrollView[@index='1']" +
                 "/android.widget.LinearLayout[@index='0']" +
                 "/android.widget.LinearLayout[@index='1']" +
                 "/android.widget.LinearLayout[@index='6']");
-        stockWeight2.click();
-        MobileElement removeBtn2 = (MobileElement) driver.findElementByXPath("//android.widget.LinearLayout[@index = '0']"+
-                "/android.widget.ImageButton[@index='2']");
-        removeBtn2.click();
+        viewExpPro2.click();
+//        MobileElement removeBtn2 = (MobileElement) driver.findElementByXPath("//android.widget.LinearLayout[@index = '0']"+
+//                "/android.widget.ImageButton[@index='2']");
+//        removeBtn2.click();
+        MobileElement removeBtn2B = (MobileElement) driver.findElementByXPath("//android.widget.LinearLayout[2]/android.widget.ImageButton");
+        removeBtn2B.click();
+        MobileElement removeBtn2A = (MobileElement) driver.findElementByXPath("//android.widget.LinearLayout[1]/android.widget.ImageButton");
+        removeBtn2A.click();
+
     }
     public void addManufactDate(){
         //PER PC
@@ -2485,9 +2437,10 @@ public class IC {
                 "/android.widget.LinearLayout[@index='0']" +
                 "/android.widget.LinearLayout[@index='8']");
         stockWeight1.click();
-        MobileElement removeBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.LinearLayout[@index = '0']"+
-                "/android.widget.ImageButton[@index='2']");
-        removeBtn1.click();
+        MobileElement removeBtn1B = (MobileElement) driver.findElementByXPath("//android.widget.LinearLayout[2]/android.widget.ImageButton");
+        removeBtn1B.click();
+        MobileElement removeBtn1A = (MobileElement) driver.findElementByXPath("//android.widget.LinearLayout[1]/android.widget.ImageButton");
+        removeBtn1A.click();
         MobileElement stockWeight2 = (MobileElement) driver.findElementByXPath(invenDrctryTbl +
                 "/android.widget.HorizontalScrollView[@index='1']" +
                 "/android.widget.LinearLayout[@index='0']" +
@@ -2496,9 +2449,10 @@ public class IC {
                 "/android.widget.LinearLayout[@index='1']" +
                 "/android.widget.LinearLayout[@index='8']");
         stockWeight2.click();
-        MobileElement removeBtn2 = (MobileElement) driver.findElementByXPath("//android.widget.LinearLayout[@index = '0']"+
-                "/android.widget.ImageButton[@index='2']");
-        removeBtn2.click();
+        MobileElement removeBtn2B = (MobileElement) driver.findElementByXPath("//android.widget.LinearLayout[2]/android.widget.ImageButton");
+        removeBtn2B.click();
+        MobileElement removeBtn2A = (MobileElement) driver.findElementByXPath("//android.widget.LinearLayout[1]/android.widget.ImageButton");
+        removeBtn2A.click();
     }
     public void addWithStock(){
         for(int z = 1; z<=6; z++) {
@@ -2702,5 +2656,26 @@ public class IC {
     private static int rand(int bound) {
         return (int) (Math.random() * bound);
     }
-
+    private void swipeUp(){
+        Dimension dim = driver.manage().window().getSize();
+        int width = dim.getWidth();
+        int height = dim.getHeight();
+        int x = (int) (width * 0.10);
+        int y1 = (int) (height * 0.35);
+        int y2 = (int) (height * 0.75);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'edit_text_search')]");
+        boolean isDisplayed2 = element1.isDisplayed();
+        if (isDisplayed2) {
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            TouchAction touchAction = new TouchAction(driver);
+            touchAction.longPress(new PointOption().withCoordinates(x, y1)).moveTo(new PointOption().withCoordinates(x, y2)).release().perform();
+        }
+    }
+    public void searchBranch(){
+        driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
+        MobileElement searchBar = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'text_search') and @text='Search branch']");
+        searchBar.sendKeys(branch);
+        driver.hideKeyboard();
+    }
 }
