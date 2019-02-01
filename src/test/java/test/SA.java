@@ -212,6 +212,7 @@ public class SA {
         showAction.click();
         MobileElement compare = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.ListView/android.widget.LinearLayout[2]");
         compare.click();
+        driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
         MobileElement loading = (MobileElement) driver.findElementById("android:id/body");
         boolean loadingDisplayed = loading.isDisplayed();
             if(loadingDisplayed){
@@ -222,7 +223,7 @@ public class SA {
         driver.navigate().back();
         System.out.println("Case 11 Done");
     }
-    //Check discount "Discounts Breakdown- Account Discount"
+    //Check discount "Discounts Breakdown- Account Discount" auditor04@engagia.com
     public void Case12(){
         System.out.println("Testing Case 12");
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -245,8 +246,10 @@ public class SA {
         MobileElement okBtn = (MobileElement) driver.findElementById("android:id/button1");
         okBtn.click();
         //Input valid credentials
-        userName.sendKeys("auditorAuto1@engagia.com");
-        passWord.sendKeys("Password1!");
+//        userName.sendKeys("auditorAuto1@engagia.com");
+//        passWord.sendKeys("Password1!");
+        userName.sendKeys("auditor04@engagia.com");
+        passWord.sendKeys("password");
         driver.hideKeyboard();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement eyeBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btnVisibility");
@@ -270,6 +273,7 @@ public class SA {
         showAction.click();
         MobileElement compare = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.ListView/android.widget.LinearLayout[2]");
         compare.click();
+        driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
         MobileElement loading = (MobileElement) driver.findElementById("android:id/body");
         boolean loadingDisplayed = loading.isDisplayed();
         if(loadingDisplayed){
@@ -312,8 +316,10 @@ public class SA {
         MobileElement okBtn = (MobileElement) driver.findElementById("android:id/button1");
         okBtn.click();
         //Input valid credentials
-        userName.sendKeys("auditorAuto1@engagia.com");
-        passWord.sendKeys("Password1!");
+//        userName.sendKeys("auditorAuto1@engagia.com");
+//        passWord.sendKeys("Password1!");
+        userName.sendKeys("auditor04@engagia.com");
+        passWord.sendKeys("password");
         driver.hideKeyboard();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement eyeBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btnVisibility");
@@ -605,7 +611,7 @@ public class SA {
     }
     private void searchByName(){
         System.out.println("Searching by Name");
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
         MobileElement showAction = (MobileElement) driver.findElementByAccessibilityId("Show action");
         boolean isDisplayed = showAction.isDisplayed();
             if(isDisplayed){
@@ -769,10 +775,12 @@ public class SA {
         normalCount.click();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement userName = (MobileElement) driver.findElementById("com.engagia.android:id/etUsername");
-        userName.sendKeys("auditorAuto1@engagia.com");
+//        userName.sendKeys("auditorAuto1@engagia.com"); auditor04
+        userName.sendKeys("auditor04@engagia.com");
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement passWord = (MobileElement) driver.findElementById("com.engagia.android:id/etPassword");
-        passWord.sendKeys("Password1!");
+//        passWord.sendKeys("Password1!");
+        passWord.sendKeys("password");
         driver.hideKeyboard();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement validateBtn = (MobileElement) driver.findElementById("android:id/button1");
@@ -786,6 +794,7 @@ public class SA {
         showAction.click();
         MobileElement compare = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.ListView/android.widget.LinearLayout[2]");
         compare.click();
+        driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
         MobileElement loading = (MobileElement) driver.findElementById("android:id/body");
         boolean loadingDisplayed = loading.isDisplayed();
         if(loadingDisplayed){

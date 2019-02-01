@@ -44,7 +44,7 @@ public class SCHED {
         capabilities.setCapability(FULL_RESET, false);
         capabilities.setCapability(NO_RESET, true);
         //Papalitan un Ip depende sa pc
-        driver = new AppiumDriver(new URL("http://192.168.1.33:4723/wd/hub"), capabilities);
+        driver = new AppiumDriver(new URL("http://192.168.0.167:4723/wd/hub"), capabilities);
     }
 
     @Test
