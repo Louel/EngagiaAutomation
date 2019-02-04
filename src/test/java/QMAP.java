@@ -156,6 +156,7 @@ public class QMAP {
     }
     //FORMS
     public void Case4(){
+        System.out.println("Testing Case 4");
         SearchQMAP();
         //SWIPE
 //        for (int a = 1; a < 18; a++) {
@@ -255,6 +256,7 @@ public class QMAP {
     }
     //Magkaiba un ppindutin sa camera pag na open pag dating sa ibang device
     public void Case5(){
+        System.out.println("Testing Case 5");
 //        SearchQMAP();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement forms = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'qmFormsBtn') and @text='FORMS']");
@@ -282,6 +284,7 @@ public class QMAP {
     //CLEAR
     //Checkbox Only
     public void Case6(){
+        System.out.println("Testing Case 6");
 //        SearchQMAP();
         //Ticking all check box
         checkBoxTick();
@@ -298,6 +301,7 @@ public class QMAP {
     }
     //Fields Only
     public void Case7(){
+        System.out.println("Testing Case 7");
         //Alisin to pag irrun na lahat ng cases v
 //        SearchQMAP();
         fieldOnly();
@@ -313,6 +317,7 @@ public class QMAP {
     }
     //Forms only
     public void Case8(){
+        System.out.println("Testing Case 8");
 //        SearchQMAP();
         answerLockForms();
         answeringNotLockForms();
@@ -329,7 +334,7 @@ public class QMAP {
     //Case 9 to 12 can't script camera can't click on both device
     //Image only
     public void Case9(){
-//        SearchQMAP();
+        System.out.println("Testing Case 9");
         pictureOnly();
         clear();
         MobileElement snackBar = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'snackbar_text') and @text = 'Cleared']");
@@ -343,7 +348,7 @@ public class QMAP {
     }
     //Image and Checkbox
     public void Case10(){
-//        SearchQMAP();
+        System.out.println("Testing Case 10");
         //Take picture
         pictureOnly();
         //Ticking all check box
@@ -360,7 +365,7 @@ public class QMAP {
     }
     //Image and Forms
     public void Case11(){
-//        SearchQMAP();
+        System.out.println("Testing Case 11");
         //Take picture
         pictureOnly();
         answerLockForms();
@@ -377,7 +382,7 @@ public class QMAP {
     }
     //Image and Fields
     public void Case12(){
-//        SearchQMAP();
+        System.out.println("Testing Case 12");
         pictureOnly();
         fieldOnly();
         clear();
@@ -392,8 +397,7 @@ public class QMAP {
     }
     //Fields and Forms only
     public void Case13(){
-        //Alisin to pag irrun na lahat ng cases v
-//        SearchQMAP();
+        System.out.println("Testing Case 13");
         fieldOnly();
         answerLockForms();
         answeringNotLockForms();
@@ -409,7 +413,7 @@ public class QMAP {
     }
     //Fields and Checkbox
     public void Case14(){
-        //SearchQMAP();
+        System.out.println("Testing Case 14");
         //Ticking all check box
         checkBoxTick();
         //Click on Account Classification
@@ -441,7 +445,7 @@ public class QMAP {
     }
     //Forms and Checkbox
     public void Case15(){
-        //SearchQMAP();
+        System.out.println("Testing Case 15");
         //Ticking all check box
         checkBoxTick();
         //Answering forms
@@ -459,7 +463,7 @@ public class QMAP {
     }
     //Fields , Forms and Checkbox
     public void Case16(){
-        //SearchQMAP();
+        System.out.println("Testing Case 16");
         //Ticking all check box
         checkBoxTick();
         //Click on Account Classification
@@ -494,7 +498,7 @@ public class QMAP {
     }
     //Image , Forms and Checkbox
     public void Case17(){
-        //SearchQMAP();
+        System.out.println("Testing Case 17");
         //Take picture
         pictureOnly();
         //Ticking all check box
@@ -515,8 +519,7 @@ public class QMAP {
     }
     //Image , Forms and Fields
     public void Case18(){
-        //Alisin to pag irrun na lahat ng cases v
-        //SearchQMAP();
+        System.out.println("Testing Case 18");
         //Take picture
         pictureOnly();
         fieldOnly();
@@ -534,7 +537,7 @@ public class QMAP {
     }
     //Image , Forms , Fields and Checkbox
     public void Case19(){
-        //SearchQMAP();
+        System.out.println("Testing Case 19");
         //Take Picture
         pictureOnly();
         //Ticking all check box
@@ -571,7 +574,7 @@ public class QMAP {
     }
     //Clear only
     public void Case20(){
-        //SearchQMAP();
+        System.out.println("Testing Case 20");
         clear();
         MobileElement snackBar = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'snackbar_text') and @text = 'Cleared']");
         boolean isDisplayed1 =  snackBar.isDisplayed();
@@ -584,7 +587,7 @@ public class QMAP {
     }
     //Summary Menu (No Data)
     public void Case21(){
-        //SearchQMAP();
+        System.out.println("Testing Case 21");
         MobileElement summaryMenu = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'quick_mapped_location_menu') and @index = '0']");
         summaryMenu.click();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -603,7 +606,7 @@ public class QMAP {
     }
     //Save without Checkbox
     public void Case22(){
-        //SearchQMAP();
+        System.out.println("Testing Case 22");
         //Take Picture
         pictureOnly();
         fieldOnly();
@@ -636,7 +639,7 @@ public class QMAP {
     //Save without Fields
     //test this vvvv
     public void Case23(){
-//        SearchQMAP();
+        System.out.println("Testing Case 23");
         //Take Picture
         pictureOnly();
         //Ticking all check box
@@ -658,7 +661,7 @@ public class QMAP {
     }
     //Save without forms
     public void Case24(){
-//        SearchQMAP();
+        System.out.println("Testing Case 24");
         //Take Picture
         pictureOnly();
         //Ticking all check box
@@ -695,7 +698,7 @@ public class QMAP {
     }
     //Save without Picture
     public void Case25(){
-//        SearchQMAP();
+        System.out.println("Testing Case 25");
         //Ticking all check box
         checkBoxTick();
         //Click on Account Classification
@@ -731,7 +734,7 @@ public class QMAP {
     }
     //Save without Fields and Image
     public void Case26(){
-        //SearchQMAP();
+        System.out.println("Testing Case 26");
         //Ticking all check box
         checkBoxTick();
         //Answering forms
@@ -751,7 +754,7 @@ public class QMAP {
     }
     //Save
     public void Case27(){
-        //SearchQMAP();
+        System.out.println("Testing Case 27");
         //Take Picture
         pictureOnly();
         //Ticking all check box
@@ -792,6 +795,7 @@ public class QMAP {
     //Summary Menu
     public void Case28(){
         //SearchQMAP();
+        System.out.println("Testing Case 28");
         //Loop atleast 4 times
         //Click on 3 dots
         for(int a = 1; a<=4; a++){
@@ -802,7 +806,7 @@ public class QMAP {
     }
     //Mapped Location
     public void Case29(){
-        ///SearchQMAP();
+        System.out.println("Testing Case 29");
         //Click on 3 dots
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement summMenu = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'quick_mapped_location_menu') and @index='0']");
