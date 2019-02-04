@@ -6,6 +6,7 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.offset.PointOption;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -36,7 +37,8 @@ public class VAOF {
     String[] ranNum = {"11112", "11113" , "22221" , "22224" , "33331" , "44442"};
     String[] customerName = {"Tony Stark", "Mario" , "Luigi" , "Peter Parker"};
     String[] customerCont = {"123456789", "112233445" , "159357258" , "134679875"};
-
+    String branchListDrctry = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout" +
+            "/android.support.v7.widget.LinearLayoutCompat/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.support.v7.widget.RecyclerView";
     String vaofDrctryTbl = "//android.widget.FrameLayout[@index='0']/" +
             "android.widget.LinearLayout[@index='0']/" +
             "android.widget.FrameLayout[@index='0']/" +
@@ -91,142 +93,20 @@ public class VAOF {
 
     @Test
     public void testVAOF(){
-        for (int x = 2; x < 3; x++) {
-            driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-            //CLick on drawer
-            MobileElement sideBarBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
-            sideBarBtn.click();
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            //click arrow down
-            MobileElement loginVisitBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'image_visit_dropdown') and @index = '3']");
-            loginVisitBtn.click();
-            //branch list
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-            //Time to load
-            List<MobileElement> logBtn = (List<MobileElement>) driver.findElementsByClassName("android.widget.RelativeLayout");
-            logBtn.get(x).click();
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-            MobileElement cntBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1')]");
-            cntBtn.click();
-            //click on Ok
-            //should have wait here atleast 20 secs
-            driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
-            MobileElement cntBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1')]");
-            cntBtn1.click();
 
-            SearchVan();
-            Case1();
-            Case2();
-            Case3();
-            Case4();
-            Case5A();
-            Case5B();
-            Case6();
-            Case7();
-            Case8();
-            Case9();
-            Case10();
-            Case11();
-            Case12();
-            Case13();
-            Case14();
-            Case15();
-            Case16();
-            Case17();
-            Case18();
-            Case19();
-            Case20();
-            Case21();
-            Case22();
-            Case23();
-            Case24();
-            Case25();
-            Case26();
-            Case27();
-            Case28();
-            Case29(); //<---- need swipe on myphone uno
-//            //Summary  Three dots functions
-//            //Test this vv
-            Case30();
-//            //lagyan ng transactions
-            Case31();
-            Case32();
-            Case33();
-//            Case34(); //Adjust should
-//            //Qualified DEALS
-            Case35();
-////////        Case36(); //manual test this
-//            Case37();
-//            Case38();
-//            Case39();
-//            Case41();
-//        //need swipe
-//            Case42();
-//            Case43();
-            Case44();
-//            Case48();
-//            Case49();
-//            orderBoxPC();
-//            orderPC();
-//            orderBox();
-
-            //Log out to visit
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement sideBarBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
-            sideBarBtn1.click();
-            //Scroll down vvvv
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'edit_text_search')]");
-            boolean isDisplayed1 = element1.isDisplayed();
-            if (isDisplayed1) {
-                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-                TouchAction touchAction = new TouchAction(driver);
-                touchAction.longPress(new PointOption().withCoordinates(160, 200)).moveTo(new PointOption().withCoordinates(160, 520)).release().perform();
-            }
-            //Scroll ^^^^^
-            System.out.println("Branch " +x+ " done!");
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement logOutBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'image_visit_dropdown') and @index = '3']");
-            logOutBtn.click();
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement logOutBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'btn_visit_logout')]");
-            logOutBtn1.click();
-        }
     }
 
-    //Check Product Filter by "All Product": Both logged in and not logged in
-    public void Case1(){
+    //TODO Check App: "Search by Name"
+    public void Case2a(){
         System.out.println("Testing Case 1");
-        //wait to load
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //Search Van Account Order Form
-        //Click arrow down
-        MobileElement clckArrw = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id, 'filter_by_button')]");
-        clckArrw.click();
-        //Click on all product filter
-        MobileElement clckAllProd1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'txt_product_filter')]");
-        clckAllProd1.click();
-        //Click Allproduct
-        MobileElement clckAllProd2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'txt_filter_all')]");
-        clckAllProd2.click();
-//        //Different case scenario
-//        //Click on information filter
-//        MobileElement clckInfoFil = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'txt_information_filter')]");
-//        clckInfoFil.click();
-//        //Click on none
-//        MobileElement clckNone = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'txt_filter_information_none')]");
-//        clckNone.click();
-        //Click filter
-        MobileElement btnFil = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id, 'button1')]");
-        btnFil.click();
+        prodFilterByAllProd();
         //Search a product "Nova"
-        MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id, 'search_auto_complete_text_view')]");
+        MobileElement searchName = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
         searchName.sendKeys(productNames[rand(productNames.length-1)]);
         //Click on search btn
         MobileElement clckSearch = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id, 'search_button')]");
         clckSearch.click();
         System.out.println("Case 1 Pass");
-
     }
     //Check Product Filter by "Product Group": Both logged in and not logged in
     public void Case2(){
@@ -1585,6 +1465,24 @@ public class VAOF {
      public void Case53(){
      }
      */
+
+    //FUNCTIONS
+    private void prodFilterByAllProd(){
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement prodFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_product_filter");
+        prodFilter.click();
+        //Click Allproduct
+        MobileElement allProd = (MobileElement) driver.findElementById("com.engagia.android:id/txt_filter_all");
+        allProd.click();
+        //Click filter
+        MobileElement filter = (MobileElement) driver.findElementById("android:id/button1");
+        filter.click();
+    }
     public void orderBoxPC() {
         //NEED TIME TO LOAD LOL
         //Pwede rin while kita un arrow loop sya
@@ -2331,15 +2229,15 @@ public class VAOF {
     public void SearchVan(){
         //click drawer
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement sideBarBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
+        MobileElement sideBarBtn = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
         sideBarBtn.click();
         //search van
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement searchField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'edit_text_search')]");
+        MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/edit_text_search");
         searchField.sendKeys(search);
         //click search result
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement clckRes = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'text_title')]");
+        MobileElement clckRes = (MobileElement) driver.findElementByAccessibilityId("Van Account Order Form");
         clckRes.click();
 
     }
@@ -2486,21 +2384,116 @@ public class VAOF {
                 break;
         }
     }
+    public void vaofLogInToVisit(){
+        for (int x = 2; x < 3; x++) {
+            //Click on Drawer
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement drawerOpen = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
+            drawerOpen.click();
+            //Click on Arrow down btn
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement clckArrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/image_visit_dropdown");
+            clckArrowDown.click();
+            //Click on branch depends on index or int of the loop
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            MobileElement clckOnBranch = (MobileElement) driver.findElementByXPath(branchListDrctry + "/android.widget.RelativeLayout[" + x + "]");
+            clckOnBranch.click();
+            System.out.println(x);
+            //click on Ok
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement okBtn = (MobileElement) driver.findElementById("android:id/button1");
+            okBtn.click();
+
+            //Cases
+            SearchVan();
+
+            Case2();
+            Case3();
+            Case4();
+            Case5A();
+            Case5B();
+            Case6();
+            Case7();
+            Case8();
+            Case9();
+            Case10();
+            Case11();
+            Case12();
+            Case13();
+            Case14();
+            Case15();
+            Case16();
+            Case17();
+            Case18();
+            Case19();
+            Case20();
+            Case21();
+            Case22();
+            Case23();
+            Case24();
+            Case25();
+            Case26();
+            Case27();
+            Case28();
+            Case29(); //<---- need swipe on myphone uno
+//            //Summary  Three dots functions
+//            //Test this vv
+            Case30();
+//            //lagyan ng transactions
+            Case31();
+            Case32();
+            Case33();
+//            Case34(); //Adjust should
+//            //Qualified DEALS
+            Case35();
+////////        Case36(); //manual test this
+//            Case37();
+//            Case38();
+//            Case39();
+//            Case41();
+//        //need swipe
+//            Case42();
+//            Case43();
+            Case44();
+//            Case48();
+//            Case49();
+//            orderBoxPC();
+//            orderPC();
+//            orderBox();
+
+            //Log out to visit
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement drawerOpen2 = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
+            drawerOpen2.click();
+            swipeUp();
+            System.out.println("Branch " +x+ " done!");
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            clckArrowDown.click();
+            //Log out
+            MobileElement logoutBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_visit_logout");
+            logoutBtn.click();
+        }
+    }
     private static int rand(int bound) {
         return (int) (Math.random() * bound);
     }
-
-    MobileElement getTableCell(String id){
-        //Enter Value on Order per PC
-        return (MobileElement) driver.findElementByXPath(vaofDrctryTbl +
-                "/android.widget.HorizontalScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.ScrollView[@index='1']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='0']" +
-                "/android.widget.LinearLayout[@index='0']");
+    private void swipeUp(){
+        Dimension dim = driver.manage().window().getSize();
+        int width = dim.getWidth();
+        int height = dim.getHeight();
+        int x = (int) (width * 0.10);
+        int y1 = (int) (height * 0.35);
+        int y2 = (int) (height * 0.75);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'edit_text_search')]");
+        boolean isDisplayed2 = element1.isDisplayed();
+        if (isDisplayed2) {
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            TouchAction touchAction = new TouchAction(driver);
+            touchAction.longPress(new PointOption().withCoordinates(x, y1)).moveTo(new PointOption().withCoordinates(x, y2)).release().perform();
+        }
     }
+
     public void Listahan(){
         List<MobileElement> logBtn = (List<MobileElement>) driver.findElementsByClassName("com.engagia.android.utils.table.DataCell");
         logBtn.get(0).click();

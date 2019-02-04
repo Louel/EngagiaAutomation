@@ -1202,7 +1202,7 @@ public class IC {
     }
     public void icLogInToVisit(){
         for (int x = 4; x <=4; x++) {
-            //Click on Drawerbab
+            //Click on Drawer
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             MobileElement drawerOpen = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
             drawerOpen.click();
