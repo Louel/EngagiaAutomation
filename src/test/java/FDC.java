@@ -7,6 +7,7 @@ import io.appium.java_client.touch.offset.PointOption;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.touch.TouchActions;
@@ -32,7 +33,12 @@ public class FDC {
 
     AppiumDriver driver;
     String search = "Field Data Cap";
+    String searchFDA = "Field Data Archive";
     String [] randomText = {"zczxczxc","12331231","Abbbccde","Abcde!@#","1a2b3c","A1B1C1", "random" , "somerandomtxt", "randomtxtsome" , "randomsometxt"};
+    String branchListDrctry = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout" +
+            "/android.support.v7.widget.LinearLayoutCompat/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.support.v7.widget.RecyclerView";
+    String fdaDrctry = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
+            "/android.support.v4.widget.DrawerLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.View/android.support.v7.widget.RecyclerView";
 
 
     @Before
@@ -52,25 +58,24 @@ public class FDC {
     }
     @Test
     public void testFDC(){
-
-//        Case1();
-        Case3();
-        Case5();
-        Case7();
-        Case11();
-        Case13();
-        Case15();
-        Case17();
-        Case19();
-        Case21();
-        //Log in to visit function/code here
-        fdcLogInToVisit();
-
+//        Case3();
+//        Case5();
+//        Case7();
+//        Case11();
+//        Case13();
+//        Case15();
+//        Case17();
+//        Case19();
+//        Case21();
+//        //Log in to visit function/code here
+//        fdcLogInToVisit();
+        fdaFunction();
+        syncAll();
     }
     //Case functions
     //ACCESSING FIELD DATA CAPTURE WHILE LOCATION SERVICES IS OFF
     public void Case1(){
-        SearcFDC();
+        SearchFDC();
         //Loop
         //Navigate Home and Relaunching Engagia step (Step 6 and 7)
         driver.launchApp();
@@ -82,11 +87,11 @@ public class FDC {
     }
     //ACCESSING FIELD DATA CAPTURE WHILE LOCATION SERVICES IS ON
     public void Case2(){
-        SearcFDC();
+        SearchFDC();
     }
     //TAKE PICTURE WHILE LOCATION SERVICES IS OFF
     public void Case3(){
-        SearcFDC();
+        SearchFDC();
         //Steps 1 to 3: Open camera then press back
         for(int a = 1; a<=2; a++) {
             openCamera();
@@ -123,7 +128,7 @@ public class FDC {
     //Need ng clear dito kada mag transition sa panibagong case
     //TAKE PICTURE  WHILE LOCATION SERVICES IS ON
     public void Case4(){
-        SearcFDC();
+        SearchFDC();
         //Steps 1 to 3: Open camera then press back
         for(int a = 1; a<=2; a++) {
             openCamera();
@@ -490,6 +495,10 @@ public class FDC {
         savePerVisit();
         System.out.println("Case 21 done");
     }
+    //Check Accessing Field Data Archive
+    public void fieldDataArchive(){
+
+    }
 
 
     //FUNCTIONS
@@ -725,15 +734,32 @@ public class FDC {
         MobileElement clckTakePic = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id, 'btnTakePic') and @text='Take Picture']");
         clckTakePic.click();
     }
-    public void SearcFDC(){
+    public void SearchFDC(){
         //click Hamburger Menu
-        MobileElement HamburgerBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement HamburgerBtn = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
         HamburgerBtn.click();
-        //search van
-        MobileElement searchField = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'edit_text_search')]");
+        //search FDA
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/edit_text_search");
         searchField.sendKeys(search);
         //click search result
-        MobileElement clckRes = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'text_title')]");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement clckRes = (MobileElement) driver.findElementByAccessibilityId("Field Data Capture");
+        clckRes.click();
+    }
+    public void SearchFDA(){
+        //click Hamburger Menu
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement HamburgerBtn = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
+        HamburgerBtn.click();
+        //search FDA
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/edit_text_search");
+        searchField.sendKeys(searchFDA);
+        //click search result
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement clckRes = (MobileElement) driver.findElementByAccessibilityId("Field Data Archive");
         clckRes.click();
     }
     public void swipeDown(){
@@ -779,23 +805,20 @@ public class FDC {
         }
     }
     public void swipeUpToLogin(){
-
-
+        Dimension dim = driver.manage().window().getSize();
+        int width = dim.getWidth();
+        int height = dim.getHeight();
+        int x = (int) (width * 0.10);
+        int y1 = (int) (height * 0.35);
+        int y2 = (int) (height * 0.75);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'edit_text_search')]");
-        boolean isDisplayed1 = element1.isDisplayed();
-        if (isDisplayed1) {
+        boolean isDisplayed2 = element1.isDisplayed();
+        if (isDisplayed2) {
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            Dimension dim = driver.manage().window().getSize();
-            int width = dim.getWidth();
-            //Para nasa gilid un pag scroll walang tatamaan textfield
-            int x = (int) (width * 0.05);
             TouchAction touchAction = new TouchAction(driver);
-            //try this
-            touchAction.press(new PointOption().withCoordinates(x, 200)).moveTo(new PointOption().withCoordinates(x, 500)).release().perform();
-//            touchAction.longPress(new PointOption().withCoordinates(160, 200)).moveTo(new PointOption().withCoordinates(160, 520)).release().perform();
+            touchAction.longPress(new PointOption().withCoordinates(x, y1)).moveTo(new PointOption().withCoordinates(x, y2)).release().perform();
         }
-
     }
     public void textNoteCancel(){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -983,29 +1006,23 @@ public class FDC {
     }
     public void fdcLogInToVisit(){
         for (int x = 3; x <=8; x++) {
-            driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-            //CLick on drawer
-            MobileElement sideBarBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
-            sideBarBtn.click();
+            //Click on Drawer
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement drawerOpen = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
+            drawerOpen.click();
             swipeUpToLogin();
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            //click arrow down
-            MobileElement loginVisitBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'image_visit_dropdown') and @index = '3']");
-            loginVisitBtn.click();
-            //branch list
+            //Click on Arrow down btn
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement clckArrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/image_visit_dropdown");
+            clckArrowDown.click();
+            //Click on branch depends on index or int of the loop
             driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-            //Time to load
-            List<MobileElement> logBtn = (List<MobileElement>) driver.findElementsByClassName("android.widget.RelativeLayout");
-            logBtn.get(x).click();
-            System.out.println(x);
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-            MobileElement cntBtn = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1')]");
-            cntBtn.click();
+            MobileElement clckOnBranch = (MobileElement) driver.findElementByXPath(branchListDrctry + "/android.widget.RelativeLayout[" + x + "]");
+            clckOnBranch.click();
             //click on Ok
-            //should have wait here atleast 20 secs
-            driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
-            MobileElement cntBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.Button[contains(@resource-id,'button1')]");
-            cntBtn1.click();
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement okBtn = (MobileElement) driver.findElementById("android:id/button1");
+            okBtn.click();
 //            SearcFDC();
             Case3();
             Case5();
@@ -1019,26 +1036,74 @@ public class FDC {
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             MobileElement sideBarBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
             sideBarBtn1.click();
+            swipeUp();
             //Scroll down vvvv
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'edit_text_search')]");
-            boolean isDisplayed1 = element1.isDisplayed();
-            if (isDisplayed1) {
-                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-                TouchAction touchAction = new TouchAction(driver);
-                touchAction.longPress(new PointOption().withCoordinates(160, 200)).moveTo(new PointOption().withCoordinates(160, 520)).release().perform();
-            }
-            //Scroll ^^^^^
+            swipeUpToLogin();
             System.out.println("Branch " +x+ " done!");
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement logOutBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageView[contains(@resource-id,'image_visit_dropdown') and @index = '3']");
-            logOutBtn.click();
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement logOutBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'btn_visit_logout')]");
-            logOutBtn1.click();
+            clckArrowDown.click();
+            //Log out
+            MobileElement logoutBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_visit_logout");
+            logoutBtn.click();
 
         }
     }
+    public void fdaFunction(){
+        SearchFDA();
+        for(int z=1; z<=5; z++) {
+            if(z<=3){
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement fdaRecord1 = (MobileElement) driver.findElementByXPath(fdaDrctry + "/android.widget.LinearLayout["+ z +"]");
+                fdaRecord1.click();
+                driver.navigate().back();
+            }
+            else if(z==4 || z==5){
+                //Delete records
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement fdaRecord1 = (MobileElement) driver.findElementByXPath(fdaDrctry + "/android.widget.LinearLayout[3]");
+                TouchAction touchAction = new TouchAction(driver);
+                touchAction.longPress(LongPressOptions.longPressOptions().withElement(element(fdaRecord1)).withDuration(Duration.ofMillis(1000))).release().perform();
+                if(z==4){
+                    MobileElement noBtn = (MobileElement) driver.findElementById("android:id/button2");
+                    noBtn.click();
+                }
+                else if(z==5){
+                    MobileElement yesBtn = (MobileElement) driver.findElementById("android:id/button1");
+                    yesBtn.click();
+                }
+            }
+        }
+    }
+    public void syncAll(){
+        MobileElement openDrawer = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
+        openDrawer.click();
+        swipeUpToLogin();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement dropDownMenu = (MobileElement) driver.findElementById("com.engagia.android:id/image_main_menu_dropdown");
+        dropDownMenu.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement syncBtn = (MobileElement) driver.findElementById("com.engagia.android:id/action_sync");
+        syncBtn.click();
+        //INSERT TRY CATCH MESSAGE OF SLOW INTERNET SPEED
+        try {
+            MobileElement messageSlowNet = (MobileElement) driver.findElementById("android:id/message");
+            if (messageSlowNet != null) {
+                MobileElement contBtn = (MobileElement) driver.findElementById("android:id/button1");
+                contBtn.click();
+                System.out.println("Internet speed is slow ...");
+            }
+        }
+        catch (NoSuchElementException e){
+            System.out.println("Internet is fast ...");
+        }
+        driver.manage().timeouts().implicitlyWait(240, TimeUnit.SECONDS);
+        MobileElement closeBtn = (MobileElement) driver.findElementById("android:id/button1");
+        closeBtn.click();
+        System.out.println("Sync done");
+    }
+
     private static int rand(int bound) {
         return (int) (Math.random() * bound);
     }

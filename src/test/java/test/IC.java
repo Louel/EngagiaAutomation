@@ -520,7 +520,7 @@ public class IC {
         }
         System.out.println("Case 15 Done");
     }
-    //Check product filter "Carried Products"
+    //Check product filter "Carried Products" MAY BUG DITO DI NAKIKITA MGA CARRIED PRODUCT
     public void Case17(){
         System.out.println("Testing Case 16");
         for(int z=1; z<=7; z++) {
@@ -706,7 +706,7 @@ public class IC {
         System.out.println("Case 23 Done");
     }
     //Check Summary "Finalize" Dapat sa last part to kasi may order 2nd
-    public void Cas24(){
+    public void Case24(){
         System.out.println("Testing Case 24");
         beginningInven();
         finalMthd();
@@ -861,6 +861,7 @@ public class IC {
     //Check table manufactured date "View" column
     public void Case37(){
         System.out.println("Testing Case 33");
+        swipeRight();
         viewManufactDate();
         clear();
         System.out.println("Case 33 Done");
@@ -868,10 +869,12 @@ public class IC {
     //Check filter "Information Filter" w/ ADD STOCK TRANSACTION
     public void Case38(){
         System.out.println("Testing Case 34");
-        addWithStock();
-        clear();
-        finalMthd();
+//        addWithStock();
+//        clear();
+//        finalMthd();
         infoFilter();
+        driver.navigate().back();
+        driver.navigate().back();
         System.out.println("Case 34 Done");
     }
     //Check information filter "All Products"
@@ -1199,7 +1202,7 @@ public class IC {
     }
     public void icLogInToVisit(){
         for (int x = 4; x <=4; x++) {
-            //Click on Drawer
+            //Click on Drawerbab
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             MobileElement drawerOpen = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
             drawerOpen.click();
@@ -1231,34 +1234,36 @@ public class IC {
 ////            //FILTER
 //            Case10();
 //            Case11();
-//            Case12();//May bug dito
+//            Case12();
 //            Case13();
 //            Case14();
 //            Case15();
 //            Case16();
-//            Case17();
-//            Case18();//MAY BUG  YATA? POTA
+////            Case17(); May bug dito d nakikita mga carried products na uploaded sa EMS
+////            Case18();//MAY BUG  YATA? POTA Iba yun output ng EMS sa APP ng Not Carried Proudcts
 //            Case19();
 //            Case20();
 //            Case21();
-//            Case22(); Pagtapos dapat to ng finalize para makikita mga summary. 3rd
-//            Case23(); Bago mag finalize dapat to 1st
-//            Case24(); Dapat sa last part to kasi may order 2nd
-//            Case25();
-
 //            Case26();
 //            Case27();
-            //Transaction functions
-            Case28();
-            Case29();
-            Case30();
-            Case31();
-            Case32();
-            Case33();
-            Case34();
-            Case35();
-            Case36();
-            Case37();
+//            //Transaction functions
+//            Case28();
+//            Case29();
+//            Case30();
+//            Case31();
+//            Case32();
+//            Case33();
+//            Case34();
+//            Case35();
+//            Case36();
+//            Case37();
+
+            Case23();// Bago mag finalize dapat to 1st
+            Case24();// Dapat sa last part to kasi may order 2nd
+//            Case25();
+            SearcIC();
+            Case22();// Pagtapos dapat to ng finalize para makikita mga summary. 3rd
+            //INSERT TRANSACTION HERE WITH LOW MED HIGH W/ STOCK
 //            //FILTER ULIT? need gumawa ng  transaction na may low med high no stock and w/ stock
 //            Case38();
 //            Case39();
@@ -1360,6 +1365,7 @@ public class IC {
         //Click Magnifying Glass Icon
         MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
         searchBtn.click();
+        System.out.println("Search by Short Name");
     }
     public void byItemCode(){
         checkByItemCode();
@@ -1370,6 +1376,7 @@ public class IC {
         //Click Magnifying Glass Icon
         MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
         searchBtn.click();
+        System.out.println("Search by Short Name");
     }
     public void byBarcode(){
         checkByBarcode();
@@ -1380,6 +1387,7 @@ public class IC {
         //Click Magnifying Glass Icon
         MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
         searchBtn.click();
+        System.out.println("Search by Barcode");
     }
     public void byDescription(){
         checkByDescription();
@@ -1390,6 +1398,7 @@ public class IC {
         //Click Magnifying Glass Icon
         MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
         searchBtn.click();
+        System.out.println("Search by Description");
     }
     public void byBrand(){
         checkByBrand();
@@ -1400,6 +1409,7 @@ public class IC {
         //Click Magnifying Glass Icon
         MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
         searchBtn.click();
+        System.out.println("Search by Brand");
     }
     public void byKeyword(){
         checkByKeyword();
@@ -1410,6 +1420,7 @@ public class IC {
         //Click Magnifying Glass Icon
         MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
         searchBtn.click();
+        System.out.println("Search by Keyword");
     }
     public void byPrincipal(){
         checkByPrincipal();
@@ -1420,6 +1431,7 @@ public class IC {
         //Click Magnifying Glass Icon
         MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
         searchBtn.click();
+        System.out.println("Search by Principal");
     }
     public void shortNameNoFilter(){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -1570,6 +1582,7 @@ public class IC {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement noFilBtn = (MobileElement) driver.findElementByXPath(filterByDrctry+"/android.widget.CheckedTextView[1]");
         noFilBtn.click();
+        System.out.println("Filter by No Filter");
     }
     public void swipeDown(){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -1601,12 +1614,14 @@ public class IC {
             MobileElement prodFilBtn = (MobileElement) driver.findElementByXPath(filterByDrctry+"/android.widget.CheckedTextView[2]");
             prodFilBtn.click();
         }
+        System.out.println("Filter by Product Filter");
     }
     public void allProd(){
         productFilter();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement allProd = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[1]");
         allProd.click();
+        System.out.println("Product Filter by All Products");
     }
     public void prodGroup(){
         productFilter();
@@ -1615,6 +1630,7 @@ public class IC {
         prodGrpFil.click();
         MobileElement prodGrp = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @index='0']");
         prodGrp.click();
+        System.out.println("Product Filter by Product Group");
     }
     public void mustCarry(){
         productFilter();
@@ -1624,6 +1640,7 @@ public class IC {
         mustCarryFilBtn.click();
         MobileElement mustCarry = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @index='0']");
         mustCarry.click();
+        System.out.println("Product Filter by Must Carry");
     }
     public void brand(){
         productFilter();
@@ -1632,6 +1649,7 @@ public class IC {
         brandFilBtn.click();
         MobileElement brand = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @index='0']");
         brand.click();
+        System.out.println("Product Filter by Brand");
     }
     public void docuSequence(){
         productFilter();
@@ -1641,6 +1659,7 @@ public class IC {
         docSeqFilBtn.click();
         MobileElement docSeq = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @index='0']");
         docSeq.click();
+        System.out.println("Product Filter by Document Sequence");
     }
     public void activeProd(){
         productFilter();
@@ -1648,6 +1667,7 @@ public class IC {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement activeProdFilBtn = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[6]");
         activeProdFilBtn.click();
+        System.out.println("Product Filter by Active Product");
     }
     public void carriedProd(){
         productFilter();
@@ -1655,6 +1675,7 @@ public class IC {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement carriedProdFilBtn = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[7]");
         carriedProdFilBtn.click();
+        System.out.println("Product Filter by Carried Product");
     }
     public void notCarriedProd(){
         productFilter();
@@ -1662,96 +1683,60 @@ public class IC {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement notCarriedProdFilBtn = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[8]");
         notCarriedProdFilBtn.click();
+        System.out.println("Product Filter by Not Carried Product");
     }
     public void infoFilter(){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement arrowBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
+        MobileElement arrowBtn = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
         arrowBtn.click();
         //Swipe down
         swipeDown();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement prodFilBtn = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='Information Filter']");
-        prodFilBtn.click();
-        driver.navigate().back();
-        driver.navigate().back();
+        MobileElement infoFilBtn = (MobileElement) driver.findElementByXPath("//android.widget.ListView[2]/android.widget.CheckedTextView[3]");
+        infoFilBtn.click();
+        System.out.println("Filter by Information Filter");
     }
     public void infoFilterAllProd(){
+        infoFilter();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement arrowBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
-        arrowBtn.click();
-        //Swipe down
-        swipeDown();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement prodFilBtn = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='Information Filter']");
-        prodFilBtn.click();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement allProd = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @text='All Products']");
+        MobileElement allProd = (MobileElement) driver.findElementByXPath("//android.widget.TextView[1]");
         allProd.click();
+        System.out.println("Info Filter by All products");
     }
     public void infoFilterNoStock(){
+        infoFilter();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement arrowBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
-        arrowBtn.click();
-        //Swipe down
-        swipeDown();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement prodFilBtn = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='Information Filter']");
-        prodFilBtn.click();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement allProd = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @text='Stock Availability : No Stock']");
+        MobileElement allProd = (MobileElement) driver.findElementByXPath("//android.widget.TextView[2]");
         allProd.click();
+        System.out.println("Info Filter by No Stock");
     }
     public void infoFilterWithStock(){
+        infoFilter();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement arrowBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
-        arrowBtn.click();
-        //Swipe down
-        swipeDown();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement prodFilBtn = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='Information Filter']");
-        prodFilBtn.click();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement allProd = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @text='Stock Availability : With Stock']");
+        MobileElement allProd = (MobileElement) driver.findElementByXPath("//android.widget.TextView[3]");
         allProd.click();
+        System.out.println("Info Filter by With Stock");
     }
     public void infoFilterStockWeightLow(){
+        infoFilter();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement arrowBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
-        arrowBtn.click();
-        //Swipe down
-        swipeDown();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement prodFilBtn = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='Information Filter']");
-        prodFilBtn.click();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement allProd = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @text='Stock Weight : Low']");
+        MobileElement allProd = (MobileElement) driver.findElementByXPath("//android.widget.TextView[4]");
         allProd.click();
+        System.out.println("Info Filter by Stock Weight Low");
     }
     public void infoFilterStockWeightMed(){
+        infoFilter();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement arrowBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
-        arrowBtn.click();
-        //Swipe down
-        swipeDown();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement prodFilBtn = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='Information Filter']");
-        prodFilBtn.click();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement allProd = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @text='Stock Weight : Medium']");
+        MobileElement allProd = (MobileElement) driver.findElementByXPath("//android.widget.TextView[5]");
         allProd.click();
+        System.out.println("Info Filter by Stock Weight Med");
     }
     public void infoFilterStockWeightHi(){
+        infoFilter();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement arrowBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
-        arrowBtn.click();
-        //Swipe down
-        swipeDown();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement prodFilBtn = (MobileElement) driver.findElementByXPath("//android.widget.CheckedTextView[contains(@resource-id,'text1') and @text='Information Filter']");
-        prodFilBtn.click();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement allProd = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @text='Stock Weight : High']");
+        MobileElement allProd = (MobileElement) driver.findElementByXPath("//android.widget.TextView[6]");
         allProd.click();
+        System.out.println("Info Filter by Stock Weight High");
     }
     public void clear(){
         fdcSummaryMenu();
@@ -2311,25 +2296,22 @@ public class IC {
                 "/android.widget.LinearLayout[@index='0']");
         transferOutPC1.click();
         System.out.println("Click Add Manucatured Date on PC");
-        MobileElement monthDownBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.NumberPicker[@index='0']"+
-                "/android.widget.Button[@index = '2']");
-        monthDownBtn1.click();
-        MobileElement dayDownBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.NumberPicker[@index='1']"+
-                "/android.widget.Button[@index = '2']");
-        dayDownBtn1.click();
-        MobileElement yearDownBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.NumberPicker[@index='2']"+
-                "/android.widget.Button[@index = '2']");
-        yearDownBtn1.click();
+        MobileElement monthUpBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.NumberPicker[1]/android.widget.Button[1]");
+        monthUpBtn1.click();
+        MobileElement dayUpBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.NumberPicker[2]/android.widget.Button[1]");
+        dayUpBtn1.click();
+        MobileElement yearUpBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.NumberPicker[3]/android.widget.Button[1]");
+        yearUpBtn1.click();
         //Click on TextField
-        MobileElement addField1 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index = '0']");
+        MobileElement addField1 = (MobileElement) driver.findElementById("com.engagia.android:id/text_inventory");
         addField1.click();
         //Enter one
-        MobileElement clckNO1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_1') and @index = '0']");
+        MobileElement clckNO1 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_1");
         clckNO1.click();
         //Click ok
-        MobileElement clckOk1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
+        MobileElement clckOk1 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
         clckOk1.click();
-        MobileElement goBtn1 = (MobileElement) driver.findElementByXPath("//android.widget.Button[@index = '1' and @text='Go']");
+        MobileElement goBtn1 = (MobileElement) driver.findElementById("android:id/button1");
         goBtn1.click();
         //PER BOX
         //Click Add Expiry
@@ -2343,25 +2325,22 @@ public class IC {
                 "/android.widget.LinearLayout[@index='1']");
         transferOutBox1.click();
         System.out.println("Click Add Manucatured Date on Box");
-        MobileElement monthDownBtn2 = (MobileElement) driver.findElementByXPath("//android.widget.NumberPicker[@index='0']"+
-                "/android.widget.Button[@index = '2']");
-        monthDownBtn2.click();
-        MobileElement dayDownBtn2 = (MobileElement) driver.findElementByXPath("//android.widget.NumberPicker[@index='1']"+
-                "/android.widget.Button[@index = '2']");
-        dayDownBtn2.click();
-        MobileElement yearDownBtn2 = (MobileElement) driver.findElementByXPath("//android.widget.NumberPicker[@index='2']"+
-                "/android.widget.Button[@index = '2']");
-        yearDownBtn2.click();
+        MobileElement monthUpBtn2 = (MobileElement) driver.findElementByXPath("//android.widget.NumberPicker[1]/android.widget.Button[1]");
+        monthUpBtn2.click();
+        MobileElement dayUpBtn2 = (MobileElement) driver.findElementByXPath("//android.widget.NumberPicker[2]/android.widget.Button[1]");
+        dayUpBtn2.click();
+        MobileElement yearUpBtn2 = (MobileElement) driver.findElementByXPath("//android.widget.NumberPicker[3]/android.widget.Button[1]");
+        yearUpBtn2.click();
         //Click on TextField
-        MobileElement addField2 = (MobileElement) driver.findElementByXPath("//android.widget.EditText[@index = '0']");
+        MobileElement addField2 = (MobileElement) driver.findElementById("com.engagia.android:id/text_inventory");
         addField2.click();
         //Enter one
-        MobileElement clckNO2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_1') and @index = '0']");
+        MobileElement clckNO2 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_1");
         clckNO2.click();
         //Click ok
-        MobileElement clckOk2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_ok') and @index = '1']");
+        MobileElement clckOk2 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
         clckOk2.click();
-        MobileElement goBtn2 = (MobileElement) driver.findElementByXPath("//android.widget.Button[@index = '1' and @text='Go']");
+        MobileElement goBtn2 = (MobileElement) driver.findElementById("android:id/button1");
         goBtn2.click();
         //PER PC
         //Click Add Expiry
@@ -2472,24 +2451,21 @@ public class IC {
 //                    System.out.println("With Stock Displayed");
 //                }
 //                swipeRight();
-                for (int x = 1; x <= 2; x++) {
-                    swipeRight();
-                }
+                swipeRight();
+                swipeRight();
                 stockWeight();
                 swipeRight();
                 addExpiryProd();
-                for (int w = 1; w <=2; w++){
-                    swipeRight();
-                }
+                swipeRight();
+                swipeRight();
                 addManufactDate();
                 //Nxt page
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 try {
-//                    MobileElement page = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'custom_table_next_pagination') and @text = '   ›   ']");
                     MobileElement page = (MobileElement) driver.findElementById("com.engagia.android:id/custom_table_next_pagination"); //trying this
                     if (page != null) {
                         //NXT PAGE
-                        MobileElement nxtPage = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'custom_table_next_pagination') and @text = '   ›   ']");
+                        MobileElement nxtPage = (MobileElement) driver.findElementById("com.engagia.android:id/custom_table_next_pagination");
                         nxtPage.click();
                         System.out.println("Next Page");
                     } else {
@@ -2511,25 +2487,23 @@ public class IC {
                 transferIn();
                 swipeRight();
                 transferOut();
-                for (int x = 1; x <= 2; x++) {
-                    swipeRight();
-                }
-                for(int y = 1; y <=2; y++) {
+                swipeRight();
+                swipeRight();
+                for(int y = 1; y <=3; y++) {
                     stockWeight();
                 }
                 swipeRight();
                 addExpiryProd();
-                for (int w = 1; w <=2; w++){
-                    swipeRight();
-                }
+                swipeRight();
+                swipeRight();
                 addManufactDate();
                 //Nxt Page
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 try {
-                    MobileElement page = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'custom_table_next_pagination') and @text = '   ›   ']");
+                    MobileElement page = (MobileElement) driver.findElementById("com.engagia.android:id/custom_table_next_pagination");
                     if (page != null) {
                         //NXT PAGE
-                        MobileElement nxtPage = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'custom_table_next_pagination') and @text = '   ›   ']");
+                        MobileElement nxtPage = (MobileElement) driver.findElementById("com.engagia.android:id/custom_table_next_pagination");
                         nxtPage.click();
                         System.out.println("Next Page");
                     } else {
@@ -2551,25 +2525,23 @@ public class IC {
                 transferIn();
                 swipeRight();
                 transferOut();
-                for (int x = 1; x <= 2; x++) {
-                    swipeRight();
-                }
+                swipeRight();
+                swipeRight();
                 for(int y = 1; y <=3; y++) {
                     stockWeight();
                 }
                 swipeRight();
                 addExpiryProd();
-                for (int w = 1; w <=2; w++){
-                    swipeRight();
-                }
+                swipeRight();
+                swipeRight();
                 addManufactDate();
                 //Nxt Page
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 try {
-                    MobileElement page = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'custom_table_next_pagination') and @text = '   ›   ']");
+                    MobileElement page = (MobileElement) driver.findElementById("com.engagia.android:id/custom_table_next_pagination");
                     if (page != null) {
                         //NXT PAGE
-                        MobileElement nxtPage = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'custom_table_next_pagination') and @text = '   ›   ']");
+                        MobileElement nxtPage = (MobileElement) driver.findElementById("com.engagia.android:id/custom_table_next_pagination");
                         nxtPage.click();
                         System.out.println("Next Page");
                     } else {
