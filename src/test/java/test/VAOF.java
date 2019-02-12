@@ -90,8 +90,8 @@ public class VAOF {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("deviceName","Samsung Galaxy J1 (2016)");
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, "Android");
-//        capabilities.setCapability("platformVersion", "5.1.1");
-        capabilities.setCapability("platformVersion", "7.0");
+        capabilities.setCapability("platformVersion", "5.1.1");
+//        capabilities.setCapability("platformVersion", "7.0");
         capabilities.setCapability("appPackage", "com.engagia.android");
         capabilities.setCapability("appActivity","com.engagia.android.activities.LoginActivity");
         capabilities.setCapability("noSign", true);
@@ -2548,15 +2548,7 @@ public class VAOF {
             MobileElement btnSave = (MobileElement) driver.findElementById("com.engagia.android:id/btn_save");
             btnSave.click();
             if (x == 2 || x == 5) {
-                MobileElement poNumber = (MobileElement) driver.findElementById("com.engagia.android:id/input_po_number");
-                poNumber.sendKeys("123456");
-                MobileElement salesInvoiceNumber = (MobileElement) driver.findElementById("com.engagia.android:id/input_si_number");
-                salesInvoiceNumber.sendKeys("654321");
-                MobileElement custName = (MobileElement) driver.findElementById("com.engagia.android:id/input_customer_name");
-                custName.sendKeys("John Roe");
-                MobileElement contactDetails = (MobileElement) driver.findElementById("com.engagia.android:id/input_contact_detail");
-                contactDetails.sendKeys("0917 XXX XXXX");
-                driver.hideKeyboard();
+                finalizeOrderInput();
             }
             else if (x == 3) {
                 MobileElement noBtn = (MobileElement) driver.findElementById("android:id/button2");
@@ -2670,8 +2662,6 @@ public class VAOF {
                         okBtn.click();
                         deleteOrderPC();
                         orderPC();
-                        deleteOrderBox();
-                        orderBox();
                         summaryMenu.click();
                         MobileElement finalizeEditBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_finalize");
                         finalizeEditBtn.click();
@@ -2703,8 +2693,6 @@ public class VAOF {
                 okBtn.click();
                 deleteOrderPC();
                 orderPC();
-                deleteOrderBox();
-                orderBox();
                 summaryMenu.click();
                 MobileElement finalizeEditBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_finalize");
                 finalizeEditBtn.click();
@@ -2813,10 +2801,10 @@ public class VAOF {
     //Check app: "Trade Inventory" Column
     public void Case43(){
         System.out.println("Testing Case 43");
-        tradeNegativeInventory();
-        tradeInventory();
-        deleteTradeInventory();
-        tradeInventory();
+        tradeNegativeInventoryPC();
+        tradeInventoryPC();
+        deleteTradeInventoryPC();
+        tradeInventoryPC();
         System.out.println("Case 43 Pass");
     }
     //Check app: "Inventory" Column
@@ -2831,16 +2819,7 @@ public class VAOF {
     public void Case45(){
         System.out.println("Testing Case 45");
         swipeRight();
-        for(int z = 1; z<=3; z++) {
-            //1st Product per PC
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-            MobileElement returnFromTrade = (MobileElement) driver.findElementByXPath(orderDrctry + "/android.widget.LinearLayout["+z+"]/android.widget.LinearLayout[2]/android.widget.LinearLayout[1]/android.widget.TextView");
-            returnFromTrade.click();
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            MobileElement Ok = (MobileElement) driver.findElementById("android:id/button1");
-            Ok.click();
-            System.out.println("Trade Inventory "+z+" done");
-        }
+        returnFromTradeNoReturnable();
         System.out.println("Case 45 Pass");
     }
     //Check "Inventory by UOM" Column
@@ -2865,6 +2844,255 @@ public class VAOF {
         stockWeight();
         System.out.println("Case 48 Pass");
     }
+    //Check App: Product Filter by "Must carry per Account Classification"  * N O T   L O G G E D  I N  TO  V I S I T *
+    public void Case11_outOfVisit(){
+        System.out.println("Testing Case 11");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        System.out.println("Product Filter By Must Carry");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement prodFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_product_filter");
+        prodFilter.click();
+        //Click Must Carry
+        MobileElement mustCarry = (MobileElement) driver.findElementById("com.engagia.android:id/txt_filter_must_carry");
+        mustCarry.click();
+        driver.navigate().back();
+        driver.navigate().back();
+        System.out.println("Case 11 Pass");
+        clear();
+    }
+    //Check App: Product Filter by "Product with Historical Sales"  * N O T   L O G G E D  I N  TO  V I S I T *
+    public void Case13_outOfVisit(){
+        System.out.println("Testing Case 13");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        System.out.println("Product Filter By Historical Sales Sort By Volume");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement prodFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_product_filter");
+        prodFilter.click();
+        //Click Historical Sales
+        MobileElement historicalSales = (MobileElement) driver.findElementById("com.engagia.android:id/txt_filter_w_historical_sales");
+        historicalSales.click();
+        driver.navigate().back();
+        driver.navigate().back();
+        System.out.println("Case 13 Pass");
+        clear();
+    }
+    //Check app: Product Filter by "Must carry + Products with Historical Sales"  * N O T   L O G G E D  I N  TO  V I S I T *
+    public void Case14_outOfVisit(){
+        System.out.println("Testing Case 14");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        System.out.println("Product Filter By Must Carry + Historical Sales Sort By Volume");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement prodFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_product_filter");
+        prodFilter.click();
+        //Click Must Carry + Historical Sales
+        MobileElement historicalSales = (MobileElement) driver.findElementById("com.engagia.android:id/txt_filter_must_carry_w_historical_sales");
+        historicalSales.click();
+        driver.navigate().back();
+        driver.navigate().back();
+        System.out.println("Case 14 Pass");
+        clear();
+    }
+    //Check app: Product Filter by "Active Products"   * N O T   L O G G E D  I N  TO  V I S I T *
+    public void Case17_outOfVisit(){
+        System.out.println("Testing Case 17");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        System.out.println("Product Filter By Product Group");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement prodFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_product_filter");
+        prodFilter.click();
+        //Click Active Products
+        MobileElement activeProd = (MobileElement) driver.findElementById("com.engagia.android:id/txt_filter_active");
+        activeProd.click();
+        driver.navigate().back();
+        driver.navigate().back();
+        System.out.println("Case 17 Pass");
+        clear();
+    }
+    //Check app: Product Filter by "Carried Products"   * N O T   L O G G E D  I N  TO  V I S I T *
+    public void Case18_outOfVisit(){
+        System.out.println("Testing Case 18");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        System.out.println("Product Filter By Product Group");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement prodFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_product_filter");
+        prodFilter.click();
+        //Click Carried Products
+        MobileElement carriedProd = (MobileElement) driver.findElementById("com.engagia.android:id/txt_filter_carried");
+        carriedProd.click();
+        driver.navigate().back();
+        driver.navigate().back();
+        System.out.println("Case 18 Pass");
+        clear();
+    }
+    //Check app: Product Filter by "Not Carried Products"   * N O T   L O G G E D  I N  TO  V I S I T *
+    public void Case19_outOfVisit(){
+        System.out.println("Testing Case 19");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        System.out.println("Product Filter By Product Group");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement prodFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_product_filter");
+        prodFilter.click();
+        //Click Not Carried Products
+        MobileElement notCarriedProd = (MobileElement) driver.findElementById("com.engagia.android:id/txt_filter_not_carried");
+        notCarriedProd.click();
+        driver.navigate().back();
+        driver.navigate().back();
+        System.out.println("Case 19 Pass");
+        clear();
+    }
+    //Check app: "Summary Menu"   * N O T   L O G G E D  I N  TO  V I S I T *
+    public void Case32_outOfVisit(){
+        System.out.println("Testing Case 32");
+        MobileElement SummaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
+        SummaryMenu.click();
+        MobileElement preview = (MobileElement) driver.findElementById("com.engagia.android:id/btn_preview");
+        preview.click();
+        MobileElement transactionList = (MobileElement) driver.findElementById("com.engagia.android:id/btn_trnsctn_list");
+        transactionList.click();
+        MobileElement clear = (MobileElement) driver.findElementById("com.engagia.android:id/btn_clear");
+        clear.click();
+        driver.navigate().back();
+        MobileElement finalize = (MobileElement) driver.findElementById("com.engagia.android:id/btn_finalize");
+        finalize.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement snackbarMessage = (MobileElement) driver.findElementById("com.engagia.android:id/snackbar_text");
+        boolean noProdFoundDisplayed = snackbarMessage.isDisplayed();
+        if (noProdFoundDisplayed) {
+            System.out.println("Snack bar message displayed");
+            driver.navigate().back();
+            System.out.println("Case 32 Pass");
+        }
+    }
+    //Check app: Summary Menu "Preview"   * N O T   L O G G E D  I N  TO  V I S I T *
+    public void Case34_outOfVisit(){
+        System.out.println("Testing Case 34");
+        //Click triple Dots
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckDots = (MobileElement) driver.findElementByAccessibilityId("Show action");
+        clckDots.click();
+        //Click preview
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement preview = (MobileElement) driver.findElementById("com.engagia.android:id/btn_preview");
+        preview.click();
+        driver.navigate().back();
+        System.out.println("Case 34 Pass");
+    }
+    //Check app: Summary Menu "Finalize"
+    public void Case35_outOfVisit(){
+        System.out.println("Testing Case 35");
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement summaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
+        summaryMenu.click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement finalize = (MobileElement) driver.findElementById("com.engagia.android:id/btn_finalize");
+        finalize.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement snackbarMessage = (MobileElement) driver.findElementById("com.engagia.android:id/snackbar_text");
+        boolean noProdFoundDisplayed = snackbarMessage.isDisplayed();
+        if (noProdFoundDisplayed) {
+            System.out.println("Snack bar message displayed");
+            driver.navigate().back();
+            System.out.println("Case 35 Pass");
+        }
+    }
+    //Check app: Summary Menu "Transaction List & Window"
+    public void Case37_outOfVisit(){
+        System.out.println("Testing Case 37");
+        //Click order pc and box
+        orderPC_outOfVisit();
+        orderBox_outOfVisit();
+        //Swipping to Return from Trade
+        swipeRight();
+        swipeRight();
+        returnFromTrade_outOfVisit();
+        swipeRight();
+        swipeRight();
+        stockAvail();
+        swipeRight();
+        stockWeight();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement summaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
+        summaryMenu.click();
+        MobileElement transaction = (MobileElement) driver.findElementById("com.engagia.android:id/btn_trnsctn_list");
+        transaction.click();
+        driver.navigate().back();
+        clear();
+        System.out.println("Case 37 Pass");
+    }
+    //Check app: "Order" Column
+    public void Case42_outOfVisit(){
+        System.out.println("Testing Case 42");
+        orderPC_outOfVisit();
+        orderBox_outOfVisit();
+        System.out.println("Case 42 Pass");
+    }
+    //Check app: "Order" Column
+    public void Case43_outOfVisit(){
+        System.out.println("Testing Case 43");
+        tradeInventoryPC_outOfVisit();
+        System.out.println("Case 43 Pass");
+    }
+
 
 
     //Check Summary Menu "Clear All"
@@ -3437,7 +3665,92 @@ public class VAOF {
      }
      */
 
+
+
+
+
     //FUNCTIONS
+    public void vaofLogInToVisit(){
+        for (int x = 1; x <=1; x++) {
+            //Click on Drawer
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement drawerOpen = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
+            drawerOpen.click();
+            //Click on Arrow down btn
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement clckArrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/image_visit_dropdown");
+            clckArrowDown.click();
+            searchBranch();
+            //Click on branch depends on index or int of the loop
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            MobileElement clckOnBranch = (MobileElement) driver.findElementByXPath(branchListDrctry + "/android.widget.RelativeLayout[" + x + "]");
+            clckOnBranch.click();
+            System.out.println(x);
+            //click on Ok
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement okBtn = (MobileElement) driver.findElementById("android:id/button1");
+            okBtn.click();
+
+            //Cases
+            SearchVan();
+//            Case2();
+//            Case3();
+//            Case4();
+//            Case5();
+//            Case6();
+//            Case7();
+//            Case8();
+//            Case9();
+//            Case10();
+//            Case11();
+//            Case12();
+//            Case13();
+//            Case14();
+//            Case15();
+//            Case16();
+//            Case17();
+//            Case18();
+//            Case19();
+//            Case20();
+//            Case21();
+//            Case22();
+//            Case23();
+//            Case24();
+//            Case25();
+//            Case26();
+//            Case27();
+//            Case28();
+//            Case29();
+//            Case30();
+//            Case31();
+//            Case32();
+//            Case33();
+//            Case34();
+//            Case35();
+//            Case37();
+//            Case39();
+//            Case41();
+//            Case42();
+//            Case43();
+//            Case44();
+//            Case45();
+//            Case46();
+//            Case47();
+//            Case48();
+            //Log out to visit
+            completeOrderTransactionWithPaymentCollection();
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement drawerOpen2 = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
+            drawerOpen2.click();
+            swipeUp();
+            System.out.println("Branch " +x+ " done!");
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            clckArrowDown.click();
+            //Log out
+            MobileElement logoutBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_visit_logout");
+            logoutBtn.click();
+        }
+    }
     //Search By Functions
     private void searchByName(){
         System.out.println("Searching by Name");
@@ -3996,94 +4309,152 @@ public class VAOF {
     //Order functions
     private void orderPC(){
         for(int z = 1; z<=3; z++) {
-            //1st Product per PC
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-            MobileElement orderPC = (MobileElement) driver.findElementByXPath(orderDrctry + "/android.widget.LinearLayout["+z+"]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView");
-            orderPC.click();
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            //Enter random numbers
-            randomNum();
-            MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
-            btnOk.click();
-            System.out.println("Order PC "+z+" done");
+            try {
+                //1st Product per PC
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement orderPC = (MobileElement) driver.findElementByXPath(orderDrctry + "/android.widget.LinearLayout[" + z + "]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView");
+                orderPC.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                //Enter random numbers
+                randomNum();
+                MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
+                btnOk.click();
+                System.out.println("Order PC " + z + " done");
+            }
+            catch (NoSuchElementException e){
+                System.out.println("Can't Find Element");
+            }
         }
     }
     private void orderNegativePC(){
         for(int z = 1; z<=3; z++) {
-            //1st Product per PC
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-            MobileElement orderPC = (MobileElement) driver.findElementByXPath(orderDrctry + "/android.widget.LinearLayout["+z+"]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView");
-            orderPC.click();
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            //Enter negative numbers
-            MobileElement subtractBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_subtract");
-            subtractBtn.click();
-            randomNum();
-            MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
-            btnOk.click();
-            driver.navigate().back();
-            System.out.println("Order Negative PC "+z+" done");
+            try {
+                //1st Product per PC
+                driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+                MobileElement orderPC = (MobileElement) driver.findElementByXPath(orderDrctry + "/android.widget.LinearLayout[" + z + "]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView");
+                orderPC.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                //Enter negative numbers
+                MobileElement subtractBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_subtract");
+                subtractBtn.click();
+                randomNum();
+                MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
+                btnOk.click();
+                driver.navigate().back();
+                System.out.println("Order Negative PC " + z + " done");
+            }
+            catch (NoSuchElementException e){
+                System.out.println("Can't Find Element");
+            }
         }
     }
     private void deleteOrderPC(){
         for(int z = 1; z<=3; z++) {
-            //1st Product per PC
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-            MobileElement orderPC = (MobileElement) driver.findElementByXPath(orderDrctry + "/android.widget.LinearLayout["+z+"]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView");
-            orderPC.click();
-            //Click Delete btn
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            MobileElement deleteBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_clr");
-            deleteBtn.click();
-            MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
-            btnOk.click();
-            System.out.println("Delete Order PC "+z+" done");
+            try {
+                //1st Product per PC
+                driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+                MobileElement orderPC = (MobileElement) driver.findElementByXPath(orderDrctry + "/android.widget.LinearLayout["+z+"]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView");
+                orderPC.click();
+                //Click Delete btn
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement deleteBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_clr");
+                deleteBtn.click();
+                MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
+                btnOk.click();
+                System.out.println("Delete Order PC "+z+" done");
+            }
+            catch (NoSuchElementException e){
+                System.out.println("Can't Find Element");
+            }
         }
     }
     private void orderBox(){
         for(int z = 1; z<=3; z++) {
-            //1st Product per PC
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-            MobileElement orderBox = (MobileElement) driver.findElementByXPath(orderDrctry + "/android.widget.LinearLayout["+z+"]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView");
-            orderBox.click();
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            //Enter random numbers
-            randomNum();
-            MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
-            btnOk.click();
-            System.out.println("Order Box "+z+" done");
+            try {
+                //1st Product per Box
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement orderBox = (MobileElement) driver.findElementByXPath(orderDrctry + "/android.widget.LinearLayout[" + z + "]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView");
+                orderBox.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                //Enter random numbers
+                randomNum();
+                MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
+                btnOk.click();
+                System.out.println("Order Box " + z + " done");
+            }
+            catch (NoSuchElementException e){
+                System.out.println("Can't Find Element");
+            }
         }
     }
     private void orderNegativeBox(){
         for(int z = 1; z<=3; z++) {
+            try {
             //1st Product per PC
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-            MobileElement orderBox = (MobileElement) driver.findElementByXPath(orderDrctry + "/android.widget.LinearLayout["+z+"]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView");
-            orderBox.click();
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            //Enter negative numbers
-            MobileElement subtractBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_subtract");
-            subtractBtn.click();
-            randomNum();
-            MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
-            btnOk.click();
-            driver.navigate().back();
-            System.out.println("Order Negative Box "+z+" done");
+                driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+                MobileElement orderBox = (MobileElement) driver.findElementByXPath(orderDrctry + "/android.widget.LinearLayout["+z+"]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView");
+                orderBox.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                //Enter negative numbers
+                MobileElement subtractBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_subtract");
+                subtractBtn.click();
+                randomNum();
+                MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
+                btnOk.click();
+                driver.navigate().back();
+                System.out.println("Order Negative Box "+z+" done");
+            }
+            catch (NoSuchElementException e){
+                System.out.println("Can't Find Element");
+            }
         }
     }
     private void deleteOrderBox(){
         for(int z = 1; z<=3; z++) {
-            //1st Product per PC
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-            MobileElement orderBox = (MobileElement) driver.findElementByXPath(orderDrctry + "/android.widget.LinearLayout["+z+"]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView");
-            orderBox.click();
-            //Click Delete btn
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            MobileElement deleteBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_clr");
-            deleteBtn.click();
-            MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
-            btnOk.click();
-            System.out.println("Delete Order Box "+z+" done");
+            try {
+                //1st Product per PC
+                driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+                MobileElement orderBox = (MobileElement) driver.findElementByXPath(orderDrctry + "/android.widget.LinearLayout[" + z + "]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView");
+                orderBox.click();
+                //Click Delete btn
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement deleteBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_clr");
+                deleteBtn.click();
+                MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
+                btnOk.click();
+                System.out.println("Delete Order Box " + z + " done");
+            }
+            catch (NoSuchElementException e){
+                System.out.println("Can't Find Element");
+            }
+        }
+    }
+    private void orderPC_outOfVisit(){
+        for(int z = 1; z<=3; z++) {
+            try {
+                //1st Product per PC
+                driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+                MobileElement orderPC = (MobileElement) driver.findElementByXPath(orderDrctry + "/android.widget.LinearLayout[" + z + "]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView");
+                orderPC.click();
+                System.out.println("Order PC out of Visit " + z + " done");
+            }
+            catch (NoSuchElementException e){
+                System.out.println("Can't Find Element");
+            }
+        }
+    }
+    private void orderBox_outOfVisit(){
+        for(int z = 1; z<=3; z++) {
+            try {
+                //1st Product per PC
+                driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+                MobileElement orderBox = (MobileElement) driver.findElementByXPath(orderDrctry + "/android.widget.LinearLayout["+z+"]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView");
+                orderBox.click();
+                System.out.println("Order Box out of Visit "+z+" done");
+            }
+            catch (NoSuchElementException e){
+                System.out.println("Can't Find Element");
+            }
         }
     }
     private void viewProductSummary(){
@@ -4097,7 +4468,7 @@ public class VAOF {
             driver.navigate().back();
         }
     }
-    private void completeOrderTransaction(){
+    private void completeOrderTransactionWithPaymentCollection(){
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         MobileElement arrow = (MobileElement) driver.findElementById("com.engagia.android:id/custom_table_next_pagination");
         while(arrow != null) {
@@ -4120,9 +4491,40 @@ public class VAOF {
                 break;
             }
         }
+        //Insert finalize here
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement summaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
+        summaryMenu.click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement finalize = (MobileElement) driver.findElementById("com.engagia.android:id/btn_finalize");
+        finalize.click();
+        //Try catch for deal
+        try{
+            MobileElement dealBox = (MobileElement) driver.findElementByXPath("//android.widget.LinearLayout[1]/android.widget.RelativeLayout/android.widget.CheckBox");
+            dealBox.click();
+            MobileElement nextBtn = (MobileElement) driver.findElementById("android:id/button1");
+            nextBtn.click();
+            MobileElement reward = (MobileElement) driver.findElementByXPath("//android.support.v7.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.RadioGroup");
+            reward.click();
+            MobileElement ok = (MobileElement) driver.findElementById("android:id/button1");
+            ok.click();
+        }
+        catch (NoSuchElementException e){
+            System.out.println("Walang deals");
+        }
+        finalizeOrderInput();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement btnSave = (MobileElement) driver.findElementById("com.engagia.android:id/btn_save");
+        btnSave.click();
+        MobileElement yesBtn = (MobileElement) driver.findElementById("android:id/button1");
+        yesBtn.click();
+        yesBtn.click();
+        //INSERT APPLY PAYMENT METHOD HERE
+        applyPayment();
+        finalizeOrder();
     }
     //Trade Inventory
-    private void tradeInventory(){
+    private void tradeInventoryPC(){
         for(int z = 1; z<=3; z++) {
             //1st Product per PC
             driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -4136,7 +4538,7 @@ public class VAOF {
             System.out.println("Trade Inventory "+z+" done");
         }
     }
-    private void deleteTradeInventory(){
+    private void deleteTradeInventoryPC(){
         for(int z = 1; z<=3; z++) {
             //1st Product per PC
             driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -4151,7 +4553,7 @@ public class VAOF {
             System.out.println("Delete Trade Inventory "+z+" done");
         }
     }
-    private void tradeNegativeInventory(){
+    private void tradeNegativeInventoryPC(){
         for(int z = 1; z<=3; z++) {
             //1st Product per PC
             driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -4166,6 +4568,15 @@ public class VAOF {
             btnOk.click();
             driver.navigate().back();
             System.out.println("Trade Negative Inventory "+z+" done");
+        }
+    }
+    private void tradeInventoryPC_outOfVisit(){
+        for(int z = 1; z<=3; z++) {
+            //1st Product per PC
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            MobileElement tradeInventoryPC1 = (MobileElement) driver.findElementByXPath(orderDrctry + "/android.widget.LinearLayout["+z+"]/android.widget.LinearLayout[2]/android.widget.LinearLayout[1]/android.widget.TextView");
+            tradeInventoryPC1.click();
+            System.out.println("Trade Inventory "+z+" done");
         }
     }
     //Inventory
@@ -4193,6 +4604,42 @@ public class VAOF {
             System.out.println("Trade Inventory "+z+" done");
         }
     }
+    //Return From Trade with product with no bottle
+    private void returnFromTradeNoReturnable(){
+        //PC
+        for(int z = 1; z<=3; z++) {
+            //1st Product per PC
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            MobileElement returnFromTrade = (MobileElement) driver.findElementByXPath(orderDrctry + "/android.widget.LinearLayout["+z+"]/android.widget.LinearLayout[2]/android.widget.LinearLayout[1]/android.widget.TextView");
+            returnFromTrade.click();
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            MobileElement Ok = (MobileElement) driver.findElementById("android:id/button1");
+            Ok.click();
+            System.out.println("Trade Inventory "+z+" done");
+        }
+        //Box
+        for(int x = 1; x<=3; x++) {
+            //1st Product per PC
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            MobileElement returnFromTrade = (MobileElement) driver.findElementByXPath(orderDrctry + "/android.widget.LinearLayout["+x+"]/android.widget.LinearLayout[2]/android.widget.LinearLayout[2]/android.widget.TextView");
+            returnFromTrade.click();
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            MobileElement Ok = (MobileElement) driver.findElementById("android:id/button1");
+            Ok.click();
+            System.out.println("Trade Inventory "+x+" done");
+        }
+    }
+    private void returnFromTrade_outOfVisit(){
+        for(int z = 1; z<=3; z++) {
+            //PC AND BOX OF RETURN FROM TRADE
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            MobileElement returnFromTradePC = (MobileElement) driver.findElementByXPath(orderDrctry + "/android.widget.LinearLayout["+z+"]/android.widget.LinearLayout[2]/android.widget.LinearLayout[1]/android.widget.TextView");
+            returnFromTradePC.click();
+            MobileElement returnFromTradeBox = (MobileElement) driver.findElementByXPath(orderDrctry + "/android.widget.LinearLayout["+z+"]/android.widget.LinearLayout[2]/android.widget.LinearLayout[1]/android.widget.TextView");
+            returnFromTradeBox.click();
+            System.out.println("Return From Trade "+z+" done");
+        }
+    }
     //Stock Availability
     private void stockAvail(){
         for(int z = 1; z<=3; z++) {
@@ -4214,6 +4661,18 @@ public class VAOF {
         }
     }
 
+
+    private void finalizeOrderInput(){
+        MobileElement poNumber = (MobileElement) driver.findElementById("com.engagia.android:id/input_po_number");
+        poNumber.sendKeys("123456");
+        MobileElement salesInvoiceNumber = (MobileElement) driver.findElementById("com.engagia.android:id/input_si_number");
+        salesInvoiceNumber.sendKeys("654321");
+        MobileElement custName = (MobileElement) driver.findElementById("com.engagia.android:id/input_customer_name");
+        custName.sendKeys("John Roe");
+        MobileElement contactDetails = (MobileElement) driver.findElementById("com.engagia.android:id/input_contact_detail");
+        contactDetails.sendKeys("0917 XXX XXXX");
+        driver.hideKeyboard();
+    }
     private void addDeduction(){
         System.out.println("Adding Deduction");
         //ADD/EDIT Deduction
@@ -5346,7 +5805,7 @@ public class VAOF {
         MobileElement back = (MobileElement) driver.findElementById("com.engagia.android:id/btn_back");
         back.click();
         driver.navigate().back();
-        System.out.println("Clear done");
+        System.out.println("Preview done");
     }
     public void finalize(){
         //Click triple Dots
@@ -5386,113 +5845,7 @@ public class VAOF {
                 break;
         }
     }
-    public void vaofLogInToVisit(){
-        for (int x = 1; x <=1; x++) {
-            //Click on Drawer
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement drawerOpen = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
-            drawerOpen.click();
-            //Click on Arrow down btn
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement clckArrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/image_visit_dropdown");
-            clckArrowDown.click();
-            searchBranch();
-            //Click on branch depends on index or int of the loop
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-            MobileElement clckOnBranch = (MobileElement) driver.findElementByXPath(branchListDrctry + "/android.widget.RelativeLayout[" + x + "]");
-            clckOnBranch.click();
-            System.out.println(x);
-            //click on Ok
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement okBtn = (MobileElement) driver.findElementById("android:id/button1");
-            okBtn.click();
 
-            //Cases
-            SearchVan();
-            Case2();
-            Case3();
-            Case4();
-            Case5();
-            Case6();
-            Case7();
-            Case8();
-            Case9();
-            Case10();
-            Case11();
-            Case12();
-            Case13();
-            Case14();
-            Case15();
-            Case16();
-            Case17();
-            Case18();
-            Case19();
-            Case20();
-            Case21();
-            Case22();
-            Case23();
-            Case24();
-            Case25();
-            Case26();
-            Case27();
-            Case28();
-            Case29();
-            Case30();
-            Case31();
-            Case32();
-            Case33();
-            Case34();
-            Case35();
-            Case37();
-            Case39();
-            Case41();
-            Case42();
-            Case43();
-            Case44();
-            Case45();
-            Case46();
-            Case47();
-            Case48();
-//
-//            Case29(); //<---- need swipe on myphone uno
-////            //Summary  Three dots functions
-////            //Test this vv
-//            Case30();
-////            //lagyan ng transactions
-//            Case31();
-//            Case32();
-//            Case33();
-////            Case34(); //Adjust should
-////            //Qualified DEALS
-//            Case35();
-//////////        Case36(); //manual test this
-////            Case37();
-////            Case38();
-////            Case39();
-////            Case41();
-////        //need swipe
-////            Case42();
-////            Case43();
-//            Case44();
-//            Case48();
-//            Case49();
-//            orderBoxPCa();
-//            orderPCa();
-//            orderBox();
-
-            //Log out to visit
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement drawerOpen2 = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
-            drawerOpen2.click();
-            swipeUp();
-            System.out.println("Branch " +x+ " done!");
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            clckArrowDown.click();
-            //Log out
-            MobileElement logoutBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_visit_logout");
-            logoutBtn.click();
-        }
-    }
     private static int rand(int bound) {
         return (int) (Math.random() * bound);
     }
