@@ -1417,7 +1417,6 @@ public class VAOF {
             }
         }
     }
-
     /**
      * INFORMATION FILTER SHOULD BE AT THE LAST PART AFTER ORDERING/PUTTING STOCKS
      */
@@ -3650,24 +3649,6 @@ public class VAOF {
         SearchVanSum();
 
     }
-    /**
-     //Check Deals no Steps to Execute on DOVOP
-     public void Case50(){
-     }
-     //Check Discount
-     public void Case51(){
-     }
-     //Check Product Returnable
-     public void Case52(){
-     }
-     //Check Summary Menu "Salesman Discount'
-     public void Case53(){
-     }
-     */
-
-
-
-
 
     //FUNCTIONS
     public void vaofLogInToVisit(){
@@ -3693,52 +3674,54 @@ public class VAOF {
 
             //Cases
             SearchVan();
-//            Case2();
-//            Case3();
-//            Case4();
-//            Case5();
-//            Case6();
-//            Case7();
-//            Case8();
-//            Case9();
-//            Case10();
-//            Case11();
-//            Case12();
-//            Case13();
-//            Case14();
-//            Case15();
-//            Case16();
-//            Case17();
-//            Case18();
-//            Case19();
-//            Case20();
-//            Case21();
-//            Case22();
-//            Case23();
-//            Case24();
-//            Case25();
-//            Case26();
-//            Case27();
-//            Case28();
-//            Case29();
-//            Case30();
-//            Case31();
-//            Case32();
-//            Case33();
-//            Case34();
-//            Case35();
-//            Case37();
-//            Case39();
-//            Case41();
-//            Case42();
-//            Case43();
-//            Case44();
-//            Case45();
-//            Case46();
-//            Case47();
-//            Case48();
+            Case2();
+            Case3();
+            Case4();
+            Case5();
+            Case6();
+            Case7();
+            Case8();
+            Case9();
+            Case10();
+            Case11();
+            Case12();
+            Case13();
+            Case14();
+            Case15();
+            Case16();
+            Case17();
+            Case18();
+            Case19();
+            Case20();
+            Case21();
+            Case22();
+            Case23();
+            Case24();
+            Case25();
+            Case26();
+            Case27();
+            Case28();
+            Case29();
+            Case30();
+            Case31();
+            Case32();
+            Case33();
+            Case34();
+            Case35();
+            Case37();
+            Case39();
+            Case41();
+            Case42();
+            Case43();
+            Case44();
+            Case45();
+            Case46();
+            Case47();
+            Case48();
+            clear();
             //Log out to visit
-            completeOrderTransactionWithPaymentCollection();
+            completeOrderTransactionWithPayment();
+            completeOrderTransactionWithOutPayment();
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             MobileElement drawerOpen2 = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
             drawerOpen2.click();
@@ -4468,7 +4451,8 @@ public class VAOF {
             driver.navigate().back();
         }
     }
-    private void completeOrderTransactionWithPaymentCollection(){
+
+    private void completeOrderTransactionWithPayment(){
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         MobileElement arrow = (MobileElement) driver.findElementById("com.engagia.android:id/custom_table_next_pagination");
         while(arrow != null) {
@@ -4522,6 +4506,62 @@ public class VAOF {
         //INSERT APPLY PAYMENT METHOD HERE
         applyPayment();
         finalizeOrder();
+    }
+    private void completeOrderTransactionWithOutPayment(){
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement arrow = (MobileElement) driver.findElementById("com.engagia.android:id/custom_table_next_pagination");
+        while(arrow != null) {
+            orderPC();
+            orderBox();
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            try {
+                MobileElement page = (MobileElement) driver.findElementById("com.engagia.android:id/custom_table_next_pagination");
+                if (page != null) {
+                    //NXT PAGE
+                    MobileElement nxtPage = (MobileElement) driver.findElementById("com.engagia.android:id/custom_table_next_pagination");
+                    nxtPage.click();
+                    System.out.println("Next Page");
+                } else {
+                    System.out.println("STAPH");
+                    break;
+                }
+            } catch (NoSuchElementException e) {
+                System.out.println("Save");
+                break;
+            }
+        }
+        //Insert finalize here
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement summaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
+        summaryMenu.click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement finalize = (MobileElement) driver.findElementById("com.engagia.android:id/btn_finalize");
+        finalize.click();
+        //Try catch for deal
+        try{
+            MobileElement dealBox = (MobileElement) driver.findElementByXPath("//android.widget.LinearLayout[1]/android.widget.RelativeLayout/android.widget.CheckBox");
+            dealBox.click();
+            MobileElement nextBtn = (MobileElement) driver.findElementById("android:id/button1");
+            nextBtn.click();
+            MobileElement reward = (MobileElement) driver.findElementByXPath("//android.support.v7.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.RadioGroup");
+            reward.click();
+            MobileElement ok = (MobileElement) driver.findElementById("android:id/button1");
+            ok.click();
+        }
+        catch (NoSuchElementException e){
+            System.out.println("Walang deals");
+        }
+        finalizeOrderInput();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement btnSave = (MobileElement) driver.findElementById("com.engagia.android:id/btn_save");
+        btnSave.click();
+        MobileElement yesBtn = (MobileElement) driver.findElementById("android:id/button1");
+        yesBtn.click();
+        MobileElement noBtn = (MobileElement) driver.findElementById("android:id/button2");
+        noBtn.click();
+        MobileElement backBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_back");
+        backBtn.click();
+        yesBtn.click();
     }
     //Trade Inventory
     private void tradeInventoryPC(){

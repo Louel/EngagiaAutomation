@@ -23,6 +23,13 @@ public class BAOF {
     AppiumDriver driver;
 //    WebDriverWait wait = new WebDriverWait(driver, 5);
     String search = "Booking Acc";
+    String[] productNames = {"Anlene", "lene" , "lack" , "Ahoy" , "lover", "soda", "banana" , "Tos" , "Mentos"};
+    String[] productShortNames = {"Coke" , "oke" , "beEr" , "RC"};
+    String[] productCode = {"51232143" , "51232208" , "535353" , "545454" , "565656" , "686868" , "829382"};
+    String[] productBarCode = {"10182017015" , "100000216" , "10182017010" , "10182017031" , "1018201704" , "131213" , "242424"};
+    String[] productDescrip = {"Soda", "Cracker" , "Biscuit" , "Milk" , "Candy" , "Chocolate"};
+    String[] productBrand = {"MEGA SARDINES", "Clover Chips" , "Exo Candy" , "Mentos" , "Coca-Cola" , "Moutain Dew"};
+    String[] productKeyword = {"Coke", "Sprite" , "Beer" , "Crispy Fishbol Flavor" , "Soft Drink" , "Piattos"};
     /**
      * 1. Prod PC = "/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]" +
      *                 "/android.widget.LinearLayout[1]/android.widget.TextView"
@@ -75,7 +82,159 @@ public class BAOF {
         loginToVisit();
     }
     //Cases
+    //Check "Search by Name"
+    //Check App: "Search by Name"
+    public void Case2(){
+        System.out.println("Testing Case 2");
+        //Search By Name
+        searchByName();
+        //Search a product Name
+        MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+        searchField.sendKeys(productNames[rand(productNames.length-1)]);
+        //Click on search button
+        MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+        clckSearch.click();
+        searchField.sendKeys("abcdefg123");
+        clckSearch.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/snackbar_text");
+        boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+        if (noProdFoundDisplayed) {
+            System.out.println("No Products Found");
+            System.out.println("Case 2 Pass");
+        }
+    }
+    //Check App: "Search by Short Name"
+    public void Case3(){
+        System.out.println("Testing Case 3");
+        //Search By Short Name
+        searchByShortName();
+        //Search a product Short Name
+        MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+        searchField.sendKeys(productShortNames[rand(productShortNames.length-1)]);
+        //Click on search button
+        MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+        clckSearch.click();
+        searchField.sendKeys("abcdefg123");
+        clckSearch.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/snackbar_text");
+        boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+        if (noProdFoundDisplayed) {
+            System.out.println("No Products Found");
+            System.out.println("Case 3 Pass");
+        }
+    }
+    //Check App: "Search by Code"
+    public void Case4(){
+        System.out.println("Testing Case 4");
+        //Search By Code
+        searchByCode();
+        //Search a product Code
+        MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+        searchField.sendKeys(productCode[rand(productCode.length-1)]);
+        //Click on search button
+        MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+        clckSearch.click();
+        searchField.sendKeys("abcdefg123");
+        clckSearch.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/snackbar_text");
+        boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+        if (noProdFoundDisplayed) {
+            System.out.println("No Products Found");
+            System.out.println("Case 4 Pass");
+        }
+    }
+    //Check App: "Search by Barcode"
+    public void Case5(){
+        System.out.println("Testing Case 5");
+        //Search By Barcode
+        searchByBarcode();
+        //Search a product Barcode
+        MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+        searchField.sendKeys(productBarCode[rand(productBarCode.length-1)]);
+        //Click on search button
+        MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+        clckSearch.click();
+        searchField.sendKeys("abcdefg123");
+        clckSearch.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/snackbar_text");
+        boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+        if (noProdFoundDisplayed) {
+            System.out.println("No Products Found");
+            System.out.println("Case 5 Pass");
+        }
+    }
+    //Check App: "Search by Description"
+    public void Case6(){
+        System.out.println("Testing Case 6");
+        //Search By Description
+        searchByDescription();
+        //Search a product Description
+        MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+        searchField.sendKeys(productDescrip[rand(productDescrip.length-1)]);
+        //Click on search button
+        MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+        clckSearch.click();
+        searchField.sendKeys("abcdefg123");
+        clckSearch.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/snackbar_text");
+        boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+        if (noProdFoundDisplayed) {
+            System.out.println("No Products Found");
+            System.out.println("Case 6 Pass");
+        }
+    }
+    //Check App: "Search by Brand"
+    public void Case7(){
+        System.out.println("Testing Case 7");
+        //Search By Brand
+        searchByBrand();
+        //Search a product Brand
+        MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+        searchField.sendKeys(productBrand[rand(productBrand.length-1)]);
+        //Click on search button
+        MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+        clckSearch.click();
+        searchField.sendKeys("abcdefg123");
+        clckSearch.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/snackbar_text");
+        boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+        if (noProdFoundDisplayed) {
+            System.out.println("No Products Found");
+            System.out.println("Case 7 Pass");
+        }
+    }
+    //Check App: "Search by Keyword"
+    public void Case8(){
+        System.out.println("Testing Case 8");
+        //Search By Keyword
+        searchByKeyword();
+        //Search a product Keyword
+        MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+        searchField.sendKeys(productKeyword[rand(productKeyword.length-1)]);
+        //Click on search button
+        MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+        clckSearch.click();
+        searchField.sendKeys("abcdefg123");
+        clckSearch.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/snackbar_text");
+        boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+        if (noProdFoundDisplayed) {
+            System.out.println("No Products Found");
+            clear();
+            System.out.println("Case 8 Pass");
+        }
+    }
+    //
+    public void Case9(){
 
+    }
     //Functions
     public void SearchBAOF(){
         //click Hamburger Menu
@@ -92,6 +251,109 @@ public class BAOF {
         MobileElement clckRes = (MobileElement) driver.findElementByAccessibilityId("Booking Account Order Form");
         clckRes.click();
     }
+    //Search By Functions
+    private void searchByName(){
+        System.out.println("Searching by Name");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement name = (MobileElement) driver.findElementByXPath("//android.widget.RadioGroup/android.widget.RadioButton[1]");
+        name.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement filterBtn = (MobileElement) driver.findElementById("android:id/button1");
+        filterBtn.click();
+    }
+    private void searchByShortName(){
+        System.out.println("Searching by Short Name");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement shortName = (MobileElement) driver.findElementByXPath("//android.widget.RadioGroup/android.widget.RadioButton[2]");
+        shortName.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement filterBtn = (MobileElement) driver.findElementById("android:id/button1");
+        filterBtn.click();
+    }
+    private void searchByCode(){
+        System.out.println("Searching by Code");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement code = (MobileElement) driver.findElementByXPath("//android.widget.RadioGroup/android.widget.RadioButton[3]");
+        code.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement filterBtn = (MobileElement) driver.findElementById("android:id/button1");
+        filterBtn.click();
+    }
+    private void searchByBarcode(){
+        System.out.println("Searching by Barcode");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement barcode = (MobileElement) driver.findElementByXPath("//android.widget.RadioGroup/android.widget.RadioButton[4]");
+        barcode.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement filterBtn = (MobileElement) driver.findElementById("android:id/button1");
+        filterBtn.click();
+    }
+    private void searchByDescription(){
+        System.out.println("Searching by Description");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement description = (MobileElement) driver.findElementByXPath("//android.widget.RadioGroup/android.widget.RadioButton[5]");
+        description.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement filterBtn = (MobileElement) driver.findElementById("android:id/button1");
+        filterBtn.click();
+    }
+    private void searchByBrand(){
+        System.out.println("Searching by Brand");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement brand = (MobileElement) driver.findElementByXPath("//android.widget.RadioGroup/android.widget.RadioButton[6]");
+        brand.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement filterBtn = (MobileElement) driver.findElementById("android:id/button1");
+        filterBtn.click();
+    }
+    private void searchByKeyword(){
+        System.out.println("Searching by Keyword");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        swipeDown();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement keyword = (MobileElement) driver.findElementByXPath("//android.widget.RadioGroup/android.widget.RadioButton[7]");
+        keyword.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement filterBtn = (MobileElement) driver.findElementById("android:id/button1");
+        filterBtn.click();
+    }
+
+    public void clear(){
+        //Click triple Dots
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckDots = (MobileElement) driver.findElementByAccessibilityId("Show action");
+        clckDots.click();
+        //Click ClearAll
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement btnClear = (MobileElement) driver.findElementById("com.engagia.android:id/btn_clear");
+        btnClear.click();
+        //Click CLEAR ALL
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clear = (MobileElement) driver.findElementById("android:id/button1");
+        clear.click();
+        System.out.println("Clear done");
+    }
+
 
     /**
      *THIS FUNCTIONS IS FOR DEMO ONLY
@@ -221,7 +483,7 @@ public class BAOF {
 
 
     }
-    public void searchByName(){
+    public void searchByNameDemo(){
         System.out.println("Searching by Name");
         //Click on arrow down or Filter by button
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -241,7 +503,7 @@ public class BAOF {
         MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
         searchBtn.click();
     }
-    public void searchByCode(){
+    public void searchByCodeDemo(){
         System.out.println("Searching by Code");
         //Click on arrow down or Filter by button
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -308,10 +570,10 @@ public class BAOF {
     private void demoFunction(){
         System.out.println("Running Demo...");
 //        filterByMustCarry();
-//        searchByName();
+//        searchByNameDemo();
         bookingOrder();
 //        filterByDocuSeq();
-//        searchByCode();
+//        searchByCodeDemo();
         bookingTradeInventory();
         orderFinalize();
         System.out.println("Demo finish running...");
@@ -369,6 +631,22 @@ public class BAOF {
             touchAction.longPress(new PointOption().withCoordinates(x, y1)).moveTo(new PointOption().withCoordinates(x, y2)).release().perform();
         }
     }
+    private void swipeDown(){
+        Dimension dim = driver.manage().window().getSize();
+        int width = dim.getWidth();
+        int height = dim.getHeight();
+        int x = (int) (width * 0.50);
+        int y1 = (int) (height * 0.80);
+        int y2 = (int) (height * 0.50);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement element1 = (MobileElement) driver.findElementById("com.engagia.android:id/buttonPanel");
+        boolean element1Displayed = element1.isDisplayed();
+        if (element1Displayed) {
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            TouchAction touchAction = new TouchAction(driver);
+            touchAction.longPress(new PointOption().withCoordinates(x, y1)).moveTo(new PointOption().withCoordinates(x, y2)).release().perform();
+        }
+    }
     public void swipeRight(){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
@@ -386,5 +664,8 @@ public class BAOF {
             //try this 300
             touchAction.longPress(new PointOption().withCoordinates(x1, y)).moveTo(new PointOption().withCoordinates(x2, y)).release().perform();
         }
+    }
+    private static int rand(int bound) {
+        return (int) (Math.random() * bound);
     }
 }
