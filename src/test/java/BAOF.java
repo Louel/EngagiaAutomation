@@ -231,6 +231,10 @@ public class BAOF {
             System.out.println("Case 8 Pass");
         }
     }
+    //
+    public void Case9(){
+
+    }
     //Functions
     public void SearchBAOF(){
         //click Hamburger Menu
