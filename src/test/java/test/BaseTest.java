@@ -74,11 +74,11 @@ public class BaseTest {
 //        driver = new AppiumDriver(new URL("http://192.168.1.33:4444/wd/hub"), capabilities);
 //        test.ThreadLocalDriver.setTLDriver(new AndroidDriver (new URL("http://127.0.0.1:4444/wd/hub"),capabilities));
 
-        URL url = new URL("http://192.168.1.33:4444/wd/hub");
+        URL url = new URL("http://192.168.0.167:4444/wd/hub");
 
         ThreadLocalDriver.setTLDriver(new AndroidDriver(url , capabilities));
         wait = new WebDriverWait(ThreadLocalDriver.getTLDriver(), 20);
-        driver = new AppiumDriver(new URL("http://192.168.1.33:4444/wd/hub"), capabilities);
+        driver = new AppiumDriver(new URL("http://192.168.0.167:4444/wd/hub"), capabilities);
 
 //        driver = new AppiumDriver(url , capabilities);
 //        ThreadLocalDriver.setTLDriver((AndroidDriver) new AppiumDriver(url , capabilities));
