@@ -23,13 +23,14 @@ public class BAOF {
     AppiumDriver driver;
 //    WebDriverWait wait = new WebDriverWait(driver, 5);
     String search = "Booking Acc";
-    String[] productNames = {"Anlene", "lene" , "lack" , "Ahoy" , "lover", "soda", "banana" , "Tos" , "Mentos"};
+    String[] productNames = {"Anlene", "lene" , "lack" , "lover", "soda", "banana" , "Tos" , "Mentos"};
     String[] productShortNames = {"Coke" , "oke" , "beEr" , "RC"};
     String[] productCode = {"51232143" , "51232208" , "535353" , "545454" , "565656" , "686868" , "829382"};
     String[] productBarCode = {"10182017015" , "100000216" , "10182017010" , "10182017031" , "1018201704" , "131213" , "242424"};
     String[] productDescrip = {"Soda", "Cracker" , "Biscuit" , "Milk" , "Candy" , "Chocolate"};
     String[] productBrand = {"MEGA SARDINES", "Clover Chips" , "Exo Candy" , "Mentos" , "Coca-Cola" , "Moutain Dew"};
     String[] productKeyword = {"Coke", "Sprite" , "Beer" , "Crispy Fishbol Flavor" , "Soft Drink" , "Piattos"};
+    String[] productPrincipal = {"URC" , "Coca-Cola Corp." , "Pepsi Cola Products Philippines" , "MFC" };
     /**
      * 1. Prod PC = "/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]" +
      *                 "/android.widget.LinearLayout[1]/android.widget.TextView"
@@ -63,11 +64,11 @@ public class BAOF {
     @Before
     public void setUp() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability("deviceName","Samsung Galaxy J1 (2016)");
-        capabilities.setCapability("deviceName","HUAWEI");
+        capabilities.setCapability("deviceName","Samsung Galaxy J1 (2016)");
+//        capabilities.setCapability("deviceName","HUAWEI");
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, "Android");
 //        capabilities.setCapability("platformVersion", "5.1.1");
-        capabilities.setCapability("platformVersion", "8.0.0");
+        capabilities.setCapability("platformVersion", "7.0");
         capabilities.setCapability("appPackage", "com.engagia.android");
         capabilities.setCapability("appActivity","com.engagia.android.activities.LoginActivity");
         capabilities.setCapability("noSign", true);
@@ -82,10 +83,9 @@ public class BAOF {
         loginToVisit();
     }
     //Cases
-    //Check "Search by Name"
     //Check App: "Search by Name"
-    public void Case2(){
-        System.out.println("Testing Case 2");
+    public void Case9(){
+        System.out.println("Testing Case 9");
         //Search By Name
         searchByName();
         //Search a product Name
@@ -97,16 +97,18 @@ public class BAOF {
         searchField.sendKeys("abcdefg123");
         clckSearch.click();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/snackbar_text");
+        MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
         boolean noProdFoundDisplayed = noProdFound.isDisplayed();
         if (noProdFoundDisplayed) {
             System.out.println("No Products Found");
-            System.out.println("Case 2 Pass");
+            MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+            dismissBtn.click();
+            System.out.println("Case 9 Pass");
         }
     }
     //Check App: "Search by Short Name"
-    public void Case3(){
-        System.out.println("Testing Case 3");
+    public void Case10(){
+        System.out.println("Testing Case 10");
         //Search By Short Name
         searchByShortName();
         //Search a product Short Name
@@ -118,16 +120,18 @@ public class BAOF {
         searchField.sendKeys("abcdefg123");
         clckSearch.click();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/snackbar_text");
+        MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
         boolean noProdFoundDisplayed = noProdFound.isDisplayed();
         if (noProdFoundDisplayed) {
             System.out.println("No Products Found");
-            System.out.println("Case 3 Pass");
+            MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+            dismissBtn.click();
+            System.out.println("Case 10 Pass");
         }
     }
     //Check App: "Search by Code"
-    public void Case4(){
-        System.out.println("Testing Case 4");
+    public void Case11(){
+        System.out.println("Testing Case 11");
         //Search By Code
         searchByCode();
         //Search a product Code
@@ -139,16 +143,18 @@ public class BAOF {
         searchField.sendKeys("abcdefg123");
         clckSearch.click();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/snackbar_text");
+        MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
         boolean noProdFoundDisplayed = noProdFound.isDisplayed();
         if (noProdFoundDisplayed) {
             System.out.println("No Products Found");
-            System.out.println("Case 4 Pass");
+            MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+            dismissBtn.click();
+            System.out.println("Case 11 Pass");
         }
     }
     //Check App: "Search by Barcode"
-    public void Case5(){
-        System.out.println("Testing Case 5");
+    public void Case12(){
+        System.out.println("Testing Case 12");
         //Search By Barcode
         searchByBarcode();
         //Search a product Barcode
@@ -160,16 +166,18 @@ public class BAOF {
         searchField.sendKeys("abcdefg123");
         clckSearch.click();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/snackbar_text");
+        MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
         boolean noProdFoundDisplayed = noProdFound.isDisplayed();
         if (noProdFoundDisplayed) {
             System.out.println("No Products Found");
-            System.out.println("Case 5 Pass");
+            MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+            dismissBtn.click();
+            System.out.println("Case 12 Pass");
         }
     }
     //Check App: "Search by Description"
-    public void Case6(){
-        System.out.println("Testing Case 6");
+    public void Case13(){
+        System.out.println("Testing Case 13");
         //Search By Description
         searchByDescription();
         //Search a product Description
@@ -181,16 +189,18 @@ public class BAOF {
         searchField.sendKeys("abcdefg123");
         clckSearch.click();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/snackbar_text");
+        MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
         boolean noProdFoundDisplayed = noProdFound.isDisplayed();
         if (noProdFoundDisplayed) {
             System.out.println("No Products Found");
-            System.out.println("Case 6 Pass");
+            MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+            dismissBtn.click();
+            System.out.println("Case 13 Pass");
         }
     }
     //Check App: "Search by Brand"
-    public void Case7(){
-        System.out.println("Testing Case 7");
+    public void Case14(){
+        System.out.println("Testing Case 14");
         //Search By Brand
         searchByBrand();
         //Search a product Brand
@@ -201,17 +211,18 @@ public class BAOF {
         clckSearch.click();
         searchField.sendKeys("abcdefg123");
         clckSearch.click();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/snackbar_text");
+        MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
         boolean noProdFoundDisplayed = noProdFound.isDisplayed();
         if (noProdFoundDisplayed) {
             System.out.println("No Products Found");
-            System.out.println("Case 7 Pass");
+            MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+            dismissBtn.click();
+            System.out.println("Case 14 Pass");
         }
     }
     //Check App: "Search by Keyword"
-    public void Case8(){
-        System.out.println("Testing Case 8");
+    public void Case15(){
+        System.out.println("Testing Case 15");
         //Search By Keyword
         searchByKeyword();
         //Search a product Keyword
@@ -223,19 +234,2181 @@ public class BAOF {
         searchField.sendKeys("abcdefg123");
         clckSearch.click();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/snackbar_text");
+        MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
         boolean noProdFoundDisplayed = noProdFound.isDisplayed();
         if (noProdFoundDisplayed) {
             System.out.println("No Products Found");
+            MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+            dismissBtn.click();
             clear();
-            System.out.println("Case 8 Pass");
+            System.out.println("Case 15 Pass");
+        }
+    }
+    ///Check App: "Search by Principal"
+    public void Case16(){
+        System.out.println("Testing Case 16");
+        //Search By Principal
+        searchByPrincipal();
+        //Search a product Principal
+        MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+        searchField.sendKeys(productPrincipal[rand(productPrincipal.length-1)]);
+        //Click on search button
+        MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+        clckSearch.click();
+        searchField.sendKeys("abcdefg123");
+        clckSearch.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+        boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+        if (noProdFoundDisplayed) {
+            System.out.println("No Products Found");
+            MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+            dismissBtn.click();
+            clear();
+            System.out.println("Case 16 Pass");
+        }
+    }
+    //Check product filter "All products"
+    public void Case17(){
+        System.out.println("Testing Case 17");
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        MobileElement productFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_product_filter");
+        productFilter.click();
+        MobileElement prodFilterByAllProd = (MobileElement) driver.findElementByXPath("//android.widget.ListView/android.widget.TextView[1]");
+        prodFilterByAllProd.click();
+        MobileElement filterBtn = (MobileElement) driver.findElementById("android:id/button1");
+        filterBtn.click();
+
+
+    }
+    //Check App: Product Filter by "All Product"
+    public void Case18(){
+        System.out.println("Testing Case 18");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        //Search By Keyword
+        for(int z=1; z<=8; z++){
+            prodFilterByAllProd();
+            if(z==1) {
+                searchByName();
+                //Search a product Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productNames[rand(productNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==2){
+                searchByShortName();
+                //Search a product Short Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productShortNames[rand(productShortNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==3){
+                searchByCode();
+                //Search a product Code
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productCode[rand(productCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==4){
+                searchByBarcode();
+                //Search a product Barcode
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBarCode[rand(productBarCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==5){
+                searchByDescription();
+                //Search a product Description
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productDescrip[rand(productDescrip.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==6){
+                searchByBrand();
+                //Search a product Brand
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBrand[rand(productBrand.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==7){
+                searchByKeyword();
+                //Search a product Keyword
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productKeyword[rand(productKeyword.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==8){
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("abcdefg123");
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+                if (noProdFoundDisplayed) {
+                    System.out.println("No Products Found");
+                    MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+                    dismissBtn.click();
+                    System.out.println("Case 18 Pass");
+                    clear();
+                }
+            }
+        }
+    }
+    //Check App: Product Filter by "Product Group"
+    public void Case19(){
+        System.out.println("Testing Case 19");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        for(int z=1; z<=8; z++){
+            prodFilterByProdGroup();
+            if(z==1) {
+                searchByName();
+                //Search a product Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productNames[rand(productNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==2){
+                searchByShortName();
+                //Search a product Short Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productShortNames[rand(productShortNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==3){
+                searchByCode();
+                //Search a product Code
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productCode[rand(productCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==4){
+                searchByBarcode();
+                //Search a product Barcode
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBarCode[rand(productBarCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==5){
+                searchByDescription();
+                //Search a product Description
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productDescrip[rand(productDescrip.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==6){
+                searchByBrand();
+                //Search a product Brand
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBrand[rand(productBrand.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==7){
+                searchByKeyword();
+                //Search a product Keyword
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productKeyword[rand(productKeyword.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==8){
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("abcdefg123");
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+                if (noProdFoundDisplayed) {
+                    System.out.println("No Products Found");
+                    MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+                    dismissBtn.click();
+                    System.out.println("Case 19 Pass");
+                    clear();
+                }
+            }
+        }
+    }
+    //Check App: Product Filter by "Must carry per Account Classification"
+    public void Case20(){
+        System.out.println("Testing Case 20");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        for(int z=1; z<=8; z++){
+            prodFilterByMustCarry();
+            if(z==1) {
+                searchByName();
+                //Search a product Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productNames[rand(productNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==2){
+                searchByShortName();
+                //Search a product Short Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productShortNames[rand(productShortNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==3){
+                searchByCode();
+                //Search a product Code
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productCode[rand(productCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==4){
+                searchByBarcode();
+                //Search a product Barcode
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBarCode[rand(productBarCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==5){
+                searchByDescription();
+                //Search a product Description
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productDescrip[rand(productDescrip.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==6){
+                searchByBrand();
+                //Search a product Brand
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBrand[rand(productBrand.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==7){
+                searchByKeyword();
+                //Search a product Keyword
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productKeyword[rand(productKeyword.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==8){
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("abcdefg123");
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+                if (noProdFoundDisplayed) {
+                    System.out.println("No Products Found");
+                    MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+                    dismissBtn.click();
+                    System.out.println("Case 20 Pass");
+                    clear();
+                }
+            }
+        }
+    }
+    //Check App: Product Filter by "Brand"
+    public void Case21(){
+        System.out.println("Testing Case 21");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        for(int z=1; z<=8; z++){
+            prodFilterByBrand();
+            if(z==1) {
+                searchByName();
+                //Search a product Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Adartrel (ropinirole hydrochloride) 2.0mg");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==2){
+                searchByShortName();
+                //Search a product Short Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Adartrel 2.0mg");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==3){
+                searchByCode();
+                //Search a product Code
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("51232166");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==4){
+                searchByBarcode();
+                //Search a product Barcode
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("51232167");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==5){
+                searchByDescription();
+                //Search a product Description
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Tablets");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==6){
+                searchByBrand();
+                //Search a product Brand
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Adartrel");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==7){
+                searchByKeyword();
+                //Search a product Keyword
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Adartrel");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==8){
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("abcdefg123");
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+                if (noProdFoundDisplayed) {
+                    System.out.println("No Products Found");
+                    MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+                    dismissBtn.click();
+                    System.out.println("Case 21 Pass");
+                    clear();
+                }
+            }
+        }
+    }
+    //Check App: Product Filter by "Product with Historical Sales"
+    public void Case22(){
+        System.out.println("Testing Case 22");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        for(int z=1; z<=16; z++){
+            if(z==1) {
+                searchByName();
+                prodFilterByHistoricalSalesVolume();
+                //Search a product Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Potato Chips Wave Cut");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==2){
+                prodFilterByHistoricalSalesVolume();
+                searchByShortName();
+                //Search a product Short Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Wave cut");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==3){
+                prodFilterByHistoricalSalesVolume();
+                searchByCode();
+                //Search a product Code
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("123456789");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==4){
+                prodFilterByHistoricalSalesVolume();
+                searchByBarcode();
+                //Search a product Barcode
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("666112225");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==5){
+                prodFilterByHistoricalSalesVolume();
+                searchByDescription();
+                //Search a product Description
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Salty Snacks");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==6){
+                prodFilterByHistoricalSalesVolume();
+                searchByBrand();
+                //Search a product Brand
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Jack n Jill");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==7){
+                prodFilterByHistoricalSalesVolume();
+                searchByKeyword();
+                //Search a product Keyword
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Piattos");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==8){
+                prodFilterByHistoricalSalesVolume();
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("abcdefg123");
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/snackbar_text");
+                boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+                if (noProdFoundDisplayed) {
+                    System.out.println("No Products Found");
+                    System.out.println("Case 22 Pass Volume");
+                    clear();
+                }
+            }
+            else if(z==9) {
+                prodFilterByHistoricalSalesValue();
+                //Search a product Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Potato Chips Wave Cut");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==10){
+                prodFilterByHistoricalSalesValue();
+                searchByShortName();
+                //Search a product Short Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Wave cut");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==11){
+                prodFilterByHistoricalSalesValue();
+                searchByCode();
+                //Search a product Code
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("123456789");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==12){
+                prodFilterByHistoricalSalesValue();
+                searchByBarcode();
+                //Search a product Barcode
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("666112225");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==13){
+                prodFilterByHistoricalSalesValue();
+                searchByDescription();
+                //Search a product Description
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Salty Snacks");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==14){
+                prodFilterByHistoricalSalesValue();
+                searchByBrand();
+                //Search a product Brand
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Jack n Jill");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==15){
+                prodFilterByHistoricalSalesValue();
+                searchByKeyword();
+                //Search a product Keyword
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Piattos");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==16){
+                prodFilterByHistoricalSalesValue();
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("abcdefg123");
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+                if (noProdFoundDisplayed) {
+                    System.out.println("No Products Found");
+                    MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+                    dismissBtn.click();
+                    System.out.println("Case 22 Pass Value");
+                    clear();
+                }
+            }
+        }
+    }
+    //Check app: Product Filter by "Must carry + Products with Historical Sales"
+    public void Case23(){
+        System.out.println("Testing Case 23");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        for(int z=1; z<=16; z++){
+            if(z==1) {
+                searchByName();
+                prodFilterByMustCarryHistoricalSalesVolume();
+                //Search a product Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Potato Chips Wave Cut");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==2){
+                prodFilterByMustCarryHistoricalSalesVolume();
+                searchByShortName();
+                //Search a product Short Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Wave cut");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==3){
+                prodFilterByMustCarryHistoricalSalesVolume();
+                searchByCode();
+                //Search a product Code
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("123456789");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==4){
+                prodFilterByMustCarryHistoricalSalesVolume();
+                searchByBarcode();
+                //Search a product Barcode
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("666112225");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==5){
+                prodFilterByMustCarryHistoricalSalesVolume();
+                searchByDescription();
+                //Search a product Description
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Salty Snacks");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==6){
+                prodFilterByMustCarryHistoricalSalesVolume();
+                searchByBrand();
+                //Search a product Brand
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Jack n Jill");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==7){
+                prodFilterByMustCarryHistoricalSalesVolume();
+                searchByKeyword();
+                //Search a product Keyword
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Piattos");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==8){
+                prodFilterByMustCarryHistoricalSalesVolume();
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("abcdefg123");
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+                if (noProdFoundDisplayed) {
+                    System.out.println("No Products Found");
+                    MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+                    dismissBtn.click();
+                    System.out.println("Case 23 Pass Volume");
+                    clear();
+                }
+            }
+            else if(z==9) {
+                prodFilterByMustCarryHistoricalSalesValue();
+                //Search a product Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Potato Chips Wave Cut");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==10){
+                prodFilterByMustCarryHistoricalSalesValue();
+                searchByShortName();
+                //Search a product Short Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Wave cut");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==11){
+                prodFilterByMustCarryHistoricalSalesValue();
+                searchByCode();
+                //Search a product Code
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("123456789");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==12){
+                prodFilterByMustCarryHistoricalSalesValue();
+                searchByBarcode();
+                //Search a product Barcode
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("666112225");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==13){
+                prodFilterByMustCarryHistoricalSalesValue();
+                searchByDescription();
+                //Search a product Description
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Salty Snacks");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==14){
+                prodFilterByMustCarryHistoricalSalesValue();
+                searchByBrand();
+                //Search a product Brand
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Jack n Jill");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==15){
+                prodFilterByMustCarryHistoricalSalesValue();
+                searchByKeyword();
+                //Search a product Keyword
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Piattos");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==16){
+                prodFilterByMustCarryHistoricalSalesValue();
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("abcdefg123");
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+                if (noProdFoundDisplayed) {
+                    System.out.println("No Products Found");
+                    MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+                    dismissBtn.click();
+                    System.out.println("Case 23 Pass Value");
+                    clear();
+                }
+            }
+        }
+    }
+    //Check app: Product Filter by "Document Sequence"
+    public void Case24(){
+        System.out.println("Testing Case 24");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        for(int z=1; z<=8; z++){
+            prodFilterByDocuSequence();
+            if(z==1) {
+                searchByName();
+                //Search a product Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productNames[rand(productNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==2){
+                searchByShortName();
+                //Search a product Short Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productShortNames[rand(productShortNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==3){
+                searchByCode();
+                //Search a product Code
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productCode[rand(productCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==4){
+                searchByBarcode();
+                //Search a product Barcode
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBarCode[rand(productBarCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==5){
+                searchByDescription();
+                //Search a product Description
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productDescrip[rand(productDescrip.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==6){
+                searchByBrand();
+                //Search a product Brand
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBrand[rand(productBrand.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==7){
+                searchByKeyword();
+                //Search a product Keyword
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productKeyword[rand(productKeyword.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==8){
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("abcdefg123");
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+                if (noProdFoundDisplayed) {
+                    System.out.println("No Products Found");
+                    MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+                    dismissBtn.click();
+                    System.out.println("Case 24 Pass");
+                    clear();
+                }
+            }
+        }
+    }
+    //Check app: Product Filter by "Deals"
+    public void Case25(){
+        System.out.println("Testing Case 25");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        for(int z=1; z<=8; z++){
+            prodFilterByDeal();
+            if(z==1) {
+                searchByName();
+                //Search a product Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Mentos");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==2){
+                searchByShortName();
+                //Search a product Short Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Mentos Rainbow");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==3){
+                searchByCode();
+                //Search a product Code
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("51232215");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==4){
+                searchByBarcode();
+                //Search a product Barcode
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("51232215");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==5){
+                searchByDescription();
+                //Search a product Description
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Candy");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==6){
+                searchByBrand();
+                //Search a product Brand
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Royal");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==7){
+                searchByKeyword();
+                //Search a product Keyword
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Royal");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==8){
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("abcdefg123");
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+                if (noProdFoundDisplayed) {
+                    System.out.println("No Products Found");
+                    MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+                    dismissBtn.click();
+                    System.out.println("Case 25 Pass");
+                    clear();
+                }
+            }
+        }
+    }
+    //Check app: Product Filter by "Active Products"
+    public void Case26(){
+        System.out.println("Testing Case 26");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        for(int z=1; z<=8; z++){
+            prodFilterByActiveProd();
+            if(z==1) {
+                searchByName();
+                //Search a product Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productNames[rand(productNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==2){
+                searchByShortName();
+                //Search a product Short Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productShortNames[rand(productShortNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==3){
+                searchByCode();
+                //Search a product Code
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productCode[rand(productCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==4){
+                searchByBarcode();
+                //Search a product Barcode
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBarCode[rand(productBarCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==5){
+                searchByDescription();
+                //Search a product Description
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productDescrip[rand(productDescrip.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==6){
+                searchByBrand();
+                //Search a product Brand
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBrand[rand(productBrand.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==7){
+                searchByKeyword();
+                //Search a product Keyword
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productKeyword[rand(productKeyword.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==8){
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("abcdefg123");
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+                if (noProdFoundDisplayed) {
+                    System.out.println("No Products Found");
+                    MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+                    dismissBtn.click();
+                    System.out.println("Case 26 Pass");
+                    clear();
+                }
+            }
+        }
+    }
+    //Check app: Product Filter by "Carried Products"
+    public void Case27(){
+        System.out.println("Testing Case 27");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        for(int z=1; z<=8; z++){
+            prodFilterByCarriedProd();
+            if(z==1) {
+                searchByName();
+                //Search a product Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productNames[rand(productNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==2){
+                searchByShortName();
+                //Search a product Short Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productShortNames[rand(productShortNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==3){
+                searchByCode();
+                //Search a product Code
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productCode[rand(productCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==4){
+                searchByBarcode();
+                //Search a product Barcode
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBarCode[rand(productBarCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==5){
+                searchByDescription();
+                //Search a product Description
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productDescrip[rand(productDescrip.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==6){
+                searchByBrand();
+                //Search a product Brand
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBrand[rand(productBrand.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==7){
+                searchByKeyword();
+                //Search a product Keyword
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productKeyword[rand(productKeyword.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==8){
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("abcdefg123");
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+                if (noProdFoundDisplayed) {
+                    System.out.println("No Products Found");
+                    MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+                    dismissBtn.click();
+                    System.out.println("Case 27 Pass");
+                    clear();
+                }
+            }
+        }
+    }
+    //Check app: Product Filter by "Not Carried Products" may bug dito sa not carried ibang product yung lumalabas compare sa nilagay sa EMS
+    public void Case28(){
+        System.out.println("Testing Case 28");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        for(int z=1; z<=8; z++){
+            prodFilterByNotCarriedProd();
+            if(z==1) {
+                searchByName();
+                //Search a product Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Bot Product");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==2){
+                searchByShortName();
+                //Search a product Short Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Prod 9");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==3){
+                searchByCode();
+                //Search a product Code
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("20180911");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==4){
+                searchByBarcode();
+                //Search a product Barcode
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("20180911");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==5){
+                searchByDescription();
+                //Search a product Description
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Soft Drink");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==6){
+                searchByBrand();
+                //Search a product Brand
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("BOT PRODUCT ");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==7){
+                searchByKeyword();
+                //Search a product Keyword
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productKeyword[rand(productKeyword.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==8){
+                System.out.println("Entering invalid input");
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("abcdefg123");
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+                if (noProdFoundDisplayed) {
+                    System.out.println("No Products Found");
+                    MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+                    dismissBtn.click();
+                    System.out.println("Case 28 Pass");
+                    clear();
+                }
+            }
         }
     }
     //
-    public void Case9(){
-
+    //Check app: information filter "All Products"
+    public void Case29(){
+        System.out.println("Testing Case 29");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        for(int z=1; z<=8; z++){
+            infoFilterByAllProd();
+            if(z==1) {
+                searchByName();
+                //Search a product Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productNames[rand(productNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==2){
+                searchByShortName();
+                //Search a product Short Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productShortNames[rand(productShortNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==3){
+                searchByCode();
+                //Search a product Code
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productCode[rand(productCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==4){
+                searchByBarcode();
+                //Search a product Barcode
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBarCode[rand(productBarCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==5){
+                searchByDescription();
+                //Search a product Description
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productDescrip[rand(productDescrip.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==6){
+                searchByBrand();
+                //Search a product Brand
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBrand[rand(productBrand.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==7){
+                searchByKeyword();
+                //Search a product Keyword
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productKeyword[rand(productKeyword.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==8){
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("abcdefg123");
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+                if (noProdFoundDisplayed) {
+                    System.out.println("No Products Found");
+                    MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+                    dismissBtn.click();
+                    System.out.println("Case 29 Pass");
+                    clear();
+                }
+            }
+        }
     }
+    //Check app: information filter "Trade Inventory > 0"
+    public void Case30(){
+        System.out.println("Testing Case 30");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        for(int z=1; z<=8; z++){
+            infoFilterByTradeInventoryGreaterThanZero();
+            if(z==1) {
+                searchByName();
+                //Search a product Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productNames[rand(productNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==2){
+                searchByShortName();
+                //Search a product Short Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productShortNames[rand(productShortNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==3){
+                searchByCode();
+                //Search a product Code
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productCode[rand(productCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==4){
+                searchByBarcode();
+                //Search a product Barcode
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBarCode[rand(productBarCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==5){
+                searchByDescription();
+                //Search a product Description
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productDescrip[rand(productDescrip.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==6){
+                searchByBrand();
+                //Search a product Brand
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBrand[rand(productBrand.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==7){
+                searchByKeyword();
+                //Search a product Keyword
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productKeyword[rand(productKeyword.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==8){
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("abcdefg123");
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+                if (noProdFoundDisplayed) {
+                    System.out.println("No Products Found");
+                    MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+                    dismissBtn.click();
+                    System.out.println("Case 30 Pass");
+                    clear();
+                }
+            }
+        }
+    }
+    //Check app: information filter "Trade Inventory = 0"
+    public void Case31(){
+        System.out.println("Testing Case 31");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        for(int z=1; z<=8; z++){
+            infoFilterByTradeInventoryEqualZero();
+            if(z==1) {
+                searchByName();
+                //Search a product Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productNames[rand(productNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==2){
+                searchByShortName();
+                //Search a product Short Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productShortNames[rand(productShortNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==3){
+                searchByCode();
+                //Search a product Code
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productCode[rand(productCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==4){
+                searchByBarcode();
+                //Search a product Barcode
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBarCode[rand(productBarCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==5){
+                searchByDescription();
+                //Search a product Description
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productDescrip[rand(productDescrip.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==6){
+                searchByBrand();
+                //Search a product Brand
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBrand[rand(productBrand.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==7){
+                searchByKeyword();
+                //Search a product Keyword
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productKeyword[rand(productKeyword.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==8){
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("abcdefg123");
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+                if (noProdFoundDisplayed) {
+                    System.out.println("No Products Found");
+                    MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+                    dismissBtn.click();
+                    System.out.println("Case 31 Pass");
+                    clear();
+                }
+            }
+        }
+    }
+    //Check app: information filter "Product with Order"
+    public void Case32(){
+        System.out.println("Testing Case 32");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        for(int z=1; z<=8; z++){
+            infoFilterByProductsWithOrder();
+            if(z==1) {
+                searchByName();
+                //Search a product Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productNames[rand(productNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==2){
+                searchByShortName();
+                //Search a product Short Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productShortNames[rand(productShortNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==3){
+                searchByCode();
+                //Search a product Code
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productCode[rand(productCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==4){
+                searchByBarcode();
+                //Search a product Barcode
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBarCode[rand(productBarCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==5){
+                searchByDescription();
+                //Search a product Description
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productDescrip[rand(productDescrip.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==6){
+                searchByBrand();
+                //Search a product Brand
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBrand[rand(productBrand.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==7){
+                searchByKeyword();
+                //Search a product Keyword
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productKeyword[rand(productKeyword.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==8){
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("abcdefg123");
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+                if (noProdFoundDisplayed) {
+                    System.out.println("No Products Found");
+                    MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+                    dismissBtn.click();
+                    System.out.println("Case 32 Pass");
+                    clear();
+                }
+            }
+        }
+    }
+    //Check app: information filter "6,3,1 sales > 0"
+    public void Case33(){
+        System.out.println("Testing Case 24");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        for(int z=1; z<=8; z++){
+            infoFilterBy631();
+            if(z==1) {
+                searchByName();
+                //Search a product Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Coca-Cola");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==2){
+                searchByShortName();
+                //Search a product Short Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Coke");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==3){
+                searchByCode();
+                //Search a product Code
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("51232195");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==4){
+                searchByBarcode();
+                //Search a product Barcode
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("51232196");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==5){
+                searchByDescription();
+                //Search a product Description
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("COla");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==6){
+                searchByBrand();
+                //Search a product Brand
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Coca-Cola");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==7){
+                searchByKeyword();
+                //Search a product Keyword
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("Cola");
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==8){
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("abcdefg123");
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+                if (noProdFoundDisplayed) {
+                    System.out.println("No Products Found");
+                    MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+                    dismissBtn.click();
+                    System.out.println("Case 33 Pass");
+                    clear();
+                }
+            }
+        }
+    }
+    //Check app: information filter "Stock Availability = no stock"
+    public void Case34(){
+        System.out.println("Testing Case 34");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        for(int z=1; z<=8; z++){
+            infoFilterByStockAvailabilityNoStock();
+            if(z==1) {
+                searchByName();
+                //Search a product Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productNames[rand(productNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==2){
+                searchByShortName();
+                //Search a product Short Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productShortNames[rand(productShortNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==3){
+                searchByCode();
+                //Search a product Code
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productCode[rand(productCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==4){
+                searchByBarcode();
+                //Search a product Barcode
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBarCode[rand(productBarCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==5){
+                searchByDescription();
+                //Search a product Description
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productDescrip[rand(productDescrip.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==6){
+                searchByBrand();
+                //Search a product Brand
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBrand[rand(productBrand.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==7){
+                searchByKeyword();
+                //Search a product Keyword
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productKeyword[rand(productKeyword.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==8){
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("abcdefg123");
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+                if (noProdFoundDisplayed) {
+                    System.out.println("No Products Found");
+                    MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+                    dismissBtn.click();
+                    System.out.println("Case 34 Pass");
+                    clear();
+                }
+            }
+        }
+    }
+    //Check app: information filter "Stock Availability = with stock"
+    public void Case35(){
+        System.out.println("Testing Case 35");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        for(int z=1; z<=8; z++){
+            infoFilterByStockAvailabilityWithStock();
+            if(z==1) {
+                searchByName();
+                //Search a product Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productNames[rand(productNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==2){
+                searchByShortName();
+                //Search a product Short Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productShortNames[rand(productShortNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==3){
+                searchByCode();
+                //Search a product Code
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productCode[rand(productCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==4){
+                searchByBarcode();
+                //Search a product Barcode
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBarCode[rand(productBarCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==5){
+                searchByDescription();
+                //Search a product Description
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productDescrip[rand(productDescrip.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==6){
+                searchByBrand();
+                //Search a product Brand
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBrand[rand(productBrand.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==7){
+                searchByKeyword();
+                //Search a product Keyword
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productKeyword[rand(productKeyword.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==8){
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("abcdefg123");
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+                if (noProdFoundDisplayed) {
+                    System.out.println("No Products Found");
+                    MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+                    dismissBtn.click();
+                    System.out.println("Case 35 Pass");
+                    clear();
+                }
+            }
+        }
+    }
+    //Check app: Information Filter by "Stock Weight = Low"
+    public void Case36(){
+        System.out.println("Testing Case 36");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        for(int z=1; z<=8; z++){
+            infoFilterByStockWeightLow();
+            if(z==1) {
+                searchByName();
+                //Search a product Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productNames[rand(productNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==2){
+                searchByShortName();
+                //Search a product Short Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productShortNames[rand(productShortNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==3){
+                searchByCode();
+                //Search a product Code
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productCode[rand(productCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==4){
+                searchByBarcode();
+                //Search a product Barcode
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBarCode[rand(productBarCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==5){
+                searchByDescription();
+                //Search a product Description
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productDescrip[rand(productDescrip.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==6){
+                searchByBrand();
+                //Search a product Brand
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBrand[rand(productBrand.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==7){
+                searchByKeyword();
+                //Search a product Keyword
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productKeyword[rand(productKeyword.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==8){
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("abcdefg123");
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+                if (noProdFoundDisplayed) {
+                    System.out.println("No Products Found");
+                    MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+                    dismissBtn.click();
+                    System.out.println("Case 36 Pass");
+                    clear();
+                }
+            }
+        }
+    }
+    //Check app: Information Filter by "Stock Weight = Medium"
+    public void Case37(){
+        System.out.println("Testing Case 37");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        for(int z=1; z<=8; z++){
+            infoFilterByStockWeightMed();
+            if(z==1) {
+                searchByName();
+                //Search a product Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productNames[rand(productNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==2){
+                searchByShortName();
+                //Search a product Short Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productShortNames[rand(productShortNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==3){
+                searchByCode();
+                //Search a product Code
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productCode[rand(productCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==4){
+                searchByBarcode();
+                //Search a product Barcode
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBarCode[rand(productBarCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==5){
+                searchByDescription();
+                //Search a product Description
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productDescrip[rand(productDescrip.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==6){
+                searchByBrand();
+                //Search a product Brand
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBrand[rand(productBrand.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==7){
+                searchByKeyword();
+                //Search a product Keyword
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productKeyword[rand(productKeyword.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==8){
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("abcdefg123");
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+                if (noProdFoundDisplayed) {
+                    System.out.println("No Products Found");
+                    MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+                    dismissBtn.click();
+                    System.out.println("Case 37 Pass");
+                    clear();
+                }
+            }
+        }
+    }
+    //Check app: Information Filter by "Stock Weight = High"
+    public void Case38(){
+        System.out.println("Testing Case 38");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement cancel = (MobileElement) driver.findElementById("android:id/button2");
+        cancel.click();
+        for(int z=1; z<=8; z++){
+            infoFilterByStockWeightHigh();
+            if(z==1) {
+                searchByName();
+                //Search a product Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productNames[rand(productNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==2){
+                searchByShortName();
+                //Search a product Short Name
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productShortNames[rand(productShortNames.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==3){
+                searchByCode();
+                //Search a product Code
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productCode[rand(productCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==4){
+                searchByBarcode();
+                //Search a product Barcode
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBarCode[rand(productBarCode.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==5){
+                searchByDescription();
+                //Search a product Description
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productDescrip[rand(productDescrip.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==6){
+                searchByBrand();
+                //Search a product Brand
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productBrand[rand(productBrand.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==7){
+                searchByKeyword();
+                //Search a product Keyword
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys(productKeyword[rand(productKeyword.length-1)]);
+                //Click on search button
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+            }
+            else if(z==8){
+                MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchField.sendKeys("abcdefg123");
+                MobileElement clckSearch = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                clckSearch.click();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement noProdFound = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean noProdFoundDisplayed = noProdFound.isDisplayed();
+                if (noProdFoundDisplayed) {
+                    System.out.println("No Products Found");
+                    MobileElement dismissBtn = (MobileElement) driver.findElementById("android:id/button2");
+                    dismissBtn.click();
+                    System.out.println("Case 38 Pass");
+                    clear();
+                }
+            }
+        }
+    }
+
+
+
     //Functions
+
+
+
+
     public void SearchBAOF(){
         //click Hamburger Menu
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -337,6 +2510,462 @@ public class BAOF {
         MobileElement filterBtn = (MobileElement) driver.findElementById("android:id/button1");
         filterBtn.click();
     }
+    private void searchByPrincipal(){
+        System.out.println("Searching by Keyword");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowDown.click();
+        swipeDown();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement keyword = (MobileElement) driver.findElementByXPath("//android.widget.RadioGroup/android.widget.RadioButton[8]");
+        keyword.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement filterBtn = (MobileElement) driver.findElementById("android:id/button1");
+        filterBtn.click();
+    }
+    //Filter By Functions
+    private void prodFilterByAllProd(){
+        System.out.println("Product Filter By All Product");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement prodFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_product_filter");
+        prodFilter.click();
+        //Click Allproduct
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement allProd = (MobileElement) driver.findElementByXPath(filterByDrctry+"/android.widget.TextView[1]");
+        allProd.click();
+        //Click filter
+        MobileElement filter = (MobileElement) driver.findElementById("android:id/button1");
+        filter.click();
+    }
+    private void prodFilterByProdGroup(){
+        System.out.println("Product Filter By Product Group");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement prodFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_product_filter");
+        prodFilter.click();
+        //Click Product Group
+        MobileElement prodGroup = (MobileElement) driver.findElementByXPath(filterByDrctry+"/android.widget.TextView[2]");
+        prodGroup.click();
+        //Click on Certain  Product Group
+        MobileElement selProdGroup = (MobileElement) driver.findElementByXPath("//android.widget.ListView/android.widget.TextView[1]");
+        selProdGroup.click();
+        //Click filter
+        MobileElement filter = (MobileElement) driver.findElementById("android:id/button1");
+        filter.click();
+    }
+    private void prodFilterByMustCarry(){
+        System.out.println("Product Filter By Must Carry");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement prodFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_product_filter");
+        prodFilter.click();
+        //Click Must Carry
+        MobileElement mustCarry = (MobileElement) driver.findElementByXPath(filterByDrctry+"/android.widget.TextView[3]");
+        mustCarry.click();
+        //Click on Certain Must Carry
+        MobileElement selMustCarry = (MobileElement) driver.findElementByXPath("//android.widget.ListView/android.widget.TextView[1]");
+        selMustCarry.click();
+        //Click filter
+        MobileElement filter = (MobileElement) driver.findElementById("android:id/button1");
+        filter.click();
+    }
+    private void prodFilterByBrand(){
+        System.out.println("Product Filter By Brand");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement prodFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_product_filter");
+        prodFilter.click();
+        //Click Brand
+        MobileElement brand = (MobileElement) driver.findElementByXPath(filterByDrctry+"/android.widget.TextView[5]");
+        brand.click();
+        //Click on Certain Brand
+        MobileElement selBrand = (MobileElement) driver.findElementByXPath("//android.widget.ListView/android.widget.TextView[1]");
+        selBrand.click();
+        //Click filter
+        MobileElement filter = (MobileElement) driver.findElementById("android:id/button1");
+        filter.click();
+    }
+    private void prodFilterByHistoricalSalesVolume(){
+        System.out.println("Product Filter By Historical Sales Sort By Volume");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement prodFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_product_filter");
+        prodFilter.click();
+        //Click Historical Sales
+        MobileElement historicalSales = (MobileElement) driver.findElementByXPath(filterByDrctry+"/android.widget.TextView[6]");
+        historicalSales.click();
+        //Click on Volume
+        MobileElement selVolume = (MobileElement) driver.findElementByXPath("//android.widget.ListView/android.widget.TextView[1]");
+        selVolume.click();
+        //Click filter
+        MobileElement filter = (MobileElement) driver.findElementById("android:id/button1");
+        filter.click();
+    }
+    private void prodFilterByHistoricalSalesValue(){
+        System.out.println("Product Filter By Historical Sales Sort By Value");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement prodFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_product_filter");
+        prodFilter.click();
+        //Click Historical Sales
+        MobileElement historicalSales = (MobileElement) driver.findElementByXPath(filterByDrctry+"/android.widget.TextView[6]");
+        historicalSales.click();
+        //Click on Value
+        MobileElement selValue = (MobileElement) driver.findElementByXPath("//android.widget.ListView/android.widget.TextView[2]");
+        selValue.click();
+        //Click filter
+        MobileElement filter = (MobileElement) driver.findElementById("android:id/button1");
+        filter.click();
+    }
+    private void prodFilterByMustCarryHistoricalSalesVolume(){
+        System.out.println("Product Filter By Must Carry + Historical Sales Sort By Volume");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement prodFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_product_filter");
+        prodFilter.click();
+        //Click Must Carry + Historical Sales
+        MobileElement historicalSales = (MobileElement) driver.findElementByXPath(filterByDrctry+"/android.widget.TextView[7]");
+        historicalSales.click();
+        //Click on Certain Must Carry
+        MobileElement selMustCarry = (MobileElement) driver.findElementByXPath("//android.widget.ListView/android.widget.TextView[1]");
+        selMustCarry.click();
+        //Click on Volume
+        MobileElement selVolume = (MobileElement) driver.findElementByXPath("//android.widget.ListView/android.widget.TextView[1]");
+        selVolume.click();
+        //Click filter
+        MobileElement filter = (MobileElement) driver.findElementById("android:id/button1");
+        filter.click();
+    }
+    private void prodFilterByMustCarryHistoricalSalesValue(){
+        System.out.println("Product Filter By Must Carry + Historical Sales Sort By Volume");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement prodFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_product_filter");
+        prodFilter.click();
+        //Click Must Carry + Historical Sales
+        MobileElement historicalSales = (MobileElement) driver.findElementByXPath(filterByDrctry+"/android.widget.TextView[7]");
+        historicalSales.click();
+        //Click on Certain Must Carry
+        MobileElement selMustCarry = (MobileElement) driver.findElementByXPath("//android.widget.ListView/android.widget.TextView[1]");
+        selMustCarry.click();
+        //Click on Value
+        MobileElement selValue = (MobileElement) driver.findElementByXPath("//android.widget.ListView/android.widget.TextView[2]");
+        selValue.click();
+        //Click filter
+        MobileElement filter = (MobileElement) driver.findElementById("android:id/button1");
+        filter.click();
+    }
+    private void prodFilterByDocuSequence(){
+        System.out.println("Product Filter By Product Group");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement prodFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_product_filter");
+        prodFilter.click();
+        //Click Document Sequence
+        MobileElement docuSeq = (MobileElement) driver.findElementByXPath(filterByDrctry+"/android.widget.TextView[8]");
+        docuSeq.click();
+        //Click on Certain  Product Group
+        MobileElement selDocuSeq = (MobileElement) driver.findElementByXPath("//android.widget.ListView/android.widget.TextView[1]");
+        selDocuSeq.click();
+        //Click filter
+        MobileElement filter = (MobileElement) driver.findElementById("android:id/button1");
+        filter.click();
+    }
+    private void prodFilterByDeal(){
+        System.out.println("Product Filter By Product Group");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement prodFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_product_filter");
+        prodFilter.click();
+        swipeDown();
+        //Click Deals
+        MobileElement deal = (MobileElement) driver.findElementByXPath("//android.widget.TextView[@text='Deals']");
+        deal.click();
+        //Click on Certain  deal
+        MobileElement selDeal = (MobileElement) driver.findElementByXPath("//android.support.v7.widget.RecyclerView/android.widget.TextView[1]");
+        selDeal.click();
+        //Click Ok
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
+        btnOk.click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement minimumQuantity = (MobileElement) driver.findElementById("com.engagia.android:id/txt_multiplier");
+        minimumQuantity.sendKeys("1");
+        MobileElement ok = (MobileElement) driver.findElementById("android:id/button1");
+        ok.click();
+        //Click filter
+        MobileElement filter = (MobileElement) driver.findElementById("android:id/button1");
+        filter.click();
+    }
+    private void prodFilterByActiveProd(){
+        System.out.println("Product Filter By Active Product");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement prodFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_product_filter");
+        prodFilter.click();
+        swipeDown();
+        //Click Active Products
+        MobileElement activeProd = (MobileElement) driver.findElementByXPath("//android.widget.TextView[@text='Active Products']");
+        activeProd.click();
+        //Click filter
+        MobileElement filter = (MobileElement) driver.findElementById("android:id/button1");
+        filter.click();
+    }
+    private void prodFilterByCarriedProd(){
+        System.out.println("Product Filter By Carried Product");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement prodFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_product_filter");
+        prodFilter.click();
+        swipeDown();
+        //Click Carried Products
+        MobileElement carriedProd = (MobileElement) driver.findElementByXPath("//android.widget.TextView[@text='Carried Products']");
+        carriedProd.click();
+        //Click filter
+        MobileElement filter = (MobileElement) driver.findElementById("android:id/button1");
+        filter.click();
+    }
+    private void prodFilterByNotCarriedProd(){
+        System.out.println("Product Filter By Not Carried Product");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement prodFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_product_filter");
+        prodFilter.click();
+        swipeDown();
+        //Click Not Carried Products
+        MobileElement notCarriedProd = (MobileElement) driver.findElementByXPath("//android.widget.TextView[@text='Not Carried Products']");
+        notCarriedProd.click();
+        //Click filter
+        MobileElement filter = (MobileElement) driver.findElementById("android:id/button1");
+        filter.click();
+    }
+
+    private void infoFilterByAllProd(){
+        System.out.println("Product Filter By Product Group");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement infoFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_information_filter");
+        infoFilter.click();
+        //Click None
+        MobileElement allProd = (MobileElement) driver.findElementByXPath(filterByDrctry+"/android.widget.TextView[1]");
+        allProd.click();
+        //Click filter
+        MobileElement filter = (MobileElement) driver.findElementById("android:id/button1");
+        filter.click();
+    }
+    private void infoFilterByTradeInventoryGreaterThanZero(){
+        System.out.println("Product Filter By Product Group");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement infoFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_information_filter");
+        infoFilter.click();
+        //Click Products with Inputs
+        MobileElement tradeInvent_zero = (MobileElement) driver.findElementByXPath(filterByDrctry+"/android.widget.TextView[2]");
+        tradeInvent_zero.click();
+        //Click filter
+        MobileElement filter = (MobileElement) driver.findElementById("android:id/button1");
+        filter.click();
+    }
+    private void infoFilterByTradeInventoryEqualZero(){
+        System.out.println("Product Filter By Product Group");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement infoFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_information_filter");
+        infoFilter.click();
+        //Click Product without Stock
+        MobileElement tradeInventEqualZero = (MobileElement) driver.findElementByXPath(filterByDrctry+"/android.widget.TextView[3]");
+        tradeInventEqualZero.click();
+        //Click filter
+        MobileElement filter = (MobileElement) driver.findElementById("android:id/button1");
+        filter.click();
+    }
+    private void infoFilterByProductsWithOrder(){
+        System.out.println("Product Filter By Product Group");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement infoFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_information_filter");
+        infoFilter.click();
+        //Click Product without Stock
+        MobileElement prodWithOrder = (MobileElement) driver.findElementByXPath(filterByDrctry+"/android.widget.TextView[4]");
+        prodWithOrder.click();
+        //Click filter
+        MobileElement filter = (MobileElement) driver.findElementById("android:id/button1");
+        filter.click();
+    }
+    private void infoFilterBy631(){
+        System.out.println("Product Filter By Product Group");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement infoFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_information_filter");
+        infoFilter.click();
+        //Click Returnable
+        MobileElement sales631 = (MobileElement) driver.findElementByXPath(filterByDrctry+"/android.widget.TextView[5]");
+        sales631.click();
+        //Click filter
+        MobileElement filter = (MobileElement) driver.findElementById("android:id/button1");
+        filter.click();
+    }
+    private void infoFilterByStockAvailabilityNoStock(){
+        System.out.println("Product Filter By Product Group");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement infoFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_information_filter");
+        infoFilter.click();
+        //Click Product 631
+        MobileElement prod631 = (MobileElement) driver.findElementByXPath(filterByDrctry+"/android.widget.TextView[6]");
+        prod631.click();
+        //Click filter
+        MobileElement filter = (MobileElement) driver.findElementById("android:id/button1");
+        filter.click();
+    }
+    private void infoFilterByStockAvailabilityWithStock(){
+        System.out.println("Product Filter By Product Group");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement infoFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_information_filter");
+        infoFilter.click();
+        //Click Product with Order
+        MobileElement prodWithOrder = (MobileElement) driver.findElementByXPath(filterByDrctry+"/android.widget.TextView[7]");
+        prodWithOrder.click();
+        //Click filter
+        MobileElement filter = (MobileElement) driver.findElementById("android:id/button1");
+        filter.click();
+    }
+    private void infoFilterByStockWeightLow(){
+        System.out.println("Product Filter By Product Group");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement infoFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_information_filter");
+        infoFilter.click();
+        swipeDown();
+        //Click Product Stock Weight = Low
+        MobileElement prodStockAvailWithStock = (MobileElement) driver.findElementByXPath("//android.widget.TextView[@text='Stock weight = low']");
+        prodStockAvailWithStock.click();
+        //Click filter
+        MobileElement filter = (MobileElement) driver.findElementById("android:id/button1");
+        filter.click();
+    }
+    private void infoFilterByStockWeightMed(){
+        System.out.println("Product Filter By Product Group");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement infoFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_information_filter");
+        infoFilter.click();
+        swipeDown();
+        //Click Product Stock Weight = Med
+        MobileElement prodStockAvailWithStock = (MobileElement) driver.findElementByXPath("//android.widget.TextView[@text='Stock weight = medium']");
+        prodStockAvailWithStock.click();
+        //Click filter
+        MobileElement filter = (MobileElement) driver.findElementById("android:id/button1");
+        filter.click();
+    }
+    private void infoFilterByStockWeightHigh(){
+        System.out.println("Product Filter By Product Group");
+        //Click arrow down
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckArrow = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        clckArrow.click();
+        //Click on all product filter
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement infoFilter = (MobileElement) driver.findElementById("com.engagia.android:id/txt_information_filter");
+        infoFilter.click();
+        swipeDown();
+        //Click Product Stock Weight = High
+        MobileElement prodStockAvailWithStock = (MobileElement) driver.findElementByXPath("//android.widget.TextView[@text='Stock weight = high']");
+        prodStockAvailWithStock.click();
+        //Click filter
+        MobileElement filter = (MobileElement) driver.findElementById("android:id/button1");
+        filter.click();
+    }
 
     public void clear(){
         //Click triple Dots
@@ -345,12 +2974,12 @@ public class BAOF {
         clckDots.click();
         //Click ClearAll
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        MobileElement btnClear = (MobileElement) driver.findElementById("com.engagia.android:id/btn_clear");
+        MobileElement btnClear = (MobileElement) driver.findElementById("com.engagia.android:id/txt_clear_all_btn");
         btnClear.click();
         //Click CLEAR ALL
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        MobileElement clear = (MobileElement) driver.findElementById("android:id/button1");
-        clear.click();
+        MobileElement contBtn = (MobileElement) driver.findElementById("android:id/button1");
+        contBtn.click();
         System.out.println("Clear done");
     }
 
@@ -597,11 +3226,46 @@ public class BAOF {
 //            MobileElement contBtn = (MobileElement) driver.findElementById("android:id/button1");
 //            contBtn.click();
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement confirmBtn = (MobileElement) driver.findElementById("android:id/button1");
+            confirmBtn.click();
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             MobileElement okBtn = (MobileElement) driver.findElementById("android:id/button1");
             okBtn.click();
             //INSERT CASES OR FUNCTION HERE
             SearchBAOF();
-            demoFunction();
+//            Case9();
+//            Case10();
+//            Case11();
+//            Case12();
+//            Case13();
+//            Case14();
+//            Case15();
+//            Case16();
+            //FILTER BY
+//            Case17();
+//            Case18();
+//            Case19();
+//            Case20();
+//            Case21();
+//            Case22(); No Historical Sales
+//            Case23(); No Historical Sales + Must Carry?
+//            Case24();
+//            Case25();  force close with case 24
+//            Case26();
+            Case27();
+//            Case28(); CANCER TO
+            Case29();
+            Case30();
+            Case31();
+            Case32();
+            Case33();
+            Case34();
+            Case35();
+            Case36();
+            Case37();
+            Case38();
+
+
             //Click on Drawer to logout to visit
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             MobileElement drawerOpen2 = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
@@ -636,7 +3300,7 @@ public class BAOF {
         int width = dim.getWidth();
         int height = dim.getHeight();
         int x = (int) (width * 0.50);
-        int y1 = (int) (height * 0.80);
+        int y1 = (int) (height * 0.75);
         int y2 = (int) (height * 0.50);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement element1 = (MobileElement) driver.findElementById("com.engagia.android:id/buttonPanel");
@@ -644,7 +3308,7 @@ public class BAOF {
         if (element1Displayed) {
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             TouchAction touchAction = new TouchAction(driver);
-            touchAction.longPress(new PointOption().withCoordinates(x, y1)).moveTo(new PointOption().withCoordinates(x, y2)).release().perform();
+            touchAction.press(new PointOption().withCoordinates(x, y1)).moveTo(new PointOption().withCoordinates(x, y2)).release().perform();
         }
     }
     public void swipeRight(){
