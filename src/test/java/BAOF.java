@@ -5,6 +5,7 @@ import io.appium.java_client.touch.offset.PointOption;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -2401,7 +2402,51 @@ public class BAOF {
             }
         }
     }
-
+    //Check Summary Menu "Select Branch" //todo need to create script for not log in to visit
+    public void Case39(){
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement summaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
+        summaryMenu.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement accountBranch = (MobileElement) driver.findElementById("com.engagia.android:id/txt_account_branch");
+        accountBranch.click();
+        String selectedBranchName = accountBranch.getText();
+        System.out.println(selectedBranchName);
+        driver.navigate().back();
+    }
+    //Click Summary Menu "Grand Total with Tax" Field
+    public void Case40(){
+        //
+        for(int z = 1; z <=2; z++) {
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement summaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
+            summaryMenu.click();
+            MobileElement grandTotalWTax = (MobileElement) driver.findElementById("com.engagia.android:id/list_str_temporary_saved_grand_total_w_tax");
+            grandTotalWTax.click();
+            String grandTotalText = grandTotalWTax.getText();
+            driver.navigate().back();
+            if(z==1) {
+                System.out.println("Grand Total Without order: " + grandTotalText);
+                orderPC();
+            }
+            else if (z==2){
+                System.out.println("Grand Total With order: "+grandTotalText);
+                deleteOrderPC();
+                orderPC();
+                System.out.println("Edited Grand Total With order: "+grandTotalText);
+            }
+        }
+        clear();
+    }
+    //Click Summary Menu "VAT" Field
+    public void Case41(){
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement summaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
+        summaryMenu.click();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement accountBranch = (MobileElement) driver.findElementById("com.engagia.android:id/txt_account_branch");
+        accountBranch.click();
+    }
 
 
     //Functions
@@ -2983,6 +3028,47 @@ public class BAOF {
         System.out.println("Clear done");
     }
 
+    //Order functions
+    private void orderPC(){
+        for(int z = 1; z<=3; z++) {
+            try {
+                //1st Product per PC
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement orderPC = (MobileElement) driver.findElementByXPath(bookingOrderDrctry + "/android.widget.LinearLayout[" + z + "]/android.widget.LinearLayout[1]" +
+                        "/android.widget.LinearLayout[1]/android.widget.TextView");
+                orderPC.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                //Enter random numbers
+                randomNum();
+                MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
+                btnOk.click();
+                System.out.println("Order PC " + z + " done");
+            }
+            catch (NoSuchElementException e){
+                System.out.println("Can't Find Element");
+            }
+        }
+    }
+    private void deleteOrderPC(){
+        for(int z = 1; z<=3; z++) {
+            try {
+                //1st Product per PC
+                driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+                MobileElement orderPC = (MobileElement) driver.findElementByXPath(bookingOrderDrctry + "/android.widget.LinearLayout["+z+"]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView");
+                orderPC.click();
+                //Click Delete btn
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement deleteBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_clr");
+                deleteBtn.click();
+                MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
+                btnOk.click();
+                System.out.println("Delete Order PC "+z+" done");
+            }
+            catch (NoSuchElementException e){
+                System.out.println("Can't Find Element");
+            }
+        }
+    }
 
     /**
      *THIS FUNCTIONS IS FOR DEMO ONLY
@@ -3252,18 +3338,21 @@ public class BAOF {
 //            Case24();
 //            Case25();  force close with case 24
 //            Case26();
-            Case27();
+//            Case27();
 //            Case28(); CANCER TO
-            Case29();
-            Case30();
-            Case31();
-            Case32();
-            Case33();
-            Case34();
-            Case35();
-            Case36();
-            Case37();
-            Case38();
+//            Case29(); NEED THIS TO TEST VVVV
+//            Case30();
+//            Case31();
+//            Case32();
+//            Case33();
+//            Case34();
+//            Case35();
+//            Case36();
+//            Case37();
+//            Case38();
+            Case39();
+            Case40();
+
 
 
             //Click on Drawer to logout to visit
@@ -3329,6 +3418,29 @@ public class BAOF {
             touchAction.longPress(new PointOption().withCoordinates(x1, y)).moveTo(new PointOption().withCoordinates(x2, y)).release().perform();
         }
     }
+    public void randomNum(){
+        switch(rand(10)){
+            case 1: MobileElement clckNO1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_1') and @index = '0']"); clckNO1.click();
+                break;
+            case 2: MobileElement clckNO2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_2') and @index = '1']"); clckNO2.click();
+                break;
+            case 3: MobileElement clckNO3 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_3') and @index = '2']"); clckNO3.click();
+                break;
+            case 4: MobileElement clckNO4 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_4') and @index = '0']"); clckNO4.click();
+                break;
+            case 5: MobileElement clckNO5 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_5') and @index = '1']"); clckNO5.click();
+                break;
+            case 6: MobileElement clckNO6 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_6') and @index = '2']"); clckNO6.click();
+                break;
+            case 7: MobileElement clckNO7 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_7') and @index = '0']"); clckNO7.click();
+                break;
+            case 8: MobileElement clckNO8 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_8') and @index = '1']"); clckNO8.click();
+                break;
+            case 9: MobileElement clckNO9 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_9') and @index = '2']"); clckNO9.click();
+                break;
+        }
+    }
+
     private static int rand(int bound) {
         return (int) (Math.random() * bound);
     }
