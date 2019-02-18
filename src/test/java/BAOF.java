@@ -45,12 +45,19 @@ public class BAOF {
     String bookingOrderDrctry = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
             "/android.support.v4.widget.DrawerLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout" +
             "/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout";
+    String productDrctry = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
+            "/android.support.v4.widget.DrawerLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout" +
+            "/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout";
+    String unitDrctry = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
+            "/android.support.v4.widget.DrawerLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
+            "/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView";
     String searchByDrctry = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout" +
             "/android.support.v7.widget.LinearLayoutCompat/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.RadioGroup";
     String filterByDrctry = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout" +
             "/android.support.v7.widget.LinearLayoutCompat/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ListView";
     String branchListDrctry = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout" +
             "/android.support.v7.widget.LinearLayoutCompat/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.support.v7.widget.RecyclerView";
+
     /**
      * 1. PROD1 STOCK /android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView
      * 2. PROD2 STOCK /android.widget.LinearLayout[2]/android.widget.LinearLayout[2]/android.widget.TextView
@@ -2404,6 +2411,7 @@ public class BAOF {
     }
     //Check Summary Menu "Select Branch" //todo need to create script for not log in to visit
     public void Case39(){
+        System.out.println("Testing Case 39");
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement summaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
         summaryMenu.click();
@@ -2413,10 +2421,11 @@ public class BAOF {
         String selectedBranchName = accountBranch.getText();
         System.out.println(selectedBranchName);
         driver.navigate().back();
+        System.out.println("Case 39 Pass");
     }
     //Click Summary Menu "Grand Total with Tax" Field
     public void Case40(){
-        //
+        System.out.println("Testing Case 40");
         for(int z = 1; z <=2; z++) {
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             MobileElement summaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
@@ -2436,19 +2445,211 @@ public class BAOF {
                 System.out.println("Edited Grand Total With order: "+grandTotalText);
             }
         }
+        System.out.println("Case 40 Pass");
         clear();
     }
     //Click Summary Menu "VAT" Field
     public void Case41(){
+        System.out.println("Testing Case 41");
+        for(int z = 1; z <=2; z++) {
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement summaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
+            summaryMenu.click();
+            MobileElement vat = (MobileElement) driver.findElementById("com.engagia.android:id/txt_grand_total_w_o_tax");
+            vat.click();
+            String vatTextValue = vat.getText();
+            driver.navigate().back();
+            if(z==1) {
+                System.out.println("VAT Without order: " + vatTextValue);
+                orderPC();
+            }
+            else if (z==2){
+                System.out.println("VAT With order: "+vatTextValue);
+                deleteOrderPC();
+                orderPC();
+                System.out.println("VAT With order: "+vatTextValue);
+            }
+        }
+        System.out.println("Case 41 Pass");
+        clear();
+    }
+    //Click Summary Menu "Source Warehouse" Field
+    public void Case42(){
+        System.out.println("Testing Case 42");
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement summaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
         summaryMenu.click();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement accountBranch = (MobileElement) driver.findElementById("com.engagia.android:id/txt_account_branch");
-        accountBranch.click();
+        for(int z = 1; z<=4; z++) {
+            try {
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement sourceWarehouse = (MobileElement) driver.findElementById("com.engagia.android:id/txt_source_warehouse");
+                sourceWarehouse.click();
+                //Select Certain Warehouse Checkbox
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement selectWarehouseSource = (MobileElement) driver.findElementByXPath("//android.support.v7.widget.LinearLayoutCompat/android.widget.FrameLayout" +
+                        "/android.widget.FrameLayout/android.widget.ListView/android.widget.CheckedTextView["+z+"]");
+                selectWarehouseSource.click();
+                MobileElement goBtn = (MobileElement) driver.findElementById("android:id/button1");
+                goBtn.click();
+            }
+            catch (NoSuchElementException e){
+                int x = z-1;
+                System.out.println("There is only "+x+ " Warehouse");
+                MobileElement goBtn = (MobileElement) driver.findElementById("android:id/button1");
+                goBtn.click();
+                break;
+            }
+        }
+        driver.navigate().back();
+        clear();
+        System.out.println("Case 42 Pass");
     }
+    //Click Summary Menu "Discounts" Field
+    public void Case43(){
 
+    }
+    //
+    public void Case44(){
 
+    }
+    //Check triple dot menu "Order Protection to all Products"
+    public void Case45(){
+        System.out.println("Testing Case 45");
+        for(int z = 1; z<=3; z++) {
+            orderProtect();
+            if (z==1){
+                System.out.println("Order Protect Toggle on");
+            }else if(z==2){
+                System.out.println("Order Protect Toggle off");
+            }else if(z==3){
+                System.out.println("Order Protect Toggle on");
+            }
+        }
+        System.out.println("Case 45 Pass");
+    }
+    //Check triple dot menu "PREVIEW"
+    public void Case46(){
+        System.out.println("Testing Case 46");
+        for(int z = 1; z<=3; z++) {
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement summaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
+            summaryMenu.click();
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement btnPreview = (MobileElement) driver.findElementById("com.engagia.android:id/txt_preview_btn");
+            btnPreview.click();
+            MobileElement previewSummary = (MobileElement) driver.findElementById("com.engagia.android:id/txt_print_data");
+            String previewSummaryText = previewSummary.getText();
+            MobileElement closeBtn = (MobileElement) driver.findElementById("android:id/button1");
+            closeBtn.click();
+            driver.navigate().back();
+            if(z==1) {
+                System.out.println("Preview Without order: \n" + previewSummaryText);
+                orderPC();
+            }
+            else if (z==2){
+                System.out.println("Preview With order: \n"+previewSummaryText);
+                deleteOrderPC();
+                orderPC();
+                System.out.println("Preview With order: \n"+previewSummaryText);
+            }
+        }
+        System.out.println("Case 46 Pass");
+    }
+    //Check triple dot menu "CLEAR"
+    public void Case47(){
+        System.out.println("Testing Case 47");
+        clear();
+        System.out.println("Case 47 Pass");
+    }
+    //Check summary menu : "Salesman Discount"
+    public void Case48(){
+        System.out.println("Testing Case 48");
+
+        System.out.println("Case 48 Pass");
+    }
+    //Check summary menu : "FINALIZE"
+    public void Case49(){
+        System.out.println("Testing Case 49");
+        orderPC();
+        orderFinalize();
+        SearchBAOF();
+        System.out.println("Case 49 Pass");
+    }
+    //
+    public void Case51(){
+
+    }
+    //Check table view "PRODUCT NAME"
+    public void Case52(){
+        System.out.println("Testing Case 52");
+        viewProductSummary();
+        System.out.println("Case 52 Pass");
+    }
+    //Check table view "UNIT"
+    public void Case53(){
+        System.out.println("Testing Case 53");
+        //1st click
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id, 'filter_by_button')]");
+        boolean isDisplayed1 = element1.isDisplayed();
+        if (isDisplayed1) {
+            MobileElement unit = (MobileElement) driver.findElementByXPath(unitDrctry);
+            unit.click();
+        }
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement filteredBySmall = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'txt_uom_filtered') and @text='Uom filtered by smallest']");
+        String filteredBySmallText = filteredBySmall.getText();
+        boolean filteredBySmallDisplayed = filteredBySmall.isDisplayed();
+        if (filteredBySmallDisplayed) {
+            System.out.println(filteredBySmallText+" is Displayed");
+            MobileElement unit = (MobileElement) driver.findElementByXPath(unitDrctry);
+            unit.click();
+        }
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement filteredByBig = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'txt_uom_filtered') and @text='Uom filtered by biggest']");
+        String filteredByBigText = filteredByBig.getText();
+        boolean filteredByBigDisplayed = filteredByBig.isDisplayed();
+        if (filteredByBigDisplayed) {
+            System.out.println(filteredByBigText+" is Displayed");
+            MobileElement unit = (MobileElement) driver.findElementByXPath(unitDrctry);
+            unit.click();
+        }
+        System.out.println("Case 53 Pass");
+    }
+    //
+    public void Case54(){
+        System.out.println("Testing Case 42");
+        orderNegativePC();
+        orderNegativeBox();
+        orderPC();
+        orderBox();
+        deleteOrderPC();
+        deleteOrderBox();
+        orderPC();
+        orderBox();
+        for(int z = 1; z<=3; z++) {
+            //1st Product per PC
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            MobileElement orderPC1 = (MobileElement) driver.findElementByXPath(bookingOrderDrctry + "/android.widget.LinearLayout["+z+"]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView");
+            orderPC1.click();
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            //Enter random numbers
+            for(int x = 1; x<=7; x++) {
+                MobileElement btnNo9 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_9");
+                btnNo9.click();
+            }
+            MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
+            btnOk.click();
+            System.out.println("Order PC "+z+" done");
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            MobileElement element1 = (MobileElement) driver.findElementById("com.engagia.android:id/snackbar_text");
+            boolean isDisplayed1 = element1.isDisplayed();
+            if (isDisplayed1) {
+                System.out.println("Not enough inventory");
+            }
+        }
+        System.out.println("Case 42 Pass");
+    }
     //Functions
 
 
@@ -3027,6 +3228,34 @@ public class BAOF {
         contBtn.click();
         System.out.println("Clear done");
     }
+    private void orderProtect(){
+        //Click triple Dots
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement clckDots = (MobileElement) driver.findElementByAccessibilityId("Show action");
+        clckDots.click();
+        //Click ClearAll
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        MobileElement orderProtect = (MobileElement) driver.findElementById("com.engagia.android:id/order_protection_switch");
+        orderProtect.click();
+        driver.navigate().back();
+        System.out.println("Order Protection Clicked");
+    }
+    private void viewProductSummary(){
+        for(int z = 1; z<=3; z++) {
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement clickProd = (MobileElement) driver.findElementByXPath(productDrctry+"/android.widget.LinearLayout["+z+"]/android.widget.LinearLayout[1]/android.widget.TextView");
+            clickProd.click();
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement prodTitle = (MobileElement) driver.findElementById("com.engagia.android:id/txt_product_title");
+            String prodTitleText = prodTitle.getText();
+            System.out.println("Product "+z+": "+prodTitleText);
+            MobileElement arrowRight = (MobileElement) driver.findElementById("com.engagia.android:id/pager_next");
+            arrowRight.click();
+            MobileElement arrowLeft = (MobileElement) driver.findElementById("com.engagia.android:id/pager_previous");
+            arrowLeft.click();
+            driver.navigate().back();
+        }
+    }
 
     //Order functions
     private void orderPC(){
@@ -3042,7 +3271,30 @@ public class BAOF {
                 randomNum();
                 MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
                 btnOk.click();
-                System.out.println("Order PC " + z + " done");
+                String orderEnteredValue = orderPC.getText();
+                System.out.println("Order PC " + z + " done: Value = "+ orderEnteredValue);
+            }
+            catch (NoSuchElementException e){
+                System.out.println("Can't Find Element");
+            }
+        }
+    }
+    private void orderNegativePC(){
+        for(int z = 1; z<=3; z++) {
+            try {
+                //1st Product per PC
+                driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+                MobileElement orderPC = (MobileElement) driver.findElementByXPath(bookingOrderDrctry + "/android.widget.LinearLayout[" + z + "]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView");
+                orderPC.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                //Enter negative numbers
+                MobileElement subtractBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_subtract");
+                subtractBtn.click();
+                randomNum();
+                MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
+                btnOk.click();
+                driver.navigate().back();
+                System.out.println("Order Negative PC " + z + " done");
             }
             catch (NoSuchElementException e){
                 System.out.println("Can't Find Element");
@@ -3067,6 +3319,173 @@ public class BAOF {
             catch (NoSuchElementException e){
                 System.out.println("Can't Find Element");
             }
+        }
+    }
+    private void orderBox(){
+        for(int z = 1; z<=3; z++) {
+            try {
+                //1st Product per Box
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement orderBox = (MobileElement) driver.findElementByXPath(bookingOrderDrctry + "/android.widget.LinearLayout[" + z + "]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView");
+                orderBox.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                //Enter random numbers
+                randomNum();
+                MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
+                btnOk.click();
+                System.out.println("Order Box " + z + " done");
+            }
+            catch (NoSuchElementException e){
+                System.out.println("Can't Find Element");
+            }
+        }
+    }
+    private void orderNegativeBox(){
+        for(int z = 1; z<=3; z++) {
+            try {
+                //1st Product per PC
+                driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+                MobileElement orderBox = (MobileElement) driver.findElementByXPath(bookingOrderDrctry + "/android.widget.LinearLayout["+z+"]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView");
+                orderBox.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                //Enter negative numbers
+                MobileElement subtractBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_subtract");
+                subtractBtn.click();
+                randomNum();
+                MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
+                btnOk.click();
+                driver.navigate().back();
+                System.out.println("Order Negative Box "+z+" done");
+            }
+            catch (NoSuchElementException e){
+                System.out.println("Can't Find Element");
+            }
+        }
+    }
+    private void deleteOrderBox(){
+        for(int z = 1; z<=3; z++) {
+            try {
+                //1st Product per PC
+                driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+                MobileElement orderBox = (MobileElement) driver.findElementByXPath(bookingOrderDrctry + "/android.widget.LinearLayout[" + z + "]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView");
+                orderBox.click();
+                //Click Delete btn
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement deleteBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_clr");
+                deleteBtn.click();
+                MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
+                btnOk.click();
+                System.out.println("Delete Order Box " + z + " done");
+            }
+            catch (NoSuchElementException e){
+                System.out.println("Can't Find Element");
+            }
+        }
+    }
+    private void orderFinalize(){
+        //This Click the summary menu
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement summaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
+        summaryMenu.click();
+        //Click on Finalize
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement finalizeBtn = (MobileElement) driver.findElementById("com.engagia.android:id/txt_finalize_btn");
+        finalizeBtn.click();
+        //Enter Details on Finalize Order
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement custName = (MobileElement) driver.findElementById("com.engagia.android:id/txt_customer_name");
+        custName.sendKeys("John Roe");
+        MobileElement contactDtl = (MobileElement) driver.findElementById("com.engagia.android:id/txt_contact_detail");
+        contactDtl.sendKeys("0917 XXX XXXX");
+        MobileElement poNumber = (MobileElement) driver.findElementById("com.engagia.android:id/txt_po_number");
+        poNumber.sendKeys("88888888");
+        driver.hideKeyboard();
+        //Click on Request Date
+        MobileElement reqDate = (MobileElement) driver.findElementById("com.engagia.android:id/txt_request_delivery_date");
+        reqDate.click();
+//        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+//        MobileElement clckArrow = (MobileElement) driver.findElementByAccessibilityId("Next month");
+//        clckArrow.click();
+        //This Accessibility Id can change depends on what date
+//        MobileElement clickOnReqDate = (MobileElement) driver.findElementByAccessibilityId("28 February 2019");
+//        clickOnReqDate.click();
+        MobileElement clckOk = (MobileElement) driver.findElementById("android:id/button1");
+        clckOk.click();
+        //Location
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement location = (MobileElement) driver.findElementById("com.engagia.android:id/txt_ship_location");
+        location.sendKeys("Makati City");
+        //Notes
+        driver.hideKeyboard();
+        MobileElement notes = (MobileElement) driver.findElementById("com.engagia.android:id/txt_notes");
+        notes.sendKeys("ASAP");
+        driver.hideKeyboard();
+        //PO Cancel Date
+        MobileElement poCancelDate = (MobileElement) driver.findElementById("com.engagia.android:id/txt_po_cancel_date");
+        poCancelDate.click();
+        //Next Month or Arrow
+//        clckArrow.click();
+        MobileElement clickOnPoCancelDate = (MobileElement) driver.findElementByAccessibilityId("28 February 2019");
+        clickOnPoCancelDate.click();
+        clckOk.click();
+        //Click on Save
+        for(int z = 1; z<=2; z++) {
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement saveBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_save_transaction");
+            saveBtn.click();
+            if(z==1){
+                MobileElement engagiaMessage = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean engagiaMessageDisplayed = engagiaMessage.isDisplayed();
+                if (engagiaMessageDisplayed) {
+                    String engagiaMessageDisplayedText = engagiaMessage.getText();
+                    System.out.println("Prompt appeared with message: " + engagiaMessageDisplayedText);
+                    MobileElement cancelBtn = (MobileElement) driver.findElementById("android:id/button2");
+                    String cancelBtnText = cancelBtn.getText();
+                    cancelBtn.click();
+                    System.out.println(cancelBtnText+" button clicked");
+                }
+            }
+            else if(z==2) {
+                //Prompt will appear
+                MobileElement engagiaMessage = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean engagiaMessageDisplayed = engagiaMessage.isDisplayed();
+                if (engagiaMessageDisplayed) {
+                    String engagiaMessageDisplayedText = engagiaMessage.getText();
+                    System.out.println("Prompt appeared with message: " + engagiaMessageDisplayedText);
+                    MobileElement yesBtn = (MobileElement) driver.findElementById("android:id/button1");
+                    yesBtn.click();
+                    String yesBtnText = yesBtn.getText();
+                    System.out.println(yesBtnText+" button clicked");
+                }
+            }
+        }
+        MobileElement successMessage = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+        boolean successMessageDisplayed = successMessage.isDisplayed();
+        if (successMessageDisplayed) {
+            String successMessageText = successMessage.getText();
+            System.out.println("Prompt appeared with message: " + successMessageText);
+            MobileElement yesBtn = (MobileElement) driver.findElementById("android:id/button1");
+            yesBtn.click();
+        }
+        MobileElement transactionUploadMessage = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+        boolean transactionUploadMessageDisplayed = transactionUploadMessage.isDisplayed();
+        if (transactionUploadMessageDisplayed) {
+            String transactionUploadMessageText = transactionUploadMessage.getText();
+            System.out.println("Prompt appeared with message: " + transactionUploadMessageText);
+            MobileElement yesBtn = (MobileElement) driver.findElementById("android:id/button1");
+            yesBtn.click();
+            String yesBtnText = yesBtn.getText();
+            System.out.println(yesBtnText+" button clicked");
+        }
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement syncCompletedMessage = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+        boolean syncCompletedMessageDisplayed = syncCompletedMessage.isDisplayed();
+        if (syncCompletedMessageDisplayed) {
+            String syncCompletedMessageText = syncCompletedMessage.getText();
+            System.out.println("Prompt appeared with message: " + syncCompletedMessageText);
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement closeBtn = (MobileElement) driver.findElementById("android:id/button1");
+            closeBtn.click();
         }
     }
 
@@ -3127,7 +3546,7 @@ public class BAOF {
         calOkBtn.click();
 
     }
-    public void orderFinalize(){
+    public void orderFinalizeWithPreview(){
         //This Click the summary menu
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement summaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
@@ -3192,11 +3611,6 @@ public class BAOF {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement closeBtn2 = (MobileElement) driver.findElementById("android:id/button1");
         closeBtn2.click();
-
-
-
-
-
     }
     public void searchByNameDemo(){
         System.out.println("Searching by Name");
@@ -3290,7 +3704,7 @@ public class BAOF {
 //        filterByDocuSeq();
 //        searchByCodeDemo();
         bookingTradeInventory();
-        orderFinalize();
+        orderFinalizeWithPreview();
         System.out.println("Demo finish running...");
     }
     public void loginToVisit(){
@@ -3350,8 +3764,17 @@ public class BAOF {
 //            Case36();
 //            Case37();
 //            Case38();
-            Case39();
-            Case40();
+//            Case39();
+//            Case40();
+//            Case41();
+//            Case42();
+//            Case45();
+//            Case46();
+//            Case47();
+//            Case49();
+            Case52();
+            Case53();
+            Case54();
 
 
 
