@@ -2428,7 +2428,7 @@ public class BAOF {
     //Click Summary Menu "Grand Total with Tax" Field
     public void Case40(){
         System.out.println("Testing Case 40");
-        for(int z = 1; z <=2; z++) {
+        for(int a = 1; a <=2; a++) {
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             MobileElement summaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
             summaryMenu.click();
@@ -2436,11 +2436,11 @@ public class BAOF {
             grandTotalWTax.click();
             String grandTotalText = grandTotalWTax.getText();
             driver.navigate().back();
-            if(z==1) {
+            if(a==1) {
                 System.out.println("Grand Total Without order: " + grandTotalText);
                 orderPC();
             }
-            else if (z==2){
+            else if (a==2){
                 System.out.println("Grand Total With order: "+grandTotalText);
                 deleteOrderPC();
                 orderPC();
@@ -3274,7 +3274,27 @@ public class BAOF {
         }
     }
 
-    //Order functions
+    //todo Order functions
+    private void completeOrderTransac(){
+        for(int z=1; z<=3; z++) {
+            orderPC();
+            orderBox();
+            if(z==1) {
+                swipeRight();
+                stockAvail();
+                stockAvail();
+                swipeRight();
+                stockWeight();
+                swipeRight();
+                swipeRight();
+                tradeInventory();
+            }
+            swipeFastLeft();
+            MobileElement nextPage = (MobileElement) driver.findElementById("com.engagia.android:id/custom_table_next_pagination");
+            nextPage.click();
+
+        }
+    }
     private void orderPC(){
         for(int z = 1; z<=3; z++) {
             try {
@@ -3418,112 +3438,225 @@ public class BAOF {
             }
         }
     }
+    //oridignal finalize
+//    private void orderFinalize(){
+//        //This Click the summary menu
+//        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+//        MobileElement summaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
+//        summaryMenu.click();
+//        //Click on Finalize
+//        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+//        MobileElement finalizeBtn = (MobileElement) driver.findElementById("com.engagia.android:id/txt_finalize_btn");
+//        finalizeBtn.click();
+//        //Enter Details on Finalize Order
+//        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+//        MobileElement custName = (MobileElement) driver.findElementById("com.engagia.android:id/txt_customer_name");
+//        custName.sendKeys("John Roe");
+//        MobileElement contactDtl = (MobileElement) driver.findElementById("com.engagia.android:id/txt_contact_detail");
+//        contactDtl.sendKeys("0917 XXX XXXX");
+//        MobileElement poNumber = (MobileElement) driver.findElementById("com.engagia.android:id/txt_po_number");
+//        poNumber.sendKeys("88888888");
+//        driver.hideKeyboard();
+//        //Click on Request Date
+//        MobileElement reqDate = (MobileElement) driver.findElementById("com.engagia.android:id/txt_request_delivery_date");
+//        reqDate.click();
+////        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+////        MobileElement clckArrow = (MobileElement) driver.findElementByAccessibilityId("Next month");
+////        clckArrow.click();
+//        //This Accessibility Id can change depends on what date
+////        MobileElement clickOnReqDate = (MobileElement) driver.findElementByAccessibilityId("28 February 2019");
+////        clickOnReqDate.click();
+//        MobileElement clckOk = (MobileElement) driver.findElementById("android:id/button1");
+//        clckOk.click();
+//        //Location
+//        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+//        MobileElement location = (MobileElement) driver.findElementById("com.engagia.android:id/txt_ship_location");
+//        location.sendKeys("Makati City");
+//        //Notes
+//        driver.hideKeyboard();
+//        MobileElement notes = (MobileElement) driver.findElementById("com.engagia.android:id/txt_notes");
+//        notes.sendKeys("ASAP");
+//        driver.hideKeyboard();
+//        //PO Cancel Date
+//        MobileElement poCancelDate = (MobileElement) driver.findElementById("com.engagia.android:id/txt_po_cancel_date");
+//        poCancelDate.click();
+//        //Next Month or Arrow
+////        clckArrow.click();
+//        MobileElement clickOnPoCancelDate = (MobileElement) driver.findElementByAccessibilityId("28 February 2019");
+//        clickOnPoCancelDate.click();
+//        clckOk.click();
+//        //Click on Save
+//        for(int z = 1; z<=2; z++) {
+//            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+//            MobileElement saveBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_save_transaction");
+//            saveBtn.click();
+//            if(z==1){
+//                MobileElement engagiaMessage = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+//                boolean engagiaMessageDisplayed = engagiaMessage.isDisplayed();
+//                if (engagiaMessageDisplayed) {
+//                    String engagiaMessageDisplayedText = engagiaMessage.getText();
+//                    System.out.println("Prompt appeared with message: " + engagiaMessageDisplayedText);
+//                    MobileElement cancelBtn = (MobileElement) driver.findElementById("android:id/button2");
+//                    String cancelBtnText = cancelBtn.getText();
+//                    cancelBtn.click();
+//                    System.out.println(cancelBtnText+" button clicked");
+//                }
+//            }
+//            else if(z==2) {
+//                //Prompt will appear
+//                MobileElement engagiaMessage = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+//                boolean engagiaMessageDisplayed = engagiaMessage.isDisplayed();
+//                if (engagiaMessageDisplayed) {
+//                    String engagiaMessageDisplayedText = engagiaMessage.getText();
+//                    System.out.println("Prompt appeared with message: " + engagiaMessageDisplayedText);
+//                    MobileElement yesBtn = (MobileElement) driver.findElementById("android:id/button1");
+//                    yesBtn.click();
+//                    String yesBtnText = yesBtn.getText();
+//                    System.out.println(yesBtnText+" button clicked");
+//                }
+//            }
+//        }
+//        MobileElement successMessage = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+//        boolean successMessageDisplayed = successMessage.isDisplayed();
+//        if (successMessageDisplayed) {
+//            String successMessageText = successMessage.getText();
+//            System.out.println("Prompt appeared with message: " + successMessageText);
+//            MobileElement yesBtn = (MobileElement) driver.findElementById("android:id/button1");
+//            yesBtn.click();
+//        }
+//        MobileElement transactionUploadMessage = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+//        boolean transactionUploadMessageDisplayed = transactionUploadMessage.isDisplayed();
+//        if (transactionUploadMessageDisplayed) {
+//            String transactionUploadMessageText = transactionUploadMessage.getText();
+//            System.out.println("Prompt appeared with message: " + transactionUploadMessageText);
+//            MobileElement yesBtn = (MobileElement) driver.findElementById("android:id/button1");
+//            yesBtn.click();
+//            String yesBtnText = yesBtn.getText();
+//            System.out.println(yesBtnText+" button clicked");
+//        }
+//        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+//        MobileElement syncCompletedMessage = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+//        boolean syncCompletedMessageDisplayed = syncCompletedMessage.isDisplayed();
+//        if (syncCompletedMessageDisplayed) {
+//            String syncCompletedMessageText = syncCompletedMessage.getText();
+//            System.out.println("Prompt appeared with message: " + syncCompletedMessageText);
+//            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+//            MobileElement closeBtn = (MobileElement) driver.findElementById("android:id/button1");
+//            closeBtn.click();
+//        }
+//    }
+
     private void orderFinalize(){
-        //This Click the summary menu
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement summaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
-        summaryMenu.click();
-        //Click on Finalize
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement finalizeBtn = (MobileElement) driver.findElementById("com.engagia.android:id/txt_finalize_btn");
-        finalizeBtn.click();
-        //Enter Details on Finalize Order
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement custName = (MobileElement) driver.findElementById("com.engagia.android:id/txt_customer_name");
-        custName.sendKeys("John Roe");
-        MobileElement contactDtl = (MobileElement) driver.findElementById("com.engagia.android:id/txt_contact_detail");
-        contactDtl.sendKeys("0917 XXX XXXX");
-        MobileElement poNumber = (MobileElement) driver.findElementById("com.engagia.android:id/txt_po_number");
-        poNumber.sendKeys("88888888");
-        driver.hideKeyboard();
-        //Click on Request Date
-        MobileElement reqDate = (MobileElement) driver.findElementById("com.engagia.android:id/txt_request_delivery_date");
-        reqDate.click();
+    //This Click the summary menu
+    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+    MobileElement summaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
+    summaryMenu.click();
+    //Click on Finalize
+    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+    MobileElement finalizeBtn = (MobileElement) driver.findElementById("com.engagia.android:id/txt_finalize_btn");
+    finalizeBtn.click();
+    //Enter Details on Finalize Order
+    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+    MobileElement custName = (MobileElement) driver.findElementById("com.engagia.android:id/txt_customer_name");
+    custName.sendKeys("John Roe");
+    MobileElement contactDtl = (MobileElement) driver.findElementById("com.engagia.android:id/txt_contact_detail");
+    contactDtl.sendKeys("0917 XXX XXXX");
+    MobileElement poNumber = (MobileElement) driver.findElementById("com.engagia.android:id/txt_po_number");
+    poNumber.sendKeys("88888888");
+    driver.hideKeyboard();
+    //Click on Request Date
+    MobileElement reqDate = (MobileElement) driver.findElementById("com.engagia.android:id/txt_request_delivery_date");
+    reqDate.click();
 //        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 //        MobileElement clckArrow = (MobileElement) driver.findElementByAccessibilityId("Next month");
 //        clckArrow.click();
-        //This Accessibility Id can change depends on what date
+    //This Accessibility Id can change depends on what date
 //        MobileElement clickOnReqDate = (MobileElement) driver.findElementByAccessibilityId("28 February 2019");
 //        clickOnReqDate.click();
-        MobileElement clckOk = (MobileElement) driver.findElementById("android:id/button1");
-        clckOk.click();
-        //Location
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement location = (MobileElement) driver.findElementById("com.engagia.android:id/txt_ship_location");
-        location.sendKeys("Makati City");
-        //Notes
-        driver.hideKeyboard();
-        MobileElement notes = (MobileElement) driver.findElementById("com.engagia.android:id/txt_notes");
-        notes.sendKeys("ASAP");
-        driver.hideKeyboard();
-        //PO Cancel Date
-        MobileElement poCancelDate = (MobileElement) driver.findElementById("com.engagia.android:id/txt_po_cancel_date");
-        poCancelDate.click();
-        //Next Month or Arrow
+    MobileElement clckOk = (MobileElement) driver.findElementById("android:id/button1");
+    clckOk.click();
+    //Location
+    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+    MobileElement location = (MobileElement) driver.findElementById("com.engagia.android:id/txt_ship_location");
+    location.sendKeys("Makati City");
+    //Notes
+    driver.hideKeyboard();
+    MobileElement notes = (MobileElement) driver.findElementById("com.engagia.android:id/txt_notes");
+    notes.sendKeys("ASAP");
+    driver.hideKeyboard();
+    //PO Cancel Date
+    MobileElement poCancelDate = (MobileElement) driver.findElementById("com.engagia.android:id/txt_po_cancel_date");
+    poCancelDate.click();
+    //Next Month or Arrow
 //        clckArrow.click();
-        MobileElement clickOnPoCancelDate = (MobileElement) driver.findElementByAccessibilityId("28 February 2019");
-        clickOnPoCancelDate.click();
-        clckOk.click();
-        //Click on Save
-        for(int z = 1; z<=2; z++) {
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement saveBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_save_transaction");
-            saveBtn.click();
-            if(z==1){
-                MobileElement engagiaMessage = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
-                boolean engagiaMessageDisplayed = engagiaMessage.isDisplayed();
-                if (engagiaMessageDisplayed) {
-                    String engagiaMessageDisplayedText = engagiaMessage.getText();
-                    System.out.println("Prompt appeared with message: " + engagiaMessageDisplayedText);
-                    MobileElement cancelBtn = (MobileElement) driver.findElementById("android:id/button2");
-                    String cancelBtnText = cancelBtn.getText();
-                    cancelBtn.click();
-                    System.out.println(cancelBtnText+" button clicked");
-                }
-            }
-            else if(z==2) {
-                //Prompt will appear
-                MobileElement engagiaMessage = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
-                boolean engagiaMessageDisplayed = engagiaMessage.isDisplayed();
-                if (engagiaMessageDisplayed) {
-                    String engagiaMessageDisplayedText = engagiaMessage.getText();
-                    System.out.println("Prompt appeared with message: " + engagiaMessageDisplayedText);
-                    MobileElement yesBtn = (MobileElement) driver.findElementById("android:id/button1");
-                    yesBtn.click();
-                    String yesBtnText = yesBtn.getText();
-                    System.out.println(yesBtnText+" button clicked");
-                }
-            }
-        }
-        MobileElement successMessage = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
-        boolean successMessageDisplayed = successMessage.isDisplayed();
-        if (successMessageDisplayed) {
-            String successMessageText = successMessage.getText();
-            System.out.println("Prompt appeared with message: " + successMessageText);
-            MobileElement yesBtn = (MobileElement) driver.findElementById("android:id/button1");
-            yesBtn.click();
-        }
-        MobileElement transactionUploadMessage = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
-        boolean transactionUploadMessageDisplayed = transactionUploadMessage.isDisplayed();
-        if (transactionUploadMessageDisplayed) {
-            String transactionUploadMessageText = transactionUploadMessage.getText();
-            System.out.println("Prompt appeared with message: " + transactionUploadMessageText);
-            MobileElement yesBtn = (MobileElement) driver.findElementById("android:id/button1");
-            yesBtn.click();
-            String yesBtnText = yesBtn.getText();
-            System.out.println(yesBtnText+" button clicked");
-        }
+    MobileElement clickOnPoCancelDate = (MobileElement) driver.findElementByAccessibilityId("28 February 2019");
+    clickOnPoCancelDate.click();
+    clckOk.click();
+    //Click on Save
+    for(int z = 1; z<=2; z++) {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement syncCompletedMessage = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
-        boolean syncCompletedMessageDisplayed = syncCompletedMessage.isDisplayed();
-        if (syncCompletedMessageDisplayed) {
-            String syncCompletedMessageText = syncCompletedMessage.getText();
-            System.out.println("Prompt appeared with message: " + syncCompletedMessageText);
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            MobileElement closeBtn = (MobileElement) driver.findElementById("android:id/button1");
-            closeBtn.click();
+        MobileElement saveBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_save_transaction");
+        saveBtn.click();
+        if(z==1){
+            MobileElement engagiaMessage = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+            boolean engagiaMessageDisplayed = engagiaMessage.isDisplayed();
+            if (engagiaMessageDisplayed) {
+                MobileElement message = (MobileElement) driver.findElementById("android:id/message");
+                String messageText = message.getText();
+                System.out.println("A prompt appear with message: "+messageText);
+                MobileElement cancelBtn = (MobileElement) driver.findElementById("android:id/button2");
+                String cancelBtnText = cancelBtn.getText();
+                cancelBtn.click();
+                System.out.println(cancelBtnText+" button clicked");
+            }
+        }
+        else if(z==2) {
+            //Prompt will appear
+            MobileElement engagiaMessage = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+            boolean engagiaMessageDisplayed = engagiaMessage.isDisplayed();
+            if (engagiaMessageDisplayed) {
+                MobileElement message = (MobileElement) driver.findElementById("android:id/message");
+                String messageText = message.getText();
+                System.out.println("A prompt appear with message: "+messageText);
+                MobileElement yesBtn = (MobileElement) driver.findElementById("android:id/button1");
+                yesBtn.click();
+                String yesBtnText = yesBtn.getText();
+                System.out.println(yesBtnText+" button clicked");
+            }
         }
     }
+    MobileElement successMessage = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+    boolean successMessageDisplayed = successMessage.isDisplayed();
+    if (successMessageDisplayed) {
+        MobileElement message = (MobileElement) driver.findElementById("android:id/message");
+        String messageText = message.getText();
+        System.out.println("A prompt appear with message: "+messageText);
+        MobileElement yesBtn = (MobileElement) driver.findElementById("android:id/button1");
+        yesBtn.click();
+    }
+    MobileElement transactionUploadMessage = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+    boolean transactionUploadMessageDisplayed = transactionUploadMessage.isDisplayed();
+    if (transactionUploadMessageDisplayed) {
+        MobileElement message = (MobileElement) driver.findElementById("android:id/message");
+        String messageText = message.getText();
+        System.out.println("A prompt appear with message: "+messageText);
+        MobileElement yesBtn = (MobileElement) driver.findElementById("android:id/button1");
+        String yesBtnText = yesBtn.getText();
+        System.out.println(yesBtnText+" button clicked");
+        yesBtn.click();
+    }
+    driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+    MobileElement syncCompletedMessage = (MobileElement) driver.findElementById("com.engagia.android:id/text_successful_sync_header");
+    boolean syncCompletedMessageDisplayed = syncCompletedMessage.isDisplayed();
+    if (syncCompletedMessageDisplayed) {
+        String syncCompletedMessageText = syncCompletedMessage.getText();
+        System.out.println("A prompt appear with message: "+syncCompletedMessageText);
+        MobileElement closeBtn = (MobileElement) driver.findElementById("android:id/button1");
+        String closeBtnText = closeBtn.getText();
+        System.out.println(closeBtnText+" button clicked");
+        closeBtn.click();
+    }
+}
     //Trade Inventory
     private void tradeInventory(){
         for(int z = 1; z<=3; z++) {
@@ -3943,7 +4076,23 @@ public class BAOF {
             touchAction.longPress(new PointOption().withCoordinates(x1, y)).moveTo(new PointOption().withCoordinates(x2, y)).release().perform();
         }
     }
-    public void randomNum(){
+    public void swipeFastLeft(){
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement element1 = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        boolean isDisplayed1 = element1.isDisplayed();
+        if (isDisplayed1) {
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            Dimension dim = driver.manage().window().getSize();
+            int width = dim.getWidth();
+            //Para nasa gilid un pag scroll walang tatamaan textfield
+            int x1 = (int) (width * 0.99);
+            int x2 = (int) (width * 0.75);
+            TouchAction touchAction = new TouchAction(driver);
+            //try this
+            touchAction.press(new PointOption().withCoordinates(x2, 300)).moveTo(new PointOption().withCoordinates(x1, 300)).release().perform();
+        }
+    }
+    private void randomNum(){
         switch(rand(9 ) + 1){
             case 1: MobileElement clckNO1 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_1"); clckNO1.click();
                 System.out.println("Click value: 1");
