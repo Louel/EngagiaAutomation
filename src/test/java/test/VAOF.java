@@ -5864,24 +5864,33 @@ public class VAOF {
         System.out.println("Clear done");
     }
     public void randomNum(){
-        switch(rand(10)){
-            case 1: MobileElement clckNO1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_1') and @index = '0']"); clckNO1.click();
+        switch(rand(9 ) + 1){
+            case 1: MobileElement clckNO1 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_1"); clckNO1.click();
+                System.out.println("Click value: 1");
                 break;
-            case 2: MobileElement clckNO2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_2') and @index = '1']"); clckNO2.click();
+            case 2: MobileElement clckNO2 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_2"); clckNO2.click();
+                System.out.println("Click value: 2");
                 break;
-            case 3: MobileElement clckNO3 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_3') and @index = '2']"); clckNO3.click();
+            case 3: MobileElement clckNO3 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_3"); clckNO3.click();
+                System.out.println("Click value: 3");
                 break;
-            case 4: MobileElement clckNO4 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_4') and @index = '0']"); clckNO4.click();
+            case 4: MobileElement clckNO4 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_4"); clckNO4.click();
+                System.out.println("Click value: 4");
                 break;
-            case 5: MobileElement clckNO5 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_5') and @index = '1']"); clckNO5.click();
+            case 5: MobileElement clckNO5 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_5"); clckNO5.click();
+                System.out.println("Click value: 5");
                 break;
-            case 6: MobileElement clckNO6 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_6') and @index = '2']"); clckNO6.click();
+            case 6: MobileElement clckNO6 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_6"); clckNO6.click();
+                System.out.println("Click value: 6");
                 break;
-            case 7: MobileElement clckNO7 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_7') and @index = '0']"); clckNO7.click();
+            case 7: MobileElement clckNO7 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_7"); clckNO7.click();
+                System.out.println("Click value: 7");
                 break;
-            case 8: MobileElement clckNO8 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_8') and @index = '1']"); clckNO8.click();
+            case 8: MobileElement clckNO8 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_8"); clckNO8.click();
+                System.out.println("Click value: 8");
                 break;
-            case 9: MobileElement clckNO9 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_9') and @index = '2']"); clckNO9.click();
+            case 9: MobileElement clckNO9 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_9");; clckNO9.click();
+                System.out.println("Click value: 9");
                 break;
         }
     }

@@ -2616,9 +2616,9 @@ public class BAOF {
         }
         System.out.println("Case 53 Pass");
     }
-    //
+    //Check table view "ORDER"
     public void Case54(){
-        System.out.println("Testing Case 42");
+        System.out.println("Testing Case 54");
         orderNegativePC();
         orderNegativeBox();
         orderPC();
@@ -2627,29 +2627,44 @@ public class BAOF {
         deleteOrderBox();
         orderPC();
         orderBox();
-        for(int z = 1; z<=3; z++) {
-            //1st Product per PC
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-            MobileElement orderPC1 = (MobileElement) driver.findElementByXPath(bookingOrderDrctry + "/android.widget.LinearLayout["+z+"]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView");
-            orderPC1.click();
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            //Enter random numbers
-            for(int x = 1; x<=7; x++) {
-                MobileElement btnNo9 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_9");
-                btnNo9.click();
-            }
-            MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
-            btnOk.click();
-            System.out.println("Order PC "+z+" done");
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            MobileElement element1 = (MobileElement) driver.findElementById("com.engagia.android:id/snackbar_text");
-            boolean isDisplayed1 = element1.isDisplayed();
-            if (isDisplayed1) {
-                System.out.println("Not enough inventory");
-            }
-        }
-        System.out.println("Case 42 Pass");
+        System.out.println("Case 54 Pass");
     }
+    //Check table view "STOCK AVAILABILITY"
+    public void Case55(){
+        System.out.println("Testing Case 55");
+        swipeRight();
+        stockAvail();
+        stockAvail();
+        stockAvail();
+        System.out.println("Case 55 Pass");
+    }
+    //Check table view"STOCK WEIGHT"
+    public void Case56(){
+        System.out.println("Testing Case 56");
+        swipeRight();
+        //Stock Weight if no stock
+        stockAvail();
+        stockWeightWithNoStock();
+        stockAvail();
+        stockWeight();
+        stockWeight();
+        stockWeight();
+        System.out.println("Case 56 Pass");
+    }
+    //Check table view "TRADE INVENTORY"
+    public void Case57(){
+        System.out.println("Testing Case 57");
+        swipeRight();
+        swipeRight();
+        tradeInventory();
+        System.out.println("Case 57 Pass");
+    }
+    //Check "AVAILABLE STOCK"
+    public void Case59(){
+        swipeRight();
+        clear();
+    }
+    //
     //Functions
 
 
@@ -3286,15 +3301,24 @@ public class BAOF {
                 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
                 MobileElement orderPC = (MobileElement) driver.findElementByXPath(bookingOrderDrctry + "/android.widget.LinearLayout[" + z + "]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView");
                 orderPC.click();
-                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 //Enter negative numbers
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 MobileElement subtractBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_subtract");
                 subtractBtn.click();
                 randomNum();
                 MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
                 btnOk.click();
-                driver.navigate().back();
-                System.out.println("Order Negative PC " + z + " done");
+                MobileElement engagiaMessage = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean engagiaMessageDisplayed = engagiaMessage.isDisplayed();
+                if(engagiaMessageDisplayed){
+                    MobileElement message = (MobileElement) driver.findElementById("android:id/message");
+                    String messageText = message.getText();
+                    System.out.println("A prompt appear with message: "+messageText);
+                    MobileElement okBtn = (MobileElement) driver.findElementById("android:id/button1");
+                    okBtn.click();
+                }
+                String orderEnteredValue = orderPC.getText();
+                System.out.println("Order Negative PC " + z + " done: Value = "+ orderEnteredValue);
             }
             catch (NoSuchElementException e){
                 System.out.println("Can't Find Element");
@@ -3333,7 +3357,8 @@ public class BAOF {
                 randomNum();
                 MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
                 btnOk.click();
-                System.out.println("Order Box " + z + " done");
+                String orderEnteredValue = orderBox.getText();
+                System.out.println("Order Box " + z + " done: Value = "+ orderEnteredValue);
             }
             catch (NoSuchElementException e){
                 System.out.println("Can't Find Element");
@@ -3347,15 +3372,24 @@ public class BAOF {
                 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
                 MobileElement orderBox = (MobileElement) driver.findElementByXPath(bookingOrderDrctry + "/android.widget.LinearLayout["+z+"]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView");
                 orderBox.click();
-                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 //Enter negative numbers
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 MobileElement subtractBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_subtract");
                 subtractBtn.click();
                 randomNum();
                 MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
                 btnOk.click();
-                driver.navigate().back();
-                System.out.println("Order Negative Box "+z+" done");
+                MobileElement engagiaMessage = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+                boolean engagiaMessageDisplayed = engagiaMessage.isDisplayed();
+                if(engagiaMessageDisplayed){
+                    MobileElement message = (MobileElement) driver.findElementById("android:id/message");
+                    String messageText = message.getText();
+                    System.out.println("A prompt appear with message: "+messageText);
+                    MobileElement okBtn = (MobileElement) driver.findElementById("android:id/button1");
+                    okBtn.click();
+                }
+                String orderEnteredValue = orderBox.getText();
+                System.out.println("Order Negative Box " + z + " done: Value = "+ orderEnteredValue);
             }
             catch (NoSuchElementException e){
                 System.out.println("Can't Find Element");
@@ -3486,6 +3520,67 @@ public class BAOF {
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             MobileElement closeBtn = (MobileElement) driver.findElementById("android:id/button1");
             closeBtn.click();
+        }
+    }
+    //Trade Inventory
+    private void tradeInventory(){
+        for(int z = 1; z<=3; z++) {
+            try {
+                //1st Product per PC
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement tradeInventoryPC = (MobileElement) driver.findElementByXPath(bookingOrderDrctry + "/android.widget.LinearLayout[" + z + "]/android.widget.LinearLayout[2]" +
+                        "/android.widget.LinearLayout[1]/android.widget.TextView");
+                tradeInventoryPC.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                //Enter random numbers
+                randomNum();
+                MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
+                btnOk.click();
+                String tradeInventoryPCValue = tradeInventoryPC.getText();
+                System.out.println("Trade Inventory PC " + z + " done: Value = "+ tradeInventoryPCValue);
+            }
+            catch (NoSuchElementException e){
+                System.out.println("Can't Find Element");
+            }
+        }
+    }
+    //Column Functions
+    private void stockAvail(){
+        for(int z = 1; z<=3; z++) {
+            //1st Product per PC
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            MobileElement stockAvailability = (MobileElement) driver.findElementByXPath(bookingOrderDrctry + "/android.widget.LinearLayout[" + z + "]/android.widget.LinearLayout[1]/android.widget.TextView");
+            stockAvailability.click();
+            String stockAvailText = stockAvailability.getText();
+            System.out.println("Stock Availability is "+stockAvailText);
+        }
+    }
+    //Stock Weight
+    private void stockWeight(){
+        for(int z = 1; z<=3; z++) {
+            //1st Product per PC
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            MobileElement stockWeight = (MobileElement) driver.findElementByXPath(bookingOrderDrctry + "/android.widget.LinearLayout[" + z + "]/android.widget.LinearLayout[2]/android.widget.TextView");
+            stockWeight.click();
+            String stockWeightText = stockWeight.getText();
+            System.out.println("Stock Weight is "+stockWeightText);
+        }
+    }
+    private void stockWeightWithNoStock(){
+        for(int z = 1; z<=3; z++) {
+            //1st Product per PC
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            MobileElement stockWeight = (MobileElement) driver.findElementByXPath(bookingOrderDrctry + "/android.widget.LinearLayout[" + z + "]/android.widget.LinearLayout[2]/android.widget.TextView");
+            stockWeight.click();
+            MobileElement engagiaMessage = (MobileElement) driver.findElementById("com.engagia.android:id/parentPanel");
+            boolean engagiaMessageDisplayed = engagiaMessage.isDisplayed();
+            if(engagiaMessageDisplayed){
+                MobileElement message = (MobileElement) driver.findElementById("android:id/message");
+                String messageText = message.getText();
+                System.out.println("A prompt appear with message: "+messageText);
+                MobileElement okBtn = (MobileElement) driver.findElementById("android:id/button1");
+                okBtn.click();
+            }
         }
     }
 
@@ -3733,28 +3828,29 @@ public class BAOF {
             okBtn.click();
             //INSERT CASES OR FUNCTION HERE
             SearchBAOF();
-//            Case9();
-//            Case10();
-//            Case11();
-//            Case12();
-//            Case13();
-//            Case14();
-//            Case15();
-//            Case16();
+            Case9();
+            Case10();
+            Case11();
+            Case12();
+            Case13();
+            Case14();
+            Case15();
+            Case16();
             //FILTER BY
-//            Case17();
-//            Case18();
-//            Case19();
-//            Case20();
-//            Case21();
+            Case17();
+            Case18();
+            Case19();
+            Case20();
+            Case21();
 //            Case22(); No Historical Sales
 //            Case23(); No Historical Sales + Must Carry?
-//            Case24();
+            Case24();
 //            Case25();  force close with case 24
-//            Case26();
+            Case26();
 //            Case27();
 //            Case28(); CANCER TO
 //            Case29(); NEED THIS TO TEST VVVV
+            //No product ..... vvv
 //            Case30();
 //            Case31();
 //            Case32();
@@ -3764,19 +3860,23 @@ public class BAOF {
 //            Case36();
 //            Case37();
 //            Case38();
-//            Case39();
-//            Case40();
-//            Case41();
-//            Case42();
-//            Case45();
-//            Case46();
-//            Case47();
-//            Case49();
+            //No product ..... ^^^
+            Case39();
+            Case40();
+            Case41();
+            Case42();
+            Case45();
+            Case46();
+            Case47();
+            Case49();
             Case52();
             Case53();
+            //Column Checking Functions
             Case54();
-
-
+            Case55();
+            Case56();
+            Case57();
+            Case59();
 
             //Click on Drawer to logout to visit
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -3834,7 +3934,7 @@ public class BAOF {
             int height = dim.getHeight();
             //Para nasa gilid un pag scroll walang tatamaan textfield
             int x1 = (int) (width * 0.99);
-            int x2 = (int) (width * 0.55);
+            int x2 = (int) (width * 0.72);
             int y = (int) (height * 0.30);
             TouchAction touchAction = new TouchAction(driver);
             //try this 300
@@ -3842,24 +3942,33 @@ public class BAOF {
         }
     }
     public void randomNum(){
-        switch(rand(10)){
-            case 1: MobileElement clckNO1 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_1') and @index = '0']"); clckNO1.click();
+        switch(rand(9 ) + 1){
+            case 1: MobileElement clckNO1 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_1"); clckNO1.click();
+                System.out.println("Click value: 1");
                 break;
-            case 2: MobileElement clckNO2 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_2') and @index = '1']"); clckNO2.click();
+            case 2: MobileElement clckNO2 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_2"); clckNO2.click();
+                System.out.println("Click value: 2");
                 break;
-            case 3: MobileElement clckNO3 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_3') and @index = '2']"); clckNO3.click();
+            case 3: MobileElement clckNO3 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_3"); clckNO3.click();
+                System.out.println("Click value: 3");
                 break;
-            case 4: MobileElement clckNO4 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_4') and @index = '0']"); clckNO4.click();
+            case 4: MobileElement clckNO4 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_4"); clckNO4.click();
+                System.out.println("Click value: 4");
                 break;
-            case 5: MobileElement clckNO5 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_5') and @index = '1']"); clckNO5.click();
+            case 5: MobileElement clckNO5 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_5"); clckNO5.click();
+                System.out.println("Click value: 5");
                 break;
-            case 6: MobileElement clckNO6 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_6') and @index = '2']"); clckNO6.click();
+            case 6: MobileElement clckNO6 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_6"); clckNO6.click();
+                System.out.println("Click value: 6");
                 break;
-            case 7: MobileElement clckNO7 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_7') and @index = '0']"); clckNO7.click();
+            case 7: MobileElement clckNO7 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_7"); clckNO7.click();
+                System.out.println("Click value: 7");
                 break;
-            case 8: MobileElement clckNO8 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_8') and @index = '1']"); clckNO8.click();
+            case 8: MobileElement clckNO8 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_8"); clckNO8.click();
+                System.out.println("Click value: 8");
                 break;
-            case 9: MobileElement clckNO9 = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'btn_9') and @index = '2']"); clckNO9.click();
+            case 9: MobileElement clckNO9 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_9");; clckNO9.click();
+                System.out.println("Click value: 9");
                 break;
         }
     }
