@@ -1,3 +1,5 @@
+package test;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
@@ -2675,8 +2677,8 @@ public class BAOF {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement HamburgerBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
         HamburgerBtn.click();
-        System.out.println("Seaching BAOF");
-        //search BAOF
+        System.out.println("Seaching test.BAOF");
+        //search test.BAOF
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement searchField = (MobileElement) driver.findElementById("com.engagia.android:id/edit_text_search");
         searchField.sendKeys(search);
