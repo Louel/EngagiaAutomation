@@ -77,8 +77,8 @@ public class BAOF {
         capabilities.setCapability("deviceName","Samsung Galaxy J1 (2016)");
 //        capabilities.setCapability("deviceName","HUAWEI");
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, "Android");
-//        capabilities.setCapability("platformVersion", "5.1.1");
-        capabilities.setCapability("platformVersion", "7.0");
+        capabilities.setCapability("platformVersion", "5.1.1");
+//        capabilities.setCapability("platformVersion", "7.0");
         capabilities.setCapability("appPackage", "com.engagia.android");
         capabilities.setCapability("appActivity","com.engagia.android.activities.LoginActivity");
         capabilities.setCapability("noSign", true);
@@ -3385,6 +3385,27 @@ public class BAOF {
             }
         }
     }
+    private void orderCustomPC(){
+        for(int z = 1; z<=3; z++) {
+            try {
+                //1st Product per PC
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement orderPC = (MobileElement) driver.findElementByXPath(bookingOrderDrctry + "/android.widget.LinearLayout[" + z + "]/android.widget.LinearLayout[1]" +
+                        "/android.widget.LinearLayout[1]/android.widget.TextView");
+                orderPC.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement clckNO1 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_1");
+                clckNO1.click();
+                MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
+                btnOk.click();
+                String orderEnteredValue = orderPC.getText();
+                System.out.println("Order PC " + z + " done: Value = "+ orderEnteredValue);
+            }
+            catch (NoSuchElementException e){
+                System.out.println("Can't Find Element");
+            }
+        }
+    }
     private void orderNegativePC(){
         for(int z = 1; z<=3; z++) {
             try {
@@ -3462,7 +3483,8 @@ public class BAOF {
             try {
                 //1st Product per Box
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-                MobileElement orderBox = (MobileElement) driver.findElementByXPath(bookingOrderDrctry + "/android.widget.LinearLayout[" + z + "]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView");
+                MobileElement orderBox = (MobileElement) driver.findElementByXPath(bookingOrderDrctry + "/android.widget.LinearLayout[" + z + "]/android.widget.LinearLayout[1]" +
+                        "/android.widget.LinearLayout[2]/android.widget.TextView");
                 orderBox.click();
                 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 //Enter random numbers
@@ -3471,6 +3493,27 @@ public class BAOF {
                 btnOk.click();
                 String orderEnteredValue = orderBox.getText();
                 System.out.println("Order Box " + z + " done: Value = "+ orderEnteredValue);
+            }
+            catch (NoSuchElementException e){
+                System.out.println("Can't Find Element");
+            }
+        }
+    }
+    private void orderCustomBox(){
+        for(int z = 1; z<=3; z++) {
+            try {
+                //1st Product per PC
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement orderPC = (MobileElement) driver.findElementByXPath(bookingOrderDrctry + "/android.widget.LinearLayout[" + z + "]/android.widget.LinearLayout[1]" +
+                        "/android.widget.LinearLayout[2]/android.widget.TextView");
+                orderPC.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement clckNO1 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_1");
+                clckNO1.click();
+                MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
+                btnOk.click();
+                String orderEnteredValue = orderPC.getText();
+                System.out.println("Order PC " + z + " done: Value = "+ orderEnteredValue);
             }
             catch (NoSuchElementException e){
                 System.out.println("Can't Find Element");
@@ -3835,7 +3878,74 @@ public class BAOF {
             }
         }
     }
+    private void getTotalWithTaxPC(){
+        double prodPricePC1 = 12.00;
+        double prodPricePC2 = 28.00;
+        double prodPricePC3 = 118.27;
+        double prodPricePC4 = 25.00;
+        double prodPricePC5 = 47.88;
+        double prodPricePC6 = 70.22;
 
+        double totalProductPc = prodPricePC1+prodPricePC2+prodPricePC3+prodPricePC4+prodPricePC5+prodPricePC6;
+        for(int z = 1; z<=2; z++){
+            orderCustomPC();
+            if(z==1){
+                MobileElement nextPage = (MobileElement) driver.findElementById("com.engagia.android:id/custom_table_next_pagination");
+                nextPage.click();
+            }
+        }
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement summaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
+        summaryMenu.click();
+        MobileElement grandTotalWTax = (MobileElement) driver.findElementById("com.engagia.android:id/list_str_temporary_saved_grand_total_w_tax");
+        String grandTotalText = grandTotalWTax.getText();
+        driver.navigate().back();
+        clear();
+        System.out.println("Grand Total Value: " + grandTotalText);
+        System.out.println("ALl products Original Price per PC: "+totalProductPc);
+        double totalVal = Double.parseDouble(grandTotalText);
+        if(totalProductPc == totalVal){
+            System.out.println("Correct value");
+        }
+        else{
+
+            System.out.println("Incorrect value");
+        }
+    }
+    private void getTotalWithTaxBox(){
+        double prodPriceBox1 = 266.00;
+        double prodPriceBox2 = 588.00;
+        double prodPriceBox3 = 2128.90;
+        double prodPriceBox4 = 300.00;
+        double prodPriceBox5 = 1915.20;
+        double prodPriceBox6 = 1083.71;
+
+        double totalProductBox = prodPriceBox1+prodPriceBox2+prodPriceBox3+prodPriceBox4+prodPriceBox5+prodPriceBox6;
+        for(int z = 1; z<=2; z++){
+            orderCustomBox();
+            if(z==1){
+                MobileElement nextPage = (MobileElement) driver.findElementById("com.engagia.android:id/custom_table_next_pagination");
+                nextPage.click();
+            }
+        }
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement summaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
+        summaryMenu.click();
+        MobileElement grandTotalWTax = (MobileElement) driver.findElementById("com.engagia.android:id/list_str_temporary_saved_grand_total_w_tax");
+        String grandTotalText = grandTotalWTax.getText();
+        driver.navigate().back();
+        clear();
+        System.out.println("Grand Total Value: " + grandTotalText);
+        System.out.println("ALl products Original Price per Box: "+totalProductBox);
+        double totalVal = Double.parseDouble(grandTotalText.replace(",", ""));
+        if(totalProductBox == totalVal){
+            System.out.println("Correct value");
+        }
+        else{
+
+            System.out.println("Incorrect value");
+        }
+    }
     /**
      *THIS FUNCTIONS IS FOR DEMO ONLY
      */
@@ -4080,6 +4190,8 @@ public class BAOF {
             okBtn.click();
             //INSERT CASES OR FUNCTION HERE
             SearchBAOF();
+            getTotalWithTaxPC();
+            getTotalWithTaxBox();
 //            Case9();
 //            Case10();
 //            Case11();
@@ -4088,32 +4200,33 @@ public class BAOF {
 //            Case14();
 //            Case15();
 //            Case16();
-//            //FILTER BY
+////            //FILTER BY
 //            Case17();
 //            Case18();
 //            Case19();
 //            Case20();
 //            Case21();
-////            Case22(); No Historical Sales
-////            Case23(); No Historical Sales + Must Carry?
+//////            Case22(); No Historical Sales
+//////            Case23(); No Historical Sales + Must Carry?
 //            Case24();
-////            Case25();  force close with case 24
+//////            Case25();  force close with case 24
 //            Case26();
-////            Case27();
-////            Case28(); CANCER TO
-////            Case29(); NEED THIS TO TEST VVVV
-//            //No product ..... vvv
-            completeOrderTransac();
-            Case30();
-            Case31();
-            Case32();
-//            Case33(); sa sales?
-            Case34();
-            Case35();
-//            Case36(); force close
-//            Case37(); force close
-//            Case38(); force close
-//            //No product ..... ^^^
+//////            Case27();
+//////            Case28(); CANCER TO
+//////            Case29(); NEED THIS TO TEST VVVV
+////            //No product ..... vvv
+//            completeOrderTransac();
+//            Case30();
+//            Case31();
+//            Case32();
+////            Case33(); sa sales?
+//            Case34();
+//            Case35();
+//            clear();
+////            Case36(); force close
+////            Case37(); force close
+////            Case38(); force close
+////            //No product ..... ^^^
 //            Case39();
 //            Case40();
 //            Case41();
@@ -4124,7 +4237,7 @@ public class BAOF {
 //            Case49();
 //            Case52();
 //            Case53();
-//            //Column Checking Functions
+////            //Column Checking Functions
 //            Case54();
 //            Case55();
 //            Case56();
