@@ -1216,10 +1216,14 @@ public class IC {
             MobileElement clckOnBranch = (MobileElement) driver.findElementByXPath(branchListDrctry + "/android.widget.RelativeLayout[" + x + "]");
             clckOnBranch.click();
             System.out.println(x);
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement confirmBtn = (MobileElement) driver.findElementById("android:id/button1");
+            confirmBtn.click();
             //click on Ok
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             MobileElement okBtn = (MobileElement) driver.findElementById("android:id/button1");
             okBtn.click();
+
             //Search
             SearcIC();
             //Cases functions
@@ -1231,7 +1235,7 @@ public class IC {
 //            Case7();
 //            Case8();
 //            Case9();
-////            //FILTER
+//            //FILTER
 //            Case10();
 //            Case11();
 //            Case12();
@@ -1239,14 +1243,14 @@ public class IC {
 //            Case14();
 //            Case15();
 //            Case16();
-////            Case17(); May bug dito d nakikita mga carried products na uploaded sa EMS
-////            Case18();//MAY BUG  YATA? POTA Iba yun output ng EMS sa APP ng Not Carried Proudcts
+//////            Case17(); May bug dito d nakikita mga carried products na uploaded sa EMS
+//////            Case18();//MAY BUG  YATA? POTA Iba yun output ng EMS sa APP ng Not Carried Proudcts
 //            Case19();
 //            Case20();
 //            Case21();
 //            Case26();
 //            Case27();
-//            //Transaction functions
+////            //Transaction functions
 //            Case28();
 //            Case29();
 //            Case30();
@@ -1265,13 +1269,13 @@ public class IC {
             Case22();// Pagtapos dapat to ng finalize para makikita mga summary. 3rd
             //INSERT TRANSACTION HERE WITH LOW MED HIGH W/ STOCK
 //            //FILTER ULIT? need gumawa ng  transaction na may low med high no stock and w/ stock
-//            Case38();
-//            Case39();
-//            Case40();;// need ng walang stock product
-//            Case41();
-//            Case42();
-//            Case43();
-//            Case44();
+            Case38();
+            Case39();
+            Case40();;// need ng walang stock product
+            Case41();
+            Case42();
+            Case43();
+            Case44();
             //Click on Drawer to logout to visit
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             MobileElement drawerOpen2 = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
