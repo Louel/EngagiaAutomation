@@ -77,8 +77,8 @@ public class BAOF {
         capabilities.setCapability("deviceName","Samsung Galaxy J1 (2016)");
 //        capabilities.setCapability("deviceName","HUAWEI");
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, "Android");
-        capabilities.setCapability("platformVersion", "5.1.1");
-//        capabilities.setCapability("platformVersion", "7.0");
+//        capabilities.setCapability("platformVersion", "5.1.1");
+        capabilities.setCapability("platformVersion", "7.0");
         capabilities.setCapability("appPackage", "com.engagia.android");
         capabilities.setCapability("appActivity","com.engagia.android.activities.LoginActivity");
         capabilities.setCapability("noSign", true);
@@ -3887,6 +3887,7 @@ public class BAOF {
         double prodPricePC6 = 70.22;
 
         double totalProductPc = prodPricePC1+prodPricePC2+prodPricePC3+prodPricePC4+prodPricePC5+prodPricePC6;
+
         for(int z = 1; z<=2; z++){
             orderCustomPC();
             if(z==1){
@@ -3939,6 +3940,49 @@ public class BAOF {
         System.out.println("ALl products Original Price per Box: "+totalProductBox);
         double totalVal = Double.parseDouble(grandTotalText.replace(",", ""));
         if(totalProductBox == totalVal){
+            System.out.println("Correct value");
+        }
+        else{
+
+            System.out.println("Incorrect value");
+        }
+    }
+    private void getTotalWithTaxPCBox(){
+        double prodPricePC1 = 12.00;
+        double prodPricePC2 = 28.00;
+        double prodPricePC3 = 118.27;
+        double prodPricePC4 = 25.00;
+        double prodPricePC5 = 47.88;
+        double prodPricePC6 = 70.22;
+        double prodPriceBox1 = 266.00;
+        double prodPriceBox2 = 588.00;
+        double prodPriceBox3 = 2128.90;
+        double prodPriceBox4 = 300.00;
+        double prodPriceBox5 = 1915.20;
+        double prodPriceBox6 = 1083.71;
+
+        double totalProductPcBox = prodPricePC1+prodPricePC2+prodPricePC3+prodPricePC4+prodPricePC5+prodPricePC6+prodPriceBox1+prodPriceBox2+prodPriceBox3+prodPriceBox4+prodPriceBox5+prodPriceBox6;
+
+
+        for(int z = 1; z<=2; z++){
+            orderCustomPC();
+            orderCustomBox();
+            if(z==1){
+                MobileElement nextPage = (MobileElement) driver.findElementById("com.engagia.android:id/custom_table_next_pagination");
+                nextPage.click();
+            }
+        }
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement summaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
+        summaryMenu.click();
+        MobileElement grandTotalWTax = (MobileElement) driver.findElementById("com.engagia.android:id/list_str_temporary_saved_grand_total_w_tax");
+        String grandTotalText = grandTotalWTax.getText();
+        driver.navigate().back();
+        clear();
+        System.out.println("Grand Total Value: " + grandTotalText);
+        System.out.println("ALl products Original Price per PC: "+totalProductPcBox);
+        double totalVal = Double.parseDouble(grandTotalText.replace(",", ""));
+        if(totalProductPcBox == totalVal){
             System.out.println("Correct value");
         }
         else{
@@ -4192,6 +4236,7 @@ public class BAOF {
             SearchBAOF();
             getTotalWithTaxPC();
             getTotalWithTaxBox();
+            getTotalWithTaxPCBox();
 //            Case9();
 //            Case10();
 //            Case11();
