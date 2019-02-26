@@ -62,8 +62,8 @@ public class TIM {
     //Cases
 
     //Check Search by "Name"
-    public void Case1(){
-        System.out.println("Testing Case 1");
+    public void Case2(){
+        System.out.println("Testing Case 2");
         //Click Search bar and search certain product by Name
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         MobileElement searchName = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
@@ -72,7 +72,7 @@ public class TIM {
         //Click Magnifying Glass Icon
         MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
         searchBtn.click();
-        System.out.println("Case 1 Done");
+        System.out.println("Case 2 Done");
 //        //Condition where if prod is displayed or not
 //        MobileElement snackBar = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id, 'snackbar_text') and @text = 'Text Note is Required']");
 //        boolean isDisplayed1 = snackBar.isDisplayed();
@@ -83,91 +83,84 @@ public class TIM {
 //        }
     }
     //Check Search by "Short Name"
-    public void Case2(){
-        System.out.println("Testing Case 2");
-        byShortName();
-        clear();
-        System.out.println("Case 2 Done");
-    }
-    //Check Search by "Item Code"
     public void Case3(){
         System.out.println("Testing Case 3");
-        byItemCode();
+        byShortName();
         clear();
         System.out.println("Case 3 Done");
     }
-    //Check Search by "Barcode"
-    //Lumalabas un camera for bar code
+    //Check Search by "Item Code"
     public void Case4(){
         System.out.println("Testing Case 4");
-        byBarcode();
+        byItemCode();
         clear();
         System.out.println("Case 4 Done");
     }
-    //Check Search by "Description"
+    //Check Search by "Barcode"
     public void Case5(){
         System.out.println("Testing Case 5");
-        byDescription();
+        byBarcode();
         clear();
         System.out.println("Case 5 Done");
     }
-    //Check Search by "Brand"
+    //Check Search by "Description"
     public void Case6(){
         System.out.println("Testing Case 6");
-        byBrand();
+        byDescription();
         clear();
         System.out.println("Case 6 Done");
     }
-    //Check Search by "Keywords"
+    //Check Search by "Brand"
     public void Case7(){
         System.out.println("Testing Case 7");
-        byKeyword();
+        byBrand();
         clear();
         System.out.println("Case 7 Done");
     }
-    //Check Search by "Principal"
+    //Check Search by "Keywords"
     public void Case8(){
         System.out.println("Testing Case 8");
-        byPrincipal();
+        byKeyword();
         clear();
         System.out.println("Case 8 Done");
     }
-    //Check filter "No Filter"
+    //Check Search by "Principal"
     public void Case9(){
         System.out.println("Testing Case 9");
+        byPrincipal();
+        clear();
+        System.out.println("Case 9 Done");
+    }
+    //Check APP: Trade Inventory Management - filter "No Filter"
+    public void Case10(){
+        System.out.println("Testing Case 10");
         for(int z=1; z<=7; z++) {
+            noFilter();
             if(z==1) {
-                noFilter();
                 byName();
                 clear();
             }
             else if(z==2){
-                noFilter();
                 byShortName();
                 clear();
             }
             else if(z==3){
-                noFilter();
                 byItemCode();
                 clear();
             }
             else if(z==4){
-                noFilter();
                 byDescription();
                 clear();
             }
             else if(z==5){
-                noFilter();
                 byBrand();
                 clear();
             }
             else if(z==6){
-                noFilter();
                 byKeyword();
                 clear();
             }
             else if(z==7){
-                noFilter();
                 byPrincipal();
                 clear();
             }
@@ -210,53 +203,55 @@ public class TIM {
 //                principalNoFilter();
 //            }
 //        }
-        System.out.println("Case 9 Done");
+        System.out.println("Case 10 Done");
     }
-    //Check product filter "All Product"
-    public void Case10(){
-        System.out.println("Testing Case 10");
+    //Check APP: Trade Inventory Management - filter "Product Filter"
+    public void Case11(){
+        System.out.println("Testing Case 11");
+        productFilter();
+        driver.navigate().back();
+        driver.navigate().back();
+        System.out.println("Case 11 Done");
+    }
+    //Check APP: Trade Inventory Management - filter "Product Filter: All Products"
+    public void Case12(){
+        System.out.println("Testing Case 12");
         for(int z=1; z<=7; z++) {
+            allProd();
             if(z==1) {
-                allProd();
                 byName();
                 clear();
             }
             else if(z==2){
-                allProd();
                 byShortName();
                 clear();
             }
             else if(z==3){
-                allProd();
                 byItemCode();
                 clear();
             }
             else if(z==4){
-                allProd();
                 byDescription();
                 clear();
             }
             else if(z==5){
-                allProd();
                 byBrand();
                 clear();
             }
             else if(z==6){
-                allProd();
                 byKeyword();
                 clear();
             }
             else if(z==7){
-                allProd();
                 byPrincipal();
                 clear();
             }
         }
-        System.out.println("Case 10 Done");
+        System.out.println("Case 12 Done");
     }
-    //Check product filter "Product Group"
-    public void Case11(){
-        System.out.println("Testing Case 11");
+    //Check APP: Trade Inventory Management - filter "Product Filter: Product Group"
+    public void Case13(){
+        System.out.println("Testing Case 13");
         for(int z=1; z<=7; z++) {
             prodGroup();
             if(z==1) {
@@ -294,14 +289,15 @@ public class TIM {
                 clear();
             }
         }
-        System.out.println("Case 11 Done");
+        System.out.println("Case 12 Done");
     }
-    //Check product filter "Must Carry Per Account Classification"
-    public void Case12(){
-        System.out.println("Testing Case 12");
+    //Check APP: Trade Inventory Management - filter "Product Filter: Must Carry Per Account Classification"
+    public void Case14(){
+        System.out.println("Testing Case 14");
         for(int z=1; z<=7; z++) {
             mustCarry();
             if(z==1) {
+                checkByName();
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                 MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
                 searchName.sendKeys(mustCarryProd);
@@ -312,46 +308,7 @@ public class TIM {
                 clear();
             }
             else if(z==2){
-                byShortName();
-                clear();
-            }
-            else if(z==3){
-                byItemCode();
-                clear();
-            }
-            else if(z==4){
-                byDescription();
-                clear();
-            }
-            else if(z==5){
-                byBrand();
-                clear();
-            }
-            else if(z==6){
-                byKeyword();
-                clear();
-            }
-            else if(z==7){
-                byPrincipal();
-                clear();
-            }
-        }
-        System.out.println("Case 12 Done");
-    }
-    //Check product filter "Brand"
-    public void Case13(){
-        System.out.println("Testing Case 13");
-        for(int z=1; z<=7; z++) {
-            brand();
-            if(z==1) {
-                //Insert search here
-                //Click Magnifying Glass Icon
-                MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
-                searchBtn.click();
-                System.out.println("Brand done");
-                clear();
-            }
-            else if(z==2){
+                checkByShortName();
                 //Click Search bar and search certain product by Name
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                 MobileElement searchShortName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
@@ -417,10 +374,10 @@ public class TIM {
                 clear();
             }
         }
-        System.out.println("Case 13 Done");
+        System.out.println("Case 14 Done");
     }
-    //Check product filter "Document Sequence"
-    public void Case14(){
+    //Check APP: Trade Inventory Management - filter "Product Filter: Universal Retail Category"
+    public void Case15(){
         System.out.println("Testing Case 14");
         for(int z=1; z<=7; z++) {
             docuSequence();
@@ -453,8 +410,93 @@ public class TIM {
         }
         System.out.println("Case 14 Done");
     }
-    //Check product filter "Active Products"
-    public void Case15(){
+    //Check APP: Trade Inventory Management - filter "Product Filter: Brand"
+    public void Case16(){
+        System.out.println("Testing Case 16");
+        for(int z=1; z<=7; z++) {
+            brand();
+            if(z==1) {
+                checkByName();
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
+                searchName.sendKeys("Adartrel");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
+                searchBtn.click();
+                System.out.println("Brand done");
+                clear();
+            }
+            else if(z==2){
+                checkByShortName();
+                //Click Search bar and search certain product by Name
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchShortName = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
+                searchShortName.sendKeys("Adartrel");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
+                searchBtn.click();
+                clear();
+            }
+            else if(z==3){
+                checkByItemCode();
+                //Click Search bar and search certain product by Item Code
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchItemCode = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
+                searchItemCode.sendKeys("51232166");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
+                searchBtn.click();
+                clear();
+            }
+            else if(z==4){
+                checkByDescription();
+                //Click Search bar and search certain product by Description
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchDescription = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
+                searchDescription.sendKeys("Tablet");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
+                searchBtn.click();
+                clear();
+            }
+            else if(z==5){
+                checkByBrand();
+                //Click Search bar and search certain product by Brand
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchBrand = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
+                searchBrand.sendKeys("Adartrel");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
+                searchBtn.click();
+                clear();
+            }
+            else if(z==6){
+                checkByKeyword();
+                //Click Search bar and search certain product by Keywords
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchKeyword = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
+                searchKeyword.sendKeys("Adartrel");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
+                searchBtn.click();
+                clear();
+            }
+            else if(z==7){
+                checkByPrincipal();
+                //Click Search bar and search certain product by Principal
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchPrincipal = (MobileElement) driver.findElementByXPath("//android.widget.EditText[contains(@resource-id,'search_auto_complete_text_view')]");
+                searchPrincipal.sendKeys("GlaxoSmithKline");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
+                searchBtn.click();
+                clear();
+            }
+        }
+        System.out.println("Case 16 Done");
+    }
+    //Check APP: Trade Inventory Management - filter "Product Filter: Product With Historical Sales"
+    public void Case17(){
         System.out.println("Testing Case 15");
         for(int z=1; z<=7; z++) {
             if(z==1) {
@@ -499,67 +541,113 @@ public class TIM {
         }
         System.out.println("Case 15 Done");
     }
-    //Check product filter "Carried Products" MAY BUG DITO DI NAKIKITA MGA CARRIED PRODUCT
-    public void Case16(){
-        System.out.println("Testing Case 16");
+    //Check APP: Trade Inventory Management - filter "Product Filter: Must Carry + Product With Historical Sales"
+    public void Case18(){
+
+    }
+    //Check APP: Trade Inventory Management - filter "Product Filter: Document Sequence"
+    public void Case19(){
+        System.out.println("Testing Case 19");
         for(int z=1; z<=7; z++) {
+            docuSequence();
             if(z==1) {
-                carriedProd();
-                //Insert search here
-                //Click Magnifying Glass Icon
-                MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
-                searchBtn.click();
-                System.out.println("Carried Products done");
-                clear();
+                byName();
             }
             else if(z==2){
-                carriedProd();
                 byShortName();
-                clear();
             }
             else if(z==3){
-                carriedProd();
                 byItemCode();
-                clear();
             }
             else if(z==4){
-                activeProd();
                 byDescription();
-                clear();
             }
             else if(z==5){
-                carriedProd();
                 byBrand();
-                clear();
             }
             else if(z==6){
-                carriedProd();
                 byKeyword();
-                clear();
             }
             else if(z==7){
-                carriedProd();
                 byPrincipal();
-                clear();
             }
+            clear();
         }
-        System.out.println("Case 16 Done");
+        System.out.println("Case 19 Done");
+    }
+    //Check APP: Trade Inventory Management - filter "Product Filter: Active Products"
+    public void Case20(){
+        System.out.println("Testing Case 20");
+        for(int z=1; z<=7; z++) {
+            activeProd();
+            if(z==1) {
+                byName();
+            }
+            else if(z==2){
+                byShortName();
+            }
+            else if(z==3){
+                byItemCode();
+            }
+            else if(z==4){
+                byDescription();
+            }
+            else if(z==5){
+                byBrand();
+            }
+            else if(z==6){
+                byKeyword();
+            }
+            else if(z==7){
+                byPrincipal();
+            }
+            clear();
+        }
+        System.out.println("Case 20 Done");
+    }
+    //Check APP: Trade Inventory Management - filter "Product Filter: Carried Products"PRODUCT
+    public void Case21(){
+        System.out.println("Testing Case 21");
+        for(int z=1; z<=7; z++) {
+            carriedProd();
+            if(z==1) {
+                byName();
+            }
+            else if(z==2){
+                byShortName();
+            }
+            else if(z==3){
+                byItemCode();
+            }
+            else if(z==4){
+                byDescription();
+            }
+            else if(z==5){
+                byBrand();
+            }
+            else if(z==6){
+                byKeyword();
+            }
+            else if(z==7){
+                byPrincipal();
+            }
+            clear();
+        }
+        System.out.println("Case 21 Done");
     }
     //Check product filter "Not Carried Products" MAY BUG DITO DI NAKIKITA UN NOT CARRIED PRODUCT
-    public void Case17(){
-        System.out.println("Testing Case 17");
+    public void Case22(){
+        System.out.println("Testing Case 22");
         for(int z=1; z<=7; z++) {
+            notCarriedProd();
             if(z==1) {
-                notCarriedProd();
                 //Insert search here
                 //Click Magnifying Glass Icon
                 MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
                 searchBtn.click();
                 System.out.println("Not Carried Products done");
-                clear();
             }
             else if(z==2){
-                notCarriedProd();
                 checkByShortName();
                 //Click Search bar and search certain product by Name
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -568,10 +656,8 @@ public class TIM {
                 //Click Magnifying Glass Icon
                 MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
                 searchBtn.click();
-                clear();
             }
             else if(z==3){
-                notCarriedProd();
                 checkByItemCode();
                 //Click Search bar and search certain product by Item Code
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -580,10 +666,8 @@ public class TIM {
                 //Click Magnifying Glass Icon
                 MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
                 searchBtn.click();
-                clear();
             }
             else if(z==4){
-                notCarriedProd();
                 checkByDescription();
                 //Click Search bar and search certain product by Description
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -592,10 +676,8 @@ public class TIM {
                 //Click Magnifying Glass Icon
                 MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
                 searchBtn.click();
-                clear();
             }
             else if(z==5){
-                notCarriedProd();
                 checkByBrand();
                 //Click Search bar and search certain product by Brand
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -604,10 +686,8 @@ public class TIM {
                 //Click Magnifying Glass Icon
                 MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
                 searchBtn.click();
-                clear();
             }
             else if(z==6){
-                notCarriedProd();
                 checkByKeyword();
                 //Click Search bar and search certain product by Keywords
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -616,10 +696,8 @@ public class TIM {
                 //Click Magnifying Glass Icon
                 MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
                 searchBtn.click();
-                clear();
             }
             else if(z==7){
-                notCarriedProd();
                 checkByPrincipal();
                 //Click Search bar and search certain product by Principal
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -628,12 +706,138 @@ public class TIM {
                 //Click Magnifying Glass Icon
                 MobileElement searchBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'search_button')]");
                 searchBtn.click();
-                clear();
             }
+            clear();
         }
-        System.out.println("Case 17 Done");
+        System.out.println("Case 22 Done");
     }
-
+    //Check APP: Trade Inventory Management - filter "Information Filter"
+    public void Case23(){
+        infoFilter();
+        driver.navigate().back();
+        driver.navigate().back();
+        System.out.println("Case 34 Done");
+    }
+    //Check APP: Trade Inventory Management - filter "Information Filter: All Products"
+    public void Case24(){
+        System.out.println("Testing Case 24");
+        for(int z=1; z<=7; z++) {
+            infoFilterAllProd();
+            if(z==1) {
+                byName();
+            }
+            else if(z==2){
+                byShortName();
+            }
+            else if(z==3){
+                byItemCode();
+            }
+            else if(z==4){
+                byDescription();
+            }
+            else if(z==5){
+                byBrand();
+            }
+            else if(z==6){
+                byKeyword();
+            }
+            else if(z==7){
+                byPrincipal();
+            }
+            clear();
+        }
+        System.out.println("Case 24 Done");
+    }
+    //Check APP: Trade Inventory Management - filter "Information Filter: Inventory > 0"
+    public void Case25a(){
+        System.out.println("Testing Case 25");
+        for(int z=1; z<=7; z++) {
+            infoFilterInventoryGreaterThanZero();
+            if(z==1) {
+                byName();
+            }
+            else if(z==2){
+                byShortName();
+            }
+            else if(z==3){
+                byItemCode();
+            }
+            else if(z==4){
+                byDescription();
+            }
+            else if(z==5){
+                byBrand();
+            }
+            else if(z==6){
+                byKeyword();
+            }
+            else if(z==7){
+                byPrincipal();
+            }
+            clear();
+        }
+        System.out.println("Case 25 Done");
+    }
+    //TODO Check APP: Trade Inventory Management - filter "Information Filter: Current inventory on days < Order to delivery leadtime"
+    public void Case25(){
+        System.out.println("Testing Case 24");
+        for(int z=1; z<=7; z++) {
+            infoFilterCurrentInvent();
+            if(z==1) {
+                byName();
+            }
+            else if(z==2){
+                byShortName();
+            }
+            else if(z==3){
+                byItemCode();
+            }
+            else if(z==4){
+                byDescription();
+            }
+            else if(z==5){
+                byBrand();
+            }
+            else if(z==6){
+                byKeyword();
+            }
+            else if(z==7){
+                byPrincipal();
+            }
+            clear();
+        }
+        System.out.println("Case 24 Done");
+    }
+    //Check APP: Trade Inventory Management - filter "Information Filter: Estimated inventory level by next OGV in units <= 0"
+    public void Case26(){
+        System.out.println("Testing Case 24");
+        for(int z=1; z<=7; z++) {
+            infoFilterEstimatedInventory();
+            if(z==1) {
+                byName();
+            }
+            else if(z==2){
+                byShortName();
+            }
+            else if(z==3){
+                byItemCode();
+            }
+            else if(z==4){
+                byDescription();
+            }
+            else if(z==5){
+                byBrand();
+            }
+            else if(z==6){
+                byKeyword();
+            }
+            else if(z==7){
+                byPrincipal();
+            }
+            clear();
+        }
+        System.out.println("Case 24 Done");
+    }
     //Functions
     public void loginToVisit(){
         for(int x=1; x<=1; x++){
@@ -668,14 +872,22 @@ public class TIM {
 //            Case6();
 //            Case7();
 //            Case8();
-            //FILTER
 //            Case9();
-            Case10();
-            Case11();
-            Case12();
-            Case13();
-            Case14();
-            Case15();
+            //FILTER
+//            Case10();
+//            Case11();
+//            Case12();
+//            Case13(); Force close
+//            Case14();
+//            Case15(); //Is not available
+//            Case16();
+//            Case19();
+//            Case20();
+//            Case21();
+//            Case22(); bugshit
+            Case23();
+            Case24();
+
 
 
 
@@ -837,6 +1049,88 @@ public class TIM {
         goBtn.click();
         System.out.println("Searching by Principal");
     }
+    public void infoFilter(){
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement arrowBtn = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        arrowBtn.click();
+        //Swipe down
+        swipeDown();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement title = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_label");
+        boolean isDisplayed1 = title.isDisplayed();
+        if (isDisplayed1) {
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement infoFilBtn = (MobileElement) driver.findElementByXPath(filterByDrctry+"/android.view.ViewGroup[3]/android.widget.CheckedTextView");
+            String infoFilBtnText = infoFilBtn.getText();
+            infoFilBtn.click();
+            System.out.println("Filter by "+infoFilBtnText);
+        }
+
+    }
+    public void infoFilterAllProd(){
+        infoFilter();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement allProd = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[1]");
+        String allProdText = allProd.getText();
+        allProd.click();
+        System.out.println("Info Filter by "+allProdText);
+    }
+    public void infoFilterInventoryGreaterThanZero(){
+        infoFilter();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement inventGreaterThanZero = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[2]");
+        String inventGreaterThanZeroText = inventGreaterThanZero.getText();
+        inventGreaterThanZero.click();
+        System.out.println("Info Filter by "+inventGreaterThanZeroText);
+    }
+    public void infoFilterInventoryEqualZero(){
+        infoFilter();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement inventEqualZero = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[3]");
+        String inventEqualZeroText = inventEqualZero.getText();
+        inventEqualZero.click();
+        System.out.println("Info Filter by "+inventEqualZeroText);
+    }
+    public void infoFilterCurrentInvent(){
+        infoFilter();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement currentInvent = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[4]");
+        String currentInventText = currentInvent.getText();
+        currentInvent.click();
+        System.out.println("Info Filter by "+currentInventText);
+    }
+    public void infoFilterEstimatedInventory(){
+        infoFilter();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement estimatedInventory = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[5]");
+        String estimatedInventoryText = estimatedInventory.getText();
+        estimatedInventory.click();
+        System.out.println("Info Filter by "+estimatedInventoryText);
+    }
+    public void infoFilterDailyOfftake(){
+        infoFilter();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement dailyOfftake = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[6]");
+        String dailyOfftakeText = dailyOfftake.getText();
+        dailyOfftake.click();
+        System.out.println("Info Filter by "+dailyOfftakeText);
+    }
+    public void infoFilterWeeklyOfftake(){
+        infoFilter();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement weeklyOfftake = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[7]");
+        String weeklyOfftakeText = weeklyOfftake.getText();
+        weeklyOfftake.click();
+        System.out.println("Info Filter by "+weeklyOfftakeText);
+    }
+    public void infoFilterSuggestedOrder(){
+        infoFilter();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement suggestedOrder = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[8]");
+        String suggestedOrderText = suggestedOrder.getText();
+        suggestedOrder.click();
+        System.out.println("Info Filter by "+suggestedOrderText);
+    }
     private void clear(){
         timSummaryMenu();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -871,9 +1165,10 @@ public class TIM {
         if (isDisplayed1) {
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             MobileElement prodFilBtn = (MobileElement) driver.findElementByXPath(filterByDrctry+"/android.view.ViewGroup[2]/android.widget.CheckedTextView");
+            String prodFilBtnText = prodFilBtn.getText();
             prodFilBtn.click();
+            System.out.println("Filter by "+prodFilBtnText);
         }
-        System.out.println("Filter by Product Filter");
     }
     public void allProd(){
         productFilter();
@@ -898,8 +1193,9 @@ public class TIM {
         MobileElement mustCarryFilBtn = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[3]");
         mustCarryFilBtn.click();
         MobileElement mustCarry = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @index='0']");
+        String mustCarryText = mustCarry.getText();
         mustCarry.click();
-        System.out.println("Product Filter by Must Carry");
+        System.out.println(mustCarryText);
     }
     public void brand(){
         productFilter();
@@ -907,24 +1203,26 @@ public class TIM {
         MobileElement brandFilBtn = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[4]");
         brandFilBtn.click();
         MobileElement brand = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @index='0']");
+        String brandText = brand.getText();
         brand.click();
-        System.out.println("Product Filter by Brand");
+        System.out.println(brandText);
     }
     public void docuSequence(){
         productFilter();
         //Filter by btn
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement docSeqFilBtn = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[5]");
+        MobileElement docSeqFilBtn = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[8]");
         docSeqFilBtn.click();
         MobileElement docSeq = (MobileElement) driver.findElementByXPath("//android.widget.TextView[contains(@resource-id,'text1') and @index='0']");
+        String docSeqText = docSeq.getText();
         docSeq.click();
-        System.out.println("Product Filter by Document Sequence");
+        System.out.println(docSeqText);
     }
     public void activeProd(){
         productFilter();
         //Filter by btn
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement activeProdFilBtn = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[6]");
+        MobileElement activeProdFilBtn = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[9]");
         activeProdFilBtn.click();
         System.out.println("Product Filter by Active Product");
     }
@@ -932,7 +1230,7 @@ public class TIM {
         productFilter();
         //Filter by btn
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement carriedProdFilBtn = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[7]");
+        MobileElement carriedProdFilBtn = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[10]");
         carriedProdFilBtn.click();
         System.out.println("Product Filter by Carried Product");
     }
@@ -940,7 +1238,7 @@ public class TIM {
         productFilter();
         //Filter by btn
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement notCarriedProdFilBtn = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[8]");
+        MobileElement notCarriedProdFilBtn = (MobileElement) driver.findElementByXPath(productFilterByDrctry+"/android.widget.TextView[11]");
         notCarriedProdFilBtn.click();
         System.out.println("Product Filter by Not Carried Product");
     }
