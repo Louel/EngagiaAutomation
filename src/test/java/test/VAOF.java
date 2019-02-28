@@ -21,9 +21,11 @@ import static io.appium.java_client.remote.MobileCapabilityType.NO_RESET;
 
 public class VAOF {
 
+    /**
+     * ATLEAST C R E A T E  T W O Transaction and don't apply payment
+     */
+
     AppiumDriver driver;
-
-
     String search = "Van Account Order Form";
     String search1 = "VAOF Summary";
     String branch = "ALFAMART MARIKINA 9";
@@ -2660,7 +2662,7 @@ public class VAOF {
                         MobileElement okBtn = (MobileElement) driver.findElementById("android:id/button1");
                         okBtn.click();
                         deleteOrderPC();
-                        orderPC();
+                        orderCustomPC();
                         summaryMenu.click();
                         MobileElement finalizeEditBtn = (MobileElement) driver.findElementById("com.engagia.android:id/btn_finalize");
                         finalizeEditBtn.click();
@@ -3667,6 +3669,9 @@ public class VAOF {
             MobileElement clckOnBranch = (MobileElement) driver.findElementByXPath(branchListDrctry + "/android.widget.RelativeLayout[" + x + "]");
             clckOnBranch.click();
             System.out.println(x);
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement confirmBtn = (MobileElement) driver.findElementById("android:id/button1");
+            confirmBtn.click();
             //click on Ok
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             MobileElement okBtn = (MobileElement) driver.findElementById("android:id/button1");
@@ -3674,40 +3679,43 @@ public class VAOF {
 
             //Cases
             SearchVan();
-            Case2();
-            Case3();
-            Case4();
-            Case5();
-            Case6();
-            Case7();
-            Case8();
-            Case9();
-            Case10();
-            Case11();
-            Case12();
-            Case13();
-            Case14();
-            Case15();
-            Case16();
-            Case17();
-            Case18();
-            Case19();
-            Case20();
-            Case21();
-            Case22();
-            Case23();
-            Case24();
-            Case25();
-            Case26();
-            Case27();
-            Case28();
-            Case29();
-            Case30();
-            Case31();
-            Case32();
-            Case33();
-            Case34();
+//            Case2();
+//            Case3();
+//            Case4();
+//            Case5();
+//            Case6();
+//            Case7();
+//            Case8();
+//            Case9();
+//            Case10();
+//            Case11();
+//            Case12();
+//            Case13();
+//            Case14();
+//            Case15();
+//            Case16();
+//            Case17();
+//            Case18();
+//            Case19();
+//            Case20();
+//            Case21();
+//            Case22();
+//            Case23();
+//            Case24();
+//            Case25();
+//            Case26();
+//            Case27();
+//            Case28();
+//            Case29();
+//            Case30();
+//            Case31();
+//            Case32();
+//            Case33();
+//            Case34();
             Case35();
+            //Add transaction para may ma adjust sa Case 37
+//            completeOrderTransactionWithOutPayment();
+//            completeOrderTransactionWithOutPayment();
             Case37();
             Case39();
             Case41();
@@ -4303,6 +4311,27 @@ public class VAOF {
                 MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
                 btnOk.click();
                 System.out.println("Order PC " + z + " done");
+            }
+            catch (NoSuchElementException e){
+                System.out.println("Can't Find Element");
+            }
+        }
+    }
+    private void orderCustomPC(){
+        for(int z = 1; z<=3; z++) {
+            try {
+                //1st Product per PC
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement orderPC = (MobileElement) driver.findElementByXPath(orderDrctry + "/android.widget.LinearLayout[" + z + "]/android.widget.LinearLayout[1]" +
+                        "/android.widget.LinearLayout[1]/android.widget.TextView");
+                orderPC.click();
+                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                MobileElement clckNO1 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_1");
+                clckNO1.click();
+                MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
+                btnOk.click();
+                String orderEnteredValue = orderPC.getText();
+                System.out.println("Order PC " + z + " done: Value = "+ orderEnteredValue);
             }
             catch (NoSuchElementException e){
                 System.out.println("Can't Find Element");
