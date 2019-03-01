@@ -12,6 +12,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 import static io.appium.java_client.remote.MobileCapabilityType.FULL_RESET;
@@ -38,6 +39,13 @@ public class TIM {
             "/android.support.v7.widget.LinearLayoutCompat/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.ListView[2]";
     String productFilterByDrctry = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout" +
             "/android.support.v7.widget.LinearLayoutCompat/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ListView";
+    String actualOrderDrctry = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
+            "/android.support.v4.widget.DrawerLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout" +
+            "/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout";
+    String actualOrderDrctrr = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
+            "/android.support.v4.widget.DrawerLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout" +
+            "/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout" +
+            "/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.LinearLayout[1]/android.widget.TextView";
     @Before
     public void setUp() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -778,43 +786,118 @@ public class TIM {
         }
         System.out.println("Case 25 Done");
     }
-    //TODO Check APP: Trade Inventory Management - filter "Information Filter: Current inventory on days < Order to delivery leadtime"
+    //Check APP: Trade Inventory Management - filter "Information Filter: Current inventory on days < Order to delivery leadtime"
     public void Case25(){
-        System.out.println("Testing Case 24");
+        System.out.println("Testing Case 25");
         for(int z=1; z<=7; z++) {
+            infoFilter();
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement cancelBtn = (MobileElement) driver.findElementById("android:id/button2");
+            String cancelBtnText = cancelBtn.getText();
+            System.out.println("Clicked "+cancelBtnText);
+            cancelBtn.click();
             infoFilterCurrentInvent();
             if(z==1) {
-                byName();
+                checkByName();
+                //Click Search bar and search certain product by Name
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchName = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchName.sendKeys("amoxil");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                searchBtn.click();
+                System.out.println("Search by Name");
             }
             else if(z==2){
-                byShortName();
+                checkByShortName();
+                //Click Search bar and search certain product by Name
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchShortName = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchShortName.sendKeys("Amoxil 500mg");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                searchBtn.click();
+                System.out.println("Search by Short Name");
             }
             else if(z==3){
-                byItemCode();
+                checkByItemCode();
+                //Click Search bar and search certain product by Item Code
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchItemCode = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchItemCode.sendKeys("51232167");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                searchBtn.click();
+                System.out.println("Search by Short Name");
             }
             else if(z==4){
-                byDescription();
+                checkByDescription();
+                //Click Search bar and search certain product by Description
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchDescription = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchDescription.sendKeys("Capsule");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                searchBtn.click();
+                System.out.println("Search by Description");
             }
             else if(z==5){
-                byBrand();
+                checkByBrand();
+                //Click Search bar and search certain product by Brand
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchBrand = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchBrand.sendKeys("Amoxil");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                searchBtn.click();
+                System.out.println("Search by Brand");
             }
             else if(z==6){
-                byKeyword();
+                checkByKeyword();
+                //Click Search bar and search certain product by Keywords
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchKeyword = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchKeyword.sendKeys("AmOxIl");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                searchBtn.click();
+                System.out.println("Search by Keyword");
             }
             else if(z==7){
-                byPrincipal();
+                checkByPrincipal();
+                //Click Search bar and search certain product by Principal
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchPrincipal = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchPrincipal.sendKeys("GlaxoSmithKline");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                searchBtn.click();
+                System.out.println("Search by Principal");
             }
-            clear();
+
         }
-        System.out.println("Case 24 Done");
+        System.out.println("Case 25 Done");
     }
     //Check APP: Trade Inventory Management - filter "Information Filter: Estimated inventory level by next OGV in units <= 0"
     public void Case26(){
-        System.out.println("Testing Case 24");
+        System.out.println("Testing Case 26");
         for(int z=1; z<=7; z++) {
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement cancelBtn = (MobileElement) driver.findElementById("android:id/button2");
+            String cancelBtnText = cancelBtn.getText();
+            System.out.println("Clicked "+cancelBtnText);
+            cancelBtn.click();
             infoFilterEstimatedInventory();
             if(z==1) {
-                byName();
+                checkByName();
+                //Click Search bar and search certain product by Name
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchName = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchName.sendKeys("");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                searchBtn.click();
+                System.out.println("Search by Name");
             }
             else if(z==2){
                 byShortName();
@@ -836,7 +919,293 @@ public class TIM {
             }
             clear();
         }
-        System.out.println("Case 24 Done");
+        System.out.println("Case 26 Done");
+    }
+    //Check APP: Trade Inventory Management - filter "Information Filter: Daily Offtake > 0"
+    public void Case27(){
+        System.out.println("Testing Case 27");
+        for(int z=1; z<=7; z++) {
+            infoFilter();
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement cancelBtn = (MobileElement) driver.findElementById("android:id/button2");
+            String cancelBtnText = cancelBtn.getText();
+            System.out.println("Clicked "+cancelBtnText);
+            cancelBtn.click();
+            infoFilterDailyOfftake();
+            if(z==1) {
+                checkByName();
+                //Click Search bar and search certain product by Name
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchName = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchName.sendKeys("amoxil");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                searchBtn.click();
+                System.out.println("Search by Name");
+            }
+            else if(z==2){
+                checkByShortName();
+                //Click Search bar and search certain product by Name
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchShortName = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchShortName.sendKeys("Amoxil 500mg");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                searchBtn.click();
+                System.out.println("Search by Short Name");
+            }
+            else if(z==3){
+                checkByItemCode();
+                //Click Search bar and search certain product by Item Code
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchItemCode = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchItemCode.sendKeys("51232167");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                searchBtn.click();
+                System.out.println("Search by Short Name");
+            }
+            else if(z==4){
+                checkByDescription();
+                //Click Search bar and search certain product by Description
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchDescription = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchDescription.sendKeys("Capsule");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                searchBtn.click();
+                System.out.println("Search by Description");
+            }
+            else if(z==5){
+                checkByBrand();
+                //Click Search bar and search certain product by Brand
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchBrand = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchBrand.sendKeys("Amoxil");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                searchBtn.click();
+                System.out.println("Search by Brand");
+            }
+            else if(z==6){
+                checkByKeyword();
+                //Click Search bar and search certain product by Keywords
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchKeyword = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchKeyword.sendKeys("AmOxIl");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                searchBtn.click();
+                System.out.println("Search by Keyword");
+            }
+            else if(z==7){
+                checkByPrincipal();
+                //Click Search bar and search certain product by Principal
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchPrincipal = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchPrincipal.sendKeys("GlaxoSmithKline");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                searchBtn.click();
+                System.out.println("Search by Principal");
+            }
+
+        }
+        System.out.println("Case 27 Done");
+
+    }
+    //Check APP: Trade Inventory Management - filter "Information Filter: Weekly Offtake > 0"
+    public void Case28(){
+        System.out.println("Testing Case 25");
+        for(int z=1; z<=7; z++) {
+            infoFilter();
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            MobileElement cancelBtn = (MobileElement) driver.findElementById("android:id/button2");
+            String cancelBtnText = cancelBtn.getText();
+            System.out.println("Clicked "+cancelBtnText);
+            cancelBtn.click();
+            infoFilterWeeklyOfftake();
+            if(z==1) {
+                checkByName();
+                //Click Search bar and search certain product by Name
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchName = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchName.sendKeys("amoxil");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                searchBtn.click();
+                System.out.println("Search by Name");
+            }
+            else if(z==2){
+                checkByShortName();
+                //Click Search bar and search certain product by Name
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchShortName = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchShortName.sendKeys("Amoxil 500mg");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                searchBtn.click();
+                System.out.println("Search by Short Name");
+            }
+            else if(z==3){
+                checkByItemCode();
+                //Click Search bar and search certain product by Item Code
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchItemCode = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchItemCode.sendKeys("51232167");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                searchBtn.click();
+                System.out.println("Search by Short Name");
+            }
+            else if(z==4){
+                checkByDescription();
+                //Click Search bar and search certain product by Description
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchDescription = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchDescription.sendKeys("Capsule");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                searchBtn.click();
+                System.out.println("Search by Description");
+            }
+            else if(z==5){
+                checkByBrand();
+                //Click Search bar and search certain product by Brand
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchBrand = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchBrand.sendKeys("Amoxil");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                searchBtn.click();
+                System.out.println("Search by Brand");
+            }
+            else if(z==6){
+                checkByKeyword();
+                //Click Search bar and search certain product by Keywords
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchKeyword = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchKeyword.sendKeys("AmOxIl");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                searchBtn.click();
+                System.out.println("Search by Keyword");
+            }
+            else if(z==7){
+                checkByPrincipal();
+                //Click Search bar and search certain product by Principal
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement searchPrincipal = (MobileElement) driver.findElementById("com.engagia.android:id/search_auto_complete_text_view");
+                searchPrincipal.sendKeys("GlaxoSmithKline");
+                //Click Magnifying Glass Icon
+                MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
+                searchBtn.click();
+                System.out.println("Search by Principal");
+            }
+
+        }
+        System.out.println("Case 25 Done");
+    }
+    //Check APP: Trade Inventory Management - filter "Information Filter: Suggested Order > 0"
+    public void Case29(){
+
+    }
+    //
+    public void Case32(){
+        System.out.println("Testing Case 32");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement summaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
+        summaryMenu.click();
+        MobileElement branchAccount = (MobileElement) driver.findElementById("com.engagia.android:id/txt_account_branch");
+        String branchAccountText = branchAccount.getText();
+        System.out.println("Account/Branch: "+branchAccountText);
+        driver.navigate().back();
+        System.out.println("Case 32 done");
+    }
+    //Check APP: Trade Inventory Management - "Summary Menu: Grand Total with tax"
+    public void Case33(){
+        System.out.println("Testing Case 33");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement summaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
+        summaryMenu.click();
+        MobileElement grandTotalWtaxWithoutValue = (MobileElement) driver.findElementById("com.engagia.android:id/list_str_temporary_saved_grand_total_w_tax");
+        String grandTotalWtaxWithoutValueText = grandTotalWtaxWithoutValue.getText();
+        System.out.println("Grand Total With Tax (Without Order): "+grandTotalWtaxWithoutValueText);
+        grandTotalWtaxWithoutValue.click();
+        driver.navigate().back();
+        swipeFastRight();
+        actualOrderPC();
+        summaryMenu.click();
+        MobileElement grandTotalWtaxWithValue = (MobileElement) driver.findElementById("com.engagia.android:id/list_str_temporary_saved_grand_total_w_tax");
+        grandTotalWtaxWithValue.click();
+        String grandTotalWtaxWithValueText = grandTotalWtaxWithValue.getText();
+        System.out.println("Grand Total With Tax (With Order): "+grandTotalWtaxWithValueText);
+        driver.navigate().back();
+        clear();
+        System.out.println("Case 33 done");
+    }
+    //Check APP: Trade Inventory Management - "Summary Menu: VAT"
+    public void Case34(){
+        System.out.println("Testing Case 34");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement summaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
+        summaryMenu.click();
+        MobileElement VATwithoutValue = (MobileElement) driver.findElementById("com.engagia.android:id/txt_grand_total_w_o_tax");
+        String VATwithoutValueText = VATwithoutValue.getText();
+        System.out.println("VAT (Without Order): "+VATwithoutValueText);
+        VATwithoutValue.click();
+        driver.navigate().back();
+        swipeFastRight();
+        actualOrderPC();
+        summaryMenu.click();
+        MobileElement VATwithValue = (MobileElement) driver.findElementById("com.engagia.android:id/txt_grand_total_w_o_tax");
+        VATwithValue.click();
+        String VATwithValueText = VATwithValue.getText();
+        System.out.println("VAT (With Order): "+VATwithValueText);
+        driver.navigate().back();
+        clear();
+        System.out.println("Case 34 done");
+    }
+    //Check APP: Trade Inventory Management - "Summary Menu: Preview"
+    public void Case35(){
+        System.out.println("Testing Case 35");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement summaryMenu = (MobileElement) driver.findElementByAccessibilityId("Show action");
+        summaryMenu.click();
+        MobileElement previewBtn = (MobileElement) driver.findElementById("com.engagia.android:id/txt_preview_btn");
+        previewBtn.click();
+        MobileElement previewDataWithoutOrder = (MobileElement) driver.findElementById("com.engagia.android:id/txt_print_data");
+        String previewDataWithoutOrderText = previewDataWithoutOrder.getText();
+        System.out.println("Summary Data without order: \n"+previewDataWithoutOrderText);
+        MobileElement closeBtn = (MobileElement) driver.findElementById("android:id/button1");
+        closeBtn.click();
+        driver.navigate().back();
+        actualOrderPC();
+        summaryMenu.click();
+        previewBtn.click();
+        MobileElement previewDataWithOrder = (MobileElement) driver.findElementById("com.engagia.android:id/txt_print_data");
+        String previewDataWithOrderText = previewDataWithOrder.getText();
+        System.out.println("Summary Data with order: \n"+previewDataWithOrderText);
+        closeBtn.click();
+        driver.navigate().back();
+        clear();
+        System.out.println("Case 35 done");
+    }
+    //Check APP: Trade Inventory Management - "Summary Menu: Logistics"
+    public void Case36(){
+        System.out.println("Testing Case 36");
+        MobileElement summaryBtn = (MobileElement) driver.findElementByAccessibilityId("Show action");
+        summaryBtn.click();
+        MobileElement logisticBtn = (MobileElement) driver.findElementById("com.engagia.android:id/txt_logistics_btn");
+        logisticBtn.click();
+        MobileElement cancelBtn = (MobileElement) driver.findElementById("android:id/button2");
+        cancelBtn.click();
+        logisticTransaction();
+        System.out.println("Case 36 done");
+    }
+    //Check- summary button "Clear"
+    public void Case37(){
+
     }
     //Functions
     public void loginToVisit(){
@@ -866,29 +1235,37 @@ public class TIM {
             //INSERT CASES OR FUNCTION HERE
             SearchTIM();
 //            Case1();
-//            Case2();
-//            Case3();
-//            Case4();
-//            Case6();
-//            Case7();
-//            Case8();
-//            Case9();
+            Case2();
+            Case3();
+            Case4();
+            Case6();
+            Case7();
+            Case8();
+            Case9();
             //FILTER
-//            Case10();
-//            Case11();
-//            Case12();
+            Case10();
+            Case11();
+            Case12();
 //            Case13(); Force close
 //            Case14();
 //            Case15(); //Is not available
-//            Case16();
-//            Case19();
-//            Case20();
-//            Case21();
+            Case16();
+            Case19();
+            Case20();
+            Case21();
 //            Case22(); bugshit
             Case23();
             Case24();
-
-
+            logisticTransaction();
+            Case25();
+////            Case26();
+            Case27();
+            Case28();
+            Case32();
+            Case33();
+            Case34();
+            Case35();
+            Case36();
 
 
             //Click on Drawer to logout to visit
@@ -937,7 +1314,7 @@ public class TIM {
     }
     public void swipeRight(){
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement element1 = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[contains(@resource-id,'filter_by_button')]");
+        MobileElement element1 = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
         boolean isDisplayed1 = element1.isDisplayed();
         if (isDisplayed1) {
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -951,6 +1328,24 @@ public class TIM {
             TouchAction touchAction = new TouchAction(driver);
             //try this 300
             touchAction.longPress(new PointOption().withCoordinates(x1, y)).moveTo(new PointOption().withCoordinates(x2, y)).release().perform();
+        }
+    }
+    public void swipeFastRight(){
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement element1 = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        boolean isDisplayed1 = element1.isDisplayed();
+        if (isDisplayed1) {
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            Dimension dim = driver.manage().window().getSize();
+            int width = dim.getWidth();
+            int height = dim.getHeight();
+            //Para nasa gilid un pag scroll walang tatamaan textfield
+            int x1 = (int) (width * 0.99);
+            int x2 = (int) (width * 0.72);
+            int y = (int) (height * 0.30);
+            TouchAction touchAction = new TouchAction(driver);
+            //try this 300
+            touchAction.press(new PointOption().withCoordinates(x1, y)).moveTo(new PointOption().withCoordinates(x2, y)).release().perform();
         }
     }
     public void swipeDown(){
@@ -970,7 +1365,7 @@ public class TIM {
 
     }
     public void checkByName(){
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         MobileElement arrowBtn = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
         arrowBtn.click();
         MobileElement clckShortName = (MobileElement) driver.findElementByXPath(searchByDrctry+"/android.widget.CheckedTextView[1]");
@@ -980,7 +1375,7 @@ public class TIM {
         System.out.println("Searching by Name");
     }
     public void checkByShortName(){
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         MobileElement arrowBtn = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
         arrowBtn.click();
         MobileElement clckShortName = (MobileElement) driver.findElementByXPath(searchByDrctry+"/android.widget.CheckedTextView[2]");
@@ -990,7 +1385,7 @@ public class TIM {
         System.out.println("Searching by Short Name");
     }
     public void checkByItemCode(){
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         MobileElement arrowBtn = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
         arrowBtn.click();
         MobileElement clckItemCode = (MobileElement) driver.findElementByXPath(searchByDrctry+"/android.widget.CheckedTextView[3]");
@@ -1000,7 +1395,7 @@ public class TIM {
         System.out.println("Searching by Item Code");
     }
     public void checkByBarcode(){
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         MobileElement arrowBtn = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
         arrowBtn.click();
         MobileElement clckBarcode = (MobileElement) driver.findElementByXPath(searchByDrctry+"/android.widget.CheckedTextView[4]");
@@ -1010,7 +1405,7 @@ public class TIM {
         System.out.println("Searching by Barcode");
     }
     public void checkByDescription(){
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         MobileElement arrowBtn = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
         arrowBtn.click();
         MobileElement clckDescription = (MobileElement) driver.findElementByXPath(searchByDrctry+"/android.widget.CheckedTextView[5]");
@@ -1020,7 +1415,7 @@ public class TIM {
         System.out.println("Searching by Description");
     }
     public void checkByBrand(){
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         MobileElement arrowBtn = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
         arrowBtn.click();
         MobileElement clckBrand = (MobileElement) driver.findElementByXPath(searchByDrctry+"/android.widget.CheckedTextView[6]");
@@ -1030,7 +1425,7 @@ public class TIM {
         System.out.println("Searching by Brand");
     }
     public void checkByKeyword(){
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         MobileElement arrowBtn = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
         arrowBtn.click();
         MobileElement clckKeyword = (MobileElement) driver.findElementByXPath(searchByDrctry+"/android.widget.CheckedTextView[7]");
@@ -1040,7 +1435,7 @@ public class TIM {
         System.out.println("Searching by Keyword");
     }
     public void checkByPrincipal(){
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         MobileElement arrowBtn = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
         arrowBtn.click();
         MobileElement clckPrincipal = (MobileElement) driver.findElementByXPath(searchByDrctry+"/android.widget.CheckedTextView[8]");
@@ -1247,6 +1642,93 @@ public class TIM {
         MobileElement threeDots = (MobileElement) driver.findElementByAccessibilityId("Show action");
         threeDots.click();
     }
+
+    private void logistic(){
+        MobileElement summaryBtn = (MobileElement) driver.findElementByAccessibilityId("Show action");
+        summaryBtn.click();
+        MobileElement logisticBtn = (MobileElement) driver.findElementById("com.engagia.android:id/txt_logistics_btn");
+        logisticBtn.click();
+    }
+    private void logisticTransaction(){
+        logistic();
+        for(int z=1; z<=3; z++) {
+            if(z==1){
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement orderDelivery = (MobileElement) driver.findElementById("com.engagia.android:id/txt_order_to_delivery_leadtime");
+                orderDelivery.click();
+                MobileElement btnNo1 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_1");
+                btnNo1.click();
+                MobileElement btnNo0 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_0");
+                btnNo0.click();
+                MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
+                btnOk.click();
+                System.out.println("Order delivery Done");
+            }
+            else if(z==2){
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement bufferStockBtn = (MobileElement) driver.findElementById("com.engagia.android:id/txt_buffer_stock");
+                bufferStockBtn.click();
+                MobileElement btnNo1 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_1");
+                btnNo1.click();
+                MobileElement btnNo0 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_0");
+                btnNo0.click();
+                MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
+                btnOk.click();
+                System.out.println("Buffer Stock Done");
+            }
+            else if(z==3){
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                MobileElement ogv = (MobileElement) driver.findElementById("com.engagia.android:id/txt_number_of_days_ogv");
+                ogv.click();
+                MobileElement selectDay = (MobileElement) driver.findElementByAccessibilityId("28 February 2019");
+                selectDay.click();
+                MobileElement btnOk = (MobileElement) driver.findElementById("android:id/button1");
+                btnOk.click();
+                System.out.println("Number of day OGV Done");
+            }
+        }
+        MobileElement btnGo = (MobileElement) driver.findElementById("android:id/button1");
+        btnGo.click();
+        System.out.println("Logistic input done");
+    }
+    private void orderToDelivery(){
+        logistic();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement orderDelivery = (MobileElement) driver.findElementById("com.engagia.android:id/txt_order_to_delivery_leadtime");
+        orderDelivery.click();
+        MobileElement btnNo5 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_5");
+        btnNo5.click();
+        MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
+        btnOk.click();
+        MobileElement btnGo = (MobileElement) driver.findElementById("android:id/button1");
+        btnGo.click();
+    }
+    private void bufferStock(){
+        logistic();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement bufferStockBtn = (MobileElement) driver.findElementById("com.engagia.android:id/txt_buffer_stock");
+        bufferStockBtn.click();
+        MobileElement btnNo5 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_5");
+        btnNo5.click();
+        MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
+        btnOk.click();
+        MobileElement btnGo = (MobileElement) driver.findElementById("android:id/button1");
+        btnGo.click();
+    }
+    private void numDayOGV(){
+        logistic();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        MobileElement ogv = (MobileElement) driver.findElementById("com.engagia.android:id/txt_number_of_days_ogv");
+        ogv.click();
+        MobileElement selectDay = (MobileElement) driver.findElementByAccessibilityId("28 February 2019");
+        selectDay.click();
+        MobileElement btnOk = (MobileElement) driver.findElementById("android:id/button1");
+        btnOk.click();
+        MobileElement btnGo = (MobileElement) driver.findElementById("android:id/button1");
+        btnGo.click();
+
+    }
+
     private static int rand(int bound) {
         return (int) (Math.random() * bound);
     }
@@ -1338,6 +1820,61 @@ public class TIM {
         MobileElement searchBtn = (MobileElement) driver.findElementById("com.engagia.android:id/search_button");
         searchBtn.click();
         System.out.println("Search by Principal");
+    }
+
+    private void actualOrderPC(){
+        MobileElement arrowDown = (MobileElement) driver.findElementById("com.engagia.android:id/filter_by_button");
+        boolean arrowDownIsDisplayed = arrowDown.isDisplayed();
+        if(arrowDownIsDisplayed) {
+            for (int z = 1; z <= 3; z++) {
+                for (int x = 1; x <= 2; x++) {
+                    try{
+                        MobileElement actualOrder = (MobileElement) driver.findElementByXPath(actualOrderDrctry + "/android.widget.LinearLayout[" + z + "]/android.widget.LinearLayout[2]" +
+                                "/android.widget.LinearLayout[" + x + "]/android.widget.TextView");
+                        actualOrder.click();
+                        randomNum();
+                        MobileElement btnOk = (MobileElement) driver.findElementById("com.engagia.android:id/btn_ok");
+                        btnOk.click();
+                        String actualOrderValue = actualOrder.getText();
+                        System.out.println("Actual Order Product " + z + " done: Value = " + actualOrderValue);
+                    }
+                    catch (NoSuchElementException e){
+                        System.out.println("Can't Find Element");
+                    }
+                }
+            }
+        }
+    }
+    private void randomNum(){
+        switch(rand(9 ) + 1){
+            case 1: MobileElement clckNO1 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_1"); clckNO1.click();
+                System.out.println("Click value: 1");
+                break;
+            case 2: MobileElement clckNO2 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_2"); clckNO2.click();
+                System.out.println("Click value: 2");
+                break;
+            case 3: MobileElement clckNO3 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_3"); clckNO3.click();
+                System.out.println("Click value: 3");
+                break;
+            case 4: MobileElement clckNO4 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_4"); clckNO4.click();
+                System.out.println("Click value: 4");
+                break;
+            case 5: MobileElement clckNO5 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_5"); clckNO5.click();
+                System.out.println("Click value: 5");
+                break;
+            case 6: MobileElement clckNO6 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_6"); clckNO6.click();
+                System.out.println("Click value: 6");
+                break;
+            case 7: MobileElement clckNO7 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_7"); clckNO7.click();
+                System.out.println("Click value: 7");
+                break;
+            case 8: MobileElement clckNO8 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_8"); clckNO8.click();
+                System.out.println("Click value: 8");
+                break;
+            case 9: MobileElement clckNO9 = (MobileElement) driver.findElementById("com.engagia.android:id/btn_9");; clckNO9.click();
+                System.out.println("Click value: 9");
+                break;
+        }
     }
 
 }
