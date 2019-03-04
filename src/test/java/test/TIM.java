@@ -1680,7 +1680,7 @@ public class TIM {
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                 MobileElement ogv = (MobileElement) driver.findElementById("com.engagia.android:id/txt_number_of_days_ogv");
                 ogv.click();
-                MobileElement selectDay = (MobileElement) driver.findElementByAccessibilityId("28 February 2019");
+                MobileElement selectDay = (MobileElement) driver.findElementByAccessibilityId("28 March 2019");
                 selectDay.click();
                 MobileElement btnOk = (MobileElement) driver.findElementById("android:id/button1");
                 btnOk.click();
