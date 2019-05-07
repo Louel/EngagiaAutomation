@@ -106,7 +106,7 @@ public class TAKEPICTURE {
     private void SearchTakePicture(){
         //click Hamburger Menu
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        MobileElement HamburgerBtn = (MobileElement) driver.findElementByXPath("//android.widget.ImageButton[@content-desc='Open drawer']");
+        MobileElement HamburgerBtn = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
         HamburgerBtn.click();
         System.out.println("Seaching Take Picture");
         //search test.BAOF

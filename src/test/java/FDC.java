@@ -44,31 +44,33 @@ public class FDC {
     @Before
     public void setUp() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("deviceName","Samsung Galaxy J1 (2016)");
+        capabilities.setCapability("deviceName", "Samsung Galaxy J1 (2016)");
+//        capabilities.setCapability("deviceName","HUAWEI");
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, "Android");
         capabilities.setCapability("platformVersion", "5.1.1");
+//        capabilities.setCapability("platformVersion", "7.0");
         capabilities.setCapability("appPackage", "com.engagia.android");
-        capabilities.setCapability("appActivity","com.engagia.android.activities.LoginActivity");
+        capabilities.setCapability("appActivity", "com.engagia.android.activities.LoginActivity");
         capabilities.setCapability("noSign", true);
         capabilities.setCapability(FULL_RESET, false);
         capabilities.setCapability(NO_RESET, true);
-//        driver = new AppiumDriver(new URL("http://192.168.1.33:4723/wd/hub"), capabilities);
-        driver = new AppiumDriver(new URL("http://192.168.0.167:4723/wd/hub"), capabilities);
+        //Papalitan un Ip depende sa pc
+        driver = new AppiumDriver(new URL("http://192.168.1.40:4723/wd/hub"), capabilities);
 
     }
     @Test
     public void testFDC(){
-//        Case3();
-//        Case5();
-//        Case7();
-//        Case11();
-//        Case13();
-//        Case15();
-//        Case17();
-//        Case19();
-//        Case21();
-//        //Log in to visit function/code here
-//        fdcLogInToVisit();
+        Case3();
+        Case5();
+        Case7();
+        Case11();
+        Case13();
+        Case15();
+        Case17();
+        Case19();
+        Case21();
+        //Log in to visit function/code here
+        fdcLogInToVisit();
         fdaFunction();
         syncAll();
     }
@@ -1005,7 +1007,7 @@ public class FDC {
         clckClear.click();
     }
     public void fdcLogInToVisit(){
-        for (int x = 3; x <=8; x++) {
+        for (int x = 3; x <=5; x++) {
             //Click on Drawer
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             MobileElement drawerOpen = (MobileElement) driver.findElementByAccessibilityId("Open drawer");
